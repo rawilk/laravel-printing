@@ -26,6 +26,11 @@ class PrintNode implements Driver
         return $this->client;
     }
 
+    public function newPrintTask(): \Rawilk\Printing\Contracts\PrintTask
+    {
+        return new PrintTask($this->client);
+    }
+
     public function find($printerId = null): ?Printer
     {
         return $this

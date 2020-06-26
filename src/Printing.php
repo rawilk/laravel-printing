@@ -29,6 +29,11 @@ class Printing implements Driver
         return $this->defaultPrinterId;
     }
 
+    public function newPrintTask(): \Rawilk\Printing\Contracts\PrintTask
+    {
+        return $this->driver->newPrintTask();
+    }
+
     public function find($printerId = null): ?Printer
     {
         try {
