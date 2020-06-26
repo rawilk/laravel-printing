@@ -91,6 +91,8 @@ class PrintTask extends BasePrintTask
         $this->job->printer = $this->printerId;
         $this->job->title = $this->resolveJobTitle();
         $this->job->source = $this->printSource;
+
+        /** @psalm-suppress InaccessibleProperty */
         $this->job->options = $this->options;
 
         $printJobId = $this->client->createPrintJob($this->job);
