@@ -3,7 +3,11 @@
     "description": "Direct printing for Laravel apps",
     "keywords": [
         "rawilk",
-        "laravel-printing"
+        "laravel-printing",
+        "PrintNode",
+        "Receipt printing",
+        "Direct printing",
+        "Raw printing"
     ],
     "homepage": "https://github.com/rawilk/laravel-printing",
     "license": "MIT",
