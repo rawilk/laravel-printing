@@ -18,6 +18,7 @@
     "require": {
         "php": "^7.4",
         "illuminate/support": "^6.0|^7.0",
+        "mike42/escpos-php": "^3.0",
         "printnode/printnode-php": "^2.0@RC"
     },
     "require-dev": {
