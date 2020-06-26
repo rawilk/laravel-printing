@@ -50,7 +50,7 @@ class ReceiptPrinterTest extends TestCase
         $this->assertEquals($expected, $text);
 
         config([
-            'printing.receipts.line_character_length' => 20
+            'printing.receipts.line_character_length' => 20,
         ]);
 
         $text = (string) (new ReceiptPrinter)->line();
@@ -68,7 +68,7 @@ class ReceiptPrinterTest extends TestCase
         $this->assertEquals($expected, $text);
 
         config([
-            'printing.receipts.line_character_length' => 20
+            'printing.receipts.line_character_length' => 20,
         ]);
 
         $text = (string) (new ReceiptPrinter)->doubleLine();
