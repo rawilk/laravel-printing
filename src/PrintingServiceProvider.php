@@ -28,7 +28,7 @@ class PrintingServiceProvider extends ServiceProvider
 
         $this->app->singleton(
             Printing::class,
-            fn ($app) => new Printing($app['printing.driver'])
+            fn ($app) => new Printing($app['printing.driver'], $app['config']['printing.default_printer_id'])
         );
     }
 
