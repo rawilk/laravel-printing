@@ -9,6 +9,7 @@ use Mike42\Escpos\Printer;
 
 /**
  * @method self close()
+ * @method self cut(int $mode = Printer::CUT_FULL, int $lines = 3)
  * @method self setBarcodeHeight(int $height = 8)
  * @method self setBarcodeWidth(int $width = 3)
  * @method self setJustification(int $justification = Printer::JUSTIFY_LEFT)
@@ -109,7 +110,7 @@ class ReceiptPrinter
     public function __call($name, $arguments)
     {
         if (method_exists($this->printer, $name)) {
-            $this->printer->{$name}($arguments);
+            $this->printer->{$name}(...$arguments);
 
             return $this;
         }

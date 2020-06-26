@@ -2,16 +2,17 @@
 
 namespace Rawilk\Printing\Tests;
 
+use Dotenv\Dotenv;
 use Orchestra\Testbench\TestCase as Orchestra;
 use Rawilk\Printing\PrintingServiceProvider;
 
 class TestCase extends Orchestra
 {
-    public function setUp(): void
+    protected function setUp(): void
     {
-        parent::setUp();
+        $this->loadEnvironmentVariables();
 
-        $this->withFactories(__DIR__ . '/database/factories');
+        parent::setUp();
     }
 
     protected function getPackageProviders($app): array
@@ -21,18 +22,14 @@ class TestCase extends Orchestra
         ];
     }
 
-    public function getEnvironmentSetUp($app)
+    protected function loadEnvironmentVariables(): void
     {
-        $app['config']->set('database.default', 'sqlite');
-        $app['config']->set('database.connections.sqlite', [
-            'driver' => 'sqlite',
-            'database' => ':memory:',
-            'prefix' => '',
-        ]);
+        if (! file_exists(__DIR__ . '/../.env')) {
+            return;
+        }
 
-        /*
-        include_once __DIR__.'/../database/migrations/create_skeleton_table.php.stub';
-        (new \CreatePackageTable())->up();
-        */
+        $dotEnv = Dotenv::createImmutable(__DIR__ . '/..');
+
+        $dotEnv->load();
     }
 }
