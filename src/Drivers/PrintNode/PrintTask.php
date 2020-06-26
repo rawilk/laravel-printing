@@ -6,10 +6,10 @@ use Illuminate\Support\Str;
 use PrintNode\Client;
 use PrintNode\Entity\PrintJob as PrintNodePrintJob;
 use Rawilk\Printing\Contracts\PrintJob;
+use Rawilk\Printing\Drivers\PrintNode\Entity\PrintJob as RawilkPrintJob;
 use Rawilk\Printing\Exceptions\InvalidOption;
 use Rawilk\Printing\Exceptions\InvalidSource;
 use Rawilk\Printing\Exceptions\PrintTaskFailed;
-use Rawilk\Printing\Drivers\PrintNode\Entity\PrintJob as RawilkPrintJob;
 use Rawilk\Printing\PrintTask as BasePrintTask;
 
 class PrintTask extends BasePrintTask
