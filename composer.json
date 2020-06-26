@@ -17,7 +17,8 @@
     ],
     "require": {
         "php": "^7.4",
-        "illuminate/support": "^6.0|^7.0"
+        "illuminate/support": "^6.0|^7.0",
+        "printnode/printnode-php": "^2.0@RC"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^2.16",
@@ -51,7 +52,7 @@
                 "Rawilk\\Printing\\PrintingServiceProvider"
             ],
             "aliases": {
-                "Printing": "Rawilk\\Printing\\Facades\\PrintingFacade"
+                "Printing": "Rawilk\\Printing\\Facades\\Printing"
             }
         }
     },

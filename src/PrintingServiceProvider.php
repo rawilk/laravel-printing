@@ -18,5 +18,26 @@ class PrintingServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->mergeConfigFrom(__DIR__ . '/../config/printing.php', 'printing');
+
+        $this->app->singleton(
+            'printing.factory',
+            fn ($app) => new Factory($app['config']['printing'])
+        );
+
+        $this->app->singleton('printing.driver', fn ($app) => $app['printing.factory']->driver());
+
+        $this->app->singleton(
+            Printing::class,
+            fn ($app) => new Printing($app['printing.driver'])
+        );
+    }
+
+    public function provides(): array
+    {
+        return [
+            'printing.factory',
+            'printing.driver',
+            Printing::class,
+        ];
     }
 }
