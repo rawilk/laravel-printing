@@ -1,16 +1,16 @@
 {
-    "name": "rawilk/:package_name",
-    "description": ":package_description",
+    "name": "rawilk/laravel-printing",
+    "description": "Direct printing for Laravel apps",
     "keywords": [
         "rawilk",
-        ":package_name"
+        "laravel-printing"
     ],
-    "homepage": "https://github.com/rawilk/:package_name",
+    "homepage": "https://github.com/rawilk/laravel-printing",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": ":author_email",
+            "name": "Randall Wilk",
+            "email": "randall@randallwilk.dev",
             "homepage": "https://randallwilk.dev",
             "role": "Developer"
         }
@@ -27,12 +27,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Rawilk\\Skeleton\\": "src"
+            "Rawilk\\Printing\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Rawilk\\Skeleton\\Tests\\": "tests"
+            "Rawilk\\Printing\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -47,10 +47,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Rawilk\\Skeleton\\SkeletonServiceProvider"
+                "Rawilk\\Printing\\PrintingServiceProvider"
             ],
             "aliases": {
-                "Skeleton": "Rawilk\\Skeleton\\SkeletonFacade"
+                "Printing": "Rawilk\\Printing\\Facades\\PrintingFacade"
             }
         }
     },

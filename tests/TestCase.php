@@ -1,9 +1,9 @@
 <?php
 
-namespace Rawilk\Skeleton\Tests;
+namespace Rawilk\Printing\Tests;
 
 use Orchestra\Testbench\TestCase as Orchestra;
-use Rawilk\Skeleton\SkeletonServiceProvider;
+use Rawilk\Printing\PrintingServiceProvider;
 
 class TestCase extends Orchestra
 {
@@ -14,10 +14,10 @@ class TestCase extends Orchestra
         $this->withFactories(__DIR__ . '/database/factories');
     }
 
-    protected function getPackageProviders($app)
+    protected function getPackageProviders($app): array
     {
         return [
-            SkeletonServiceProvider::class,
+            PrintingServiceProvider::class,
         ];
     }
 

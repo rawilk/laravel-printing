@@ -1,10 +1,9 @@
-# :package_description
+# Direct printing for Laravel apps
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/rawilk/:package_name.svg?style=flat-square)](https://packagist.org/packages/rawilk/:package_name)
-[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/rawilk/:package_name/run-tests?label=tests)](https://github.com/rawilk/:package_name/actions?query=workflow%3Arun-tests+branch%3Amaster)
-[![Total Downloads](https://img.shields.io/packagist/dt/rawilk/:package_name.svg?style=flat-square)](https://packagist.org/packages/rawilk/:package_name)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/rawilk/laravel-printing.svg?style=flat-square)](https://packagist.org/packages/rawilk/laravel-printing)
+[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/rawilk/laravel-printing/run-tests?label=tests)](https://github.com/rawilk/laravel-printing/actions?query=workflow%3Arun-tests+branch%3Amaster)
+[![Total Downloads](https://img.shields.io/packagist/dt/rawilk/laravel-printing.svg?style=flat-square)](https://packagist.org/packages/rawilk/laravel-printing)
 
-**Note:** Replace ```:author_name``` ```:author_username``` ```:author_email``` ```:package_name``` ```:package_description``` with their correct values in [README.md](README.md), [CHANGELOG.md](CHANGELOG.md), [CONTRIBUTING.md](CONTRIBUTING.md), [LICENSE.md](LICENSE.md) and [composer.json](composer.json) files, then delete this line. You can also run `configure-skeleton.sh` to do this automatically.
 
 This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
 
@@ -13,19 +12,12 @@ This is where your description should go. Limit it to a paragraph or two. Consid
 You can install the package via composer:
 
 ```bash
-composer require rawilk/package-skeleton-laravel
-```
-
-You can publish and run the migrations with:
-
-```bash
-php artisan vendor:publish --provider="rawilk\Skeleton\SkeletonServiceProvider" --tag="migrations"
-php artisan migrate
+composer require rawilk/laravel-printing
 ```
 
 You can publish the config file with:
 ```bash
-php artisan vendor:publish --provider="rawilk\Skeleton\SkeletonServiceProvider" --tag="config"
+php artisan vendor:publish --provider="Rawilk\Printing\PrintingServiceProvider" --tag="config"
 ```
 
 This is the contents of the published config file:
@@ -38,8 +30,7 @@ return [
 ## Usage
 
 ``` php
-$skeleton = new Rawilk\Skeleton();
-echo $skeleton->echoPhrase('Hello, Rawilk!');
+$printing = new Rawilk\Printing;
 ```
 
 ## Testing
@@ -62,7 +53,7 @@ If you discover any security related issues, please email randall@randallwilk.de
 
 ## Credits
 
-- [:author_name](https://github.com/:author_username)
+- [Randall Wilk](https://github.com/rawilk)
 - [All Contributors](../../contributors)
 
 ## License

@@ -1,11 +1,11 @@
 <?php
 
-namespace Rawilk\Skeleton\Tests;
+namespace Rawilk\Printing\Tests;
 
 class ExampleTest extends TestCase
 {
     /** @test */
-    public function true_is_true()
+    public function true_is_true(): void
     {
         $this->assertTrue(true);
     }
