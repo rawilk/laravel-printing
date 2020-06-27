@@ -169,6 +169,12 @@ Printing::newPrintTask()
     ->send();
 ```
 
+## Roadmap
+
+- Add support for more drivers, like CUPS
+- Add more comprehensive tests
+- Add support for custom drivers
+
 ## Testing
 
 ``` bash
