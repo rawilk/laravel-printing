@@ -169,6 +169,12 @@ Printing::newPrintTask()
     ->send();
 ```
 
+## Roadmap
+
+- Add support for more drivers, like CUPS
+- Add more comprehensive tests
+- Add support for custom drivers
+
 ## Testing
 
 ``` bash
@@ -191,6 +197,7 @@ If you discover any security related issues, please email randall@randallwilk.de
 
 - [Randall Wilk](https://github.com/rawilk)
 - [All Contributors](../../contributors)
+- _Mike42_ for the [PHP ESC/POS Print Driver](https://github.com/mike42/escpos-php) library
 
 ## License
 
