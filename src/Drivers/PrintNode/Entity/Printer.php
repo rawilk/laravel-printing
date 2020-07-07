@@ -2,12 +2,14 @@
 
 namespace Rawilk\Printing\Drivers\PrintNode\Entity;
 
+use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Support\Collection;
+use JsonSerializable;
 use PrintNode\Client;
 use PrintNode\Entity\Printer as PrintNodePrinter;
 use Rawilk\Printing\Contracts\Printer as PrinterContract;
 
-class Printer implements PrinterContract
+class Printer implements PrinterContract, Arrayable, JsonSerializable
 {
     protected PrintNodePrinter $printer;
     protected Client $client;
@@ -61,5 +63,22 @@ class Printer implements PrinterContract
     public function jobs(): Collection
     {
         return collect([]);
+    }
+
+    public function toArray(): array
+    {
+        return [
+            'id' => $this->id(),
+            'name' => $this->name(),
+            'description' => $this->description(),
+            'online' => $this->isOnline(),
+            'status' => $this->status(),
+            'trays' => $this->trays(),
+        ];
+    }
+
+    public function jsonSerialize()
+    {
+        return $this->toArray();
     }
 }
