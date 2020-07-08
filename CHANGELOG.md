@@ -2,6 +2,11 @@
 
 All notable changes to `laravel-printing` will be documented in this file
 
+## 1.1.2 - 2020-07-08
+
+### Fixed
+- Fix strict type comparison when finding a printer with PrintNode driver.
+
 ## 1.1.1 - 2020-07-08
 
 ### Changed
