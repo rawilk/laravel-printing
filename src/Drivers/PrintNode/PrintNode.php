@@ -35,7 +35,7 @@ class PrintNode implements Driver
     {
         return $this
             ->printers()
-            ->filter(fn (RawilkPrinter $p) => $p->id() === $printerId)
+            ->filter(fn (RawilkPrinter $p) => (string) $p->id() === (string) $printerId)
             ->first();
     }
 
