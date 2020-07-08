@@ -2,6 +2,11 @@
 
 All notable changes to `laravel-printing` will be documented in this file
 
+## 1.1.1 - 2020-07-08
+
+### Changed
+- Add method doc blocks to `Printing` facade for `defaultPrinterId()` and `defaultPrinter()`.
+
 ## 1.1.0 - 2020-07-07
 
 ### Added
