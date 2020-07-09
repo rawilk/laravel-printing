@@ -1,6 +1,12 @@
 # Changelog
 
-All notable changes to `laravel-printing` will be documented in this file
+All notable changes to `laravel-printing` will be documented in this file.
+
+## 1.1.3 - 2020-07-09
+
+### Changed
+- Add return type `string` to `id()` method on PrintNode Printer.
+- Add more method doc blocks to `ReceiptPrinter` for type hinting to underlying printer class.
 
 ## 1.1.2 - 2020-07-08
 

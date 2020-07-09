@@ -35,7 +35,7 @@ class Printer implements PrinterContract, Arrayable, JsonSerializable
         return $this->printer->description;
     }
 
-    public function id()
+    public function id(): string
     {
         return $this->printer->id;
     }
