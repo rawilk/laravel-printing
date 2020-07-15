@@ -2,6 +2,11 @@
 
 All notable changes to `laravel-printing` will be documented in this file.
 
+## 1.1.4 - 2020-07-15
+
+### Fixed
+- Return the job id of a new print job with PrintNode [#1](https://github.com/rawilk/laravel-printing/issues/1).
+
 ## 1.1.3 - 2020-07-09
 
 ### Changed
