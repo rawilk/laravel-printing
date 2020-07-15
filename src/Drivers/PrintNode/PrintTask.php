@@ -4,9 +4,9 @@ namespace Rawilk\Printing\Drivers\PrintNode;
 
 use Illuminate\Support\Str;
 use PrintNode\Client;
-use PrintNode\Entity\PrintJob as PrintNodePrintJob;
 use Rawilk\Printing\Contracts\PrintJob;
 use Rawilk\Printing\Drivers\PrintNode\Entity\PrintJob as RawilkPrintJob;
+use Rawilk\Printing\Drivers\PrintNode\Entity\PrintNodePrintJob;
 use Rawilk\Printing\Exceptions\InvalidOption;
 use Rawilk\Printing\Exceptions\InvalidSource;
 use Rawilk\Printing\Exceptions\PrintTaskFailed;
@@ -91,15 +91,15 @@ class PrintTask extends BasePrintTask
         $this->job->printer = $this->printerId;
         $this->job->title = $this->resolveJobTitle();
         $this->job->source = $this->printSource;
-
-        /** @psalm-suppress InaccessibleProperty */
-        $this->job->options = $this->options;
+        $this->job->setOptions($this->options);
 
         $printJobId = $this->client->createPrintJob($this->job);
 
         if (! $printJobId) {
             throw PrintTaskFailed::driverFailed('PrintNode print job failed to execute.');
         }
+
+        $this->job->setId($printJobId);
 
         return new RawilkPrintJob($this->job);
     }

@@ -2,7 +2,6 @@
 
 namespace Rawilk\Printing\Drivers\PrintNode\Entity;
 
-use PrintNode\Entity\PrintJob as PrintNodePrintJob;
 use Rawilk\Printing\Contracts\PrintJob as PrintJobContract;
 
 class PrintJob implements PrintJobContract

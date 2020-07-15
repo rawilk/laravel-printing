@@ -26,6 +26,14 @@ class PrintNode implements Driver
         return $this->client;
     }
 
+    // Method used for testing purposes.
+    public function setClient(Client $client): self
+    {
+        $this->client = $client;
+
+        return $this;
+    }
+
     public function newPrintTask(): \Rawilk\Printing\Contracts\PrintTask
     {
         return new PrintTask($this->client);
