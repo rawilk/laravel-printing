@@ -98,6 +98,10 @@ class ReceiptPrinter
     {
         $remaining = static::$lineCharacterLength - strlen($left) - strlen($right);
 
+        if ($remaining <= 0) {
+            $remaining = 1;
+        }
+
         return $this->text($left . str_repeat(' ', $remaining) . $right);
     }
 
