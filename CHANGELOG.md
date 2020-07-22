@@ -2,6 +2,11 @@
 
 All notable changes to `laravel-printing` will be documented in this file.
 
+## 1.1.5 - 2020-07-22
+
+### Fixed
+- Ensure `str_repeat` gets repeated at least once to avoid fatal error on `twoColumnText`.
+
 ## 1.1.4 - 2020-07-15
 
 ### Fixed
