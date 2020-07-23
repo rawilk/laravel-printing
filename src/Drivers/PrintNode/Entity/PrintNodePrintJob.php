@@ -6,7 +6,7 @@ use PrintNode\Entity\PrintJob as PrintNodeEntity;
 
 class PrintNodePrintJob extends PrintNodeEntity
 {
-    public function setId(int $id): self
+    public function setId($id): self
     {
         $this->id = $id;
 

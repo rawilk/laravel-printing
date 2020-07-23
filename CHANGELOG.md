@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-printing` will be documented in this file.
 
+## 1.1.6 - 2020-07-23
+### Changed
+- Remove `int` parameter type hint on `PrintNodePrintJob` `id` setter.
+
 ## 1.1.5 - 2020-07-22
 
 ### Fixed
