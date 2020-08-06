@@ -24,7 +24,8 @@
         "ext-json": "*",
         "illuminate/support": "^6.0|^7.0",
         "mike42/escpos-php": "^3.0",
-        "printnode/printnode-php": "^2.0@RC"
+        "printnode/printnode-php": "^2.0@RC",
+        "smalot/cups-ipp": "^0.5.0"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^2.16",

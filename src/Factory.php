@@ -4,6 +4,7 @@ namespace Rawilk\Printing;
 
 use Illuminate\Support\Arr;
 use Rawilk\Printing\Contracts\Driver;
+use Rawilk\Printing\Drivers\Cups\Cups;
 use Rawilk\Printing\Drivers\PrintNode\PrintNode;
 use Rawilk\Printing\Exceptions\DriverConfigNotFound;
 use Rawilk\Printing\Exceptions\InvalidDriverConfig;
@@ -23,6 +24,17 @@ class Factory
         $driver = $driver ?: $this->getDriverFromConfig();
 
         return $this->drivers[$driver] = $this->get($driver);
+    }
+
+    protected function createCupsDriver(array $config): Driver
+    {
+        $cups = new Cups;
+
+        if ($config['ip']) {
+            $cups->remoteServer($config['ip'], $config['username'], $config['password'], $config['port']);
+        }
+
+        return $cups;
     }
 
     protected function createPrintnodeDriver(array $config): Driver

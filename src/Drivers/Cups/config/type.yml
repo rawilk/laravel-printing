@@ -1,0 +1,66 @@
+unsupported:
+  tag: "\x10"
+  build: ''
+reserved:
+  tag: "\x11"
+  build: ''
+unknown:
+  tag: "\x12"
+  build: ''
+no-value:
+  tag: "\x13"
+  build: 'no_value'
+integer:
+  tag: "\x21"
+  build: 'integer'
+boolean:
+  tag: "\x22"
+  build: 'boolean'
+enum:
+  tag: "\x23"
+  build: 'enum'
+octetString:
+  tag: "\x30"
+  build: 'octet_string'
+datetime:
+  tag: "\x31"
+  build: 'datetime'
+resolution:
+  tag: "\x32"
+  build: 'resolution'
+rangeOfInteger:
+  tag: "\x33"
+  build: 'range_of_integers'
+textWithLanguage:
+  tag: "\x35"
+  build: 'string'
+nameWithLanguage:
+  tag: "\x36"
+  build: 'string'
+textWithoutLanguage:
+  tag: "\x41"
+  build: 'string'
+nameWithoutLanguage:
+  tag: "\x42"
+  build: 'string'
+keyword:
+  tag: "\x44"
+  build: 'string'
+uri:
+  tag: "\x45"
+  build: 'string'
+uriScheme:
+  tag: "\x46"
+  build: 'string'
+charset:
+  tag: "\x47"
+  build: 'string'
+naturalLanguage:
+  tag: "\x48"
+  build: 'string'
+mimeMediaType:
+  tag: "\x49"
+  build: 'string'
+extendedAttributes:
+  tag: "\x7F"
+  build: 'extended'

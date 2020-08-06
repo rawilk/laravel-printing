@@ -6,7 +6,7 @@ return [
     | Driver
     |--------------------------------------------------------------------------
     |
-    | Supported: `printnode`
+    | Supported: `printnode`, `cups`
     |
     */
     'driver' => env('PRINTING_DRIVER', 'printnode'),
@@ -22,6 +22,12 @@ return [
     'drivers' => [
         'printnode' => [
             'key' => env('PRINT_NODE_API_KEY'),
+        ],
+        'cups' => [
+            'ip' => env('CUPS_SERVER_IP'),
+            'username' => env('CUPS_SERVER_USERNAME'),
+            'password' => env('CUPS_SERVER_PASSWORD'),
+            'port' => env('CUPS_SERVER_PORT', 631),
         ],
     ],
 

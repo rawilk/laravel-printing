@@ -1,0 +1,48 @@
+copies:
+  tag: 'integer'
+document-format:
+  tag: 'mimeMediaType'
+document-name:
+  tag: 'textWithoutLanguage'
+finishings:
+  tag: 'enum'
+fit-to-page:
+  tag: 'integer'
+ipp-attribute-fidelity:
+  tag: 'boolean'
+job-hold-until:
+  tag: 'keyword'
+job-message-from-operator:
+  tag: 'textWithoutLanguage'
+job-priority:
+  tag: 'integer'
+job-sheets:
+  tag: 'keyword'
+job-name:
+  tag: 'nameWithoutLanguage'
+job-uri:
+  tag: 'uri'
+last-document:
+  tag: 'boolean'
+media:
+  tag: 'keyword'
+media-source:
+  tag: 'keyword'
+multiple-document-handling:
+  tag: 'keyword'
+multiple-operation-time-out:
+  tag: 'integer'
+number-up:
+  tag: 'integer'
+orientation-requested:
+  tag: 'enum'
+page-ranges:
+  tag: 'rangeOfInteger'
+print-quality:
+  tag: 'enum'
+printer-resolution:
+  tag: 'resolution'
+requested-attributes:
+  tag: 'keyword'
+sides:
+  tag: 'keyword'
