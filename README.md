@@ -111,7 +111,7 @@ return [
 ];
 ```
 
-- When using CUPS, you can either use a local CUPS server that runs on the **same server as your Laravel installation** (useful for local development) or you can specify an IP address, username, and password for a remote CUPS server. The remote CUPS server **must be on the same network** as any printers you are going to print to.
+- When using CUPS, you can either use a local CUPS server that runs on the **same server as your Laravel installation** (useful for local development), or you can specify an IP address, username, and password for a remote CUPS server. The remote CUPS server **must be on the same network** as any printers you are going to print to.
 
 ## Usage
 
