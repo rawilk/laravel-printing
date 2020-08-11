@@ -34,6 +34,6 @@ class PrintTaskTest extends TestCase
             ->content('foo')
             ->send();
 
-        $this->assertEquals(123456, $job->id());
+        self::assertEquals(123456, $job->id());
     }
 }

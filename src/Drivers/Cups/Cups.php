@@ -6,12 +6,12 @@ use Illuminate\Support\Collection;
 use Rawilk\Printing\Contracts\Driver;
 use Rawilk\Printing\Contracts\Printer;
 use Rawilk\Printing\Drivers\Cups\Entity\Printer as RawilkPrinter;
+use Rawilk\Printing\Drivers\Cups\Support\Client;
 use Rawilk\Printing\Exceptions\InvalidDriverConfig;
 use Smalot\Cups\Builder\Builder;
 use Smalot\Cups\Manager\JobManager;
 use Smalot\Cups\Manager\PrinterManager;
 use Smalot\Cups\Model\Printer as SmalotPrinter;
-use Smalot\Cups\Transport\Client;
 use Smalot\Cups\Transport\ResponseParser;
 
 class Cups implements Driver

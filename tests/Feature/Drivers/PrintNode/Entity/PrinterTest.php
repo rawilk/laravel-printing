@@ -36,8 +36,8 @@ class PrinterTest extends TestCase
             ],
         ];
 
-        $this->assertNotEmpty($toArray);
-        $this->assertEquals($expected, $toArray);
+        self::assertNotEmpty($toArray);
+        self::assertEquals($expected, $toArray);
     }
 
     /** @test */
@@ -49,7 +49,7 @@ class PrinterTest extends TestCase
 
         $expected = '{"id":"printer-id","name":"printer name","description":"printer description","online":true,"status":"online","trays":["tray 1"]}';
 
-        $this->assertEquals($expected, $json);
+        self::assertEquals($expected, $json);
     }
 
     protected function createPrinter(): Printer

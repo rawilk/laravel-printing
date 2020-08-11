@@ -30,7 +30,7 @@ class Factory
     {
         $cups = new Cups;
 
-        if ($config['ip']) {
+        if (isset($config['ip'])) {
             $cups->remoteServer($config['ip'], $config['username'], $config['password'], $config['port']);
         }
 
@@ -65,7 +65,7 @@ class Factory
     {
         $config = $this->getDriverConfig($driver);
 
-        if (blank($config)) {
+        if (! is_array($config)) {
             throw DriverConfigNotFound::forDriver($driver);
         }
 
