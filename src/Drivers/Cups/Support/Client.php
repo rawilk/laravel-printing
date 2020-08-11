@@ -57,11 +57,11 @@ class Client implements HttpClient
      */
     public function __construct($username = null, $password = null, $socketClientOptions = [])
     {
-        if (!is_null($username)) {
+        if (! is_null($username)) {
             $this->username = $username;
         }
 
-        if (!is_null($password)) {
+        if (! is_null($password)) {
             $this->password = $password;
         }
 
@@ -76,7 +76,8 @@ class Client implements HttpClient
             $socketClientOptions['remote_socket']
         ) ? 'http://localhost' : $socketClientOptions['remote_socket'];
         $this->httpClient = new PluginClient(
-            $socketClient, [
+            $socketClient,
+            [
                 new ErrorPlugin(),
                 new ContentLengthPlugin(),
                 new DecoderPlugin(),
@@ -123,6 +124,7 @@ class Client implements HttpClient
                 case self::AUTHTYPE_BASIC:
                     $pass = base64_encode($this->username.':'.$this->password);
                     $authentication = 'Basic '.$pass;
+
                     break;
 
                 case self::AUTHTYPE_DIGEST:
