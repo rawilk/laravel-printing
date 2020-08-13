@@ -14,6 +14,18 @@ $printJob = Printing::newPrintTask()
     ->printer($printerId)
     ->file('path_to_file.pdf')
     ->send();
-    
+
 $printJob->id(); // the id number returned from the print server
 </x-code>
+
+## Supported Drivers
+
+Laravel Printing currently only supports one driver at this time, but support for more drivers is planned for the future.
+
+- [PrintNode](https://printnode.com)
+
+## Credits
+
+- [Randall Wilk](https://github.com/rawilk)
+- [All Contributors](https://github.com/rawilk/laravel-printing/contributors)
+- _Mike42_ for the [PHP ESC/POS Print Driver](https://github.com/mike42/escpos-php) library
