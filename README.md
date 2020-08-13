@@ -21,6 +21,10 @@ Supported Print Drivers:
 
 - PrintNode: https://printnode.com
 
+## Documentation:
+
+For more comprehensive documentation, please visit: https://docs.randallwilk.dev/laravel-printing
+
 ## Installation
 
 You can install the package via composer:
