@@ -6,7 +6,7 @@ sort: 1
 If you have a receipt printer, you can easily print receipts to it via the `Rawilk\Printing\Receipts\ReceiptPrinter`. This will generate a string
 that you can then send to your receipt printer.
 
-<x-code lang="php">
+```php
 // First generate the receipt
 $receipt = (string) (new ReceiptPrinter)
     ->centerAlign()
@@ -25,8 +25,8 @@ Printing::newPrintTask()
     ->printer($receiptPrinterId)
     ->content($text)
     ->send();
-</x-code>
+```
 
 If you are using the PrintNode driver, the content will be `base64_encoded` automatically for you.
 
-More info on the receipt printer can be found in [the api reference](/laravel-printing/v1/api/receipt-printer).
+More info on the receipt printer can be found in [the api reference](/docs/laravel-printing/v1/api/receipt-printer).

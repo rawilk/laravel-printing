@@ -5,45 +5,62 @@ sort: 3
 
 `Rawilk\Printing\Contracts\PrintJob`
 
-## Methods
+### date
+```php
+/**
+ * Returns the date the job was created.
+ *
+ * @return \DateTime|mixed
+ */
+public function date();
+```
 
-<x-table>
-    <x-slot name="thead">
-        <tr>
-            <th>Method</th>
-            <th>Return Type</th>
-            <th>Description</th>
-        </tr>
-    </x-slot>
+### id
+```php
+/**
+ * Returns the id of the job.
+ *
+ * @return int|string
+ */
+public function id();
+```
 
-    <tr>
-        <td><code>date()</code></td>
-        <td><code>DateTime|mixed</code></td>
-        <td>The date the job was created</td>
-    </tr>
-    <tr>
-        <td><code>id()</code></td>
-        <td><code>int|string</code></td>
-        <td>The id of the job</td>
-    </tr>
-    <tr>
-        <td><code>name()</code></td>
-        <td><code>string|null</code></td>
-        <td>The name of the job</td>
-    </tr>
-    <tr>
-        <td><code>printerId()</code></td>
-        <td><code>int|string|mixed</code></td>
-        <td>Returns the id of the printer the job was sent to, if available</td>
-    </tr>
-    <tr>
-        <td><code>printerName()</code></td>
-        <td><code>string|null</code></td>
-        <td>Returns the name of the printer the job was sent to, if available</td>
-    </tr>
-    <tr>
-        <td><code>state()</code></td>
-        <td><code>string|null</code></td>
-        <td>Returns the status of the job</td>
-    </tr>
-</x-table>
+### name
+```php
+/**
+ * Returns the id of name job.
+ *
+ * @return string|null
+ */
+public function name(): ?string;
+```
+
+### printerId
+```php
+/**
+ * Returns the id the printer the job was sent to, if available.
+ *
+ * @return int|string|mixed
+ */
+public function printerId();
+```
+
+### printerName
+```php
+/**
+ * Returns the name of the printer the job was sent to, if available.
+ *
+ * @return string|null
+ */
+public function printerName(): ?string;
+```
+
+### state
+```php
+/**
+ * Returns the status of the job.
+ *
+ * @return string|null
+ */
+public function state(): ?string;
+```

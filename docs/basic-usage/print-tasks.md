@@ -5,17 +5,17 @@ sort: 3
 
 Print tasks can be sent to your printer by creating a new print task. At the bare minimum, you need your printer's id, and the content you are going to print.
 
-<x-code lang="php">
+```php
 Printing::newPrintTask()
     ->printer($printerId)
     ->file('path_to_file.pdf')
     ->send();
-</x-code>
+```
 
 ## Options
 There are several options you can set for a print job. You should consult with your print driver to see which options you have available to you.
 
-<x-code lang="php">
+```php
 Printing::newPrintTask()
     ->printer($printerId)
     ->file('path_to_file.pdf')
@@ -24,7 +24,7 @@ Printing::newPrintTask()
     ->copies(2)
     ->tray('Tray 1') // check if your driver and printer supports this
     ->send();
-</x-code>
+```
 
 ### Driver Options
 

@@ -5,60 +5,94 @@ sort: 1
 
 `Rawilk\Printing\Contracts\Printer`
 
-## Methods
+### id
+```php
+/**
+ * Returns the printer's id.
+ *
+ * @return int|string
+ */
+public function id();
+```
 
-<x-table>
-    <x-slot name="thead">
-        <tr>
-            <th>Method</th>
-            <th>Return Type</th>
-            <th>Description</th>
-        </tr>
-    </x-slot>
+### name
+```php
+/**
+ * Returns the printer's name.
+ *
+ * @return string|null
+ */
+public function name(): ?string;
+```
 
-    <tr>
-        <td><code>id()</code></td>
-        <td><code>int|string</code></td>
-        <td>Retrieve the printer's id</td>
-    </tr>
-    <tr>
-        <td><code>name()</code></td>
-        <td><code>string|null</code></td>
-        <td>Retrieve the printer's name</td>
-    </tr>
-    <tr>
-        <td><code>description()</code></td>
-        <td><code>string|null</code></td>
-        <td>Retrieve the printer's description</td>
-    </tr>
-    <tr>
-        <td><code>capabilities()</code></td>
-        <td><code>array</code></td>
-        <td>Retrieve the printer's capabilities</td>
-    </tr>
-    <tr>
-        <td><code>trays()</code></td>
-        <td><code>array</code></td>
-        <td>Retrieve a printer's available trays</td>
-    </tr>
-    <tr>
-        <td><code>status()</code></td>
-        <td><code>string</code></td>
-        <td>Get the printer's current status</td>
-    </tr>
-    <tr>
-        <td><code>isOnline()</code></td>
-        <td><code>bool</code></td>
-        <td>Determines if the printer is currently online</td>
-    </tr>
-    <tr>
-        <td><code>jobs()</code></td>
-        <td><code>Illuminate\Support\Collection</code></td>
-        <td>Returns the jobs for a printer. <strong>Note:</strong> this feature is not implemented at this time for PrintNode</td>
-    </tr>
-    <tr>
-        <td><code>toArray()</code></td>
-        <td><code>array</code></td>
-        <td>Returns an array representation of the printer</td>
-    </tr>
-</x-table>
+### description
+```php
+/**
+ * Returns the printer's description.
+ *
+ * @return string|null
+ */
+public function description(): ?string;
+```
+
+### capabilities
+```php
+/**
+ * Returns the printer's capabilities.
+ *
+ * @return array
+ */
+public function capabilities(): array;
+```
+
+### trays
+```php
+/**
+ * Returns the printer's available trays.
+ *
+ * @return array
+ */
+public function trays(): array;
+```
+
+### status
+```php
+/**
+ * Returns the printer's current status.
+ *
+ * @return string
+ */
+public function status(): string;
+```
+
+### isOnline
+```php
+/**
+ * Determine if the printer is currently "online".
+ *
+ * @return bool
+ */
+public function isOnline(): bool;
+```
+
+### jobs
+```php
+/**
+ * Returns the jobs for a printer.
+ *
+ * @return \Illuminate\Support\Collection
+ */
+public function jobs(): Collection;
+```
+**Note:** This feature is not yet implemented for the PrintNode driver.
+
+### toArray
+```php
+/**
+ * Returns an array representation of the printer.
+ * This method is also called if casting the printer to an array ((array) $printer)
+ *
+ * @return array
+ */
+public function toArray(): array;
+```

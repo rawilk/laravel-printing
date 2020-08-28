@@ -9,14 +9,14 @@ raw print job via the `Printing` facade.
 
 Here's a simple example of what you can do with this package:
 
-<x-code lang="php">
+```php
 $printJob = Printing::newPrintTask()
     ->printer($printerId)
     ->file('path_to_file.pdf')
     ->send();
 
 $printJob->id(); // the id number returned from the print server
-</x-code>
+```
 
 ## Supported Drivers
 

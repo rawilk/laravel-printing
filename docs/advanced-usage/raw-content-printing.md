@@ -11,20 +11,20 @@ a pdf file.
 Send a string of text to be printed using the `content()` method on PrintTask. This is the method you should be using if you are printing
 a receipt.
 
-<x-code lang="php">
+```php
 Printing::newPrintTask()
     ->printer($printerId)
     ->content('hello world')
     ->send();
-</x-code>
+```
 
 ## URL
 
 You can also print the contents of a URL using the `url()` method on PrintTask.
 
-<x-code lang="php">
+```php
 Printing::newPrintTask()
     ->printer($printerId)
     ->url('https://google.com')
     ->send();
-</x-code>
+```
