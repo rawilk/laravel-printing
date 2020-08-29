@@ -53,7 +53,7 @@ $printer->isOnline()
 If your printer has a description set on it, it can be retrieved via:
 
 ```php
-$printer->status()
+$printer->description()
 ```
 
 ## Serialization
