@@ -32,28 +32,28 @@ $printer->capabilities()
 ## Trays
 If your printer and print driver support it, you can get a listing of your printer's available trays for use later:
 
-```
-php$printer->trays()
+```php
+$printer->trays()
 ```
 
 ## Printer status
 Your print server should return a text representation of your printer's current status:
 
-```
-php$printer->status()
+```php
+$printer->status()
 ```
 
 You can also check if the printer is online via:
 
-```
-php$printer->isOnline()
+```php
+$printer->isOnline()
 ```
 
 ## Description
 If your printer has a description set on it, it can be retrieved via:
 
-```
-php$printer->status()
+```php
+$printer->status()
 ```
 
 ## Serialization
