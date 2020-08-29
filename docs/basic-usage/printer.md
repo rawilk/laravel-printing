@@ -3,6 +3,8 @@ title: Printer
 sort: 2
 ---
 
+## Introduction
+
 Each printer object should be an implementation of `Rawilk\Printing\Contracts\Printer`. The printer has several properties on it that can
 be accessed via these methods:
 

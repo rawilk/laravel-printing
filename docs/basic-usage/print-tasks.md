@@ -3,6 +3,8 @@ title: Print Tasks
 sort: 3
 ---
 
+## Introduction
+
 Print tasks can be sent to your printer by creating a new print task. At the bare minimum, you need your printer's id, and the content you are going to print.
 
 ```php

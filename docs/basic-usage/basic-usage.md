@@ -3,6 +3,8 @@ title: Basic Usage
 sort: 1
 ---
 
+## Introduction
+
 Most operations through this package can be done with the `Printing` facade.
 
 ## Listing printers

@@ -3,6 +3,8 @@ title: Introduction
 sort: 1
 ---
 
+## Introduction
+
 Laravel Printing allows your application to directly send PDF documents or raw text directly from a remote server to a printer on your local network.
 Receipts can also be printed by first generating the raw text via the `Rawilk\Printing\Receipts\ReceiptPrinter` class, and then sending the text as a
 raw print job via the `Printing` facade.

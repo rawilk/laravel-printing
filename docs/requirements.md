@@ -3,8 +3,12 @@ title: Requirements
 sort: 2
 ---
 
-This package requires **PHP 7.4+** and **Laravel 6.0+**. You will also need a printer on your local network that you can print to and that your selected driver can access.
-If you are looking to print receipts, you will need a receipt printer as well.
+## General Requirements
+
+- PHP >= 7.4
+- Laravel >= 6.0
+- A printer on your local network that you can print to and that your selected printer can access.
+- A receipt printer if you are printing receipts
 
 ## Driver Requirements
 

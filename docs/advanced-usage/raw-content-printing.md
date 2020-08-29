@@ -3,6 +3,8 @@ title: Raw Content Printing
 sort: 2
 ---
 
+## Introduction
+
 Depending on your print driver and printer, you can send raw text or content from a url to be printed instead of using
 a pdf file.
 

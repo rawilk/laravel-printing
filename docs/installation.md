@@ -3,6 +3,8 @@ title: Installation & Setup
 sort: 3
 ---
 
+## Installation
+
 laravel-printing can be installed via composer:
 
 ```bash
