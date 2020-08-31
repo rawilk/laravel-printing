@@ -23,7 +23,7 @@ Supported Print Drivers:
 
 ## Documentation:
 
-For more comprehensive documentation, please visit: https://docs.randallwilk.dev/laravel-printing
+For more comprehensive documentation, please visit: https://randallwilk.dev/docs/laravel-printing
 
 ## Installation
 
