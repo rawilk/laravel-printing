@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-printing` will be documented in this file.
 
+## 1.2.0 - 202X-XX-XX
+### Added
+- Add support for CUPS driver.
+
 ## 1.1.6 - 2020-07-23
 ### Changed
 - Remove `int` parameter type hint on `PrintNodePrintJob` `id` setter.

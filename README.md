@@ -20,6 +20,7 @@ $printJob->id(); // the id number returned from the print server
 Supported Print Drivers:
 
 - PrintNode: https://printnode.com
+- CUPS: https://cups.org
 
 ## Documentation:
 
@@ -47,7 +48,7 @@ return [
     | Driver
     |--------------------------------------------------------------------------
     |
-    | Supported: `printnode`
+    | Supported: `printnode`, `cups`
     |
     */
     'driver' => env('PRINTING_DRIVER', 'printnode'),
@@ -63,6 +64,12 @@ return [
     'drivers' => [
         'printnode' => [
             'key' => env('PRINT_NODE_API_KEY'),
+        ],
+        'cups' => [
+            'ip' => env('CUPS_SERVER_IP'),
+            'username' => env('CUPS_SERVER_USERNAME'),
+            'password' => env('CUPS_SERVER_PASSWORD'),
+            'port' => env('CUPS_SERVER_PORT', 631),
         ],
     ],
 
@@ -108,6 +115,8 @@ return [
 ];
 ```
 
+- When using CUPS, you can either use a local CUPS server that runs on the **same server as your Laravel installation** (useful for local development), or you can specify an IP address, username, and password for a remote CUPS server. The remote CUPS server **must be on the same network** as any printers you are going to print to.
+
 ## Usage
 
 ### Listing printers
@@ -150,7 +159,10 @@ Printing::newPrintTask()
     ->send();
 ```
 
-More PrintNode options can be found here: https://www.printnode.com/en/docs/api/curl#printjob-options
+- More PrintNode options can be found here: https://www.printnode.com/en/docs/api/curl#printjob-options
+- More info on using CUPS options can be found here: https://github.com/smalot/cups-ipp
+
+> **Note:** If using CUPS, you can pass in a `$contentType` as a second parameter to the `file()`, `url()`, and `content()` methods. The default is `application/octet-stream` (PDF). More types can be found in `Rawilk\Printing\Drivers\Cups\ContentType.php`. 
 
 ## Receipt Printing
 Receipt printing can be done if you have a receipt printer by using the `Rawilk\Printing\Receipts\ReceiptPrinter` class.

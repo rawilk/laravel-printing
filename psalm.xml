@@ -16,6 +16,7 @@
     </projectFiles>
 
     <issueHandlers>
+        <TypeDoesNotContainType errorLevel="suppress"/>
     </issueHandlers>
 
     <plugins>

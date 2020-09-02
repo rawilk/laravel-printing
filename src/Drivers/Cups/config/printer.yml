@@ -1,0 +1,6 @@
+printer-uri:
+  tag: 'uri'
+purge-jobs:
+  tag: 'boolean'
+requested-attributes:
+  tag: 'keyword'

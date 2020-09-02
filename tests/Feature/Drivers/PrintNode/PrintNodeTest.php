@@ -23,7 +23,7 @@ class PrintNodeTest extends TestCase
     {
         $printers = $this->printNode->printers();
 
-        $this->assertInstanceOf(Collection::class, $printers);
-        $this->assertContainsOnlyInstancesOf(Printer::class, $printers);
+        self::assertInstanceOf(Collection::class, $printers);
+        self::assertContainsOnlyInstancesOf(Printer::class, $printers);
     }
 }
