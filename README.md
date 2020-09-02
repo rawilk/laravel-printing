@@ -24,7 +24,7 @@ Supported Print Drivers:
 
 ## Documentation:
 
-For more comprehensive documentation, please visit: https://randallwilk.dev/docs/laravel-printing
+For documentation, please visit: https://randallwilk.dev/docs/laravel-printing
 
 ## Installation
 
@@ -115,82 +115,7 @@ return [
 ];
 ```
 
-- When using CUPS, you can either use a local CUPS server that runs on the **same server as your Laravel installation** (useful for local development), or you can specify an IP address, username, and password for a remote CUPS server. The remote CUPS server **must be on the same network** as any printers you are going to print to.
-
-## Usage
-
-### Listing printers
-``` php
-Printing::printers();
-```
-
-### Finding a specific printer
-```php
-Printing::find($printerId);
-```
-
-### Default printer
-If you have a default printer id set in the config, you can easily access the printer via the facade:
-```php
-Printing::defaultPrinter();
-Printing::defaultPrinterId();
-```
-
-### Creating a new print job
-
-Basic printing:
-```php
-Printing::newPrintTask()
-    ->printer($printerId)
-    ->file('path_to_file.pdf')
-    ->send();
-```
-
-With options:
-```php
-Printing::newPrintTask()
-    ->printer($printerId)
-    ->file('path_to_file.pdf')
-    ->jobTitle('my job title')
-    ->option('fit_to_page', true) // fit_to_page if using PrintNode
-    ->copies(2)
-    ->tray('Tray 1') // check if your driver and printer supports this
-    ->option()
-    ->send();
-```
-
-- More PrintNode options can be found here: https://www.printnode.com/en/docs/api/curl#printjob-options
-- More info on using CUPS options can be found here: https://github.com/smalot/cups-ipp
-
-> **Note:** If using CUPS, you can pass in a `$contentType` as a second parameter to the `file()`, `url()`, and `content()` methods. The default is `application/octet-stream` (PDF). More types can be found in `Rawilk\Printing\Drivers\Cups\ContentType.php`. 
-
-## Receipt Printing
-Receipt printing can be done if you have a receipt printer by using the `Rawilk\Printing\Receipts\ReceiptPrinter` class.
-The `ReceiptPrinter` class will return a string that can be used to `raw` print if using a driver like `printnode`.
-
-```php
-$text = (string) (new ReceiptPrinter)
-    ->centerAlign()
-    ->text('My heading')
-    ->leftAlign()
-    ->line()
-    ->twoColumnText('Item 1', '2.00')
-    ->twoColumnText('Item 2', '4.00')
-    ->feed(2)
-    ->centerAlign()
-    ->barcode('1234')
-    ->cut();
-
-Printing::newPrintTask()
-    ->printer($printerId)
-    ->content($text) // content will be base64_encoded if using PrintNode
-    ->send();
-```
-
 ## Roadmap
-
-- Add support for more drivers, like CUPS
-- Add more comprehensive tests
 - Add support for custom drivers
 
 ## Testing
