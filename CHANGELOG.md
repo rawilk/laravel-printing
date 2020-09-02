@@ -2,7 +2,7 @@
 
 All notable changes to `laravel-printing` will be documented in this file.
 
-## 1.2.0 - 202X-XX-XX
+## 1.2.0 - 2020-09-02
 ### Added
 - Add support for CUPS driver.
 
