@@ -28,33 +28,18 @@ class Client implements HttpClient
 
     const AUTHTYPE_DIGEST = 'digest';
 
-    /**
-     * @var HttpClient
-     */
+    /** @var \Http\Client\Common\PluginClient */
     protected $httpClient;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $authType;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $username;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $password;
 
-    /**
-     * Client constructor.
-     *
-     * @param string $username
-     * @param string $password
-     * @param array $socketClientOptions
-     */
     public function __construct($username = null, $password = null, $socketClientOptions = [])
     {
         if (! is_null($username)) {
@@ -88,13 +73,7 @@ class Client implements HttpClient
         $this->authType = self::AUTHTYPE_BASIC;
     }
 
-    /**
-     * @param string $username
-     * @param string $password
-     *
-     * @return \Smalot\Cups\Transport\Client
-     */
-    public function setAuthentication($username, $password)
+    public function setAuthentication(string $username, string $password): self
     {
         $this->username = $username;
         $this->password = $password;
@@ -102,12 +81,7 @@ class Client implements HttpClient
         return $this;
     }
 
-    /**
-     * @param string $authType
-     *
-     * @return $this
-     */
-    public function setAuthType($authType)
+    public function setAuthType(string $authType): self
     {
         $this->authType = $authType;
 
