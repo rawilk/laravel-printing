@@ -5,6 +5,8 @@
         "rawilk",
         "laravel-printing",
         "PrintNode",
+        "CUPS",
+        "ipp",
         "Receipt printing",
         "Direct printing",
         "Raw printing"
