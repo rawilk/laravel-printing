@@ -24,6 +24,7 @@
         "ext-json": "*",
         "illuminate/support": "^6.0|^7.0",
         "mike42/escpos-php": "^3.0",
+        "php-http/socket-client": "2.*",
         "printnode/printnode-php": "^2.0@RC",
         "smalot/cups-ipp": "^0.5.0"
     },
