@@ -28,8 +28,13 @@ Printing::newPrintTask()
     ->send();
 ```
 
+**Note:** If using CUPS, you can pass in a `$contentType` as a second parameter to the `file()`, `url()`, and
+`content()` methods. The default is `application/octet-stream` (PDF). More types can be found in
+`Rawilk\Printing\Drivers\Cups\ContentType.php`.
+
 ### Driver Options
 
 - More PrintNode options can be found here: [https://www.printnode.com/en/docs/api/curl#printjob-options](https://www.printnode.com/en/docs/api/curl#printjob-options)
+- More info on using CUPS options can be found here: [https://github.com/smalot/cups-ipp](https://github.com/smalot/cups-ipp)
 
 More info on print tasks can be found [in the api reference](/laravel-printing/v1/api/print-task).
