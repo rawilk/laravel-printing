@@ -25,7 +25,7 @@ $printJob->id(); // the id number returned from the print server
 Laravel Printing currently only supports one two drivers currently. More drivers may be added in the future.
 
 - [PrintNode](https://printnode.com)
-- [Cups](https://cups.org)
+- [CUPS](https://cups.org)
 
 ## Credits
 
