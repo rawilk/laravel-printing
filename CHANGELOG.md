@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-printing` will be documented in this file.
 
+## 1.2.1 - 2020-09-04
+### Fixed
+- Fix page range issue with CUPS driver ([#3](https://github.com/rawilk/laravel-printing/issues/3)).
+
 ## 1.2.0 - 2020-09-02
 ### Added
 - Add support for CUPS driver.
