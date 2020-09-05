@@ -84,10 +84,17 @@ class PrintTask extends BasePrintTask
     {
         $range = $start;
 
-        if (! $end && ! Str::startsWith($range, [',', '-'])) {
-            $range = "{$range}-"; // print all pages starting from $start
+        if (! $end && Str::endsWith($range, '-')) {
+            // If an end page is not set, we will default the end to a really high number
+            // that hopefully won't ever be exceeded when printing. The reason we have to
+            // provide an end page is because the library we rely on for CUPS printing
+            // doesn't allow "printing of all pages", i.e. 1- syntax.
+            // see: https://github.com/smalot/cups-ipp/issues/7
+            $range .= '999';
         } elseif ($end) {
-            $range = "{$start}-{$end}";
+            $range = Str::endsWith($range, '-')
+                ? $range . $end
+                : "{$range}-{$end}";
         }
 
         $this->job->setPageRanges($range);
@@ -124,7 +131,8 @@ class PrintTask extends BasePrintTask
         }
 
         if (! $this->job->getPageRanges()) {
-            $this->range(1);
+            // Print all pages if a page range is not specified.
+            $this->range('1-');
         }
 
         $success = $this->jobManager->send($this->printer, $this->job);
