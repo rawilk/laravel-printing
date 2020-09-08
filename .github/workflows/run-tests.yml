@@ -16,9 +16,11 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-latest]
         php: [7.4]
-        laravel: [6.*, 7.*]
+        laravel: [6.*, 7.*, 8.*]
         dependency-version: [prefer-lowest, prefer-stable]
         include:
+          - laravel: 8.*
+            testbench: 6.*
           - laravel: 7.*
             testbench: 5.*
           - laravel: 6.*
@@ -31,7 +33,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Cache dependencies
-        uses: actions/cache@v1
+        uses: actions/cache@v2
         with:
           path: ~/.composer/cache/files
           key: dependencies-laravel-${{ matrix.laravel }}-php-${{ matrix.php }}-composer-${{ hashFiles('composer.json') }}
