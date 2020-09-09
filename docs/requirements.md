@@ -21,3 +21,10 @@ sort: 2
 
 {.tip}
 > When using CUPS you can either use a local CUPS server that runs **on the same server as your Laravel installation** (useful for local development), or you can specify an IP address, username, and password for a remote CUPS server. The remote CUPS server **must be on the same network as any printers** you are going to print to.
+
+## Version Matrix
+| Laravel | Minimum Version |
+| --- | --- |
+| 6.0 | 1.0.0 |
+| 7.0 | 1.0.0 |
+| 8.0 | 1.2.2 |
