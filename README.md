@@ -124,9 +124,6 @@ return [
 ];
 ```
 
-## Roadmap
-- Add support for custom drivers
-
 ## Testing
 
 ``` bash
