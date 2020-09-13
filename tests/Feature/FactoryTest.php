@@ -1,12 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Rawilk\Printing\Tests\Feature;
 
 use Rawilk\Printing\Drivers\Cups\Cups;
 use Rawilk\Printing\Drivers\PrintNode\PrintNode;
 use Rawilk\Printing\Exceptions\DriverConfigNotFound;
 use Rawilk\Printing\Exceptions\InvalidDriverConfig;
+use Rawilk\Printing\Exceptions\UnsupportedDriver;
 use Rawilk\Printing\Factory;
+use Rawilk\Printing\Tests\Feature\Drivers\CustomDriver\Driver\CustomDriver;
 use Rawilk\Printing\Tests\TestCase;
 
 class FactoryTest extends TestCase
@@ -54,7 +58,7 @@ class FactoryTest extends TestCase
     }
 
     /** @test */
-    public function it_throws_an_exception_for_unsupported_drivers(): void
+    public function it_throws_an_exception_for_unsupported_drivers_with_missing_configs(): void
     {
         config([
             'printing.driver' => 'foo',
@@ -116,5 +120,37 @@ class FactoryTest extends TestCase
         $this->expectException(InvalidDriverConfig::class);
 
         $factory->driver();
+    }
+
+    /** @test */
+    public function can_be_extended(): void
+    {
+        config([
+            'printing.drivers.custom' => [
+                'driver' => 'custom_driver',
+                'api_key' => '123456',
+            ],
+            'printing.driver' => 'custom',
+        ]);
+
+        $this->app['printing.factory']->extend('custom_driver', fn (array $config) => new CustomDriver($config['api_key']));
+
+        self::assertInstanceOf(CustomDriver::class, $this->app['printing.factory']->driver());
+        self::assertEquals('123456', $this->app['printing.factory']->driver()->apiKey);
+    }
+
+    /** @test */
+    public function it_throws_an_exception_for_unsupported_drivers(): void
+    {
+        config([
+            'printing.drivers.custom' => [],
+            'printing.driver' => 'custom',
+        ]);
+
+        // An exception should be thrown for custom drivers if the "extend" method is not called
+        // for the driver on the printing factory.
+        $this->expectException(UnsupportedDriver::class);
+
+        $this->app['printing.factory']->driver();
     }
 }

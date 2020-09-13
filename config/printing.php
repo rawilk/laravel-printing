@@ -29,6 +29,15 @@ return [
             'password' => env('CUPS_SERVER_PASSWORD'),
             'port' => env('CUPS_SERVER_PORT', 631),
         ],
+
+        /*
+         * Add your custom drivers here:
+         *
+         * 'custom' => [
+         *      'driver' => 'custom_driver',
+         *      // other config for your custom driver
+         * ],
+         */
     ],
 
     /*

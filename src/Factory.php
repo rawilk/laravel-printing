@@ -1,18 +1,23 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Rawilk\Printing;
 
+use Closure;
 use Illuminate\Support\Arr;
 use Rawilk\Printing\Contracts\Driver;
 use Rawilk\Printing\Drivers\Cups\Cups;
 use Rawilk\Printing\Drivers\PrintNode\PrintNode;
 use Rawilk\Printing\Exceptions\DriverConfigNotFound;
 use Rawilk\Printing\Exceptions\InvalidDriverConfig;
+use Rawilk\Printing\Exceptions\UnsupportedDriver;
 
 class Factory
 {
     protected array $config;
     protected array $drivers = [];
+    protected array $customCreators = [];
 
     public function __construct(array $config)
     {
@@ -24,6 +29,13 @@ class Factory
         $driver = $driver ?: $this->getDriverFromConfig();
 
         return $this->drivers[$driver] = $this->get($driver);
+    }
+
+    public function extend(string $driver, Closure $callback): self
+    {
+        $this->customCreators[$driver] = $callback;
+
+        return $this;
     }
 
     protected function createCupsDriver(array $config): Driver
@@ -63,12 +75,29 @@ class Factory
 
     protected function resolve(string $driver): Driver
     {
+        if (isset($this->drivers[$driver])) {
+            return $this->drivers[$driver];
+        }
+
         $config = $this->getDriverConfig($driver);
 
         if (! is_array($config)) {
             throw DriverConfigNotFound::forDriver($driver);
         }
 
-        return $this->{'create'. ucfirst($driver) . 'Driver'}($config);
+        if (isset($this->customCreators[$config['driver'] ?? ''])) {
+            return $this->callCustomCreator($config);
+        }
+
+        if (! method_exists($this, $method = 'create' . ucfirst($driver) . 'Driver')) {
+            throw UnsupportedDriver::driver($driver);
+        }
+
+        return $this->$method($config);
+    }
+
+    protected function callCustomCreator(array $config): Driver
+    {
+        return $this->customCreators[$config['driver']]($config);
     }
 }

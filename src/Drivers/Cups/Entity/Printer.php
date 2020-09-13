@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Rawilk\Printing\Drivers\Cups\Entity;
 
 use Illuminate\Contracts\Support\Arrayable;

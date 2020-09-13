@@ -2,6 +2,11 @@
 
 All notable changes to `laravel-printing` will be documented in this file.
 
+## 1.3.0 - 2020-09-13
+### Added
+- Add support for custom drivers
+- Add support for changing print drivers on the fly
+
 ## 1.2.2 - 2020-09-08
 ### Added
 - Add support for Laravel 8

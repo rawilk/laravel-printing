@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Rawilk\Printing\Drivers\Cups;
 
 use Illuminate\Support\Str;
