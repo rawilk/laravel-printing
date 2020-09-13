@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Rawilk\Printing\Drivers\Cups\Support;
 
 use GuzzleHttp\Psr7\Uri;
