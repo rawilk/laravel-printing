@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Facade;
  * @method static \Rawilk\Printing\Contracts\PrintTask newPrintTask()
  * @method static \Rawilk\Printing\Contracts\Printer|null find($printerId = null)
  * @method static \Illuminate\Support\Collection printers()
+ * @method static \Rawilk\Printing\Printing driver(?string $driver = null)
  */
 class Printing extends Facade
 {
