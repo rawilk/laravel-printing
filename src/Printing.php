@@ -31,26 +31,50 @@ class Printing implements Driver
         return $this->defaultPrinterId;
     }
 
+    public function driver(?string $driver = null): self
+    {
+        $this->driver = app('printing.factory')->driver($driver);
+
+        return $this;
+    }
+
     public function newPrintTask(): \Rawilk\Printing\Contracts\PrintTask
     {
-        return $this->driver->newPrintTask();
+        $task = $this->driver->newPrintTask();
+
+        $this->resetDriver();
+
+        return $task;
     }
 
     public function find($printerId = null): ?Printer
     {
         try {
-            return $this->driver->find($printerId);
+            $printer = $this->driver->find($printerId);
         } catch (\Throwable $e) {
-            return null;
+            $printer = null;
         }
+
+        $this->resetDriver();
+
+        return $printer;
     }
 
     public function printers(): Collection
     {
         try {
-            return $this->driver->printers();
+            $printers = $this->driver->printers();
         } catch (\Throwable $e) {
-            return collect([]);
+            $printers = collect([]);
         }
+
+        $this->resetDriver();
+
+        return $printers;
+    }
+
+    private function resetDriver(): void
+    {
+        $this->driver();
     }
 }
