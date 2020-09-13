@@ -25,6 +25,7 @@ Printing::newPrintTask()
 
 // Send a job to the cups server
 Printing::driver('cups')
+    ->newPrintTask()
     ->printer($cupsPrinterId)
     ->file('file_path.pdf')
     ->send();
