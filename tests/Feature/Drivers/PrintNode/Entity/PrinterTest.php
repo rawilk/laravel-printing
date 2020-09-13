@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Rawilk\Printing\Tests\Feature\Drivers\PrintNode\Entity;
 
 use Rawilk\Printing\Drivers\PrintNode\Entity\Printer;
