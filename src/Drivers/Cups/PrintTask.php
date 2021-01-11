@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Rawilk\Printing\Drivers\Cups;
 
 use Illuminate\Support\Str;
+use Rawilk\Printing\Contracts\Printer as PrinterContract;
 use Rawilk\Printing\Contracts\PrintJob;
 use Rawilk\Printing\Drivers\Cups\Entity\Printer;
 use Rawilk\Printing\Drivers\Cups\Entity\PrintJob as RawilkPrintJob;
@@ -18,17 +19,13 @@ use Smalot\Cups\Model\Printer as SmalotPrinter;
 
 class PrintTask extends BasePrintTask
 {
-    protected JobManager $jobManager;
-    protected PrinterManager $printerManager;
     protected Job $job;
     protected SmalotPrinter $printer;
 
-    public function __construct(JobManager $jobManager, PrinterManager $printerManager)
+    public function __construct(protected JobManager $jobManager, protected PrinterManager $printerManager)
     {
         parent::__construct();
 
-        $this->jobManager = $jobManager;
-        $this->printerManager = $printerManager;
         $this->job = new Job;
     }
 
@@ -71,13 +68,13 @@ class PrintTask extends BasePrintTask
         return $this;
     }
 
-    public function printer($printerId): self
+    public function printer(PrinterContract|string|null|int $printerId): self
     {
         parent::printer($printerId);
 
         $this->printer = $printerId instanceof Printer
             ? $printerId->cupsPrinter()
-            : $this->printerManager->findByUri($printerId);
+            : $this->printerManager->findByUri((string) $printerId);
 
         return $this;
     }
@@ -122,6 +119,7 @@ class PrintTask extends BasePrintTask
 
     public function send(): PrintJob
     {
+        /** @psalm-suppress RedundantPropertyInitializationCheck */
         if (! $this->printerId || ! isset($this->printer)) {
             throw PrintTaskFailed::missingPrinterId();
         }

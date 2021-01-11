@@ -49,7 +49,7 @@ class Cups implements Driver
         return new PrintTask($this->jobManager(), $this->printerManager());
     }
 
-    public function find($printerId = null): ?Printer
+    public function find($printerId = null): null|Printer
     {
         $printer = $this->printerManager()->findByUri($printerId);
 
@@ -71,6 +71,7 @@ class Cups implements Driver
 
     protected function jobManager(): JobManager
     {
+        /** @psalm-suppress RedundantPropertyInitializationCheck */
         if (! isset($this->jobManager)) {
             $this->jobManager = new JobManager(
                 $this->builder,
@@ -84,6 +85,7 @@ class Cups implements Driver
 
     protected function printerManager(): PrinterManager
     {
+        /** @psalm-suppress RedundantPropertyInitializationCheck */
         if (! isset($this->printerManager)) {
             $this->printerManager = new PrinterManager(
                 $this->builder,

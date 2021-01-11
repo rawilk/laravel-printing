@@ -7,31 +7,23 @@ namespace Rawilk\Printing;
 use Illuminate\Support\Collection;
 use Rawilk\Printing\Contracts\Driver;
 use Rawilk\Printing\Contracts\Printer;
+use Throwable;
 
 class Printing implements Driver
 {
-    protected Driver $driver;
-
-    /** @var null|string|mixed */
-    protected $defaultPrinterId;
-
-    public function __construct(Driver $driver, $defaultPrinterId = null)
-    {
-        $this->driver = $driver;
-        $this->defaultPrinterId = $defaultPrinterId;
-    }
+    public function __construct(protected Driver $driver, protected mixed $defaultPrinterId = null) {}
 
     public function defaultPrinter(): ?Printer
     {
         return $this->find($this->defaultPrinterId);
     }
 
-    public function defaultPrinterId()
+    public function defaultPrinterId(): mixed
     {
         return $this->defaultPrinterId;
     }
 
-    public function driver(?string $driver = null): self
+    public function driver(null|string $driver = null): self
     {
         $this->driver = app('printing.factory')->driver($driver);
 
@@ -47,11 +39,11 @@ class Printing implements Driver
         return $task;
     }
 
-    public function find($printerId = null): ?Printer
+    public function find($printerId = null): null|Printer
     {
         try {
             $printer = $this->driver->find($printerId);
-        } catch (\Throwable $e) {
+        } catch (Throwable) {
             $printer = null;
         }
 
@@ -64,8 +56,8 @@ class Printing implements Driver
     {
         try {
             $printers = $this->driver->printers();
-        } catch (\Throwable $e) {
-            $printers = collect([]);
+        } catch (Throwable) {
+            $printers = collect();
         }
 
         $this->resetDriver();

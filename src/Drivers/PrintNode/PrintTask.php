@@ -16,14 +16,12 @@ use Rawilk\Printing\PrintTask as BasePrintTask;
 
 class PrintTask extends BasePrintTask
 {
-    protected Client $client;
     protected PrintNodePrintJob $job;
 
-    public function __construct(Client $client)
+    public function __construct(protected Client $client)
     {
         parent::__construct();
 
-        $this->client = $client;
         $this->job = new PrintNodePrintJob($this->client);
     }
 
@@ -90,6 +88,7 @@ class PrintTask extends BasePrintTask
             throw PrintTaskFailed::missingPrinterId();
         }
 
+        /** @psalm-suppress InvalidPropertyAssignmentValue */
         $this->job->printer = $this->printerId;
         $this->job->title = $this->resolveJobTitle();
         $this->job->source = $this->printSource;

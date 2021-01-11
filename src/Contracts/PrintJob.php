@@ -8,11 +8,11 @@ interface PrintJob
 
     public function id();
 
-    public function name(): ?string;
+    public function name(): null|string;
 
     public function printerId();
 
-    public function printerName(): ?string;
+    public function printerName(): null|string;
 
-    public function state(): ?string;
+    public function state(): null|string;
 }

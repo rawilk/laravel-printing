@@ -13,15 +13,9 @@ use Rawilk\Printing\Contracts\Printer as PrinterContract;
 
 class Printer implements PrinterContract, Arrayable, JsonSerializable
 {
-    protected PrintNodePrinter $printer;
-    protected Client $client;
-    protected ?array $capabilities = null;
+    protected null|array $capabilities = null;
 
-    public function __construct(PrintNodePrinter $printer, Client $client)
-    {
-        $this->printer = $printer;
-        $this->client = $client;
-    }
+    public function __construct(protected PrintNodePrinter $printer, protected Client $client) {}
 
     public function capabilities(): array
     {

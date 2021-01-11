@@ -15,16 +15,9 @@ use Smalot\Cups\Model\Printer as SmalotPrinter;
 
 class Printer implements PrinterContracts, Arrayable, JsonSerializable
 {
-    protected SmalotPrinter $printer;
-    protected JobManager $jobManager;
-
     protected array $capabilities;
 
-    public function __construct(SmalotPrinter $printer, JobManager $jobManager)
-    {
-        $this->printer = $printer;
-        $this->jobManager = $jobManager;
-    }
+    public function __construct(protected SmalotPrinter $printer, protected JobManager $jobManager) {}
 
     public function cupsPrinter(): SmalotPrinter
     {
@@ -33,6 +26,7 @@ class Printer implements PrinterContracts, Arrayable, JsonSerializable
 
     public function capabilities(): array
     {
+        /** @psalm-suppress RedundantPropertyInitializationCheck */
         if (! isset($this->capabilities)) {
             $this->capabilities = $this->printer->getAttributes();
         }
@@ -55,7 +49,7 @@ class Printer implements PrinterContracts, Arrayable, JsonSerializable
         return strtolower($this->status()) === 'online';
     }
 
-    public function name(): ?string
+    public function name(): null|string
     {
         return $this->printer->getName();
     }

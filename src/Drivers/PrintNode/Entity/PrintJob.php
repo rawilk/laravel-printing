@@ -8,12 +8,7 @@ use Rawilk\Printing\Contracts\PrintJob as PrintJobContract;
 
 class PrintJob implements PrintJobContract
 {
-    protected PrintNodePrintJob $job;
-
-    public function __construct(PrintNodePrintJob $job)
-    {
-        $this->job = $job;
-    }
+    public function __construct(protected PrintNodePrintJob $job) {}
 
     public function date()
     {
@@ -25,7 +20,7 @@ class PrintJob implements PrintJobContract
         return $this->job->id;
     }
 
-    public function name(): ?string
+    public function name(): null|string
     {
         return $this->job->title;
     }
@@ -35,12 +30,12 @@ class PrintJob implements PrintJobContract
         return optional($this->job->printer)->id;
     }
 
-    public function printerName(): ?string
+    public function printerName(): null|string
     {
         return optional($this->job->printer)->name;
     }
 
-    public function state(): ?string
+    public function state(): null|string
     {
         return $this->job->state;
     }

@@ -14,9 +14,7 @@ abstract class PrintTask implements PrintTaskContract
     protected array $options = [];
     protected string $content = '';
     protected string $printSource;
-
-    /** @var string|mixed */
-    protected $printerId;
+    protected Printer|string|null|int $printerId;
 
     public function __construct()
     {
@@ -59,7 +57,7 @@ abstract class PrintTask implements PrintTaskContract
         return $this;
     }
 
-    public function printer($printerId): self
+    public function printer(Printer|string|null|int $printerId): self
     {
         if ($printerId instanceof Printer) {
             $printerId = $printerId->id();
@@ -77,7 +75,7 @@ abstract class PrintTask implements PrintTaskContract
         return $this;
     }
 
-    /**
+    /*
      * Not all drivers may support tagging jobs.
      */
     public function tags($tags): self
@@ -85,7 +83,7 @@ abstract class PrintTask implements PrintTaskContract
         return $this;
     }
 
-    /**
+    /*
      * Not all drivers may support this feature.
      */
     public function tray($tray): self
@@ -93,7 +91,7 @@ abstract class PrintTask implements PrintTaskContract
         return $this;
     }
 
-    /**
+    /*
      * Not all drivers might support this option.
      */
     public function copies(int $copies): self

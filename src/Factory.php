@@ -15,16 +15,12 @@ use Rawilk\Printing\Exceptions\UnsupportedDriver;
 
 class Factory
 {
-    protected array $config;
     protected array $drivers = [];
     protected array $customCreators = [];
 
-    public function __construct(array $config)
-    {
-        $this->config = $config;
-    }
+    public function __construct(protected array $config) {}
 
-    public function driver(?string $driver = null): Driver
+    public function driver(null|string $driver = null): Driver
     {
         $driver = $driver ?: $this->getDriverFromConfig();
 

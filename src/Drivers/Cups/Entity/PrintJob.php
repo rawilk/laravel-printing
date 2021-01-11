@@ -9,14 +9,7 @@ use Smalot\Cups\Model\JobInterface;
 
 class PrintJob implements PrintJobContract
 {
-    protected JobInterface $job;
-    protected ?Printer $printer;
-
-    public function __construct(JobInterface $job, ?Printer $printer = null)
-    {
-        $this->job = $job;
-        $this->printer = $printer;
-    }
+    public function __construct(protected JobInterface $job, protected null|Printer $printer = null) {}
 
     public function date()
     {
@@ -29,7 +22,7 @@ class PrintJob implements PrintJobContract
         return $this->job->getId();
     }
 
-    public function name(): ?string
+    public function name(): null|string
     {
         return $this->job->getName();
     }
@@ -43,7 +36,7 @@ class PrintJob implements PrintJobContract
         return null;
     }
 
-    public function printerName(): ?string
+    public function printerName(): null|string
     {
         if ($this->printer) {
             return $this->printer->name();
@@ -52,7 +45,7 @@ class PrintJob implements PrintJobContract
         return null;
     }
 
-    public function state(): ?string
+    public function state(): null|string
     {
         return $this->job->getState();
     }
