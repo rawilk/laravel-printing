@@ -23,7 +23,7 @@
     ],
     "require": {
         "php": "^8.0",
-        "illuminate/support": "^8.16",
+        "illuminate/support": "^8.0",
         "mike42/escpos-php": "^3.0",
         "php-http/socket-client": "2.*",
         "printnode/printnode-php": "^2.0@RC",
@@ -31,8 +31,8 @@
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^2.16",
-        "orchestra/testbench": "^6.7",
-        "phpunit/phpunit": "^9.3",
+        "orchestra/testbench": "^6.4",
+        "phpunit/phpunit": "^9.4",
         "psalm/plugin-laravel": "^1.4",
         "vimeo/psalm": "^4.3.2"
     },
