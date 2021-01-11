@@ -23,7 +23,7 @@
     ],
     "require": {
         "php": "^8.0",
-        "illuminate/support": "^8.18",
+        "illuminate/support": "^8.2",
         "mike42/escpos-php": "^3.0",
         "php-http/socket-client": "2.*",
         "printnode/printnode-php": "^2.0@RC",
