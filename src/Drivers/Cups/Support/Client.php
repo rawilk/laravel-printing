@@ -21,6 +21,8 @@ use Smalot\Cups\CupsException;
  * This class is here for now as a workaround since the declaration
  * of sendRequest() is not compatible with the interface in the
  * dependency and has not been updated yet.
+ *
+ * In place of: Smalot\Cups\Transport\Client
  */
 class Client implements HttpClient
 {
