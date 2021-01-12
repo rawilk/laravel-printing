@@ -2,6 +2,15 @@
 
 All notable changes to `laravel-printing` will be documented in this file.
 
+## 2.0.0 - 2021-01-11
+### Updated
+- Add support for php 8
+- Drop support for php 7
+- Drop support for Laravel 6
+- Drop support for Laravel 7
+- Remove driver dependencies from always being required
+- Require user to pull in the driver dependencies for their drivers now
+
 ## 1.3.0 - 2020-09-13
 ### Added
 - Add support for custom drivers
