@@ -56,10 +56,10 @@ public function jobTitle(string $jobTitle): self;
  * Set the id of the printer to print to. This method must be called
  * when printing. 
  *
- * @param string|int $printerId
+ * @param \Rawilk\Printing\Contracts\Printer|string|null|int $printerId
  * @return PrintTask
  */
-public function printer($printerId): self;
+public function printer(Printer|string|null|int $printerId): self;
 ```
 
 ### printSource
