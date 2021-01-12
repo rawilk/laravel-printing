@@ -7,7 +7,7 @@ sort: 3
 
 ### Your Environment
 
-You will need to ensure your environment supports php v8, and your laravel installation must be running on at least version 8.16.
+You will need to ensure your environment supports php v8, and your laravel installation must be running on at least version 8.0.
 
 ### Driver Dependencies
 
