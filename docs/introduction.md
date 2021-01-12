@@ -26,6 +26,7 @@ Laravel Printing currently only supports one two drivers currently. More drivers
 
 - [PrintNode](https://printnode.com)
 - [CUPS](https://cups.org)
+- Custom: Configure your own custom driver
 
 ## Credits
 

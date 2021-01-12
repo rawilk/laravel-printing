@@ -1,6 +1,6 @@
 ---
 title: Questions & Issues
-sort: 4
+sort: 5
 ---
 
 Find yourself stuck using the package? Found a bug? Do you have general questions or suggestions for improving the package?
