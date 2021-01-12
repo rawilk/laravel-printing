@@ -5,8 +5,8 @@ sort: 2
 
 ## General Requirements
 
--   PHP **7.4** or greater
--   Laravel **8.1** or greater
+-   PHP **8.0** or greater
+-   Laravel **8.0** or greater
 -   A printer on your local network that you can print to and that your selected printer can access.
 -   A receipt printer if you are printing receipts
 
