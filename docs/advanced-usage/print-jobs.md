@@ -14,4 +14,4 @@ $printJob = Printing::newPrintTask()
 echo $printJob->id();
 ```
 
-More info on the PrintJob can be found [in the api reference](/docs/laravel-printing/v1/api/print-job).
+More info on the PrintJob can be found [in the api reference](/docs/laravel-printing/v2/api/print-job).

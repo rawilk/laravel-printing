@@ -152,5 +152,4 @@ public function cut(int $mode = \Mike42\Escpos\Printer::CUT_FULL, int $lines = 3
 public function feed(int $lines = 1): self;
 ```
 
-{.tip}
-> **Note:** Any methods not listed here can be found in the underlying Printer class.
+> {tip} Any methods not listed here can be found in the underlying Printer class.

@@ -37,4 +37,4 @@ Printing::newPrintTask()
 - More PrintNode options can be found here: [https://www.printnode.com/en/docs/api/curl#printjob-options](https://www.printnode.com/en/docs/api/curl#printjob-options)
 - More info on using CUPS options can be found here: [https://github.com/smalot/cups-ipp](https://github.com/smalot/cups-ipp)
 
-More info on print tasks can be found [in the api reference](/laravel-printing/v1/api/print-task).
+More info on print tasks can be found [in the api reference](/laravel-printing/v2/api/print-task).

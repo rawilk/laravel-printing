@@ -29,4 +29,4 @@ Printing::newPrintTask()
 
 If you are using the PrintNode driver, the content will be `base64_encoded` automatically for you.
 
-More info on the receipt printer can be found in [the api reference](/docs/laravel-printing/v1/api/receipt-printer).
+More info on the receipt printer can be found in [the api reference](/docs/laravel-printing/v2/api/receipt-printer).

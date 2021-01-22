@@ -28,12 +28,12 @@ To print with laravel printing, you must set up a supported print driver.
 ### PrintNode
 
 -   You must sign up for an account at PrintNode. You can sign up here: [https://app.printnode.com/app/login/register](https://app.printnode.com/app/login/register)
--   Review the [requirements](/docs/laravel-printing/v1/requirements#printnode) for the PrintNode driver
+-   Review the [requirements](/docs/laravel-printing/v2/requirements#printnode) for the PrintNode driver
 -   Enter your api key in your `.env` file: `PRINT_NODE_API_KEY=your-api-key`
 -   In the terminal, run: `composer require printnode/printnode-php`
 
 ### CUPS
 
--   Review the [requirements](/docs/laravel-printing/v1/requirements#cups) for the CUPS driver
+-   Review the [requirements](/docs/laravel-printing/v2/requirements#cups) for the CUPS driver
 -   If using a remote server, enter your remote server credentials in the `.env` file (see config)
 -   In the terminal, run: `composer require smalot/cups-ipp`
