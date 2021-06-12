@@ -25,10 +25,15 @@ class PrintTask extends BasePrintTask
         $this->job = new PrintNodePrintJob($this->client);
     }
 
-    public function content($content): self
+    public function content($content, string $contentType = ContentType::RAW_BASE64): self
     {
+        if (! $contentType) {
+            throw new InvalidSource('Content type is required for the Printnode driver.');
+        }
+
+        parent::content($content);
         $this->job->content = base64_encode($content);
-        $this->job->contentType = ContentType::RAW_BASE64;
+        $this->job->contentType = $contentType;
 
         return $this;
     }
