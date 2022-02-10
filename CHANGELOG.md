@@ -4,7 +4,7 @@ All notable changes to `laravel-printing` will be documented in this file.
 
 ## 2.0.1 - 
 ### Fixed
-- Make `\Rawilk\Printing\Drivers\PrintNode\Entity\Printer` compatible with implented `JsonSerializable` interface
+- Make `\Rawilk\Printing\Drivers\PrintNode\Entity\Printer` compatible with implemented `JsonSerializable` interface
 
 ### Updated
 - Add support for Printnode PDF_Base64 ContentType ([#23](https://github.com/rawilk/laravel-printing/pull/23))
