@@ -2,9 +2,9 @@
 
 All notable changes to `laravel-printing` will be documented in this file.
 
-## 2.0.1 - 2021-06-12
+## 2.0.1 - 
 ### Updated
-- Add support for Printnode PDF_Base64 ContentType
+- Add support for Printnode PDF_Base64 ContentType ([#23](https://github.com/rawilk/laravel-printing/pull/23))
 
 ## 2.0.0 - 2021-01-11
 ### Updated
