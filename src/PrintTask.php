@@ -4,12 +4,15 @@ declare(strict_types=1);
 
 namespace Rawilk\Printing;
 
+use Illuminate\Support\Traits\Macroable;
 use Rawilk\Printing\Contracts\Printer;
 use Rawilk\Printing\Contracts\PrintTask as PrintTaskContract;
 use Rawilk\Printing\Exceptions\InvalidSource;
 
 abstract class PrintTask implements PrintTaskContract
 {
+    use Macroable;
+
     protected string $jobTitle = '';
     protected array $options = [];
     protected string $content = '';

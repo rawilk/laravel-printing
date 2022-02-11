@@ -6,42 +6,52 @@ namespace Rawilk\Printing\Drivers\PrintNode\Entity;
 
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Traits\Macroable;
 use JsonSerializable;
-use PrintNode\Client;
-use PrintNode\Entity\Printer as PrintNodePrinter;
+use Rawilk\Printing\Api\PrintNode\Entity\Printer as PrintNodePrinter;
+use Rawilk\Printing\Api\PrintNode\Entity\PrinterCapabilities;
+use Rawilk\Printing\Api\PrintNode\PrintNode;
 use Rawilk\Printing\Contracts\Printer as PrinterContract;
 
 class Printer implements PrinterContract, Arrayable, JsonSerializable
 {
+    use Macroable;
+
     protected null|array $capabilities = null;
 
-    public function __construct(protected PrintNodePrinter $printer, protected Client $client) {}
+    public function __construct(protected PrintNodePrinter $printer) {}
+
+    public function printer(): PrintNodePrinter
+    {
+        return $this->printer;
+    }
 
     public function capabilities(): array
     {
-        if ($this->capabilities) {
-            return $this->capabilities;
-        }
-
-        return $this->capabilities = json_decode(json_encode($this->printer->capabilities), true);
+        return $this->printer->capabilities->toArray();
     }
 
-    public function description(): ?string
+    public function printerCapabilities(): PrinterCapabilities
+    {
+        return $this->printer->capabilities;
+    }
+
+    public function description(): null|string
     {
         return $this->printer->description;
     }
 
-    public function id()
+    public function id(): int
     {
-        return (string) $this->printer->id;
+        return $this->printer->id;
     }
 
     public function isOnline(): bool
     {
-        return $this->status() === 'online';
+        return $this->printer->isOnline();
     }
 
-    public function name(): ?string
+    public function name(): null|string
     {
         return $this->printer->name;
     }
@@ -53,12 +63,20 @@ class Printer implements PrinterContract, Arrayable, JsonSerializable
 
     public function trays(): array
     {
-        return $this->printer->capabilities->bins;
+        return $this->printer->trays();
     }
 
-    public function jobs(): Collection
+    public function jobs(int|null $limit = null, int|null $offset = null, string|null $dir = null, string|null $apiKey = null): Collection
     {
-        return collect([]);
+        $api = app(PrintNode::class);
+
+        if ($apiKey) {
+            $api->setApiKey($apiKey);
+        }
+
+        $printJobs = $api->printerPrintJobs($this->id(), $limit, $offset, $dir);
+
+        return $printJobs->jobs->map(fn ($job) => new PrintJob($job));
     }
 
     public function toArray(): array
@@ -70,6 +88,7 @@ class Printer implements PrinterContract, Arrayable, JsonSerializable
             'online' => $this->isOnline(),
             'status' => $this->status(),
             'trays' => $this->trays(),
+            'capabilities' => $this->capabilities(),
         ];
     }
 

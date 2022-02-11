@@ -4,18 +4,35 @@ declare(strict_types=1);
 
 namespace Rawilk\Printing\Drivers\PrintNode\Entity;
 
+use Carbon\Carbon;
+use Illuminate\Support\Traits\Macroable;
+use Rawilk\Printing\Api\PrintNode\Entity\PrintJob as PrintNodePrintJob;
 use Rawilk\Printing\Contracts\PrintJob as PrintJobContract;
 
 class PrintJob implements PrintJobContract
 {
-    public function __construct(protected PrintNodePrintJob $job) {}
+    use Macroable;
 
-    public function date()
+    public null|Printer $printer = null;
+
+    public function __construct(protected PrintNodePrintJob $job)
     {
-        return $this->job->createTimestamp;
+        if ($job->printer) {
+            $this->printer = new Printer($job->printer);
+        }
     }
 
-    public function id()
+    public function job(): PrintNodePrintJob
+    {
+        return $this->job;
+    }
+
+    public function date(): null|Carbon
+    {
+        return $this->job->created;
+    }
+
+    public function id(): int
     {
         return $this->job->id;
     }
@@ -25,14 +42,14 @@ class PrintJob implements PrintJobContract
         return $this->job->title;
     }
 
-    public function printerId()
+    public function printerId(): int|string
     {
-        return optional($this->job->printer)->id;
+        return $this->job->printer?->id;
     }
 
     public function printerName(): null|string
     {
-        return optional($this->job->printer)->name;
+        return $this->job->printer?->name;
     }
 
     public function state(): null|string

@@ -7,6 +7,7 @@ namespace Rawilk\Printing\Drivers\Cups\Entity;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Traits\Macroable;
 use JsonSerializable;
 use Rawilk\Printing\Contracts\Printer as PrinterContracts;
 use Smalot\Cups\Manager\JobManager;
@@ -15,6 +16,8 @@ use Smalot\Cups\Model\Printer as SmalotPrinter;
 
 class Printer implements PrinterContracts, Arrayable, JsonSerializable
 {
+    use Macroable;
+
     protected array $capabilities;
 
     public function __construct(protected SmalotPrinter $printer, protected JobManager $jobManager) {}
@@ -97,10 +100,11 @@ class Printer implements PrinterContracts, Arrayable, JsonSerializable
             'online' => $this->isOnline(),
             'status' => $this->status(),
             'trays' => $this->trays(),
+            'capabilities' => $this->capabilities(),
         ];
     }
 
-    public function jsonSerialize()
+    public function jsonSerialize(): mixed
     {
         return $this->toArray();
     }

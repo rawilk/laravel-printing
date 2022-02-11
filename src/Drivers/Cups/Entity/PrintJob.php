@@ -4,14 +4,18 @@ declare(strict_types=1);
 
 namespace Rawilk\Printing\Drivers\Cups\Entity;
 
+use Carbon\Carbon;
+use Illuminate\Support\Traits\Macroable;
 use Rawilk\Printing\Contracts\PrintJob as PrintJobContract;
 use Smalot\Cups\Model\JobInterface;
 
 class PrintJob implements PrintJobContract
 {
+    use Macroable;
+
     public function __construct(protected JobInterface $job, protected null|Printer $printer = null) {}
 
-    public function date()
+    public function date(): null|Carbon
     {
         // Not sure if it is possible to retrieve the date.
         return null;

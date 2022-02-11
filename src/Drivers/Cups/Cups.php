@@ -5,8 +5,10 @@ declare(strict_types=1);
 namespace Rawilk\Printing\Drivers\Cups;
 
 use Illuminate\Support\Collection;
+use Illuminate\Support\Traits\Macroable;
 use Rawilk\Printing\Contracts\Driver;
 use Rawilk\Printing\Contracts\Printer;
+use Rawilk\Printing\Contracts\PrintJob;
 use Rawilk\Printing\Drivers\Cups\Entity\Printer as RawilkPrinter;
 use Rawilk\Printing\Drivers\Cups\Support\Client;
 use Rawilk\Printing\Exceptions\InvalidDriverConfig;
@@ -18,6 +20,8 @@ use Smalot\Cups\Transport\ResponseParser;
 
 class Cups implements Driver
 {
+    use Macroable;
+
     protected Builder $builder;
     protected Client $client;
     protected ResponseParser $responseParser;
@@ -49,7 +53,7 @@ class Cups implements Driver
         return new PrintTask($this->jobManager(), $this->printerManager());
     }
 
-    public function find($printerId = null): null|Printer
+    public function printer($printerId = null): null|Printer
     {
         $printer = $this->printerManager()->findByUri($printerId);
 
@@ -60,13 +64,40 @@ class Cups implements Driver
         return null;
     }
 
-    public function printers(): Collection
+    /** @return \Illuminate\Support\Collection<int, RawilkPrinter> */
+    public function printers(int|null $limit = null, int|null $offset = null, string|null $dir = null): Collection
     {
+        // TODO: find out if CUPS driver can paginate
         $printers = $this->printerManager()->getList();
 
         return collect($printers)
             ->map(fn (SmalotPrinter $printer) => new RawilkPrinter($printer, $this->jobManager()))
             ->values();
+    }
+
+    public function printJob($jobId = null): null|PrintJob
+    {
+        // TODO: Implement printJob() method.
+        return null;
+    }
+
+    public function printerPrintJobs($printerId, int|null $limit = null, int|null $offset = null, string|null $dir = null): Collection
+    {
+        // TODO: Implement printerPrintJobs() method.
+        return collect();
+    }
+
+    public function printerPrintJob($printerId, $jobId): null|PrintJob
+    {
+        // TODO: Implement printerPrintJob() method.
+        return null;
+    }
+
+    /** @return \Illuminate\Support\Collection<int, \Rawilk\Printing\Contracts\PrintJob> */
+    public function printJobs(int|null $limit = null, int|null $offset = null, string|null $dir = null): Collection
+    {
+        // TODO: implement printJobs() method.
+        return collect();
     }
 
     protected function jobManager(): JobManager

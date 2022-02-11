@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Rawilk\Printing;
 
 use Illuminate\Support\ServiceProvider;
+use Rawilk\Printing\Api\PrintNode\PrintNode;
 
 class PrintingServiceProvider extends ServiceProvider
 {
@@ -20,6 +21,9 @@ class PrintingServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->mergeConfigFrom(__DIR__ . '/../config/printing.php', 'printing');
+
+        $printNodeApiKey = $this->app['config']['printing.drivers.printnode.key'];
+        $this->app->singleton(PrintNode::class, fn ($app) => new PrintNode((string) $printNodeApiKey));
 
         $this->app->singleton(
             'printing.factory',

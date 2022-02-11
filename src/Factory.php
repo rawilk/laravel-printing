@@ -51,7 +51,7 @@ class Factory
             throw InvalidDriverConfig::invalid('You must provide an api key for the PrintNode driver.');
         }
 
-        return new PrintNode($config['key']);
+        return new PrintNode;
     }
 
     protected function get(string $driver): Driver

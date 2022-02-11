@@ -2,9 +2,11 @@
 
 namespace Rawilk\Printing\Contracts;
 
+use Carbon\Carbon;
+
 interface PrintJob
 {
-    public function date();
+    public function date(): null|Carbon;
 
     public function id();
 
