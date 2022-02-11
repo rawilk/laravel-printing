@@ -23,6 +23,7 @@
     ],
     "require": {
         "php": "^8.0|^8.1",
+        "guzzlehttp/guzzle": "^7.4",
         "illuminate/support": "^8.0|^9.0",
         "mike42/escpos-php": "^3.0"
     },
