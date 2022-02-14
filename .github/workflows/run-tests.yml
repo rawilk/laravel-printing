@@ -49,3 +49,6 @@ jobs:
 
             - name: Execute tests
               run: vendor/bin/phpunit
+              env:
+                  PRINT_NODE_API_KEY: ${{ secrets.PRINT_NODE_API_KEY }}
+                  PRINT_NODE_ID: ${{ secrets.PRINT_NODE_ID }}
