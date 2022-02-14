@@ -5,8 +5,6 @@ declare(strict_types=1);
 namespace Rawilk\Printing\Api\PrintNode;
 
 use Illuminate\Support\Traits\Macroable;
-use Rawilk\Printing\Api\PrintNode\Entity;
-use Rawilk\Printing\Api\PrintNode\Requests;
 
 class PrintNode
 {

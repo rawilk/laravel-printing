@@ -24,7 +24,7 @@ class PrinterPrintJobRequestTest extends PrintNodeTestCase
     /** @test */
     public function returns_null_for_job_not_found(): void
     {
-        $this->fakeRequest('printers/33/printjobs/1234','print_job_single_not_found');
+        $this->fakeRequest('printers/33/printjobs/1234', 'print_job_single_not_found');
 
         $printJob = (new PrinterPrintJobRequest('1234'))->response(33, 1234);
 

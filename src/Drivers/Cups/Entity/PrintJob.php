@@ -13,7 +13,9 @@ class PrintJob implements PrintJobContract
 {
     use Macroable;
 
-    public function __construct(protected JobInterface $job, protected null|Printer $printer = null) {}
+    public function __construct(protected JobInterface $job, protected null|Printer $printer = null)
+    {
+    }
 
     public function date(): null|Carbon
     {

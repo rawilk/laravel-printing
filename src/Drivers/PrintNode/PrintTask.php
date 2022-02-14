@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Rawilk\Printing\Drivers\PrintNode;
 
 use Illuminate\Support\Str;
-use Rawilk\Printing\Api\PrintNode\PrintNode as PrintNodeApi;
 use Rawilk\Printing\Api\PrintNode\Entity\PrintJob as PrintNodePrintJob;
+use Rawilk\Printing\Api\PrintNode\PrintNode as PrintNodeApi;
 use Rawilk\Printing\Contracts\PrintJob;
 use Rawilk\Printing\Drivers\PrintNode\Entity\PrintJob as RawilkPrintJob;
 use Rawilk\Printing\Exceptions\InvalidOption;

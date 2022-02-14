@@ -6,8 +6,6 @@ namespace Rawilk\Printing\Api\PrintNode\Entity;
 
 use Carbon\Carbon;
 use InvalidArgumentException;
-use JetBrains\PhpStorm\Internal\LanguageLevelTypeAware;
-use JetBrains\PhpStorm\Internal\TentativeType;
 use Rawilk\Printing\Drivers\PrintNode\ContentType;
 
 class PrintJob extends Entity

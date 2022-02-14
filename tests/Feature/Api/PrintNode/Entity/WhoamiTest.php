@@ -41,12 +41,15 @@ class WhoamiTest extends TestCase
             switch ($key) {
                 case 'Tags':
                     $key = 'tags';
+
                     break;
                 case 'firstname':
                     $key = 'firstName';
+
                     break;
                 case 'lastname':
                     $key = 'lastName';
+
                     break;
             }
 

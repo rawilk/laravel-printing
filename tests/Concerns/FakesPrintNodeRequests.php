@@ -10,7 +10,7 @@ trait FakesPrintNodeRequests
     {
         Http::fake([
             "https://api.printnode.com/{$service}" =>
-                Http::response(json_decode(file_get_contents(__DIR__ . "/../stubs/Api/PrintNode/{$stub}.json"), true), $code)
+                Http::response(json_decode(file_get_contents(__DIR__ . "/../stubs/Api/PrintNode/{$stub}.json"), true), $code),
         ]);
     }
 }

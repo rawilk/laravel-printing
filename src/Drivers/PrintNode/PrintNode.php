@@ -6,9 +6,9 @@ namespace Rawilk\Printing\Drivers\PrintNode;
 
 use Illuminate\Support\Collection;
 use Illuminate\Support\Traits\Macroable;
-use Rawilk\Printing\Api\PrintNode\PrintNode as PrintNodeApi;
 use Rawilk\Printing\Api\PrintNode\Entity\Printer as PrintNodePrinter;
 use Rawilk\Printing\Api\PrintNode\Entity\PrintJob as PrintNodePrintJob;
+use Rawilk\Printing\Api\PrintNode\PrintNode as PrintNodeApi;
 use Rawilk\Printing\Contracts\Driver;
 use Rawilk\Printing\Contracts\Printer;
 use Rawilk\Printing\Contracts\PrintJob;

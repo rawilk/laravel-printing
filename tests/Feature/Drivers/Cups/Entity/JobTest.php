@@ -47,7 +47,6 @@ class JobTest extends TestCase
         $this->assertEquals('success', $this->createJob()->state());
     }
 
-
     /** @test */
     public function can_get_the_printer_name_and_id(): void
     {

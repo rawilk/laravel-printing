@@ -26,11 +26,11 @@ use Smalot\Cups\CupsException;
  */
 class Client implements HttpClient
 {
-    const SOCKET_URL = 'unix:///var/run/cups/cups.sock';
+    public const SOCKET_URL = 'unix:///var/run/cups/cups.sock';
 
-    const AUTHTYPE_BASIC = 'basic';
+    public const AUTHTYPE_BASIC = 'basic';
 
-    const AUTHTYPE_DIGEST = 'digest';
+    public const AUTHTYPE_DIGEST = 'digest';
 
     /** @var \Http\Client\Common\PluginClient */
     protected $httpClient;
