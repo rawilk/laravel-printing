@@ -1,0 +1,477 @@
+[
+    {
+        "id": 39,
+        "computer": {
+            "id": 13,
+            "name": "TUNSTEN",
+            "inet": "192.168.56.1",
+            "inet6": null,
+            "hostname": "Pete@TUNGSTEN",
+            "version": "4.8.1",
+            "jre": null,
+            "createTimestamp": "2015-11-17T13:02:36.589Z",
+            "state": "disconnected"
+        },
+        "name": "Microsoft XPS Document Writer",
+        "description": "Microsoft XPS Document Writer",
+        "capabilities": {
+            "bins": [
+                "Automatically Select"
+            ],
+            "collate": false,
+            "color": true,
+            "copies": 1,
+            "dpis": [
+                "600x600"
+            ],
+            "duplex": false,
+            "extent": [
+                [
+                    900,
+                    900
+                ],
+                [
+                    8636,
+                    11176
+                ]
+            ],
+            "medias": [],
+            "nup": [],
+            "papers": {
+                "A4": [
+                    2100,
+                    2970
+                ],
+                "Letter": [
+                    2159,
+                    2794
+                ],
+                "Letter Small": [
+                    2159,
+                    2794
+                ],
+                "Tabloid": [
+                    2794,
+                    4318
+                ],
+                "Ledger": [
+                    4318,
+                    2794
+                ],
+                "Legal": [
+                    2159,
+                    3556
+                ],
+                "Statement": [
+                    1397,
+                    2159
+                ],
+                "Executive": [
+                    1841,
+                    2667
+                ],
+                "A3": [
+                    2970,
+                    4200
+                ],
+                "A4 Small": [
+                    2100,
+                    2970
+                ],
+                "A5": [
+                    1480,
+                    2100
+                ],
+                "B4 (JIS)": [
+                    2570,
+                    3640
+                ],
+                "B5 (JIS)": [
+                    1820,
+                    2570
+                ],
+                "Folio": [
+                    2159,
+                    3302
+                ],
+                "Quarto": [
+                    2150,
+                    2750
+                ],
+                "10x14": [
+                    2540,
+                    3556
+                ],
+                "11x17": [
+                    2794,
+                    4318
+                ],
+                "Note": [
+                    2159,
+                    2794
+                ],
+                "Envelope #9": [
+                    984,
+                    2254
+                ],
+                "Envelope #10": [
+                    1047,
+                    2413
+                ],
+                "Envelope #11": [
+                    1143,
+                    2635
+                ],
+                "Envelope #12": [
+                    1206,
+                    2794
+                ],
+                "Envelope #14": [
+                    1270,
+                    2921
+                ],
+                "C size sheet": [
+                    4318,
+                    5588
+                ],
+                "D size sheet": [
+                    5588,
+                    8636
+                ],
+                "E size sheet": [
+                    8636,
+                    11176
+                ],
+                "Envelope DL": [
+                    1100,
+                    2200
+                ],
+                "Envelope C5": [
+                    1620,
+                    2290
+                ],
+                "Envelope C3": [
+                    3240,
+                    4580
+                ],
+                "Envelope C4": [
+                    2290,
+                    3240
+                ],
+                "Envelope C6": [
+                    1140,
+                    1620
+                ],
+                "Envelope C65": [
+                    1140,
+                    2290
+                ],
+                "Envelope B4": [
+                    2500,
+                    3530
+                ],
+                "Envelope B5": [
+                    1760,
+                    2500
+                ],
+                "Envelope B6": [
+                    1760,
+                    1250
+                ],
+                "Envelope": [
+                    1100,
+                    2300
+                ],
+                "Envelope Monarch": [
+                    984,
+                    1905
+                ],
+                "6 3/4 Envelope": [
+                    920,
+                    1651
+                ],
+                "US Std Fanfold": [
+                    3778,
+                    2794
+                ],
+                "German Std Fanfold": [
+                    2159,
+                    3048
+                ],
+                "German Legal Fanfold": [
+                    2159,
+                    3302
+                ],
+                "B4 (ISO)": [
+                    2500,
+                    3530
+                ],
+                "Japanese Postcard": [
+                    1000,
+                    1480
+                ],
+                "9x11": [
+                    2286,
+                    2794
+                ],
+                "10x11": [
+                    2540,
+                    2794
+                ],
+                "15x11": [
+                    3810,
+                    2794
+                ],
+                "Envelope Invite": [
+                    2200,
+                    2200
+                ],
+                "Letter Extra": [
+                    2413,
+                    3048
+                ],
+                "Legal Extra": [
+                    2413,
+                    3810
+                ],
+                "A4 Extra": [
+                    2354,
+                    3223
+                ],
+                "Letter Transverse": [
+                    2159,
+                    2794
+                ],
+                "A4 Transverse": [
+                    2100,
+                    2970
+                ],
+                "Letter Extra Transverse": [
+                    2413,
+                    3048
+                ],
+                "Super A": [
+                    2270,
+                    3560
+                ],
+                "Super B": [
+                    3050,
+                    4870
+                ],
+                "Letter Plus": [
+                    2159,
+                    3223
+                ],
+                "A4 Plus": [
+                    2100,
+                    3300
+                ],
+                "A5 Transverse": [
+                    1480,
+                    2100
+                ],
+                "B5 (JIS) Transverse": [
+                    1820,
+                    2570
+                ],
+                "A3 Extra": [
+                    3220,
+                    4450
+                ],
+                "A5 Extra": [
+                    1740,
+                    2350
+                ],
+                "B5 (ISO) Extra": [
+                    2010,
+                    2760
+                ],
+                "A2": [
+                    4200,
+                    5940
+                ],
+                "A3 Transverse": [
+                    2970,
+                    4200
+                ],
+                "A3 Extra Transverse": [
+                    3220,
+                    4450
+                ],
+                "Japanese Double Postcard": [
+                    2000,
+                    1480
+                ],
+                "A6": [
+                    1050,
+                    1480
+                ],
+                "Japanese Envelope Kaku #2": [
+                    2400,
+                    3320
+                ],
+                "Japanese Envelope Kaku #3": [
+                    2160,
+                    2770
+                ],
+                "Japanese Envelope Chou #3": [
+                    1200,
+                    2350
+                ],
+                "Japanese Envelope Chou #4": [
+                    900,
+                    2050
+                ],
+                "Letter Rotated": [
+                    2794,
+                    2159
+                ],
+                "A3 Rotated": [
+                    4200,
+                    2970
+                ],
+                "A4 Rotated": [
+                    2970,
+                    2100
+                ],
+                "A5 Rotated": [
+                    2100,
+                    1480
+                ],
+                "B4 (JIS) Rotated": [
+                    3640,
+                    2570
+                ],
+                "B5 (JIS) Rotated": [
+                    2570,
+                    1820
+                ],
+                "Japanese Postcard Rotated": [
+                    1480,
+                    1000
+                ],
+                "Double Japan Postcard Rotated": [
+                    1480,
+                    2000
+                ],
+                "A6 Rotated": [
+                    1480,
+                    1050
+                ],
+                "Japan Envelope Kaku #2 Rotated": [
+                    3320,
+                    2400
+                ],
+                "Japan Envelope Kaku #3 Rotated": [
+                    2770,
+                    2160
+                ],
+                "Japan Envelope Chou #3 Rotated": [
+                    2350,
+                    1200
+                ],
+                "Japan Envelope Chou #4 Rotated": [
+                    2050,
+                    900
+                ],
+                "B6 (JIS)": [
+                    1280,
+                    1820
+                ],
+                "B6 (JIS) Rotated": [
+                    1820,
+                    1280
+                ],
+                "12x11": [
+                    3049,
+                    2795
+                ],
+                "Japan Envelope You #4": [
+                    1050,
+                    2350
+                ],
+                "Japan Envelope You #4 Rotated": [
+                    2350,
+                    1050
+                ],
+                "PRC Envelope #1": [
+                    1020,
+                    1650
+                ],
+                "PRC Envelope #3": [
+                    1250,
+                    1760
+                ],
+                "PRC Envelope #4": [
+                    1100,
+                    2080
+                ],
+                "PRC Envelope #5": [
+                    1100,
+                    2200
+                ],
+                "PRC Envelope #6": [
+                    1200,
+                    2300
+                ],
+                "PRC Envelope #7": [
+                    1600,
+                    2300
+                ],
+                "PRC Envelope #8": [
+                    1200,
+                    3090
+                ],
+                "PRC Envelope #9": [
+                    2290,
+                    3240
+                ],
+                "PRC Envelope #10": [
+                    3240,
+                    4580
+                ],
+                "PRC Envelope #1 Rotated": [
+                    1650,
+                    1020
+                ],
+                "PRC Envelope #3 Rotated": [
+                    1760,
+                    1250
+                ],
+                "PRC Envelope #4 Rotated": [
+                    2080,
+                    1100
+                ],
+                "PRC Envelope #5 Rotated": [
+                    2200,
+                    1100
+                ],
+                "PRC Envelope #6 Rotated": [
+                    2300,
+                    1200
+                ],
+                "PRC Envelope #7 Rotated": [
+                    2300,
+                    1600
+                ],
+                "PRC Envelope #8 Rotated": [
+                    3090,
+                    1200
+                ],
+                "PRC Envelope #9 Rotated": [
+                    3240,
+                    2290
+                ],
+                "ANSI F": [
+                    7112,
+                    10160
+                ]
+            },
+            "printrate": null,
+            "supports_custom_paper_size": false
+        },
+        "default": false,
+        "createTimestamp": "2015-11-17T13:02:37.224Z",
+        "state": "online"
+    }
+]

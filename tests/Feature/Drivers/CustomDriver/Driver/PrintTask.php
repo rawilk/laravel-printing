@@ -22,6 +22,6 @@ final class PrintTask extends BasePrintTask
 
     private function getPrinter(): Printer
     {
-        return Printing::find($this->printerId);
+        return Printing::printer($this->printerId);
     }
 }

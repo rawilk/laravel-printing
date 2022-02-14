@@ -1,0 +1,13 @@
+[
+    {
+        "id": 14,
+        "name": "TUNGSTEN",
+        "inet": "192.168.56.1",
+        "inet6": null,
+        "hostname": "Pete@TUNGSTEN",
+        "version": "4.8.3",
+        "jre": null,
+        "createTimestamp": "2015-11-17T16:06:24.644Z",
+        "state": "disconnected"
+    }
+]

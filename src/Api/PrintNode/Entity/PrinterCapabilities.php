@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace Rawilk\Printing\Api\PrintNode\Entity;
 
-use Illuminate\Contracts\Support\Arrayable;
-
-class PrinterCapabilities extends Entity implements Arrayable
+class PrinterCapabilities extends Entity
 {
     public array $bins = [];
     public bool $collate = false;
@@ -39,23 +37,5 @@ class PrinterCapabilities extends Entity implements Arrayable
         $this->supportsCustomPaperSize = $supports;
 
         return $this;
-    }
-
-    public function toArray(): array
-    {
-        return [
-            'bins' => $this->bins,
-            'collate' => $this->collate,
-            'color' => $this->color,
-            'copies' => $this->copies,
-            'duplex' => $this->duplex,
-            'supportsCustomPaperSize' => $this->supportsCustomPaperSize,
-            'dpis' => $this->dpis,
-            'extent' => $this->extent,
-            'medias' => $this->medias,
-            'nup' => $this->nup,
-            'papers' => $this->papers,
-            'printRate' => $this->printRate,
-        ];
     }
 }

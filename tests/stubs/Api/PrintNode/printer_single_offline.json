@@ -1,0 +1,53 @@
+[
+    {
+        "id": 40,
+        "computer": {
+            "id": 13,
+            "name": "TUNSTEN",
+            "inet": "192.168.56.1",
+            "inet6": null,
+            "hostname": "Pete@TUNGSTEN",
+            "version": "4.8.1",
+            "jre": null,
+            "createTimestamp": "2015-11-17T13:02:36.589Z",
+            "state": "disconnected"
+        },
+        "name": "ZDesigner LP 2844",
+        "description": "ZDesigner LP 2844",
+        "capabilities": {
+            "bins": [
+                "Manual feed"
+            ],
+            "collate": false,
+            "color": false,
+            "copies": 9999,
+            "dpis": [
+                "203x203"
+            ],
+            "duplex": false,
+            "extent": [
+                [
+                    10,
+                    10
+                ],
+                [
+                    1240,
+                    28100
+                ]
+            ],
+            "medias": [],
+            "nup": [],
+            "papers": {
+                "User defined": [
+                    1016,
+                    1524
+                ]
+            },
+            "printrate": null,
+            "supports_custom_paper_size": false
+        },
+        "default": false,
+        "createTimestamp": "2015-11-17T13:02:37.224Z",
+        "state": "offline"
+    }
+]

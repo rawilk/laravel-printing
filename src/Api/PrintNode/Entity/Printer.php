@@ -25,9 +25,11 @@ class Printer extends Entity
         parent::__construct($data);
     }
 
-    public function setCapabilities(array $capabilities): self
+    public function setCapabilities(null|array $capabilities): self
     {
-        $this->capabilities = new PrinterCapabilities($capabilities);
+        if (is_array($capabilities)) {
+            $this->capabilities = new PrinterCapabilities($capabilities);
+        }
 
         return $this;
     }
@@ -42,6 +44,17 @@ class Printer extends Entity
     public function setCreateTimestamp($timestamp): self
     {
         $this->created = $this->getTimestamp($timestamp);
+
+        return $this;
+    }
+
+    public function setDefault($default): self
+    {
+        if (is_null($default)) {
+            $default = false;
+        }
+
+        $this->default = $default;
 
         return $this;
     }
@@ -85,5 +98,12 @@ class Printer extends Entity
     public function isOnline(): bool
     {
         return strtolower($this->state) === 'online';
+    }
+
+    public function toArray(): array
+    {
+        return array_merge(parent::toArray(), [
+            'createTimestamp' => $this->created,
+        ]);
     }
 }

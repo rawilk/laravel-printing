@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Rawilk\Printing\Tests\Feature\Drivers\CustomDriver\Driver\Entity;
 
+use Carbon\Carbon;
 use Rawilk\Printing\Contracts\PrintJob as PrintJobContract;
 
 final class PrintJob implements PrintJobContract
@@ -15,9 +16,9 @@ final class PrintJob implements PrintJobContract
         $this->printer = $printer;
     }
 
-    public function date()
+    public function date(): null|Carbon
     {
-        return '';
+        return null;
     }
 
     public function id()

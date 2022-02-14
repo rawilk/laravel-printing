@@ -32,19 +32,19 @@ class JobTest extends TestCase
     /** @test */
     public function can_get_the_job_id(): void
     {
-        self::assertSame(123456, $this->createJob()->id());
+        $this->assertSame(123456, $this->createJob()->id());
     }
 
     /** @test */
     public function can_get_the_job_name(): void
     {
-        self::assertEquals('my print job', $this->createJob()->name());
+        $this->assertEquals('my print job', $this->createJob()->name());
     }
 
     /** @test */
     public function can_get_the_job_state(): void
     {
-        self::assertEquals('success', $this->createJob()->state());
+        $this->assertEquals('success', $this->createJob()->state());
     }
 
 
@@ -53,8 +53,8 @@ class JobTest extends TestCase
     {
         $job = $this->createJob();
 
-        self::assertEquals('printer-name', $job->printerName());
-        self::assertEquals('localhost:631', $job->printerId());
+        $this->assertEquals('printer-name', $job->printerName());
+        $this->assertEquals('localhost:631', $job->printerId());
     }
 
     protected function createJob(): PrintJob

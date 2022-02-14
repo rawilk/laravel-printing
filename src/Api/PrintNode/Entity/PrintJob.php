@@ -6,6 +6,8 @@ namespace Rawilk\Printing\Api\PrintNode\Entity;
 
 use Carbon\Carbon;
 use InvalidArgumentException;
+use JetBrains\PhpStorm\Internal\LanguageLevelTypeAware;
+use JetBrains\PhpStorm\Internal\TentativeType;
 use Rawilk\Printing\Drivers\PrintNode\ContentType;
 
 class PrintJob extends Entity
@@ -70,6 +72,7 @@ class PrintJob extends Entity
     public function setPrinter(array $data): self
     {
         $this->printer = new Printer($data);
+        $this->printerId = $this->printer->id;
 
         return $this;
     }
@@ -182,5 +185,12 @@ class PrintJob extends Entity
     protected function isValidContentType(string $type): bool
     {
         return in_array($type, static::VALID_CONTENT_TYPES, true);
+    }
+
+    public function toArray(): array
+    {
+        return array_merge(parent::toArray(),  [
+            'createTimestamp' => $this->created,
+        ]);
     }
 }

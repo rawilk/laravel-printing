@@ -17,7 +17,7 @@ abstract class PrintTask implements PrintTaskContract
     protected array $options = [];
     protected string $content = '';
     protected string $printSource;
-    protected Printer|string|null|int $printerId;
+    protected Printer|string|null|int $printerId = null;
 
     public function __construct()
     {

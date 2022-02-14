@@ -24,7 +24,7 @@ class FactoryTest extends TestCase
 
         $factory = new Factory(config('printing'));
 
-        self::assertInstanceOf(PrintNode::class, $factory->driver());
+        $this->assertInstanceOf(PrintNode::class, $factory->driver());
     }
 
     /** @test */
@@ -81,7 +81,7 @@ class FactoryTest extends TestCase
 
         $factory = new Factory(config('printing'));
 
-        self::assertInstanceOf(Cups::class, $factory->driver());
+        $this->assertInstanceOf(Cups::class, $factory->driver());
     }
 
     /** @test */
@@ -99,7 +99,7 @@ class FactoryTest extends TestCase
 
         $factory = new Factory(config('printing'));
 
-        self::assertInstanceOf(Cups::class, $factory->driver());
+        $this->assertInstanceOf(Cups::class, $factory->driver());
     }
 
     /** @test */
@@ -135,8 +135,8 @@ class FactoryTest extends TestCase
 
         $this->app['printing.factory']->extend('custom_driver', fn (array $config) => new CustomDriver($config['api_key']));
 
-        self::assertInstanceOf(CustomDriver::class, $this->app['printing.factory']->driver());
-        self::assertEquals('123456', $this->app['printing.factory']->driver()->apiKey);
+        $this->assertInstanceOf(CustomDriver::class, $this->app['printing.factory']->driver());
+        $this->assertEquals('123456', $this->app['printing.factory']->driver()->apiKey);
     }
 
     /** @test */

@@ -41,10 +41,11 @@ class PrinterTest extends TestCase
             'online' => true,
             'status' => 'online',
             'trays' => [],
+            'capabilities' => [],
         ];
 
-        self::assertNotEmpty($toArray);
-        self::assertEquals($expected, $toArray);
+        $this->assertNotEmpty($toArray);
+        $this->assertEquals($expected, $toArray);
     }
 
     /** @test */
@@ -61,15 +62,16 @@ class PrinterTest extends TestCase
             'online' => true,
             'status' => 'online',
             'trays' => [],
+            'capabilities' => [],
         ]);
 
-        self::assertEquals($expected, $json);
+        $this->assertEquals($expected, $json);
     }
 
     /** @test */
     public function can_get_the_id_of_the_printer(): void
     {
-        self::assertEquals('localhost:631', $this->createPrinter()->id());
+        $this->assertEquals('localhost:631', $this->createPrinter()->id());
     }
 
     /** @test */
@@ -77,12 +79,12 @@ class PrinterTest extends TestCase
     {
         $printer = $this->createPrinter();
 
-        self::assertTrue($printer->isOnline());
-        self::assertEquals('online', $printer->status());
+        $this->assertTrue($printer->isOnline());
+        $this->assertEquals('online', $printer->status());
 
         $printer->cupsPrinter()->setStatus('offline');
 
-        self::assertFalse($printer->isOnline());
+        $this->assertFalse($printer->isOnline());
     }
 
     /** @test */
@@ -92,7 +94,7 @@ class PrinterTest extends TestCase
 
         $printer->cupsPrinter()->setAttribute('printer-info', 'Some description');
 
-        self::assertEquals('Some description', $printer->description());
+        $this->assertEquals('Some description', $printer->description());
     }
 
     /** @test */
@@ -100,15 +102,15 @@ class PrinterTest extends TestCase
     {
         $printer = $this->createPrinter();
 
-        self::assertCount(0, $printer->trays());
+        $this->assertCount(0, $printer->trays());
 
         // Capabilities is cached after first retrieval, so we'll just use a fresh instance to test this
         $printer = $this->createPrinter();
 
         $printer->cupsPrinter()->setAttribute('media-source-supported', ['Tray 1']);
 
-        self::assertCount(1, $printer->trays());
-        self::assertEquals('Tray 1', $printer->trays()[0]);
+        $this->assertCount(1, $printer->trays());
+        $this->assertEquals('Tray 1', $printer->trays()[0]);
     }
 
     protected function createPrinter(): Printer

@@ -1,0 +1,31 @@
+[
+    {
+        "id": 473,
+        "printer": {
+            "id": 33,
+            "computer": {
+                "id": 12,
+                "name": "AnalyticalEngine",
+                "inet": null,
+                "inet6": null,
+                "hostname": null,
+                "version": null,
+                "jre": null,
+                "createTimestamp": "2015-11-16T23:14:12.354Z",
+                "state": "disconnected"
+            },
+            "name": "Printer 1",
+            "description": "Test Printer 1",
+            "capabilities": null,
+            "default": null,
+            "createTimestamp": "2015-11-16T23:14:12.354Z",
+            "state": "deleted"
+        },
+        "title": "Print Job 1",
+        "contentType": "pdf_uri",
+        "source": "Google",
+        "expireAt": null,
+        "createTimestamp": "2015-11-16T23:14:12.354Z",
+        "state": "deleted"
+    }
+]

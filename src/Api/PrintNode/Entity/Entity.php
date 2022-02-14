@@ -4,9 +4,14 @@ declare(strict_types=1);
 
 namespace Rawilk\Printing\Api\PrintNode\Entity;
 
+use ArrayAccess;
 use Carbon\Carbon;
+use Illuminate\Contracts\Support\Arrayable;
+use JsonSerializable;
+use ReflectionObject;
+use ReflectionProperty;
 
-abstract class Entity
+abstract class Entity implements Arrayable, JsonSerializable, ArrayAccess
 {
     public function __construct(array $data = [])
     {
@@ -39,5 +44,51 @@ abstract class Entity
         }
 
         return $date;
+    }
+
+    public function toArray(): array
+    {
+        $publicProperties = (new ReflectionObject($this))->getProperties(ReflectionProperty::IS_PUBLIC);
+
+        return collect($publicProperties)
+            ->mapWithKeys(function (ReflectionProperty $property) {
+                return [$property->name => $this->{$property->name}];
+            })->toArray();
+    }
+
+    public function jsonSerialize(): mixed
+    {
+        return $this->toArray();
+    }
+
+    public function offsetExists(mixed $offset): bool
+    {
+        return property_exists($this, $offset) && isset($this->{$offset});
+    }
+
+    public function offsetGet(mixed $offset): mixed
+    {
+        if (! property_exists($this, $offset)) {
+            return null;
+        }
+
+        return $this->{$offset};
+    }
+
+    public function offsetSet(mixed $offset, mixed $value): void
+    {
+        if (property_exists($this, $offset)) {
+            $this->{$offset} = $value;
+        }
+    }
+
+    public function offsetUnset(mixed $offset): void
+    {
+        if (! property_exists($this, $offset)) {
+            return;
+        }
+
+        $freshInstance = new static;
+        $this->{$offset} = $freshInstance->{$offset};
     }
 }

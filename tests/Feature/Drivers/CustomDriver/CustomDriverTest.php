@@ -28,18 +28,18 @@ class CustomDriverTest extends TestCase
     /** @test */
     public function can_list_a_custom_drivers_printers(): void
     {
-        self::assertCount(2, Printing::printers());
-        self::assertEquals('printer_one', Printing::printers()[0]->id());
-        self::assertEquals('printer_two', Printing::printers()[1]->id());
+        $this->assertCount(2, Printing::printers());
+        $this->assertEquals('printer_one', Printing::printers()[0]->id());
+        $this->assertEquals('printer_two', Printing::printers()[1]->id());
     }
 
     /** @test */
     public function can_find_a_custom_drivers_printer(): void
     {
-        $printer = Printing::find('printer_one');
+        $printer = Printing::printer('printer_one');
 
-        self::assertEquals('printer_one', $printer->id());
-        self::assertTrue($printer->isOnline());
+        $this->assertEquals('printer_one', $printer->id());
+        $this->assertTrue($printer->isOnline());
     }
 
     /** @test */
@@ -47,12 +47,12 @@ class CustomDriverTest extends TestCase
     {
         config(['printing.default_printer_id' => 'printer_two']);
 
-        self::assertEquals('printer_two', Printing::defaultPrinterId());
+        $this->assertEquals('printer_two', Printing::defaultPrinterId());
 
         $defaultPrinter = Printing::defaultPrinter();
 
-        self::assertEquals('printer_two', $defaultPrinter->id());
-        self::assertFalse($defaultPrinter->isOnline());
+        $this->assertEquals('printer_two', $defaultPrinter->id());
+        $this->assertFalse($defaultPrinter->isOnline());
     }
 
     /** @test */
@@ -63,7 +63,7 @@ class CustomDriverTest extends TestCase
             ->content('hello world')
             ->send();
 
-        self::assertEquals('success', $job->state());
-        self::assertEquals('printer_one', $job->printerId());
+        $this->assertEquals('success', $job->state());
+        $this->assertEquals('printer_one', $job->printerId());
     }
 }

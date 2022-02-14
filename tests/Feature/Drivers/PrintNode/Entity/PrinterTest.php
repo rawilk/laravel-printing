@@ -6,62 +6,60 @@ namespace Rawilk\Printing\Tests\Feature\Drivers\PrintNode\Entity;
 
 use Rawilk\Printing\Drivers\PrintNode\Entity\Printer;
 use Rawilk\Printing\Drivers\PrintNode\PrintNode;
-use Rawilk\Printing\Tests\Feature\Drivers\PrintNode\Fixtures\PrintNodePrinter;
+use Rawilk\Printing\Tests\Concerns\FakesPrintNodeRequests;
 use Rawilk\Printing\Tests\TestCase;
 
 class PrinterTest extends TestCase
 {
+    use FakesPrintNodeRequests;
+
     protected PrintNode $printNode;
 
     protected function setUp(): void
     {
         parent::setUp();
 
-        $this->printNode = new PrintNode(config('printing.drivers.printnode.key'));
+        $this->printNode = new PrintNode;
+    }
+
+    /** @test */
+    public function creates_from_api_response(): void
+    {
+        $this->fakeRequest('printers/39', 'printer_single');
+
+        $printer = $this->printNode->printer(39);
+
+        $this->assertInstanceOf(Printer::class, $printer);
+        $this->assertSame(39, $printer->id());
+        $this->assertEquals(['Automatically Select'], $printer->trays());
+        $this->assertTrue($printer->isOnline());
+        $this->assertEquals('Microsoft XPS Document Writer', $printer->name());
+        $this->assertEquals('Microsoft XPS Document Writer', $printer->description());
     }
 
     /** @test */
     public function can_be_cast_to_array(): void
     {
-        $printer = $this->createPrinter();
+        $this->fakeRequest('printers/39', 'printer_single');
+
+        $printer = $this->printNode->printer(39);
 
         $toArray = $printer->toArray();
 
+        $capabilities = $printer->capabilities();
         $expected = [
-            'id' => 'printer-id',
-            'name' => 'printer name',
-            'description' => 'printer description',
+            'id' => 39,
+            'name' => 'Microsoft XPS Document Writer',
+            'description' => 'Microsoft XPS Document Writer',
             'online' => true,
             'status' => 'online',
             'trays' => [
-                'tray 1',
+                'Automatically Select',
             ],
+            'capabilities' => $capabilities,
         ];
 
-        self::assertNotEmpty($toArray);
-        self::assertEquals($expected, $toArray);
-    }
-
-    /** @test */
-    public function can_be_cast_to_json(): void
-    {
-        $printer = $this->createPrinter();
-
-        $json = json_encode($printer);
-
-        $expected = '{"id":"printer-id","name":"printer name","description":"printer description","online":true,"status":"online","trays":["tray 1"]}';
-
-        self::assertEquals($expected, $json);
-    }
-
-    protected function createPrinter(): Printer
-    {
-        $printNodePrinter = new PrintNodePrinter($this->printNode->getClient());
-        $printNodePrinter
-            ->setId('printer-id')
-            ->setDescription('printer description')
-            ->setName('printer name');
-
-        return new Printer($printNodePrinter, $this->printNode->getClient());
+        $this->assertNotEmpty($toArray);
+        $this->assertEquals($expected, $toArray);
     }
 }

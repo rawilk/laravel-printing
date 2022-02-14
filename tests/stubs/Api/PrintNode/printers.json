@@ -1,0 +1,6028 @@
+[
+    {
+        "id": 34,
+        "computer": {
+            "id": 12,
+            "name": "AnalyticalEngine",
+            "inet": null,
+            "inet6": null,
+            "hostname": null,
+            "version": null,
+            "jre": null,
+            "createTimestamp": "2015-11-16T23:14:12.354Z",
+            "state": "disconnected"
+        },
+        "name": "Printer 2",
+        "description": "Test Printer 2",
+        "capabilities": null,
+        "default": null,
+        "createTimestamp": "2015-11-16T23:14:12.354Z",
+        "state": "out_of_paper"
+    },
+    {
+        "id": 36,
+        "computer": {
+            "id": 12,
+            "name": "AnalyticalEngine",
+            "inet": null,
+            "inet6": null,
+            "hostname": null,
+            "version": null,
+            "jre": null,
+            "createTimestamp": "2015-11-16T23:14:12.354Z",
+            "state": "disconnected"
+        },
+        "name": "Printer 4",
+        "description": "Test Printer 4",
+        "capabilities": null,
+        "default": null,
+        "createTimestamp": "2015-11-16T23:14:12.354Z",
+        "state": "error"
+    },
+    {
+        "id": 37,
+        "computer": {
+            "id": 12,
+            "name": "AnalyticalEngine",
+            "inet": null,
+            "inet6": null,
+            "hostname": null,
+            "version": null,
+            "jre": null,
+            "createTimestamp": "2015-11-16T23:14:12.354Z",
+            "state": "disconnected"
+        },
+        "name": "Printer 5",
+        "description": "Test Printer 5",
+        "capabilities": null,
+        "default": null,
+        "createTimestamp": "2015-11-16T23:14:12.354Z",
+        "state": "idle"
+    },
+    {
+        "id": 38,
+        "computer": {
+            "id": 12,
+            "name": "AnalyticalEngine",
+            "inet": null,
+            "inet6": null,
+            "hostname": null,
+            "version": null,
+            "jre": null,
+            "createTimestamp": "2015-11-16T23:14:12.354Z",
+            "state": "disconnected"
+        },
+        "name": "Printer 6",
+        "description": "Test Printer 6",
+        "capabilities": null,
+        "default": null,
+        "createTimestamp": "2015-11-16T23:14:12.354Z",
+        "state": "offline"
+    },
+    {
+        "id": 39,
+        "computer": {
+            "id": 13,
+            "name": "TUNSTEN",
+            "inet": "192.168.56.1",
+            "inet6": null,
+            "hostname": "Pete@TUNGSTEN",
+            "version": "4.8.1",
+            "jre": null,
+            "createTimestamp": "2015-11-17T13:02:36.589Z",
+            "state": "disconnected"
+        },
+        "name": "Microsoft XPS Document Writer",
+        "description": "Microsoft XPS Document Writer",
+        "capabilities": {
+            "bins": [
+                "Automatically Select"
+            ],
+            "collate": false,
+            "color": true,
+            "copies": 1,
+            "dpis": [
+                "600x600"
+            ],
+            "duplex": false,
+            "extent": [
+                [
+                    900,
+                    900
+                ],
+                [
+                    8636,
+                    11176
+                ]
+            ],
+            "medias": [],
+            "nup": [],
+            "papers": {
+                "A4": [
+                    2100,
+                    2970
+                ],
+                "Letter": [
+                    2159,
+                    2794
+                ],
+                "Letter Small": [
+                    2159,
+                    2794
+                ],
+                "Tabloid": [
+                    2794,
+                    4318
+                ],
+                "Ledger": [
+                    4318,
+                    2794
+                ],
+                "Legal": [
+                    2159,
+                    3556
+                ],
+                "Statement": [
+                    1397,
+                    2159
+                ],
+                "Executive": [
+                    1841,
+                    2667
+                ],
+                "A3": [
+                    2970,
+                    4200
+                ],
+                "A4 Small": [
+                    2100,
+                    2970
+                ],
+                "A5": [
+                    1480,
+                    2100
+                ],
+                "B4 (JIS)": [
+                    2570,
+                    3640
+                ],
+                "B5 (JIS)": [
+                    1820,
+                    2570
+                ],
+                "Folio": [
+                    2159,
+                    3302
+                ],
+                "Quarto": [
+                    2150,
+                    2750
+                ],
+                "10x14": [
+                    2540,
+                    3556
+                ],
+                "11x17": [
+                    2794,
+                    4318
+                ],
+                "Note": [
+                    2159,
+                    2794
+                ],
+                "Envelope #9": [
+                    984,
+                    2254
+                ],
+                "Envelope #10": [
+                    1047,
+                    2413
+                ],
+                "Envelope #11": [
+                    1143,
+                    2635
+                ],
+                "Envelope #12": [
+                    1206,
+                    2794
+                ],
+                "Envelope #14": [
+                    1270,
+                    2921
+                ],
+                "C size sheet": [
+                    4318,
+                    5588
+                ],
+                "D size sheet": [
+                    5588,
+                    8636
+                ],
+                "E size sheet": [
+                    8636,
+                    11176
+                ],
+                "Envelope DL": [
+                    1100,
+                    2200
+                ],
+                "Envelope C5": [
+                    1620,
+                    2290
+                ],
+                "Envelope C3": [
+                    3240,
+                    4580
+                ],
+                "Envelope C4": [
+                    2290,
+                    3240
+                ],
+                "Envelope C6": [
+                    1140,
+                    1620
+                ],
+                "Envelope C65": [
+                    1140,
+                    2290
+                ],
+                "Envelope B4": [
+                    2500,
+                    3530
+                ],
+                "Envelope B5": [
+                    1760,
+                    2500
+                ],
+                "Envelope B6": [
+                    1760,
+                    1250
+                ],
+                "Envelope": [
+                    1100,
+                    2300
+                ],
+                "Envelope Monarch": [
+                    984,
+                    1905
+                ],
+                "6 3/4 Envelope": [
+                    920,
+                    1651
+                ],
+                "US Std Fanfold": [
+                    3778,
+                    2794
+                ],
+                "German Std Fanfold": [
+                    2159,
+                    3048
+                ],
+                "German Legal Fanfold": [
+                    2159,
+                    3302
+                ],
+                "B4 (ISO)": [
+                    2500,
+                    3530
+                ],
+                "Japanese Postcard": [
+                    1000,
+                    1480
+                ],
+                "9x11": [
+                    2286,
+                    2794
+                ],
+                "10x11": [
+                    2540,
+                    2794
+                ],
+                "15x11": [
+                    3810,
+                    2794
+                ],
+                "Envelope Invite": [
+                    2200,
+                    2200
+                ],
+                "Letter Extra": [
+                    2413,
+                    3048
+                ],
+                "Legal Extra": [
+                    2413,
+                    3810
+                ],
+                "A4 Extra": [
+                    2354,
+                    3223
+                ],
+                "Letter Transverse": [
+                    2159,
+                    2794
+                ],
+                "A4 Transverse": [
+                    2100,
+                    2970
+                ],
+                "Letter Extra Transverse": [
+                    2413,
+                    3048
+                ],
+                "Super A": [
+                    2270,
+                    3560
+                ],
+                "Super B": [
+                    3050,
+                    4870
+                ],
+                "Letter Plus": [
+                    2159,
+                    3223
+                ],
+                "A4 Plus": [
+                    2100,
+                    3300
+                ],
+                "A5 Transverse": [
+                    1480,
+                    2100
+                ],
+                "B5 (JIS) Transverse": [
+                    1820,
+                    2570
+                ],
+                "A3 Extra": [
+                    3220,
+                    4450
+                ],
+                "A5 Extra": [
+                    1740,
+                    2350
+                ],
+                "B5 (ISO) Extra": [
+                    2010,
+                    2760
+                ],
+                "A2": [
+                    4200,
+                    5940
+                ],
+                "A3 Transverse": [
+                    2970,
+                    4200
+                ],
+                "A3 Extra Transverse": [
+                    3220,
+                    4450
+                ],
+                "Japanese Double Postcard": [
+                    2000,
+                    1480
+                ],
+                "A6": [
+                    1050,
+                    1480
+                ],
+                "Japanese Envelope Kaku #2": [
+                    2400,
+                    3320
+                ],
+                "Japanese Envelope Kaku #3": [
+                    2160,
+                    2770
+                ],
+                "Japanese Envelope Chou #3": [
+                    1200,
+                    2350
+                ],
+                "Japanese Envelope Chou #4": [
+                    900,
+                    2050
+                ],
+                "Letter Rotated": [
+                    2794,
+                    2159
+                ],
+                "A3 Rotated": [
+                    4200,
+                    2970
+                ],
+                "A4 Rotated": [
+                    2970,
+                    2100
+                ],
+                "A5 Rotated": [
+                    2100,
+                    1480
+                ],
+                "B4 (JIS) Rotated": [
+                    3640,
+                    2570
+                ],
+                "B5 (JIS) Rotated": [
+                    2570,
+                    1820
+                ],
+                "Japanese Postcard Rotated": [
+                    1480,
+                    1000
+                ],
+                "Double Japan Postcard Rotated": [
+                    1480,
+                    2000
+                ],
+                "A6 Rotated": [
+                    1480,
+                    1050
+                ],
+                "Japan Envelope Kaku #2 Rotated": [
+                    3320,
+                    2400
+                ],
+                "Japan Envelope Kaku #3 Rotated": [
+                    2770,
+                    2160
+                ],
+                "Japan Envelope Chou #3 Rotated": [
+                    2350,
+                    1200
+                ],
+                "Japan Envelope Chou #4 Rotated": [
+                    2050,
+                    900
+                ],
+                "B6 (JIS)": [
+                    1280,
+                    1820
+                ],
+                "B6 (JIS) Rotated": [
+                    1820,
+                    1280
+                ],
+                "12x11": [
+                    3049,
+                    2795
+                ],
+                "Japan Envelope You #4": [
+                    1050,
+                    2350
+                ],
+                "Japan Envelope You #4 Rotated": [
+                    2350,
+                    1050
+                ],
+                "PRC Envelope #1": [
+                    1020,
+                    1650
+                ],
+                "PRC Envelope #3": [
+                    1250,
+                    1760
+                ],
+                "PRC Envelope #4": [
+                    1100,
+                    2080
+                ],
+                "PRC Envelope #5": [
+                    1100,
+                    2200
+                ],
+                "PRC Envelope #6": [
+                    1200,
+                    2300
+                ],
+                "PRC Envelope #7": [
+                    1600,
+                    2300
+                ],
+                "PRC Envelope #8": [
+                    1200,
+                    3090
+                ],
+                "PRC Envelope #9": [
+                    2290,
+                    3240
+                ],
+                "PRC Envelope #10": [
+                    3240,
+                    4580
+                ],
+                "PRC Envelope #1 Rotated": [
+                    1650,
+                    1020
+                ],
+                "PRC Envelope #3 Rotated": [
+                    1760,
+                    1250
+                ],
+                "PRC Envelope #4 Rotated": [
+                    2080,
+                    1100
+                ],
+                "PRC Envelope #5 Rotated": [
+                    2200,
+                    1100
+                ],
+                "PRC Envelope #6 Rotated": [
+                    2300,
+                    1200
+                ],
+                "PRC Envelope #7 Rotated": [
+                    2300,
+                    1600
+                ],
+                "PRC Envelope #8 Rotated": [
+                    3090,
+                    1200
+                ],
+                "PRC Envelope #9 Rotated": [
+                    3240,
+                    2290
+                ],
+                "ANSI F": [
+                    7112,
+                    10160
+                ]
+            },
+            "printrate": null,
+            "supports_custom_paper_size": false
+        },
+        "default": false,
+        "createTimestamp": "2015-11-17T13:02:37.224Z",
+        "state": "online"
+    },
+    {
+        "id": 40,
+        "computer": {
+            "id": 13,
+            "name": "TUNSTEN",
+            "inet": "192.168.56.1",
+            "inet6": null,
+            "hostname": "Pete@TUNGSTEN",
+            "version": "4.8.1",
+            "jre": null,
+            "createTimestamp": "2015-11-17T13:02:36.589Z",
+            "state": "disconnected"
+        },
+        "name": "ZDesigner LP 2844",
+        "description": "ZDesigner LP 2844",
+        "capabilities": {
+            "bins": [
+                "Manual feed"
+            ],
+            "collate": false,
+            "color": false,
+            "copies": 9999,
+            "dpis": [
+                "203x203"
+            ],
+            "duplex": false,
+            "extent": [
+                [
+                    10,
+                    10
+                ],
+                [
+                    1240,
+                    28100
+                ]
+            ],
+            "medias": [],
+            "nup": [],
+            "papers": {
+                "User defined": [
+                    1016,
+                    1524
+                ]
+            },
+            "printrate": null,
+            "supports_custom_paper_size": false
+        },
+        "default": false,
+        "createTimestamp": "2015-11-17T13:02:37.224Z",
+        "state": "offline"
+    },
+    {
+        "id": 41,
+        "computer": {
+            "id": 13,
+            "name": "TUNSTEN",
+            "inet": "192.168.56.1",
+            "inet6": null,
+            "hostname": "Pete@TUNGSTEN",
+            "version": "4.8.1",
+            "jre": null,
+            "createTimestamp": "2015-11-17T13:02:36.589Z",
+            "state": "disconnected"
+        },
+        "name": "OKI-C822-16DB6E",
+        "description": "OKI C822(PCL)",
+        "capabilities": {
+            "bins": [
+                "Auto",
+                "Multipurpose Tray",
+                "Tray 1"
+            ],
+            "collate": true,
+            "color": true,
+            "copies": 999,
+            "dpis": [
+                "300x300",
+                "600x600"
+            ],
+            "duplex": true,
+            "extent": [
+                [
+                    640,
+                    900
+                ],
+                [
+                    2970,
+                    13208
+                ]
+            ],
+            "medias": [],
+            "nup": [],
+            "papers": {
+                "Letter": [
+                    2159,
+                    2794
+                ],
+                "Tabloid": [
+                    2794,
+                    4318
+                ],
+                "Legal": [
+                    2159,
+                    3556
+                ],
+                "Statement": [
+                    1397,
+                    2159
+                ],
+                "Executive": [
+                    1842,
+                    2667
+                ],
+                "A3": [
+                    2970,
+                    4200
+                ],
+                "A4": [
+                    2100,
+                    2970
+                ],
+                "A5": [
+                    1480,
+                    2100
+                ],
+                "B4": [
+                    2570,
+                    3640
+                ],
+                "B5": [
+                    1820,
+                    2570
+                ],
+                "Legal13": [
+                    2159,
+                    3302
+                ],
+                "Com-10": [
+                    1047,
+                    2413
+                ],
+                "DL": [
+                    1100,
+                    2200
+                ],
+                "C5": [
+                    1620,
+                    2290
+                ],
+                "C4": [
+                    2290,
+                    3240
+                ],
+                "Hagaki": [
+                    1000,
+                    1480
+                ],
+                "A6": [
+                    1050,
+                    1480
+                ],
+                "Kakugata #2": [
+                    2400,
+                    3320
+                ],
+                "Kakugata #3": [
+                    2160,
+                    2770
+                ],
+                "Nagagata #3": [
+                    1200,
+                    2350
+                ],
+                "Nagagata #4": [
+                    900,
+                    2050
+                ],
+                "Oufuku Hagaki": [
+                    2000,
+                    1480
+                ],
+                "Yougata #4": [
+                    1050,
+                    2350
+                ],
+                "User Defined Size": [
+                    2100,
+                    2970
+                ],
+                "B6": [
+                    1280,
+                    1820
+                ],
+                "B6 Half": [
+                    640,
+                    1820
+                ],
+                "Yougata #0": [
+                    1200,
+                    2350
+                ],
+                "Legal 13.5": [
+                    2159,
+                    3429
+                ],
+                "Index Card": [
+                    762,
+                    1270
+                ],
+                "16K": [
+                    1840,
+                    2600
+                ],
+                "16K 195 x 270mm": [
+                    1950,
+                    2700
+                ],
+                "16K 197 x 273mm": [
+                    1970,
+                    2730
+                ],
+                "8K": [
+                    2600,
+                    3680
+                ],
+                "8K 270 x 390mm": [
+                    2700,
+                    3900
+                ],
+                "8K 273 x 394mm": [
+                    2730,
+                    3940
+                ],
+                "Nagagata #40": [
+                    900,
+                    2250
+                ],
+                "Banner": [
+                    2100,
+                    9000
+                ],
+                "Banner 215.0 x 900.0mm": [
+                    2150,
+                    9000
+                ],
+                "Banner 215.0 x 1200.0mm": [
+                    2150,
+                    12000
+                ],
+                "Banner 297.0 x 900.0mm": [
+                    2970,
+                    9000
+                ],
+                "Banner 297.0 x 1200.0mm": [
+                    2970,
+                    12000
+                ]
+            },
+            "printrate": {
+                "unit": "ppm",
+                "rate": 23
+            },
+            "supports_custom_paper_size": false
+        },
+        "default": false,
+        "createTimestamp": "2015-11-17T13:02:37.224Z",
+        "state": "online"
+    },
+    {
+        "id": 42,
+        "computer": {
+            "id": 13,
+            "name": "TUNSTEN",
+            "inet": "192.168.56.1",
+            "inet6": null,
+            "hostname": "Pete@TUNGSTEN",
+            "version": "4.8.1",
+            "jre": null,
+            "createTimestamp": "2015-11-17T13:02:36.589Z",
+            "state": "disconnected"
+        },
+        "name": "Brother HL-5450DN series Printer",
+        "description": "Brother HL-5450DN series",
+        "capabilities": {
+            "bins": [
+                "Auto Select",
+                "Tray1",
+                "MP Tray",
+                "Manual"
+            ],
+            "collate": true,
+            "color": false,
+            "copies": 999,
+            "dpis": [
+                "300x300",
+                "600x600",
+                "1200x1200"
+            ],
+            "duplex": true,
+            "extent": [
+                [
+                    762,
+                    1270
+                ],
+                [
+                    2159,
+                    3556
+                ]
+            ],
+            "medias": [],
+            "nup": [],
+            "papers": {
+                "A4": [
+                    2100,
+                    2970
+                ],
+                "Letter": [
+                    2159,
+                    2794
+                ],
+                "Ledger": [
+                    2794,
+                    4318
+                ],
+                "Legal": [
+                    2159,
+                    3556
+                ],
+                "Executive": [
+                    1841,
+                    2667
+                ],
+                "A3": [
+                    2970,
+                    4200
+                ],
+                "A5": [
+                    1480,
+                    2100
+                ],
+                "JIS B4": [
+                    2570,
+                    3640
+                ],
+                "Folio": [
+                    2159,
+                    3302
+                ],
+                "Com-10": [
+                    1047,
+                    2413
+                ],
+                "DL": [
+                    1100,
+                    2200
+                ],
+                "C5": [
+                    1620,
+                    2290
+                ],
+                "B5": [
+                    1760,
+                    2500
+                ],
+                "Monarch": [
+                    984,
+                    1905
+                ],
+                "A5 Long Edge": [
+                    1480,
+                    2100
+                ],
+                "A6": [
+                    1050,
+                    1480
+                ],
+                "User Defined": [
+                    762,
+                    1270
+                ],
+                "3 x 5": [
+                    762,
+                    1270
+                ],
+                "B6": [
+                    1250,
+                    1760
+                ]
+            },
+            "printrate": {
+                "unit": "ppm",
+                "rate": 38
+            },
+            "supports_custom_paper_size": false
+        },
+        "default": false,
+        "createTimestamp": "2015-11-17T13:02:37.224Z",
+        "state": "online"
+    },
+    {
+        "id": 43,
+        "computer": {
+            "id": 13,
+            "name": "TUNSTEN",
+            "inet": "192.168.56.1",
+            "inet6": null,
+            "hostname": "Pete@TUNGSTEN",
+            "version": "4.8.1",
+            "jre": null,
+            "createTimestamp": "2015-11-17T13:02:36.589Z",
+            "state": "disconnected"
+        },
+        "name": "PDF24",
+        "description": "PDF24",
+        "capabilities": {
+            "bins": [],
+            "collate": true,
+            "color": true,
+            "copies": 9999,
+            "dpis": [
+                "72x72",
+                "96x96",
+                "144x144",
+                "150x150",
+                "300x300",
+                "600x600",
+                "720x720",
+                "1200x1200",
+                "2400x2400",
+                "3600x3600",
+                "4000x4000"
+            ],
+            "duplex": false,
+            "extent": [
+                [
+                    254,
+                    254
+                ],
+                [
+                    32767,
+                    32767
+                ]
+            ],
+            "medias": [],
+            "nup": [
+                1,
+                2,
+                4,
+                6,
+                9,
+                16
+            ],
+            "papers": {
+                "A4": [
+                    2100,
+                    2970
+                ],
+                "Letter": [
+                    2159,
+                    2794
+                ],
+                "Tabloid": [
+                    2794,
+                    4318
+                ],
+                "Ledger": [
+                    4318,
+                    2794
+                ],
+                "Legal": [
+                    2159,
+                    3556
+                ],
+                "Executive": [
+                    1841,
+                    2667
+                ],
+                "A3": [
+                    2970,
+                    4200
+                ],
+                "A5": [
+                    1480,
+                    2100
+                ],
+                "B4 (JIS)": [
+                    2570,
+                    3640
+                ],
+                "B5 (JIS)": [
+                    1820,
+                    2570
+                ],
+                "11x17": [
+                    2794,
+                    4318
+                ],
+                "Envelope #10": [
+                    1047,
+                    2413
+                ],
+                "Envelope DL": [
+                    1100,
+                    2200
+                ],
+                "Envelope C5": [
+                    1620,
+                    2290
+                ],
+                "Envelope Monarch": [
+                    984,
+                    1905
+                ],
+                "B4 (ISO)": [
+                    2500,
+                    3530
+                ],
+                "Tabloid Extra": [
+                    3048,
+                    4572
+                ],
+                "Super A": [
+                    2270,
+                    3560
+                ],
+                "A2": [
+                    4200,
+                    5940
+                ],
+                "B1 (JIS)": [
+                    7281,
+                    10301
+                ],
+                "B2 (JIS)": [
+                    5150,
+                    7281
+                ],
+                "A0": [
+                    8410,
+                    11888
+                ],
+                "A1": [
+                    5940,
+                    8410
+                ],
+                "ARCH A": [
+                    2286,
+                    3048
+                ],
+                "ARCH B": [
+                    3048,
+                    4572
+                ],
+                "ARCH C": [
+                    4572,
+                    6096
+                ],
+                "ARCH D": [
+                    6096,
+                    9144
+                ],
+                "ARCH E": [
+                    9144,
+                    12192
+                ],
+                "C0": [
+                    9168,
+                    12971
+                ],
+                "C1": [
+                    6480,
+                    9168
+                ],
+                "C2": [
+                    4579,
+                    6480
+                ],
+                "C3": [
+                    3238,
+                    4579
+                ],
+                "C4": [
+                    2289,
+                    3238
+                ],
+                "C5": [
+                    1619,
+                    2289
+                ],
+                "RA3": [
+                    3051,
+                    4300
+                ],
+                "ANSI F": [
+                    7112,
+                    10160
+                ],
+                "11x14": [
+                    2794,
+                    3556
+                ],
+                "13x19": [
+                    3302,
+                    4826
+                ],
+                "16x20": [
+                    4064,
+                    5080
+                ],
+                "16x24": [
+                    4064,
+                    6096
+                ],
+                "2A": [
+                    11888,
+                    16820
+                ],
+                "4A": [
+                    16820,
+                    23808
+                ],
+                "8x10": [
+                    2032,
+                    2540
+                ],
+                "8x12": [
+                    2032,
+                    3048
+                ],
+                "ANSI A": [
+                    2159,
+                    2794
+                ],
+                "ANSI B": [
+                    2794,
+                    4318
+                ],
+                "ANSI C": [
+                    4318,
+                    5588
+                ],
+                "ANSI D": [
+                    5588,
+                    8636
+                ],
+                "ANSI E": [
+                    8636,
+                    11176
+                ],
+                "B0 (ISO)": [
+                    9997,
+                    14139
+                ],
+                "B1 (ISO)": [
+                    7069,
+                    9997
+                ],
+                "B2 (ISO)": [
+                    4998,
+                    7069
+                ],
+                "B3 (ISO)": [
+                    3527,
+                    4998
+                ],
+                "B5 (ISO)": [
+                    1756,
+                    2497
+                ],
+                "B0 (JIS)": [
+                    10297,
+                    14559
+                ],
+                "US Legal": [
+                    2159,
+                    3556
+                ],
+                "US Letter": [
+                    2159,
+                    2794
+                ],
+                "RA0": [
+                    8597,
+                    12199
+                ],
+                "RA1": [
+                    6099,
+                    8597
+                ],
+                "RA2": [
+                    4296,
+                    6099
+                ],
+                "RA4": [
+                    2148,
+                    3048
+                ],
+                "SRA0": [
+                    8999,
+                    12798
+                ],
+                "SRA1": [
+                    6399,
+                    8999
+                ],
+                "SRA2": [
+                    4497,
+                    6399
+                ],
+                "SRA3": [
+                    3199,
+                    4497
+                ],
+                "SRA4": [
+                    2247,
+                    3199
+                ],
+                "PostScript Custom Page Size": [
+                    2100,
+                    2970
+                ]
+            },
+            "printrate": null,
+            "supports_custom_paper_size": false
+        },
+        "default": false,
+        "createTimestamp": "2015-11-17T13:02:37.224Z",
+        "state": "online"
+    },
+    {
+        "id": 44,
+        "computer": {
+            "id": 13,
+            "name": "TUNSTEN",
+            "inet": "192.168.56.1",
+            "inet6": null,
+            "hostname": "Pete@TUNGSTEN",
+            "version": "4.8.1",
+            "jre": null,
+            "createTimestamp": "2015-11-17T13:02:36.589Z",
+            "state": "disconnected"
+        },
+        "name": "HP Officejet J4680 Series",
+        "description": "HP Officejet J4680 Series",
+        "capabilities": {
+            "bins": [
+                " Automatically Select",
+                " Tray 1"
+            ],
+            "collate": false,
+            "color": true,
+            "copies": 1,
+            "dpis": [
+                "300x300",
+                "600x600",
+                "1200x1200"
+            ],
+            "duplex": true,
+            "extent": [
+                [
+                    762,
+                    1016
+                ],
+                [
+                    2159,
+                    7620
+                ]
+            ],
+            "medias": [
+                "Plain paper",
+                "HP Bright White Paper",
+                "HP Premium Presentation Paper, Matte",
+                "Other inkjet papers",
+                "HP Premium Plus Photo Papers",
+                "HP Premium Photo Papers",
+                "HP Advanced Photo Paper",
+                "HP Everyday Photo Paper, Semi-gloss",
+                "HP Everyday Photo Paper, Matte",
+                "Other photo papers",
+                "HP Premium Inkjet Transparency Film",
+                "Other transparency films",
+                "HP Iron-on Transfer",
+                "HP Photo Cards",
+                "Other specialty papers",
+                "Glossy Greeting Card",
+                "Matte Greeting Card",
+                "HP Brochure & Flyer Paper, Glossy",
+                "HP Brochure & Flyer Paper, Matte",
+                "Other Glossy Brochure",
+                "Other Matte Brochure",
+                "Plain hagaki",
+                "Inkjet hagaki",
+                "Photo hagaki"
+            ],
+            "nup": [
+                1,
+                2,
+                4,
+                6,
+                9,
+                16
+            ],
+            "papers": {
+                "A4": [
+                    2100,
+                    2970
+                ],
+                "Letter": [
+                    2159,
+                    2794
+                ],
+                "Legal": [
+                    2159,
+                    3556
+                ],
+                "Executive": [
+                    1841,
+                    2667
+                ],
+                "A5": [
+                    1480,
+                    2100
+                ],
+                "B5 (JIS)": [
+                    1820,
+                    2570
+                ],
+                "Envelope #10": [
+                    1047,
+                    2413
+                ],
+                "Envelope DL": [
+                    1100,
+                    2200
+                ],
+                "Envelope C6": [
+                    1140,
+                    1620
+                ],
+                "Envelope Monarch": [
+                    984,
+                    1905
+                ],
+                "A6": [
+                    1050,
+                    1480
+                ],
+                "B7 (ISO)": [
+                    878,
+                    1249
+                ],
+                "B7 (JIS)": [
+                    909,
+                    1280
+                ],
+                "HV": [
+                    1010,
+                    1800
+                ],
+                "10x15cm": [
+                    1016,
+                    1524
+                ],
+                "10x15cm (tab)": [
+                    1016,
+                    1524
+                ],
+                "4x6in. (tab)": [
+                    1016,
+                    1524
+                ],
+                "4x6in.": [
+                    1016,
+                    1524
+                ],
+                "L": [
+                    889,
+                    1270
+                ],
+                "2L": [
+                    1270,
+                    1780
+                ],
+                "13x18cm": [
+                    1270,
+                    1778
+                ],
+                "5x7in.": [
+                    1270,
+                    1778
+                ],
+                "8x10in.": [
+                    2032,
+                    2540
+                ],
+                "Photo card 10x20cm (tab)": [
+                    1016,
+                    2032
+                ],
+                "Photo card 4x8in. (tab)": [
+                    1016,
+                    2032
+                ],
+                "Borderless 3.5x5in.": [
+                    889,
+                    1270
+                ],
+                "Borderless": [
+                    1270,
+                    1778
+                ],
+                "Borderless card 10x20cm (tab)": [
+                    1016,
+                    2032
+                ],
+                "Borderless HV": [
+                    1010,
+                    1800
+                ],
+                "Borderless 4x6in.": [
+                    1016,
+                    1524
+                ],
+                "Borderless 4x6in. (tab)": [
+                    1016,
+                    1524
+                ],
+                "Borderless 10x15cm (tab)": [
+                    1016,
+                    1524
+                ],
+                "Borderless 10x15cm": [
+                    1016,
+                    1524
+                ],
+                "Borderless 8x10in.": [
+                    2032,
+                    2540
+                ],
+                "Borderless L": [
+                    889,
+                    1270
+                ],
+                "Borderless card 4x8in. (tab)": [
+                    1016,
+                    2032
+                ],
+                "Borderless 5x7in.": [
+                    1270,
+                    1778
+                ],
+                "Borderless 8.5x11in.": [
+                    2159,
+                    2794
+                ],
+                "Borderless A4,": [
+                    2100,
+                    2969
+                ],
+                "Borderless cabinet": [
+                    1198,
+                    1651
+                ],
+                "Borderless hagaki": [
+                    1000,
+                    1480
+                ],
+                "Borderless A5,": [
+                    1480,
+                    2100
+                ],
+                "Borderless A6": [
+                    1049,
+                    1480
+                ],
+                "Borderless B7 (ISO)": [
+                    878,
+                    1249
+                ],
+                "Borderless B7 (JIS)": [
+                    909,
+                    1280
+                ],
+                "Borderless B5,": [
+                    1821,
+                    2570
+                ],
+                "Borderless 10x30cm": [
+                    1016,
+                    3048
+                ],
+                "Borderless 4x12in.": [
+                    1016,
+                    3048
+                ],
+                "Borderless 2L": [
+                    1270,
+                    1780
+                ],
+                "Cabinet size": [
+                    1198,
+                    1651
+                ],
+                "Card envelope 4.4x6in.": [
+                    1112,
+                    1524
+                ],
+                "Envelope A2": [
+                    1109,
+                    1460
+                ],
+                "Hagaki": [
+                    1000,
+                    1480
+                ],
+                "Index card 3x5in.": [
+                    762,
+                    1270
+                ],
+                "Index card 4x6in.": [
+                    1016,
+                    1524
+                ],
+                "Index card 5x8in.": [
+                    1270,
+                    2032
+                ],
+                "JIS Chou #3": [
+                    1199,
+                    2349
+                ],
+                "JIS Chou #4": [
+                    899,
+                    2049
+                ],
+                "Ofuku Hagaki": [
+                    1998,
+                    1480
+                ],
+                "10x30cm": [
+                    1016,
+                    3048
+                ],
+                "4x12in.": [
+                    1016,
+                    3048
+                ],
+                "3.5x5in.": [
+                    889,
+                    1270
+                ]
+            },
+            "printrate": null,
+            "supports_custom_paper_size": false
+        },
+        "default": false,
+        "createTimestamp": "2015-11-17T13:02:37.224Z",
+        "state": "online"
+    },
+    {
+        "id": 45,
+        "computer": {
+            "id": 13,
+            "name": "TUNSTEN",
+            "inet": "192.168.56.1",
+            "inet6": null,
+            "hostname": "Pete@TUNGSTEN",
+            "version": "4.8.1",
+            "jre": null,
+            "createTimestamp": "2015-11-17T13:02:36.589Z",
+            "state": "disconnected"
+        },
+        "name": "Fax",
+        "description": "Microsoft Shared Fax Driver",
+        "capabilities": {
+            "bins": [
+                "Default"
+            ],
+            "collate": false,
+            "color": false,
+            "copies": 1,
+            "dpis": [
+                "200x100",
+                "200x200"
+            ],
+            "duplex": false,
+            "extent": [
+                [
+                    0,
+                    0
+                ],
+                [
+                    2160,
+                    3556
+                ]
+            ],
+            "medias": [],
+            "nup": [],
+            "papers": {
+                "Letter": [
+                    2159,
+                    2794
+                ],
+                "Letter Small": [
+                    2159,
+                    2794
+                ],
+                "Legal": [
+                    2159,
+                    3556
+                ],
+                "Statement": [
+                    1397,
+                    2159
+                ],
+                "Executive": [
+                    1841,
+                    2667
+                ],
+                "A4": [
+                    2100,
+                    2970
+                ],
+                "A4 Small": [
+                    2100,
+                    2970
+                ],
+                "A5": [
+                    1480,
+                    2100
+                ],
+                "B5 (JIS)": [
+                    1820,
+                    2570
+                ],
+                "Folio": [
+                    2159,
+                    3302
+                ],
+                "Quarto": [
+                    2150,
+                    2750
+                ],
+                "Note": [
+                    2159,
+                    2794
+                ],
+                "Envelope #9": [
+                    984,
+                    2254
+                ],
+                "Envelope #10": [
+                    1047,
+                    2413
+                ],
+                "Envelope #11": [
+                    1143,
+                    2635
+                ],
+                "Envelope #12": [
+                    1206,
+                    2794
+                ],
+                "Envelope #14": [
+                    1270,
+                    2921
+                ],
+                "Envelope DL": [
+                    1100,
+                    2200
+                ],
+                "Envelope C5": [
+                    1620,
+                    2290
+                ],
+                "Envelope C6": [
+                    1140,
+                    1620
+                ],
+                "Envelope C65": [
+                    1140,
+                    2290
+                ],
+                "Envelope B5": [
+                    1760,
+                    2500
+                ],
+                "Envelope B6": [
+                    1760,
+                    1250
+                ],
+                "Envelope": [
+                    1100,
+                    2300
+                ],
+                "Envelope Monarch": [
+                    984,
+                    1905
+                ],
+                "6 3/4 Envelope": [
+                    920,
+                    1651
+                ],
+                "German Std Fanfold": [
+                    2159,
+                    3048
+                ],
+                "German Legal Fanfold": [
+                    2159,
+                    3302
+                ],
+                "Japanese Postcard": [
+                    1000,
+                    1480
+                ],
+                "Reserved48": [
+                    0,
+                    0
+                ],
+                "Reserved49": [
+                    0,
+                    0
+                ],
+                "Letter Transverse": [
+                    2159,
+                    2794
+                ],
+                "A4 Transverse": [
+                    2100,
+                    2970
+                ],
+                "Letter Plus": [
+                    2159,
+                    3223
+                ],
+                "A4 Plus": [
+                    2100,
+                    3300
+                ],
+                "A5 Transverse": [
+                    1480,
+                    2100
+                ],
+                "B5 (JIS) Transverse": [
+                    1820,
+                    2570
+                ],
+                "A5 Extra": [
+                    1740,
+                    2350
+                ],
+                "B5 (ISO) Extra": [
+                    2010,
+                    2760
+                ],
+                "Japanese Double Postcard": [
+                    2000,
+                    1480
+                ],
+                "A6": [
+                    1050,
+                    1480
+                ],
+                "Japanese Envelope Kaku #3": [
+                    2160,
+                    2770
+                ],
+                "Japanese Envelope Chou #3": [
+                    1200,
+                    2350
+                ],
+                "Japanese Envelope Chou #4": [
+                    900,
+                    2050
+                ],
+                "A5 Rotated": [
+                    2100,
+                    1480
+                ],
+                "Japanese Postcard Rotated": [
+                    1480,
+                    1000
+                ],
+                "Double Japan Postcard Rotated": [
+                    1480,
+                    2000
+                ],
+                "A6 Rotated": [
+                    1480,
+                    1050
+                ],
+                "Japan Envelope Chou #4 Rotated": [
+                    2050,
+                    900
+                ],
+                "B6 (JIS)": [
+                    1280,
+                    1820
+                ],
+                "B6 (JIS) Rotated": [
+                    1820,
+                    1280
+                ],
+                "Japan Envelope You #4": [
+                    1050,
+                    2350
+                ],
+                "PRC 16K": [
+                    1880,
+                    2600
+                ],
+                "PRC 32K": [
+                    1300,
+                    1840
+                ],
+                "PRC 32K(Big)": [
+                    1400,
+                    2030
+                ],
+                "PRC Envelope #1": [
+                    1020,
+                    1650
+                ],
+                "PRC Envelope #2": [
+                    1020,
+                    1760
+                ],
+                "PRC Envelope #3": [
+                    1250,
+                    1760
+                ],
+                "PRC Envelope #4": [
+                    1100,
+                    2080
+                ],
+                "PRC Envelope #5": [
+                    1100,
+                    2200
+                ],
+                "PRC Envelope #6": [
+                    1200,
+                    2300
+                ],
+                "PRC Envelope #7": [
+                    1600,
+                    2300
+                ],
+                "PRC Envelope #8": [
+                    1200,
+                    3090
+                ],
+                "PRC 32K Rotated": [
+                    1840,
+                    1300
+                ],
+                "PRC 32K(Big) Rotated": [
+                    2030,
+                    1400
+                ],
+                "PRC Envelope #1 Rotated": [
+                    1650,
+                    1020
+                ],
+                "PRC Envelope #2 Rotated": [
+                    1760,
+                    1020
+                ],
+                "PRC Envelope #3 Rotated": [
+                    1760,
+                    1250
+                ],
+                "PRC Envelope #4 Rotated": [
+                    2080,
+                    1100
+                ],
+                "Screen": [
+                    1651,
+                    1315
+                ],
+                "LetterSmall": [
+                    2159,
+                    2794
+                ],
+                "A4Small": [
+                    2099,
+                    2970
+                ],
+                "B5 (JIS)[182 x 257 mm]": [
+                    1820,
+                    2571
+                ],
+                "A7": [
+                    740,
+                    1047
+                ],
+                "No. 10 Envelope": [
+                    1047,
+                    2413
+                ],
+                "A8": [
+                    522,
+                    740
+                ],
+                "C5 Envelope": [
+                    1619,
+                    2289
+                ],
+                "A9": [
+                    370,
+                    522
+                ],
+                "DL Envelope": [
+                    1100,
+                    2201
+                ],
+                "A10": [
+                    257,
+                    370
+                ],
+                "Monarch Envelope": [
+                    984,
+                    1905
+                ],
+                "ISO B5": [
+                    1760,
+                    2501
+                ],
+                "ISO B6": [
+                    1248,
+                    1760
+                ],
+                "Folio[8.5 x 13 in]": [
+                    2159,
+                    3302
+                ],
+                "Statement[5.5 x 8.5 in]": [
+                    1397,
+                    2159
+                ],
+                "Note[7.5 x 10 in]": [
+                    1905,
+                    2540
+                ],
+                "8.5 x 10 in": [
+                    2159,
+                    2540
+                ],
+                "JIS B5": [
+                    1820,
+                    2571
+                ],
+                "JIS B6": [
+                    1280,
+                    1820
+                ],
+                "C5": [
+                    1619,
+                    2289
+                ],
+                "C6": [
+                    1139,
+                    1619
+                ],
+                "A5Transverse": [
+                    1480,
+                    2100
+                ],
+                "B5": [
+                    1760,
+                    2500
+                ],
+                "FLSA": [
+                    2159,
+                    3302
+                ],
+                "B6": [
+                    1250,
+                    1760
+                ],
+                "FLSE": [
+                    2159,
+                    3302
+                ],
+                "Com10": [
+                    1047,
+                    2413
+                ],
+                "HalfLetter": [
+                    1397,
+                    2159
+                ],
+                "DL": [
+                    1100,
+                    2200
+                ],
+                "PA4": [
+                    2099,
+                    2794
+                ],
+                "Monarch": [
+                    984,
+                    1905
+                ],
+                "3x5": [
+                    762,
+                    1270
+                ],
+                "Oficio": [
+                    2159,
+                    3302
+                ],
+                "16K": [
+                    1968,
+                    2730
+                ],
+                "Executive (JIS)": [
+                    2159,
+                    3298
+                ],
+                "8.5x13": [
+                    2159,
+                    3302
+                ],
+                "8x10": [
+                    2032,
+                    2540
+                ],
+                "8x12": [
+                    2032,
+                    3048
+                ],
+                "ANSI A": [
+                    2159,
+                    2794
+                ],
+                "B5 (ISO)": [
+                    1756,
+                    2497
+                ],
+                "US Legal": [
+                    2159,
+                    3556
+                ],
+                "US Letter": [
+                    2159,
+                    2794
+                ],
+                "RA4": [
+                    2148,
+                    3048
+                ],
+                "B7 (ISO)": [
+                    878,
+                    1249
+                ],
+                "B7 (JIS)": [
+                    909,
+                    1280
+                ],
+                "HV": [
+                    1010,
+                    1800
+                ],
+                "10x15cm": [
+                    1016,
+                    1524
+                ],
+                "10x15cm (tab)": [
+                    1016,
+                    1524
+                ],
+                "4x6in. (tab)": [
+                    1016,
+                    1524
+                ],
+                "4x6in.": [
+                    1016,
+                    1524
+                ],
+                "L": [
+                    889,
+                    1270
+                ],
+                "2L": [
+                    1270,
+                    1780
+                ],
+                "13x18cm": [
+                    1270,
+                    1778
+                ],
+                "5x7in.": [
+                    1270,
+                    1778
+                ],
+                "8x10in.": [
+                    2032,
+                    2540
+                ],
+                "Photo card 10x20cm (tab)": [
+                    1016,
+                    2032
+                ],
+                "Photo card 4x8in. (tab)": [
+                    1016,
+                    2032
+                ],
+                "Borderless 3.5x5in.": [
+                    889,
+                    1270
+                ],
+                "Borderless": [
+                    1270,
+                    1778
+                ],
+                "Borderless card 10x20cm (tab)": [
+                    1016,
+                    2032
+                ],
+                "Borderless HV": [
+                    1010,
+                    1800
+                ],
+                "Borderless 4x6in.": [
+                    1016,
+                    1524
+                ],
+                "Borderless 4x6in. (tab)": [
+                    1016,
+                    1524
+                ],
+                "Borderless 10x15cm (tab)": [
+                    1016,
+                    1524
+                ],
+                "Borderless 10x15cm": [
+                    1016,
+                    1524
+                ],
+                "Borderless 8x10in.": [
+                    2032,
+                    2540
+                ],
+                "Borderless L": [
+                    889,
+                    1270
+                ],
+                "Borderless card 4x8in. (tab)": [
+                    1016,
+                    2032
+                ],
+                "Borderless 5x7in.": [
+                    1270,
+                    1778
+                ],
+                "Borderless 8.5x11in.": [
+                    2159,
+                    2794
+                ],
+                "Borderless A4,": [
+                    2100,
+                    2969
+                ],
+                "Borderless cabinet": [
+                    1198,
+                    1651
+                ],
+                "Borderless hagaki": [
+                    1000,
+                    1480
+                ],
+                "Borderless A5,": [
+                    1480,
+                    2100
+                ],
+                "Borderless A6": [
+                    1049,
+                    1480
+                ],
+                "Borderless B7 (ISO)": [
+                    878,
+                    1249
+                ],
+                "Borderless B7 (JIS)": [
+                    909,
+                    1280
+                ],
+                "Borderless B5,": [
+                    1821,
+                    2570
+                ],
+                "Borderless 10x30cm": [
+                    1016,
+                    3048
+                ],
+                "Borderless 4x12in.": [
+                    1016,
+                    3048
+                ],
+                "Borderless 2L": [
+                    1270,
+                    1780
+                ],
+                "Cabinet size": [
+                    1198,
+                    1651
+                ],
+                "Card envelope 4.4x6in.": [
+                    1112,
+                    1524
+                ],
+                "Envelope A2": [
+                    1109,
+                    1460
+                ],
+                "Hagaki": [
+                    1000,
+                    1480
+                ],
+                "Index card 3x5in.": [
+                    762,
+                    1270
+                ],
+                "Index card 4x6in.": [
+                    1016,
+                    1524
+                ],
+                "Index card 5x8in.": [
+                    1270,
+                    2032
+                ],
+                "JIS Chou #3": [
+                    1199,
+                    2349
+                ],
+                "JIS Chou #4": [
+                    899,
+                    2049
+                ],
+                "Ofuku Hagaki": [
+                    1998,
+                    1480
+                ],
+                "10x30cm": [
+                    1016,
+                    3048
+                ],
+                "4x12in.": [
+                    1016,
+                    3048
+                ],
+                "3.5x5in.": [
+                    889,
+                    1270
+                ]
+            },
+            "printrate": null,
+            "supports_custom_paper_size": false
+        },
+        "default": false,
+        "createTimestamp": "2015-11-17T13:02:37.224Z",
+        "state": "online"
+    },
+    {
+        "id": 46,
+        "computer": {
+            "id": 13,
+            "name": "TUNSTEN",
+            "inet": "192.168.56.1",
+            "inet6": null,
+            "hostname": "Pete@TUNGSTEN",
+            "version": "4.8.1",
+            "jre": null,
+            "createTimestamp": "2015-11-17T13:02:36.589Z",
+            "state": "disconnected"
+        },
+        "name": "CutePDF WriterIñtërnâtiônàlizætiøn",
+        "description": "CutePDF Writer",
+        "capabilities": {
+            "bins": [
+                "Automatically Select",
+                "OnlyOne"
+            ],
+            "collate": true,
+            "color": true,
+            "copies": 9999,
+            "dpis": [
+                "72x72",
+                "144x144",
+                "300x300",
+                "600x600",
+                "1200x1200",
+                "2400x2400",
+                "3600x3600",
+                "4000x4000"
+            ],
+            "duplex": false,
+            "extent": [
+                [
+                    254,
+                    254
+                ],
+                [
+                    32767,
+                    32767
+                ]
+            ],
+            "medias": [],
+            "nup": [
+                1,
+                2,
+                4,
+                6,
+                9,
+                16
+            ],
+            "papers": {
+                "A4": [
+                    2100,
+                    2970
+                ],
+                "Letter": [
+                    2159,
+                    2794
+                ],
+                "Tabloid": [
+                    2794,
+                    4318
+                ],
+                "Ledger": [
+                    4318,
+                    2794
+                ],
+                "Legal": [
+                    2159,
+                    3556
+                ],
+                "Statement": [
+                    1397,
+                    2159
+                ],
+                "Executive": [
+                    1841,
+                    2667
+                ],
+                "A3": [
+                    2970,
+                    4200
+                ],
+                "A5": [
+                    1480,
+                    2100
+                ],
+                "A2": [
+                    4200,
+                    5940
+                ],
+                "A6": [
+                    1050,
+                    1480
+                ],
+                "11 x 17": [
+                    2794,
+                    4318
+                ],
+                "Screen": [
+                    1651,
+                    1315
+                ],
+                "ISO A0": [
+                    8410,
+                    11888
+                ],
+                "ISO A1": [
+                    5940,
+                    8410
+                ],
+                "ISO A2": [
+                    4201,
+                    5940
+                ],
+                "B1 (JIS)": [
+                    7281,
+                    10301
+                ],
+                "B2 (JIS)": [
+                    5150,
+                    7281
+                ],
+                "B3 (JIS)": [
+                    3640,
+                    5150
+                ],
+                "B4 (JIS)": [
+                    2571,
+                    3640
+                ],
+                "B5 (JIS)": [
+                    1820,
+                    2571
+                ],
+                "No. 10 Envelope": [
+                    1047,
+                    2413
+                ],
+                "C5 Envelope": [
+                    1619,
+                    2289
+                ],
+                "DL Envelope": [
+                    1100,
+                    2201
+                ],
+                "Monarch Envelope": [
+                    984,
+                    1905
+                ],
+                "ARCH A": [
+                    2286,
+                    3048
+                ],
+                "ARCH B": [
+                    3048,
+                    4572
+                ],
+                "ARCH C": [
+                    4572,
+                    6096
+                ],
+                "ARCH D": [
+                    6096,
+                    9144
+                ],
+                "ARCH E": [
+                    9144,
+                    12192
+                ],
+                "ARCH E1": [
+                    7620,
+                    10668
+                ],
+                "Folio": [
+                    2159,
+                    3302
+                ],
+                "Statement[5.5 x 8.5 in]": [
+                    1397,
+                    2159
+                ],
+                "Note": [
+                    1905,
+                    2540
+                ],
+                "ISO-B1": [
+                    7069,
+                    10004
+                ],
+                "8.5 x 10 in": [
+                    2159,
+                    2540
+                ],
+                "22 x 36 in": [
+                    5588,
+                    9144
+                ],
+                "24 x 48 in": [
+                    6096,
+                    12192
+                ],
+                "24 x 60 in": [
+                    6096,
+                    15240
+                ],
+                "24 x 72 in": [
+                    6096,
+                    18288
+                ],
+                "24 x 84 in": [
+                    6096,
+                    21336
+                ],
+                "24 x 96 in": [
+                    6096,
+                    24384
+                ],
+                "24 x 108 in": [
+                    6096,
+                    27432
+                ],
+                "36 x 42 in": [
+                    9144,
+                    10668
+                ],
+                "36 x 60 in": [
+                    9144,
+                    15240
+                ],
+                "36 x 72 in": [
+                    9144,
+                    18288
+                ],
+                "36 x 84 in": [
+                    9144,
+                    21336
+                ],
+                "36 x 96 in": [
+                    9144,
+                    24384
+                ],
+                "36 x 108 in": [
+                    9144,
+                    27432
+                ],
+                "ANSI F": [
+                    7112,
+                    10160
+                ],
+                "PostScript Custom Page Size": [
+                    2100,
+                    2970
+                ]
+            },
+            "printrate": {
+                "unit": "ppm",
+                "rate": 400
+            },
+            "supports_custom_paper_size": false
+        },
+        "default": true,
+        "createTimestamp": "2015-11-17T13:02:37.224Z",
+        "state": "online"
+    },
+    {
+        "id": 47,
+        "computer": {
+            "id": 13,
+            "name": "TUNSTEN",
+            "inet": "192.168.56.1",
+            "inet6": null,
+            "hostname": "Pete@TUNGSTEN",
+            "version": "4.8.1",
+            "jre": null,
+            "createTimestamp": "2015-11-17T13:02:36.589Z",
+            "state": "disconnected"
+        },
+        "name": "Der RPC-Server ist nicht verfügbar",
+        "description": "PDF24",
+        "capabilities": {
+            "bins": [],
+            "collate": true,
+            "color": true,
+            "copies": 9999,
+            "dpis": [
+                "72x72",
+                "96x96",
+                "144x144",
+                "150x150",
+                "300x300",
+                "600x600",
+                "720x720",
+                "1200x1200",
+                "2400x2400",
+                "3600x3600",
+                "4000x4000"
+            ],
+            "duplex": false,
+            "extent": [
+                [
+                    254,
+                    254
+                ],
+                [
+                    32767,
+                    32767
+                ]
+            ],
+            "medias": [],
+            "nup": [
+                1,
+                2,
+                4,
+                6,
+                9,
+                16
+            ],
+            "papers": {
+                "A4": [
+                    2100,
+                    2970
+                ],
+                "Letter": [
+                    2159,
+                    2794
+                ],
+                "Tabloid": [
+                    2794,
+                    4318
+                ],
+                "Ledger": [
+                    4318,
+                    2794
+                ],
+                "Legal": [
+                    2159,
+                    3556
+                ],
+                "Executive": [
+                    1841,
+                    2667
+                ],
+                "A3": [
+                    2970,
+                    4200
+                ],
+                "A5": [
+                    1480,
+                    2100
+                ],
+                "B4 (JIS)": [
+                    2570,
+                    3640
+                ],
+                "B5 (JIS)": [
+                    1820,
+                    2570
+                ],
+                "11x17": [
+                    2794,
+                    4318
+                ],
+                "Envelope #10": [
+                    1047,
+                    2413
+                ],
+                "Envelope DL": [
+                    1100,
+                    2200
+                ],
+                "Envelope C5": [
+                    1620,
+                    2290
+                ],
+                "Envelope Monarch": [
+                    984,
+                    1905
+                ],
+                "B4 (ISO)": [
+                    2500,
+                    3530
+                ],
+                "Tabloid Extra": [
+                    3048,
+                    4572
+                ],
+                "Super A": [
+                    2270,
+                    3560
+                ],
+                "A2": [
+                    4200,
+                    5940
+                ],
+                "B1 (JIS)": [
+                    7281,
+                    10301
+                ],
+                "B2 (JIS)": [
+                    5150,
+                    7281
+                ],
+                "A0": [
+                    8410,
+                    11888
+                ],
+                "A1": [
+                    5940,
+                    8410
+                ],
+                "ARCH A": [
+                    2286,
+                    3048
+                ],
+                "ARCH B": [
+                    3048,
+                    4572
+                ],
+                "ARCH C": [
+                    4572,
+                    6096
+                ],
+                "ARCH D": [
+                    6096,
+                    9144
+                ],
+                "ARCH E": [
+                    9144,
+                    12192
+                ],
+                "C0": [
+                    9168,
+                    12971
+                ],
+                "C1": [
+                    6480,
+                    9168
+                ],
+                "C2": [
+                    4579,
+                    6480
+                ],
+                "C3": [
+                    3238,
+                    4579
+                ],
+                "C4": [
+                    2289,
+                    3238
+                ],
+                "C5": [
+                    1619,
+                    2289
+                ],
+                "RA3": [
+                    3051,
+                    4300
+                ],
+                "ANSI F": [
+                    7112,
+                    10160
+                ],
+                "11x14": [
+                    2794,
+                    3556
+                ],
+                "13x19": [
+                    3302,
+                    4826
+                ],
+                "16x20": [
+                    4064,
+                    5080
+                ],
+                "16x24": [
+                    4064,
+                    6096
+                ],
+                "2A": [
+                    11888,
+                    16820
+                ],
+                "4A": [
+                    16820,
+                    23808
+                ],
+                "8x10": [
+                    2032,
+                    2540
+                ],
+                "8x12": [
+                    2032,
+                    3048
+                ],
+                "ANSI A": [
+                    2159,
+                    2794
+                ],
+                "ANSI B": [
+                    2794,
+                    4318
+                ],
+                "ANSI C": [
+                    4318,
+                    5588
+                ],
+                "ANSI D": [
+                    5588,
+                    8636
+                ],
+                "ANSI E": [
+                    8636,
+                    11176
+                ],
+                "B0 (ISO)": [
+                    9997,
+                    14139
+                ],
+                "B1 (ISO)": [
+                    7069,
+                    9997
+                ],
+                "B2 (ISO)": [
+                    4998,
+                    7069
+                ],
+                "B3 (ISO)": [
+                    3527,
+                    4998
+                ],
+                "B5 (ISO)": [
+                    1756,
+                    2497
+                ],
+                "B0 (JIS)": [
+                    10297,
+                    14559
+                ],
+                "US Legal": [
+                    2159,
+                    3556
+                ],
+                "US Letter": [
+                    2159,
+                    2794
+                ],
+                "RA0": [
+                    8597,
+                    12199
+                ],
+                "RA1": [
+                    6099,
+                    8597
+                ],
+                "RA2": [
+                    4296,
+                    6099
+                ],
+                "RA4": [
+                    2148,
+                    3048
+                ],
+                "SRA0": [
+                    8999,
+                    12798
+                ],
+                "SRA1": [
+                    6399,
+                    8999
+                ],
+                "SRA2": [
+                    4497,
+                    6399
+                ],
+                "SRA3": [
+                    3199,
+                    4497
+                ],
+                "SRA4": [
+                    2247,
+                    3199
+                ],
+                "PostScript Custom Page Size": [
+                    2100,
+                    2970
+                ]
+            },
+            "printrate": null,
+            "supports_custom_paper_size": false
+        },
+        "default": false,
+        "createTimestamp": "2015-11-17T13:02:37.224Z",
+        "state": "online"
+    },
+    {
+        "id": 48,
+        "computer": {
+            "id": 14,
+            "name": "TUNGSTEN",
+            "inet": "192.168.56.1",
+            "inet6": null,
+            "hostname": "Pete@TUNGSTEN",
+            "version": "4.8.3",
+            "jre": null,
+            "createTimestamp": "2015-11-17T16:06:24.644Z",
+            "state": "disconnected"
+        },
+        "name": "PDF24",
+        "description": "PDF24",
+        "capabilities": {
+            "bins": [],
+            "collate": true,
+            "color": true,
+            "copies": 9999,
+            "dpis": [
+                "72x72",
+                "96x96",
+                "144x144",
+                "150x150",
+                "300x300",
+                "600x600",
+                "720x720",
+                "1200x1200",
+                "2400x2400",
+                "3600x3600",
+                "4000x4000"
+            ],
+            "duplex": false,
+            "extent": [
+                [
+                    254,
+                    254
+                ],
+                [
+                    32767,
+                    32767
+                ]
+            ],
+            "medias": [],
+            "nup": [
+                1,
+                2,
+                4,
+                6,
+                9,
+                16
+            ],
+            "papers": {
+                "A4": [
+                    2100,
+                    2970
+                ],
+                "Letter": [
+                    2159,
+                    2794
+                ],
+                "Tabloid": [
+                    2794,
+                    4318
+                ],
+                "Ledger": [
+                    4318,
+                    2794
+                ],
+                "Legal": [
+                    2159,
+                    3556
+                ],
+                "Executive": [
+                    1841,
+                    2667
+                ],
+                "A3": [
+                    2970,
+                    4200
+                ],
+                "A5": [
+                    1480,
+                    2100
+                ],
+                "B4 (JIS)": [
+                    2570,
+                    3640
+                ],
+                "B5 (JIS)": [
+                    1820,
+                    2570
+                ],
+                "11x17": [
+                    2794,
+                    4318
+                ],
+                "Envelope #10": [
+                    1047,
+                    2413
+                ],
+                "Envelope DL": [
+                    1100,
+                    2200
+                ],
+                "Envelope C5": [
+                    1620,
+                    2290
+                ],
+                "Envelope Monarch": [
+                    984,
+                    1905
+                ],
+                "B4 (ISO)": [
+                    2500,
+                    3530
+                ],
+                "Tabloid Extra": [
+                    3048,
+                    4572
+                ],
+                "Super A": [
+                    2270,
+                    3560
+                ],
+                "A2": [
+                    4200,
+                    5940
+                ],
+                "B1 (JIS)": [
+                    7281,
+                    10301
+                ],
+                "B2 (JIS)": [
+                    5150,
+                    7281
+                ],
+                "A0": [
+                    8410,
+                    11888
+                ],
+                "A1": [
+                    5940,
+                    8410
+                ],
+                "ARCH A": [
+                    2286,
+                    3048
+                ],
+                "ARCH B": [
+                    3048,
+                    4572
+                ],
+                "ARCH C": [
+                    4572,
+                    6096
+                ],
+                "ARCH D": [
+                    6096,
+                    9144
+                ],
+                "ARCH E": [
+                    9144,
+                    12192
+                ],
+                "C0": [
+                    9168,
+                    12971
+                ],
+                "C1": [
+                    6480,
+                    9168
+                ],
+                "C2": [
+                    4579,
+                    6480
+                ],
+                "C3": [
+                    3238,
+                    4579
+                ],
+                "C4": [
+                    2289,
+                    3238
+                ],
+                "C5": [
+                    1619,
+                    2289
+                ],
+                "RA3": [
+                    3051,
+                    4300
+                ],
+                "ANSI F": [
+                    7112,
+                    10160
+                ],
+                "11x14": [
+                    2794,
+                    3556
+                ],
+                "13x19": [
+                    3302,
+                    4826
+                ],
+                "16x20": [
+                    4064,
+                    5080
+                ],
+                "16x24": [
+                    4064,
+                    6096
+                ],
+                "2A": [
+                    11888,
+                    16820
+                ],
+                "4A": [
+                    16820,
+                    23808
+                ],
+                "8x10": [
+                    2032,
+                    2540
+                ],
+                "8x12": [
+                    2032,
+                    3048
+                ],
+                "ANSI A": [
+                    2159,
+                    2794
+                ],
+                "ANSI B": [
+                    2794,
+                    4318
+                ],
+                "ANSI C": [
+                    4318,
+                    5588
+                ],
+                "ANSI D": [
+                    5588,
+                    8636
+                ],
+                "ANSI E": [
+                    8636,
+                    11176
+                ],
+                "B0 (ISO)": [
+                    9997,
+                    14139
+                ],
+                "B1 (ISO)": [
+                    7069,
+                    9997
+                ],
+                "B2 (ISO)": [
+                    4998,
+                    7069
+                ],
+                "B3 (ISO)": [
+                    3527,
+                    4998
+                ],
+                "B5 (ISO)": [
+                    1756,
+                    2497
+                ],
+                "B0 (JIS)": [
+                    10297,
+                    14559
+                ],
+                "US Legal": [
+                    2159,
+                    3556
+                ],
+                "US Letter": [
+                    2159,
+                    2794
+                ],
+                "RA0": [
+                    8597,
+                    12199
+                ],
+                "RA1": [
+                    6099,
+                    8597
+                ],
+                "RA2": [
+                    4296,
+                    6099
+                ],
+                "RA4": [
+                    2148,
+                    3048
+                ],
+                "SRA0": [
+                    8999,
+                    12798
+                ],
+                "SRA1": [
+                    6399,
+                    8999
+                ],
+                "SRA2": [
+                    4497,
+                    6399
+                ],
+                "SRA3": [
+                    3199,
+                    4497
+                ],
+                "SRA4": [
+                    2247,
+                    3199
+                ],
+                "PostScript Custom Page Size": [
+                    2100,
+                    2970
+                ]
+            },
+            "printrate": null,
+            "supports_custom_paper_size": false
+        },
+        "default": false,
+        "createTimestamp": "2015-11-17T16:06:24.868Z",
+        "state": "online"
+    },
+    {
+        "id": 49,
+        "computer": {
+            "id": 14,
+            "name": "TUNGSTEN",
+            "inet": "192.168.56.1",
+            "inet6": null,
+            "hostname": "Pete@TUNGSTEN",
+            "version": "4.8.3",
+            "jre": null,
+            "createTimestamp": "2015-11-17T16:06:24.644Z",
+            "state": "disconnected"
+        },
+        "name": "Microsoft XPS Document Writer",
+        "description": "Microsoft XPS Document Writer",
+        "capabilities": {
+            "bins": [
+                "Automatically Select"
+            ],
+            "collate": false,
+            "color": true,
+            "copies": 1,
+            "dpis": [
+                "600x600"
+            ],
+            "duplex": false,
+            "extent": [
+                [
+                    900,
+                    900
+                ],
+                [
+                    8636,
+                    11176
+                ]
+            ],
+            "medias": [],
+            "nup": [],
+            "papers": {
+                "A4": [
+                    2100,
+                    2970
+                ],
+                "Letter": [
+                    2159,
+                    2794
+                ],
+                "Letter Small": [
+                    2159,
+                    2794
+                ],
+                "Tabloid": [
+                    2794,
+                    4318
+                ],
+                "Ledger": [
+                    4318,
+                    2794
+                ],
+                "Legal": [
+                    2159,
+                    3556
+                ],
+                "Statement": [
+                    1397,
+                    2159
+                ],
+                "Executive": [
+                    1841,
+                    2667
+                ],
+                "A3": [
+                    2970,
+                    4200
+                ],
+                "A4 Small": [
+                    2100,
+                    2970
+                ],
+                "A5": [
+                    1480,
+                    2100
+                ],
+                "B4 (JIS)": [
+                    2570,
+                    3640
+                ],
+                "B5 (JIS)": [
+                    1820,
+                    2570
+                ],
+                "Folio": [
+                    2159,
+                    3302
+                ],
+                "Quarto": [
+                    2150,
+                    2750
+                ],
+                "10x14": [
+                    2540,
+                    3556
+                ],
+                "11x17": [
+                    2794,
+                    4318
+                ],
+                "Note": [
+                    2159,
+                    2794
+                ],
+                "Envelope #9": [
+                    984,
+                    2254
+                ],
+                "Envelope #10": [
+                    1047,
+                    2413
+                ],
+                "Envelope #11": [
+                    1143,
+                    2635
+                ],
+                "Envelope #12": [
+                    1206,
+                    2794
+                ],
+                "Envelope #14": [
+                    1270,
+                    2921
+                ],
+                "C size sheet": [
+                    4318,
+                    5588
+                ],
+                "D size sheet": [
+                    5588,
+                    8636
+                ],
+                "E size sheet": [
+                    8636,
+                    11176
+                ],
+                "Envelope DL": [
+                    1100,
+                    2200
+                ],
+                "Envelope C5": [
+                    1620,
+                    2290
+                ],
+                "Envelope C3": [
+                    3240,
+                    4580
+                ],
+                "Envelope C4": [
+                    2290,
+                    3240
+                ],
+                "Envelope C6": [
+                    1140,
+                    1620
+                ],
+                "Envelope C65": [
+                    1140,
+                    2290
+                ],
+                "Envelope B4": [
+                    2500,
+                    3530
+                ],
+                "Envelope B5": [
+                    1760,
+                    2500
+                ],
+                "Envelope B6": [
+                    1760,
+                    1250
+                ],
+                "Envelope": [
+                    1100,
+                    2300
+                ],
+                "Envelope Monarch": [
+                    984,
+                    1905
+                ],
+                "6 3/4 Envelope": [
+                    920,
+                    1651
+                ],
+                "US Std Fanfold": [
+                    3778,
+                    2794
+                ],
+                "German Std Fanfold": [
+                    2159,
+                    3048
+                ],
+                "German Legal Fanfold": [
+                    2159,
+                    3302
+                ],
+                "B4 (ISO)": [
+                    2500,
+                    3530
+                ],
+                "Japanese Postcard": [
+                    1000,
+                    1480
+                ],
+                "9x11": [
+                    2286,
+                    2794
+                ],
+                "10x11": [
+                    2540,
+                    2794
+                ],
+                "15x11": [
+                    3810,
+                    2794
+                ],
+                "Envelope Invite": [
+                    2200,
+                    2200
+                ],
+                "Letter Extra": [
+                    2413,
+                    3048
+                ],
+                "Legal Extra": [
+                    2413,
+                    3810
+                ],
+                "A4 Extra": [
+                    2354,
+                    3223
+                ],
+                "Letter Transverse": [
+                    2159,
+                    2794
+                ],
+                "A4 Transverse": [
+                    2100,
+                    2970
+                ],
+                "Letter Extra Transverse": [
+                    2413,
+                    3048
+                ],
+                "Super A": [
+                    2270,
+                    3560
+                ],
+                "Super B": [
+                    3050,
+                    4870
+                ],
+                "Letter Plus": [
+                    2159,
+                    3223
+                ],
+                "A4 Plus": [
+                    2100,
+                    3300
+                ],
+                "A5 Transverse": [
+                    1480,
+                    2100
+                ],
+                "B5 (JIS) Transverse": [
+                    1820,
+                    2570
+                ],
+                "A3 Extra": [
+                    3220,
+                    4450
+                ],
+                "A5 Extra": [
+                    1740,
+                    2350
+                ],
+                "B5 (ISO) Extra": [
+                    2010,
+                    2760
+                ],
+                "A2": [
+                    4200,
+                    5940
+                ],
+                "A3 Transverse": [
+                    2970,
+                    4200
+                ],
+                "A3 Extra Transverse": [
+                    3220,
+                    4450
+                ],
+                "Japanese Double Postcard": [
+                    2000,
+                    1480
+                ],
+                "A6": [
+                    1050,
+                    1480
+                ],
+                "Japanese Envelope Kaku #2": [
+                    2400,
+                    3320
+                ],
+                "Japanese Envelope Kaku #3": [
+                    2160,
+                    2770
+                ],
+                "Japanese Envelope Chou #3": [
+                    1200,
+                    2350
+                ],
+                "Japanese Envelope Chou #4": [
+                    900,
+                    2050
+                ],
+                "Letter Rotated": [
+                    2794,
+                    2159
+                ],
+                "A3 Rotated": [
+                    4200,
+                    2970
+                ],
+                "A4 Rotated": [
+                    2970,
+                    2100
+                ],
+                "A5 Rotated": [
+                    2100,
+                    1480
+                ],
+                "B4 (JIS) Rotated": [
+                    3640,
+                    2570
+                ],
+                "B5 (JIS) Rotated": [
+                    2570,
+                    1820
+                ],
+                "Japanese Postcard Rotated": [
+                    1480,
+                    1000
+                ],
+                "Double Japan Postcard Rotated": [
+                    1480,
+                    2000
+                ],
+                "A6 Rotated": [
+                    1480,
+                    1050
+                ],
+                "Japan Envelope Kaku #2 Rotated": [
+                    3320,
+                    2400
+                ],
+                "Japan Envelope Kaku #3 Rotated": [
+                    2770,
+                    2160
+                ],
+                "Japan Envelope Chou #3 Rotated": [
+                    2350,
+                    1200
+                ],
+                "Japan Envelope Chou #4 Rotated": [
+                    2050,
+                    900
+                ],
+                "B6 (JIS)": [
+                    1280,
+                    1820
+                ],
+                "B6 (JIS) Rotated": [
+                    1820,
+                    1280
+                ],
+                "12x11": [
+                    3049,
+                    2795
+                ],
+                "Japan Envelope You #4": [
+                    1050,
+                    2350
+                ],
+                "Japan Envelope You #4 Rotated": [
+                    2350,
+                    1050
+                ],
+                "PRC Envelope #1": [
+                    1020,
+                    1650
+                ],
+                "PRC Envelope #3": [
+                    1250,
+                    1760
+                ],
+                "PRC Envelope #4": [
+                    1100,
+                    2080
+                ],
+                "PRC Envelope #5": [
+                    1100,
+                    2200
+                ],
+                "PRC Envelope #6": [
+                    1200,
+                    2300
+                ],
+                "PRC Envelope #7": [
+                    1600,
+                    2300
+                ],
+                "PRC Envelope #8": [
+                    1200,
+                    3090
+                ],
+                "PRC Envelope #9": [
+                    2290,
+                    3240
+                ],
+                "PRC Envelope #10": [
+                    3240,
+                    4580
+                ],
+                "PRC Envelope #1 Rotated": [
+                    1650,
+                    1020
+                ],
+                "PRC Envelope #3 Rotated": [
+                    1760,
+                    1250
+                ],
+                "PRC Envelope #4 Rotated": [
+                    2080,
+                    1100
+                ],
+                "PRC Envelope #5 Rotated": [
+                    2200,
+                    1100
+                ],
+                "PRC Envelope #6 Rotated": [
+                    2300,
+                    1200
+                ],
+                "PRC Envelope #7 Rotated": [
+                    2300,
+                    1600
+                ],
+                "PRC Envelope #8 Rotated": [
+                    3090,
+                    1200
+                ],
+                "PRC Envelope #9 Rotated": [
+                    3240,
+                    2290
+                ],
+                "ANSI F": [
+                    7112,
+                    10160
+                ]
+            },
+            "printrate": null,
+            "supports_custom_paper_size": false
+        },
+        "default": false,
+        "createTimestamp": "2015-11-17T16:06:24.868Z",
+        "state": "online"
+    },
+    {
+        "id": 50,
+        "computer": {
+            "id": 14,
+            "name": "TUNGSTEN",
+            "inet": "192.168.56.1",
+            "inet6": null,
+            "hostname": "Pete@TUNGSTEN",
+            "version": "4.8.3",
+            "jre": null,
+            "createTimestamp": "2015-11-17T16:06:24.644Z",
+            "state": "disconnected"
+        },
+        "name": "ZDesigner LP 2844",
+        "description": "ZDesigner LP 2844",
+        "capabilities": {
+            "bins": [
+                "Manual feed"
+            ],
+            "collate": false,
+            "color": false,
+            "copies": 9999,
+            "dpis": [
+                "203x203"
+            ],
+            "duplex": false,
+            "extent": [
+                [
+                    10,
+                    10
+                ],
+                [
+                    1240,
+                    28100
+                ]
+            ],
+            "medias": [],
+            "nup": [],
+            "papers": {
+                "User defined": [
+                    1016,
+                    1524
+                ]
+            },
+            "printrate": null,
+            "supports_custom_paper_size": false
+        },
+        "default": false,
+        "createTimestamp": "2015-11-17T16:06:24.868Z",
+        "state": "offline"
+    },
+    {
+        "id": 51,
+        "computer": {
+            "id": 14,
+            "name": "TUNGSTEN",
+            "inet": "192.168.56.1",
+            "inet6": null,
+            "hostname": "Pete@TUNGSTEN",
+            "version": "4.8.3",
+            "jre": null,
+            "createTimestamp": "2015-11-17T16:06:24.644Z",
+            "state": "disconnected"
+        },
+        "name": "HP Officejet J4680 Series",
+        "description": "HP Officejet J4680 Series",
+        "capabilities": {
+            "bins": [
+                " Automatically Select",
+                " Tray 1"
+            ],
+            "collate": false,
+            "color": true,
+            "copies": 1,
+            "dpis": [
+                "300x300",
+                "600x600",
+                "1200x1200"
+            ],
+            "duplex": true,
+            "extent": [
+                [
+                    762,
+                    1016
+                ],
+                [
+                    2159,
+                    7620
+                ]
+            ],
+            "medias": [
+                "Plain paper",
+                "HP Bright White Paper",
+                "HP Premium Presentation Paper, Matte",
+                "Other inkjet papers",
+                "HP Premium Plus Photo Papers",
+                "HP Premium Photo Papers",
+                "HP Advanced Photo Paper",
+                "HP Everyday Photo Paper, Semi-gloss",
+                "HP Everyday Photo Paper, Matte",
+                "Other photo papers",
+                "HP Premium Inkjet Transparency Film",
+                "Other transparency films",
+                "HP Iron-on Transfer",
+                "HP Photo Cards",
+                "Other specialty papers",
+                "Glossy Greeting Card",
+                "Matte Greeting Card",
+                "HP Brochure & Flyer Paper, Glossy",
+                "HP Brochure & Flyer Paper, Matte",
+                "Other Glossy Brochure",
+                "Other Matte Brochure",
+                "Plain hagaki",
+                "Inkjet hagaki",
+                "Photo hagaki"
+            ],
+            "nup": [
+                1,
+                2,
+                4,
+                6,
+                9,
+                16
+            ],
+            "papers": {
+                "A4": [
+                    2100,
+                    2970
+                ],
+                "Letter": [
+                    2159,
+                    2794
+                ],
+                "Legal": [
+                    2159,
+                    3556
+                ],
+                "Executive": [
+                    1841,
+                    2667
+                ],
+                "A5": [
+                    1480,
+                    2100
+                ],
+                "B5 (JIS)": [
+                    1820,
+                    2570
+                ],
+                "Envelope #10": [
+                    1047,
+                    2413
+                ],
+                "Envelope DL": [
+                    1100,
+                    2200
+                ],
+                "Envelope C6": [
+                    1140,
+                    1620
+                ],
+                "Envelope Monarch": [
+                    984,
+                    1905
+                ],
+                "A6": [
+                    1050,
+                    1480
+                ],
+                "B7 (ISO)": [
+                    878,
+                    1249
+                ],
+                "B7 (JIS)": [
+                    909,
+                    1280
+                ],
+                "HV": [
+                    1010,
+                    1800
+                ],
+                "10x15cm": [
+                    1016,
+                    1524
+                ],
+                "10x15cm (tab)": [
+                    1016,
+                    1524
+                ],
+                "4x6in. (tab)": [
+                    1016,
+                    1524
+                ],
+                "4x6in.": [
+                    1016,
+                    1524
+                ],
+                "L": [
+                    889,
+                    1270
+                ],
+                "2L": [
+                    1270,
+                    1780
+                ],
+                "13x18cm": [
+                    1270,
+                    1778
+                ],
+                "5x7in.": [
+                    1270,
+                    1778
+                ],
+                "8x10in.": [
+                    2032,
+                    2540
+                ],
+                "Photo card 10x20cm (tab)": [
+                    1016,
+                    2032
+                ],
+                "Photo card 4x8in. (tab)": [
+                    1016,
+                    2032
+                ],
+                "Borderless 3.5x5in.": [
+                    889,
+                    1270
+                ],
+                "Borderless": [
+                    1270,
+                    1778
+                ],
+                "Borderless card 10x20cm (tab)": [
+                    1016,
+                    2032
+                ],
+                "Borderless HV": [
+                    1010,
+                    1800
+                ],
+                "Borderless 4x6in.": [
+                    1016,
+                    1524
+                ],
+                "Borderless 4x6in. (tab)": [
+                    1016,
+                    1524
+                ],
+                "Borderless 10x15cm (tab)": [
+                    1016,
+                    1524
+                ],
+                "Borderless 10x15cm": [
+                    1016,
+                    1524
+                ],
+                "Borderless 8x10in.": [
+                    2032,
+                    2540
+                ],
+                "Borderless L": [
+                    889,
+                    1270
+                ],
+                "Borderless card 4x8in. (tab)": [
+                    1016,
+                    2032
+                ],
+                "Borderless 5x7in.": [
+                    1270,
+                    1778
+                ],
+                "Borderless 8.5x11in.": [
+                    2159,
+                    2794
+                ],
+                "Borderless A4,": [
+                    2100,
+                    2969
+                ],
+                "Borderless cabinet": [
+                    1198,
+                    1651
+                ],
+                "Borderless hagaki": [
+                    1000,
+                    1480
+                ],
+                "Borderless A5,": [
+                    1480,
+                    2100
+                ],
+                "Borderless A6": [
+                    1049,
+                    1480
+                ],
+                "Borderless B7 (ISO)": [
+                    878,
+                    1249
+                ],
+                "Borderless B7 (JIS)": [
+                    909,
+                    1280
+                ],
+                "Borderless B5,": [
+                    1821,
+                    2570
+                ],
+                "Borderless 10x30cm": [
+                    1016,
+                    3048
+                ],
+                "Borderless 4x12in.": [
+                    1016,
+                    3048
+                ],
+                "Borderless 2L": [
+                    1270,
+                    1780
+                ],
+                "Cabinet size": [
+                    1198,
+                    1651
+                ],
+                "Card envelope 4.4x6in.": [
+                    1112,
+                    1524
+                ],
+                "Envelope A2": [
+                    1109,
+                    1460
+                ],
+                "Hagaki": [
+                    1000,
+                    1480
+                ],
+                "Index card 3x5in.": [
+                    762,
+                    1270
+                ],
+                "Index card 4x6in.": [
+                    1016,
+                    1524
+                ],
+                "Index card 5x8in.": [
+                    1270,
+                    2032
+                ],
+                "JIS Chou #3": [
+                    1199,
+                    2349
+                ],
+                "JIS Chou #4": [
+                    899,
+                    2049
+                ],
+                "Ofuku Hagaki": [
+                    1998,
+                    1480
+                ],
+                "10x30cm": [
+                    1016,
+                    3048
+                ],
+                "4x12in.": [
+                    1016,
+                    3048
+                ],
+                "3.5x5in.": [
+                    889,
+                    1270
+                ]
+            },
+            "printrate": null,
+            "supports_custom_paper_size": false
+        },
+        "default": false,
+        "createTimestamp": "2015-11-17T16:06:24.868Z",
+        "state": "online"
+    },
+    {
+        "id": 52,
+        "computer": {
+            "id": 14,
+            "name": "TUNGSTEN",
+            "inet": "192.168.56.1",
+            "inet6": null,
+            "hostname": "Pete@TUNGSTEN",
+            "version": "4.8.3",
+            "jre": null,
+            "createTimestamp": "2015-11-17T16:06:24.644Z",
+            "state": "disconnected"
+        },
+        "name": "Fax",
+        "description": "Microsoft Shared Fax Driver",
+        "capabilities": {
+            "bins": [
+                "Default"
+            ],
+            "collate": false,
+            "color": false,
+            "copies": 1,
+            "dpis": [
+                "200x100",
+                "200x200"
+            ],
+            "duplex": false,
+            "extent": [
+                [
+                    0,
+                    0
+                ],
+                [
+                    2160,
+                    3556
+                ]
+            ],
+            "medias": [],
+            "nup": [],
+            "papers": {
+                "Letter": [
+                    2159,
+                    2794
+                ],
+                "Letter Small": [
+                    2159,
+                    2794
+                ],
+                "Legal": [
+                    2159,
+                    3556
+                ],
+                "Statement": [
+                    1397,
+                    2159
+                ],
+                "Executive": [
+                    1841,
+                    2667
+                ],
+                "A4": [
+                    2100,
+                    2970
+                ],
+                "A4 Small": [
+                    2100,
+                    2970
+                ],
+                "A5": [
+                    1480,
+                    2100
+                ],
+                "B5 (JIS)": [
+                    1820,
+                    2570
+                ],
+                "Folio": [
+                    2159,
+                    3302
+                ],
+                "Quarto": [
+                    2150,
+                    2750
+                ],
+                "Note": [
+                    2159,
+                    2794
+                ],
+                "Envelope #9": [
+                    984,
+                    2254
+                ],
+                "Envelope #10": [
+                    1047,
+                    2413
+                ],
+                "Envelope #11": [
+                    1143,
+                    2635
+                ],
+                "Envelope #12": [
+                    1206,
+                    2794
+                ],
+                "Envelope #14": [
+                    1270,
+                    2921
+                ],
+                "Envelope DL": [
+                    1100,
+                    2200
+                ],
+                "Envelope C5": [
+                    1620,
+                    2290
+                ],
+                "Envelope C6": [
+                    1140,
+                    1620
+                ],
+                "Envelope C65": [
+                    1140,
+                    2290
+                ],
+                "Envelope B5": [
+                    1760,
+                    2500
+                ],
+                "Envelope B6": [
+                    1760,
+                    1250
+                ],
+                "Envelope": [
+                    1100,
+                    2300
+                ],
+                "Envelope Monarch": [
+                    984,
+                    1905
+                ],
+                "6 3/4 Envelope": [
+                    920,
+                    1651
+                ],
+                "German Std Fanfold": [
+                    2159,
+                    3048
+                ],
+                "German Legal Fanfold": [
+                    2159,
+                    3302
+                ],
+                "Japanese Postcard": [
+                    1000,
+                    1480
+                ],
+                "Reserved48": [
+                    0,
+                    0
+                ],
+                "Reserved49": [
+                    0,
+                    0
+                ],
+                "Letter Transverse": [
+                    2159,
+                    2794
+                ],
+                "A4 Transverse": [
+                    2100,
+                    2970
+                ],
+                "Letter Plus": [
+                    2159,
+                    3223
+                ],
+                "A4 Plus": [
+                    2100,
+                    3300
+                ],
+                "A5 Transverse": [
+                    1480,
+                    2100
+                ],
+                "B5 (JIS) Transverse": [
+                    1820,
+                    2570
+                ],
+                "A5 Extra": [
+                    1740,
+                    2350
+                ],
+                "B5 (ISO) Extra": [
+                    2010,
+                    2760
+                ],
+                "Japanese Double Postcard": [
+                    2000,
+                    1480
+                ],
+                "A6": [
+                    1050,
+                    1480
+                ],
+                "Japanese Envelope Kaku #3": [
+                    2160,
+                    2770
+                ],
+                "Japanese Envelope Chou #3": [
+                    1200,
+                    2350
+                ],
+                "Japanese Envelope Chou #4": [
+                    900,
+                    2050
+                ],
+                "A5 Rotated": [
+                    2100,
+                    1480
+                ],
+                "Japanese Postcard Rotated": [
+                    1480,
+                    1000
+                ],
+                "Double Japan Postcard Rotated": [
+                    1480,
+                    2000
+                ],
+                "A6 Rotated": [
+                    1480,
+                    1050
+                ],
+                "Japan Envelope Chou #4 Rotated": [
+                    2050,
+                    900
+                ],
+                "B6 (JIS)": [
+                    1280,
+                    1820
+                ],
+                "B6 (JIS) Rotated": [
+                    1820,
+                    1280
+                ],
+                "Japan Envelope You #4": [
+                    1050,
+                    2350
+                ],
+                "PRC 16K": [
+                    1880,
+                    2600
+                ],
+                "PRC 32K": [
+                    1300,
+                    1840
+                ],
+                "PRC 32K(Big)": [
+                    1400,
+                    2030
+                ],
+                "PRC Envelope #1": [
+                    1020,
+                    1650
+                ],
+                "PRC Envelope #2": [
+                    1020,
+                    1760
+                ],
+                "PRC Envelope #3": [
+                    1250,
+                    1760
+                ],
+                "PRC Envelope #4": [
+                    1100,
+                    2080
+                ],
+                "PRC Envelope #5": [
+                    1100,
+                    2200
+                ],
+                "PRC Envelope #6": [
+                    1200,
+                    2300
+                ],
+                "PRC Envelope #7": [
+                    1600,
+                    2300
+                ],
+                "PRC Envelope #8": [
+                    1200,
+                    3090
+                ],
+                "PRC 32K Rotated": [
+                    1840,
+                    1300
+                ],
+                "PRC 32K(Big) Rotated": [
+                    2030,
+                    1400
+                ],
+                "PRC Envelope #1 Rotated": [
+                    1650,
+                    1020
+                ],
+                "PRC Envelope #2 Rotated": [
+                    1760,
+                    1020
+                ],
+                "PRC Envelope #3 Rotated": [
+                    1760,
+                    1250
+                ],
+                "PRC Envelope #4 Rotated": [
+                    2080,
+                    1100
+                ],
+                "Screen": [
+                    1651,
+                    1315
+                ],
+                "LetterSmall": [
+                    2159,
+                    2794
+                ],
+                "A4Small": [
+                    2099,
+                    2970
+                ],
+                "B5 (JIS)[182 x 257 mm]": [
+                    1820,
+                    2571
+                ],
+                "A7": [
+                    740,
+                    1047
+                ],
+                "No. 10 Envelope": [
+                    1047,
+                    2413
+                ],
+                "A8": [
+                    522,
+                    740
+                ],
+                "C5 Envelope": [
+                    1619,
+                    2289
+                ],
+                "A9": [
+                    370,
+                    522
+                ],
+                "DL Envelope": [
+                    1100,
+                    2201
+                ],
+                "A10": [
+                    257,
+                    370
+                ],
+                "Monarch Envelope": [
+                    984,
+                    1905
+                ],
+                "ISO B5": [
+                    1760,
+                    2501
+                ],
+                "ISO B6": [
+                    1248,
+                    1760
+                ],
+                "Folio[8.5 x 13 in]": [
+                    2159,
+                    3302
+                ],
+                "Statement[5.5 x 8.5 in]": [
+                    1397,
+                    2159
+                ],
+                "Note[7.5 x 10 in]": [
+                    1905,
+                    2540
+                ],
+                "8.5 x 10 in": [
+                    2159,
+                    2540
+                ],
+                "JIS B5": [
+                    1820,
+                    2571
+                ],
+                "JIS B6": [
+                    1280,
+                    1820
+                ],
+                "C5": [
+                    1619,
+                    2289
+                ],
+                "C6": [
+                    1139,
+                    1619
+                ],
+                "A5Transverse": [
+                    1480,
+                    2100
+                ],
+                "B5": [
+                    1760,
+                    2500
+                ],
+                "FLSA": [
+                    2159,
+                    3302
+                ],
+                "B6": [
+                    1250,
+                    1760
+                ],
+                "FLSE": [
+                    2159,
+                    3302
+                ],
+                "Com10": [
+                    1047,
+                    2413
+                ],
+                "HalfLetter": [
+                    1397,
+                    2159
+                ],
+                "DL": [
+                    1100,
+                    2200
+                ],
+                "PA4": [
+                    2099,
+                    2794
+                ],
+                "Monarch": [
+                    984,
+                    1905
+                ],
+                "3x5": [
+                    762,
+                    1270
+                ],
+                "Oficio": [
+                    2159,
+                    3302
+                ],
+                "16K": [
+                    1968,
+                    2730
+                ],
+                "Executive (JIS)": [
+                    2159,
+                    3298
+                ],
+                "8.5x13": [
+                    2159,
+                    3302
+                ],
+                "8x10": [
+                    2032,
+                    2540
+                ],
+                "8x12": [
+                    2032,
+                    3048
+                ],
+                "ANSI A": [
+                    2159,
+                    2794
+                ],
+                "B5 (ISO)": [
+                    1756,
+                    2497
+                ],
+                "US Legal": [
+                    2159,
+                    3556
+                ],
+                "US Letter": [
+                    2159,
+                    2794
+                ],
+                "RA4": [
+                    2148,
+                    3048
+                ],
+                "B7 (ISO)": [
+                    878,
+                    1249
+                ],
+                "B7 (JIS)": [
+                    909,
+                    1280
+                ],
+                "HV": [
+                    1010,
+                    1800
+                ],
+                "10x15cm": [
+                    1016,
+                    1524
+                ],
+                "10x15cm (tab)": [
+                    1016,
+                    1524
+                ],
+                "4x6in. (tab)": [
+                    1016,
+                    1524
+                ],
+                "4x6in.": [
+                    1016,
+                    1524
+                ],
+                "L": [
+                    889,
+                    1270
+                ],
+                "2L": [
+                    1270,
+                    1780
+                ],
+                "13x18cm": [
+                    1270,
+                    1778
+                ],
+                "5x7in.": [
+                    1270,
+                    1778
+                ],
+                "8x10in.": [
+                    2032,
+                    2540
+                ],
+                "Photo card 10x20cm (tab)": [
+                    1016,
+                    2032
+                ],
+                "Photo card 4x8in. (tab)": [
+                    1016,
+                    2032
+                ],
+                "Borderless 3.5x5in.": [
+                    889,
+                    1270
+                ],
+                "Borderless": [
+                    1270,
+                    1778
+                ],
+                "Borderless card 10x20cm (tab)": [
+                    1016,
+                    2032
+                ],
+                "Borderless HV": [
+                    1010,
+                    1800
+                ],
+                "Borderless 4x6in.": [
+                    1016,
+                    1524
+                ],
+                "Borderless 4x6in. (tab)": [
+                    1016,
+                    1524
+                ],
+                "Borderless 10x15cm (tab)": [
+                    1016,
+                    1524
+                ],
+                "Borderless 10x15cm": [
+                    1016,
+                    1524
+                ],
+                "Borderless 8x10in.": [
+                    2032,
+                    2540
+                ],
+                "Borderless L": [
+                    889,
+                    1270
+                ],
+                "Borderless card 4x8in. (tab)": [
+                    1016,
+                    2032
+                ],
+                "Borderless 5x7in.": [
+                    1270,
+                    1778
+                ],
+                "Borderless 8.5x11in.": [
+                    2159,
+                    2794
+                ],
+                "Borderless A4,": [
+                    2100,
+                    2969
+                ],
+                "Borderless cabinet": [
+                    1198,
+                    1651
+                ],
+                "Borderless hagaki": [
+                    1000,
+                    1480
+                ],
+                "Borderless A5,": [
+                    1480,
+                    2100
+                ],
+                "Borderless A6": [
+                    1049,
+                    1480
+                ],
+                "Borderless B7 (ISO)": [
+                    878,
+                    1249
+                ],
+                "Borderless B7 (JIS)": [
+                    909,
+                    1280
+                ],
+                "Borderless B5,": [
+                    1821,
+                    2570
+                ],
+                "Borderless 10x30cm": [
+                    1016,
+                    3048
+                ],
+                "Borderless 4x12in.": [
+                    1016,
+                    3048
+                ],
+                "Borderless 2L": [
+                    1270,
+                    1780
+                ],
+                "Cabinet size": [
+                    1198,
+                    1651
+                ],
+                "Card envelope 4.4x6in.": [
+                    1112,
+                    1524
+                ],
+                "Envelope A2": [
+                    1109,
+                    1460
+                ],
+                "Hagaki": [
+                    1000,
+                    1480
+                ],
+                "Index card 3x5in.": [
+                    762,
+                    1270
+                ],
+                "Index card 4x6in.": [
+                    1016,
+                    1524
+                ],
+                "Index card 5x8in.": [
+                    1270,
+                    2032
+                ],
+                "JIS Chou #3": [
+                    1199,
+                    2349
+                ],
+                "JIS Chou #4": [
+                    899,
+                    2049
+                ],
+                "Ofuku Hagaki": [
+                    1998,
+                    1480
+                ],
+                "10x30cm": [
+                    1016,
+                    3048
+                ],
+                "4x12in.": [
+                    1016,
+                    3048
+                ],
+                "3.5x5in.": [
+                    889,
+                    1270
+                ],
+                "16K 7.75x10.75in.": [
+                    1968,
+                    2730
+                ],
+                "16K 195x270mm": [
+                    1950,
+                    2700
+                ],
+                "16K 184x260mm": [
+                    1840,
+                    2599
+                ]
+            },
+            "printrate": null,
+            "supports_custom_paper_size": false
+        },
+        "default": false,
+        "createTimestamp": "2015-11-17T16:06:24.868Z",
+        "state": "online"
+    },
+    {
+        "id": 53,
+        "computer": {
+            "id": 14,
+            "name": "TUNGSTEN",
+            "inet": "192.168.56.1",
+            "inet6": null,
+            "hostname": "Pete@TUNGSTEN",
+            "version": "4.8.3",
+            "jre": null,
+            "createTimestamp": "2015-11-17T16:06:24.644Z",
+            "state": "disconnected"
+        },
+        "name": "OKI-C822-16DB6E",
+        "description": "OKI C822(PCL)",
+        "capabilities": {
+            "bins": [
+                "Auto",
+                "Multipurpose Tray",
+                "Tray 1"
+            ],
+            "collate": true,
+            "color": true,
+            "copies": 999,
+            "dpis": [
+                "300x300",
+                "600x600"
+            ],
+            "duplex": true,
+            "extent": [
+                [
+                    640,
+                    900
+                ],
+                [
+                    2970,
+                    13208
+                ]
+            ],
+            "medias": [],
+            "nup": [],
+            "papers": {
+                "Letter": [
+                    2159,
+                    2794
+                ],
+                "Tabloid": [
+                    2794,
+                    4318
+                ],
+                "Legal": [
+                    2159,
+                    3556
+                ],
+                "Statement": [
+                    1397,
+                    2159
+                ],
+                "Executive": [
+                    1842,
+                    2667
+                ],
+                "A3": [
+                    2970,
+                    4200
+                ],
+                "A4": [
+                    2100,
+                    2970
+                ],
+                "A5": [
+                    1480,
+                    2100
+                ],
+                "B4": [
+                    2570,
+                    3640
+                ],
+                "B5": [
+                    1820,
+                    2570
+                ],
+                "Legal13": [
+                    2159,
+                    3302
+                ],
+                "Com-10": [
+                    1047,
+                    2413
+                ],
+                "DL": [
+                    1100,
+                    2200
+                ],
+                "C5": [
+                    1620,
+                    2290
+                ],
+                "C4": [
+                    2290,
+                    3240
+                ],
+                "Hagaki": [
+                    1000,
+                    1480
+                ],
+                "A6": [
+                    1050,
+                    1480
+                ],
+                "Kakugata #2": [
+                    2400,
+                    3320
+                ],
+                "Kakugata #3": [
+                    2160,
+                    2770
+                ],
+                "Nagagata #3": [
+                    1200,
+                    2350
+                ],
+                "Nagagata #4": [
+                    900,
+                    2050
+                ],
+                "Oufuku Hagaki": [
+                    2000,
+                    1480
+                ],
+                "Yougata #4": [
+                    1050,
+                    2350
+                ],
+                "User Defined Size": [
+                    2100,
+                    2970
+                ],
+                "B6": [
+                    1280,
+                    1820
+                ],
+                "B6 Half": [
+                    640,
+                    1820
+                ],
+                "Yougata #0": [
+                    1200,
+                    2350
+                ],
+                "Legal 13.5": [
+                    2159,
+                    3429
+                ],
+                "Index Card": [
+                    762,
+                    1270
+                ],
+                "16K": [
+                    1840,
+                    2600
+                ],
+                "16K 195 x 270mm": [
+                    1950,
+                    2700
+                ],
+                "16K 197 x 273mm": [
+                    1970,
+                    2730
+                ],
+                "8K": [
+                    2600,
+                    3680
+                ],
+                "8K 270 x 390mm": [
+                    2700,
+                    3900
+                ],
+                "8K 273 x 394mm": [
+                    2730,
+                    3940
+                ],
+                "Nagagata #40": [
+                    900,
+                    2250
+                ],
+                "Banner": [
+                    2100,
+                    9000
+                ],
+                "Banner 215.0 x 900.0mm": [
+                    2150,
+                    9000
+                ],
+                "Banner 215.0 x 1200.0mm": [
+                    2150,
+                    12000
+                ],
+                "Banner 297.0 x 900.0mm": [
+                    2970,
+                    9000
+                ],
+                "Banner 297.0 x 1200.0mm": [
+                    2970,
+                    12000
+                ]
+            },
+            "printrate": {
+                "unit": "ppm",
+                "rate": 23
+            },
+            "supports_custom_paper_size": false
+        },
+        "default": false,
+        "createTimestamp": "2015-11-17T16:06:24.868Z",
+        "state": "online"
+    },
+    {
+        "id": 54,
+        "computer": {
+            "id": 14,
+            "name": "TUNGSTEN",
+            "inet": "192.168.56.1",
+            "inet6": null,
+            "hostname": "Pete@TUNGSTEN",
+            "version": "4.8.3",
+            "jre": null,
+            "createTimestamp": "2015-11-17T16:06:24.644Z",
+            "state": "disconnected"
+        },
+        "name": "CutePDF WriterIñtërnâtiônàlizætiøn",
+        "description": "CutePDF Writer",
+        "capabilities": {
+            "bins": [
+                "Automatically Select",
+                "OnlyOne"
+            ],
+            "collate": true,
+            "color": true,
+            "copies": 9999,
+            "dpis": [
+                "72x72",
+                "144x144",
+                "300x300",
+                "600x600",
+                "1200x1200",
+                "2400x2400",
+                "3600x3600",
+                "4000x4000"
+            ],
+            "duplex": false,
+            "extent": [
+                [
+                    254,
+                    254
+                ],
+                [
+                    32767,
+                    32767
+                ]
+            ],
+            "medias": [],
+            "nup": [
+                1,
+                2,
+                4,
+                6,
+                9,
+                16
+            ],
+            "papers": {
+                "A4": [
+                    2100,
+                    2970
+                ],
+                "Letter": [
+                    2159,
+                    2794
+                ],
+                "Tabloid": [
+                    2794,
+                    4318
+                ],
+                "Ledger": [
+                    4318,
+                    2794
+                ],
+                "Legal": [
+                    2159,
+                    3556
+                ],
+                "Statement": [
+                    1397,
+                    2159
+                ],
+                "Executive": [
+                    1841,
+                    2667
+                ],
+                "A3": [
+                    2970,
+                    4200
+                ],
+                "A5": [
+                    1480,
+                    2100
+                ],
+                "A2": [
+                    4200,
+                    5940
+                ],
+                "A6": [
+                    1050,
+                    1480
+                ],
+                "11 x 17": [
+                    2794,
+                    4318
+                ],
+                "Screen": [
+                    1651,
+                    1315
+                ],
+                "ISO A0": [
+                    8410,
+                    11888
+                ],
+                "ISO A1": [
+                    5940,
+                    8410
+                ],
+                "ISO A2": [
+                    4201,
+                    5940
+                ],
+                "B1 (JIS)": [
+                    7281,
+                    10301
+                ],
+                "B2 (JIS)": [
+                    5150,
+                    7281
+                ],
+                "B3 (JIS)": [
+                    3640,
+                    5150
+                ],
+                "B4 (JIS)": [
+                    2571,
+                    3640
+                ],
+                "B5 (JIS)": [
+                    1820,
+                    2571
+                ],
+                "No. 10 Envelope": [
+                    1047,
+                    2413
+                ],
+                "C5 Envelope": [
+                    1619,
+                    2289
+                ],
+                "DL Envelope": [
+                    1100,
+                    2201
+                ],
+                "Monarch Envelope": [
+                    984,
+                    1905
+                ],
+                "ARCH A": [
+                    2286,
+                    3048
+                ],
+                "ARCH B": [
+                    3048,
+                    4572
+                ],
+                "ARCH C": [
+                    4572,
+                    6096
+                ],
+                "ARCH D": [
+                    6096,
+                    9144
+                ],
+                "ARCH E": [
+                    9144,
+                    12192
+                ],
+                "ARCH E1": [
+                    7620,
+                    10668
+                ],
+                "Folio": [
+                    2159,
+                    3302
+                ],
+                "Statement[5.5 x 8.5 in]": [
+                    1397,
+                    2159
+                ],
+                "Note": [
+                    1905,
+                    2540
+                ],
+                "ISO-B1": [
+                    7069,
+                    10004
+                ],
+                "8.5 x 10 in": [
+                    2159,
+                    2540
+                ],
+                "22 x 36 in": [
+                    5588,
+                    9144
+                ],
+                "24 x 48 in": [
+                    6096,
+                    12192
+                ],
+                "24 x 60 in": [
+                    6096,
+                    15240
+                ],
+                "24 x 72 in": [
+                    6096,
+                    18288
+                ],
+                "24 x 84 in": [
+                    6096,
+                    21336
+                ],
+                "24 x 96 in": [
+                    6096,
+                    24384
+                ],
+                "24 x 108 in": [
+                    6096,
+                    27432
+                ],
+                "36 x 42 in": [
+                    9144,
+                    10668
+                ],
+                "36 x 60 in": [
+                    9144,
+                    15240
+                ],
+                "36 x 72 in": [
+                    9144,
+                    18288
+                ],
+                "36 x 84 in": [
+                    9144,
+                    21336
+                ],
+                "36 x 96 in": [
+                    9144,
+                    24384
+                ],
+                "36 x 108 in": [
+                    9144,
+                    27432
+                ],
+                "ANSI F": [
+                    7112,
+                    10160
+                ],
+                "PostScript Custom Page Size": [
+                    2100,
+                    2970
+                ]
+            },
+            "printrate": {
+                "unit": "ppm",
+                "rate": 400
+            },
+            "supports_custom_paper_size": false
+        },
+        "default": false,
+        "createTimestamp": "2015-11-17T16:06:24.868Z",
+        "state": "online"
+    },
+    {
+        "id": 55,
+        "computer": {
+            "id": 14,
+            "name": "TUNGSTEN",
+            "inet": "192.168.56.1",
+            "inet6": null,
+            "hostname": "Pete@TUNGSTEN",
+            "version": "4.8.3",
+            "jre": null,
+            "createTimestamp": "2015-11-17T16:06:24.644Z",
+            "state": "disconnected"
+        },
+        "name": "Brother HL-5450DN series Printer",
+        "description": "Brother HL-5450DN series",
+        "capabilities": {
+            "bins": [
+                "Auto Select",
+                "Tray1",
+                "MP Tray",
+                "Manual"
+            ],
+            "collate": true,
+            "color": false,
+            "copies": 999,
+            "dpis": [
+                "300x300",
+                "600x600",
+                "1200x1200"
+            ],
+            "duplex": true,
+            "extent": [
+                [
+                    762,
+                    1270
+                ],
+                [
+                    2159,
+                    3556
+                ]
+            ],
+            "medias": [],
+            "nup": [],
+            "papers": {
+                "A4": [
+                    2100,
+                    2970
+                ],
+                "Letter": [
+                    2159,
+                    2794
+                ],
+                "Ledger": [
+                    2794,
+                    4318
+                ],
+                "Legal": [
+                    2159,
+                    3556
+                ],
+                "Executive": [
+                    1841,
+                    2667
+                ],
+                "A3": [
+                    2970,
+                    4200
+                ],
+                "A5": [
+                    1480,
+                    2100
+                ],
+                "JIS B4": [
+                    2570,
+                    3640
+                ],
+                "Folio": [
+                    2159,
+                    3302
+                ],
+                "Com-10": [
+                    1047,
+                    2413
+                ],
+                "DL": [
+                    1100,
+                    2200
+                ],
+                "C5": [
+                    1620,
+                    2290
+                ],
+                "B5": [
+                    1760,
+                    2500
+                ],
+                "Monarch": [
+                    984,
+                    1905
+                ],
+                "A5 Long Edge": [
+                    1480,
+                    2100
+                ],
+                "A6": [
+                    1050,
+                    1480
+                ],
+                "User Defined": [
+                    762,
+                    1270
+                ],
+                "3 x 5": [
+                    762,
+                    1270
+                ],
+                "B6": [
+                    1250,
+                    1760
+                ]
+            },
+            "printrate": {
+                "unit": "ppm",
+                "rate": 38
+            },
+            "supports_custom_paper_size": false
+        },
+        "default": false,
+        "createTimestamp": "2015-11-17T16:06:24.868Z",
+        "state": "online"
+    },
+    {
+        "id": 56,
+        "computer": {
+            "id": 14,
+            "name": "TUNGSTEN",
+            "inet": "192.168.56.1",
+            "inet6": null,
+            "hostname": "Pete@TUNGSTEN",
+            "version": "4.8.3",
+            "jre": null,
+            "createTimestamp": "2015-11-17T16:06:24.644Z",
+            "state": "disconnected"
+        },
+        "name": "Der RPC-Server ist nicht verfügbar",
+        "description": "PDF24",
+        "capabilities": {
+            "bins": [],
+            "collate": true,
+            "color": true,
+            "copies": 9999,
+            "dpis": [
+                "72x72",
+                "96x96",
+                "144x144",
+                "150x150",
+                "300x300",
+                "600x600",
+                "720x720",
+                "1200x1200",
+                "2400x2400",
+                "3600x3600",
+                "4000x4000"
+            ],
+            "duplex": false,
+            "extent": [
+                [
+                    254,
+                    254
+                ],
+                [
+                    32767,
+                    32767
+                ]
+            ],
+            "medias": [],
+            "nup": [
+                1,
+                2,
+                4,
+                6,
+                9,
+                16
+            ],
+            "papers": {
+                "A4": [
+                    2100,
+                    2970
+                ],
+                "Letter": [
+                    2159,
+                    2794
+                ],
+                "Tabloid": [
+                    2794,
+                    4318
+                ],
+                "Ledger": [
+                    4318,
+                    2794
+                ],
+                "Legal": [
+                    2159,
+                    3556
+                ],
+                "Executive": [
+                    1841,
+                    2667
+                ],
+                "A3": [
+                    2970,
+                    4200
+                ],
+                "A5": [
+                    1480,
+                    2100
+                ],
+                "B4 (JIS)": [
+                    2570,
+                    3640
+                ],
+                "B5 (JIS)": [
+                    1820,
+                    2570
+                ],
+                "11x17": [
+                    2794,
+                    4318
+                ],
+                "Envelope #10": [
+                    1047,
+                    2413
+                ],
+                "Envelope DL": [
+                    1100,
+                    2200
+                ],
+                "Envelope C5": [
+                    1620,
+                    2290
+                ],
+                "Envelope Monarch": [
+                    984,
+                    1905
+                ],
+                "B4 (ISO)": [
+                    2500,
+                    3530
+                ],
+                "Tabloid Extra": [
+                    3048,
+                    4572
+                ],
+                "Super A": [
+                    2270,
+                    3560
+                ],
+                "A2": [
+                    4200,
+                    5940
+                ],
+                "B1 (JIS)": [
+                    7281,
+                    10301
+                ],
+                "B2 (JIS)": [
+                    5150,
+                    7281
+                ],
+                "A0": [
+                    8410,
+                    11888
+                ],
+                "A1": [
+                    5940,
+                    8410
+                ],
+                "ARCH A": [
+                    2286,
+                    3048
+                ],
+                "ARCH B": [
+                    3048,
+                    4572
+                ],
+                "ARCH C": [
+                    4572,
+                    6096
+                ],
+                "ARCH D": [
+                    6096,
+                    9144
+                ],
+                "ARCH E": [
+                    9144,
+                    12192
+                ],
+                "C0": [
+                    9168,
+                    12971
+                ],
+                "C1": [
+                    6480,
+                    9168
+                ],
+                "C2": [
+                    4579,
+                    6480
+                ],
+                "C3": [
+                    3238,
+                    4579
+                ],
+                "C4": [
+                    2289,
+                    3238
+                ],
+                "C5": [
+                    1619,
+                    2289
+                ],
+                "RA3": [
+                    3051,
+                    4300
+                ],
+                "ANSI F": [
+                    7112,
+                    10160
+                ],
+                "11x14": [
+                    2794,
+                    3556
+                ],
+                "13x19": [
+                    3302,
+                    4826
+                ],
+                "16x20": [
+                    4064,
+                    5080
+                ],
+                "16x24": [
+                    4064,
+                    6096
+                ],
+                "2A": [
+                    11888,
+                    16820
+                ],
+                "4A": [
+                    16820,
+                    23808
+                ],
+                "8x10": [
+                    2032,
+                    2540
+                ],
+                "8x12": [
+                    2032,
+                    3048
+                ],
+                "ANSI A": [
+                    2159,
+                    2794
+                ],
+                "ANSI B": [
+                    2794,
+                    4318
+                ],
+                "ANSI C": [
+                    4318,
+                    5588
+                ],
+                "ANSI D": [
+                    5588,
+                    8636
+                ],
+                "ANSI E": [
+                    8636,
+                    11176
+                ],
+                "B0 (ISO)": [
+                    9997,
+                    14139
+                ],
+                "B1 (ISO)": [
+                    7069,
+                    9997
+                ],
+                "B2 (ISO)": [
+                    4998,
+                    7069
+                ],
+                "B3 (ISO)": [
+                    3527,
+                    4998
+                ],
+                "B5 (ISO)": [
+                    1756,
+                    2497
+                ],
+                "B0 (JIS)": [
+                    10297,
+                    14559
+                ],
+                "US Legal": [
+                    2159,
+                    3556
+                ],
+                "US Letter": [
+                    2159,
+                    2794
+                ],
+                "RA0": [
+                    8597,
+                    12199
+                ],
+                "RA1": [
+                    6099,
+                    8597
+                ],
+                "RA2": [
+                    4296,
+                    6099
+                ],
+                "RA4": [
+                    2148,
+                    3048
+                ],
+                "SRA0": [
+                    8999,
+                    12798
+                ],
+                "SRA1": [
+                    6399,
+                    8999
+                ],
+                "SRA2": [
+                    4497,
+                    6399
+                ],
+                "SRA3": [
+                    3199,
+                    4497
+                ],
+                "SRA4": [
+                    2247,
+                    3199
+                ],
+                "PostScript Custom Page Size": [
+                    2100,
+                    2970
+                ]
+            },
+            "printrate": null,
+            "supports_custom_paper_size": false
+        },
+        "default": false,
+        "createTimestamp": "2015-11-17T16:06:24.868Z",
+        "state": "online"
+    },
+    {
+        "id": 57,
+        "computer": {
+            "id": 14,
+            "name": "TUNGSTEN",
+            "inet": "192.168.56.1",
+            "inet6": null,
+            "hostname": "Pete@TUNGSTEN",
+            "version": "4.8.3",
+            "jre": null,
+            "createTimestamp": "2015-11-17T16:06:24.644Z",
+            "state": "disconnected"
+        },
+        "name": "HP LaserJet 5200L Series PCL 5-redirected",
+        "description": "HP LaserJet 5200L Series PCL 5",
+        "capabilities": {
+            "bins": [
+                "Automatically Select",
+                "Printer Auto Select",
+                "Manual Feed in Tray 1",
+                "Tray 1",
+                "Tray 2",
+                "Tray 3"
+            ],
+            "collate": true,
+            "color": false,
+            "copies": 9999,
+            "dpis": [
+                "300x300",
+                "600x600"
+            ],
+            "duplex": false,
+            "extent": [
+                [
+                    984,
+                    1480
+                ],
+                [
+                    4318,
+                    5940
+                ]
+            ],
+            "medias": [
+                "Unspecified",
+                "Plain",
+                "Preprinted",
+                "Letterhead",
+                "Transparency",
+                "Prepunched",
+                "Labels",
+                "Bond",
+                "Recycled",
+                "Color",
+                "Light 60-75 g/m2",
+                "Cardstock 164-200 g/m2",
+                "Rough",
+                "Tough",
+                "Vellum",
+                "Envelope",
+                " ",
+                " ",
+                " ",
+                " ",
+                " "
+            ],
+            "nup": [
+                1,
+                2,
+                4,
+                6,
+                9,
+                16
+            ],
+            "papers": {
+                "A4": [
+                    2100,
+                    2970
+                ],
+                "Letter": [
+                    2159,
+                    2794
+                ],
+                "Legal": [
+                    2159,
+                    3556
+                ],
+                "Statement": [
+                    1397,
+                    2159
+                ],
+                "Executive": [
+                    1841,
+                    2667
+                ],
+                "A3": [
+                    2970,
+                    4200
+                ],
+                "A5": [
+                    1480,
+                    2100
+                ],
+                "B4 (JIS)": [
+                    2570,
+                    3640
+                ],
+                "B5 (JIS)": [
+                    1820,
+                    2570
+                ],
+                "11x17": [
+                    2794,
+                    4318
+                ],
+                "Envelope #10": [
+                    1047,
+                    2413
+                ],
+                "C size sheet": [
+                    4318,
+                    5588
+                ],
+                "Envelope DL": [
+                    1100,
+                    2200
+                ],
+                "Envelope C5": [
+                    1620,
+                    2290
+                ],
+                "Envelope B5": [
+                    1760,
+                    2500
+                ],
+                "Envelope Monarch": [
+                    984,
+                    1905
+                ],
+                "Japanese Postcard": [
+                    1000,
+                    1480
+                ],
+                "A2": [
+                    4200,
+                    5940
+                ],
+                "A6": [
+                    1050,
+                    1480
+                ],
+                "Double Japan Postcard Rotated": [
+                    1480,
+                    2000
+                ],
+                "B6 (JIS)": [
+                    1280,
+                    1820
+                ],
+                "Executive (JIS)": [
+                    2159,
+                    3298
+                ],
+                "8.5x13": [
+                    2159,
+                    3302
+                ],
+                "12x18": [
+                    3048,
+                    4572
+                ],
+                "RA3": [
+                    3051,
+                    4300
+                ],
+                "16K 7.75x10.75in.": [
+                    1968,
+                    2730
+                ],
+                "16K": [
+                    1950,
+                    2700
+                ],
+                "16K 184x260mm": [
+                    1840,
+                    2599
+                ],
+                "8K 10.75x15.50in.": [
+                    2730,
+                    3937
+                ],
+                "8K": [
+                    2599,
+                    3680
+                ],
+                "8K 270x390mm": [
+                    2700,
+                    3899
+                ]
+            },
+            "printrate": {
+                "unit": "ppm",
+                "rate": 35
+            },
+            "supports_custom_paper_size": false
+        },
+        "default": false,
+        "createTimestamp": "2015-11-18T15:47:43.260Z",
+        "state": "online"
+    },
+    {
+        "id": 58,
+        "computer": {
+            "id": 14,
+            "name": "TUNGSTEN",
+            "inet": "192.168.56.1",
+            "inet6": null,
+            "hostname": "Pete@TUNGSTEN",
+            "version": "4.8.3",
+            "jre": null,
+            "createTimestamp": "2015-11-17T16:06:24.644Z",
+            "state": "disconnected"
+        },
+        "name": "ZDesigner LP 2844-redirected",
+        "description": "ZDesigner LP 2844",
+        "capabilities": {
+            "bins": [
+                "Manual feed"
+            ],
+            "collate": false,
+            "color": false,
+            "copies": 9999,
+            "dpis": [
+                "203x203"
+            ],
+            "duplex": false,
+            "extent": [
+                [
+                    10,
+                    10
+                ],
+                [
+                    1240,
+                    28100
+                ]
+            ],
+            "medias": [],
+            "nup": [],
+            "papers": {
+                "User defined": [
+                    1016,
+                    1524
+                ]
+            },
+            "printrate": null,
+            "supports_custom_paper_size": false
+        },
+        "default": true,
+        "createTimestamp": "2015-11-18T15:51:27.585Z",
+        "state": "online"
+    }
+]
