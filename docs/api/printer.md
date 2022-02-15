@@ -84,7 +84,6 @@ public function isOnline(): bool;
  */
 public function jobs(): Collection;
 ```
-**Note:** This feature is not yet implemented for the PrintNode driver.
 
 ### toArray
 ```php

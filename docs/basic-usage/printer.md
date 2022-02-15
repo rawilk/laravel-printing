@@ -65,3 +65,4 @@ The printer object can also be cast to array or json, and it will return the fol
 - online
 - status
 - trays
+- capabilities (PrintNode only currently)
