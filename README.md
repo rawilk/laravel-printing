@@ -69,6 +69,10 @@ If you discover any security related issues, please email randall@randallwilk.de
 - [All Contributors](../../contributors)
 - _Mike42_ for the [PHP ESC/POS Print Driver](https://github.com/mike42/escpos-php) library
 
+Inspiration for the PrintNode API wrapper comes from:
+- [PrintNode/PrintNode-PHP](https://github.com/PrintNode/PrintNode-PHP)
+- [phatkoala/printnode](https://github.com/PhatKoala/PrintNode)
+
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
