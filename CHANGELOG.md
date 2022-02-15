@@ -2,9 +2,31 @@
 
 All notable changes to `laravel-printing` will be documented in this file.
 
-## 2.0.1 - 
+## 3.0.0 - 2022-02-15
+### Added
+- Add driver method for retrieving print jobs (**Breaking Change** to driver contract)
+- Add driver method for retrieving a specific print job (**Breaking Change** to driver contract)
+- Add driver method for retrieving a specific printer's print jobs (**Breaking Change** to driver contract)
+- Add driver method for retrieving a specific print job on a specific printer (**Breaking Change** to driver contract)
+- Add `printer()` method on PrintNode driver printer to access underlying PrintNode printer instance
+- Add `job()` method on PrintNode driver print job to access underlying PrintNode print job instance
+- Add a `printer` property on the PrintNode driver PrintJob class to access the printer instance
+
+### Changed
+- **Breaking Change:** Rename driver method `find()` to `printer()` for finding a specific printer
+- **Breaking Change:** Add required `$limit`, `$offset`, and `$dir` pagination params to driver `printers()` method
+- **Breaking Change:** Add `null|Carbon` return type to `PrintJob` contract `date()` method signature
+- Write our own internal api wrapper for PrintNode driver instead of relying on package `printnode/printnode-php` (available via `app(\Rawilk\Printing\Api\PrintNode\PrintNode::class)`)
+- Make `\Rawilk\Printing\Printing` macroable
+- Make `Rawilk\Printing\PrintTask` macroable
+- Make `Rawilk\Printing\Drivers\PrintNode\PrintNode` macroable
+- Make `Rawilk\Printing\Drivers\Cups\Cups` macroable
+- Make each concrete instance of `\Rawilk\Printing\Contracts\Printer` and `\Rawilk\Printing\Contracts\PrintJob` macroable
+- Make `\Rawilk\Printing\Receipts\ReceiptPrinter` macroable
+
 ### Fixed
 - Make `\Rawilk\Printing\Drivers\PrintNode\Entity\Printer` compatible with implemented `JsonSerializable` interface
+- Return a given PrintNode driver printer instance's jobs via the `jobs()` method
 
 ### Updated
 - Add support for Printnode PDF_Base64 ContentType ([#23](https://github.com/rawilk/laravel-printing/pull/23))
