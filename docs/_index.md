@@ -1,6 +1,6 @@
 ---
-title: v2
+title: v3
 slogan: Direct printing for Laravel apps
 githubUrl: https://github.com/rawilk/laravel-printing
-branch: master
+branch: main
 ---
