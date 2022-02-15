@@ -6,6 +6,7 @@
 [![PHP from Packagist](https://img.shields.io/packagist/php-v/rawilk/laravel-printing?style=flat-square)](https://packagist.org/packages/rawilk/laravel-printing)
 [![License](https://img.shields.io/github/license/rawilk/laravel-printing?style=flat-square)](https://github.com/rawilk/laravel-printing/blob/master/LICENSE.md)
 
+![social image](https://banners.beyondco.de/Laravel%20Printing.png?theme=light&packageManager=composer+require&packageName=rawilk%2Flaravel-printing&pattern=parkayFloor&style=style_1&description=Direct+printing+for+Laravel+apps.&md=1&showWatermark=0&fontSize=100px&images=printer)
 
 Laravel Printing allows your application to directly send PDF documents or raw text directly from a remote server
 to a printer on your local network. Receipts can also be printed by first generating the raw text via the `Rawilk\Printing\Receipts\ReceiptPrinter` class, and then sending the text as a raw print job via the `Printing` facade.
