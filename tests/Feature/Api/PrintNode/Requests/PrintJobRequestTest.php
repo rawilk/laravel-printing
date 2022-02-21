@@ -16,12 +16,12 @@ test('can find a print job', function () {
     $printJob = (new PrintJobRequest('1234'))->response(473);
 
     $this->assertNotNull($printJob);
-    $this->assertInstanceOf(PrintJob::class, $printJob);
-    $this->assertEquals(473, $printJob->id);
-    $this->assertEquals('Print Job 1', $printJob->title);
-    $this->assertEquals('pdf_uri', $printJob->contentType);
-    $this->assertEquals('Google', $printJob->source);
-    $this->assertEquals('deleted', $printJob->state);
+    expect($printJob)->toBeInstanceOf(PrintJob::class);
+    expect($printJob->id)->toEqual(473);
+    expect($printJob->title)->toEqual('Print Job 1');
+    expect($printJob->contentType)->toEqual('pdf_uri');
+    expect($printJob->source)->toEqual('Google');
+    expect($printJob->state)->toEqual('deleted');
 });
 
 test('can create a printer instance on the job', function () {
@@ -29,11 +29,11 @@ test('can create a printer instance on the job', function () {
 
     $printJob = (new PrintJobRequest('1234'))->response(473);
 
-    $this->assertInstanceOf(Printer::class, $printJob->printer);
-    $this->assertInstanceOf(Computer::class, $printJob->printer->computer);
-    $this->assertSame(33, $printJob->printer->id);
-    $this->assertSame(33, $printJob->printerId);
-    $this->assertCount(0, $printJob->printer->trays());
+    expect($printJob->printer)->toBeInstanceOf(Printer::class);
+    expect($printJob->printer->computer)->toBeInstanceOf(Computer::class);
+    expect($printJob->printer->id)->toBe(33);
+    expect($printJob->printerId)->toBe(33);
+    expect($printJob->printer->trays())->toHaveCount(0);
 });
 
 test('returns null for no print job found', function () {
@@ -41,5 +41,5 @@ test('returns null for no print job found', function () {
 
     $printJob = (new PrintJobRequest('1234'))->response(1234);
 
-    $this->assertNull($printJob);
+    expect($printJob)->toBeNull();
 });

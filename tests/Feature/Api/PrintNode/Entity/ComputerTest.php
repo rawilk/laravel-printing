@@ -11,13 +11,13 @@ uses(TestCase::class);
 test('can be created from array', function () {
     $computer = new Computer(sampleData());
 
-    $this->assertSame(14, $computer->id);
-    $this->assertEquals('TUNGSTEN', $computer->name);
-    $this->assertEquals('192.168.56.1', $computer->inet);
-    $this->assertEquals('Pete@TUNGSTEN', $computer->hostName);
-    $this->assertEquals('disconnected', $computer->state);
-    $this->assertInstanceOf(Carbon::class, $computer->created);
-    $this->assertEquals('2015-11-17 16:06:24', $computer->created->format('Y-m-d H:i:s'));
+    expect($computer->id)->toBe(14);
+    expect($computer->name)->toEqual('TUNGSTEN');
+    expect($computer->inet)->toEqual('192.168.56.1');
+    expect($computer->hostName)->toEqual('Pete@TUNGSTEN');
+    expect($computer->state)->toEqual('disconnected');
+    expect($computer->created)->toBeInstanceOf(Carbon::class);
+    expect($computer->created->format('Y-m-d H:i:s'))->toEqual('2015-11-17 16:06:24');
 });
 
 test('can be cast to array', function () {

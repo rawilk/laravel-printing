@@ -15,14 +15,14 @@ test('can find an accounts computer', function () {
     $computer = (new ComputerRequest('1234'))->response(14);
 
     $this->assertNotNull($computer);
-    $this->assertSame(14, $computer->id);
-    $this->assertInstanceOf(Computer::class, $computer);
-    $this->assertSame('TUNGSTEN', $computer->name);
-    $this->assertEquals('192.168.56.1', $computer->inet);
-    $this->assertEquals('Pete@TUNGSTEN', $computer->hostName);
-    $this->assertEquals('disconnected', $computer->state);
-    $this->assertInstanceOf(Carbon::class, $computer->created);
-    $this->assertEquals('2015-11-17 16:06:24', $computer->created->format('Y-m-d H:i:s'));
+    expect($computer->id)->toBe(14);
+    expect($computer)->toBeInstanceOf(Computer::class);
+    expect($computer->name)->toBe('TUNGSTEN');
+    expect($computer->inet)->toEqual('192.168.56.1');
+    expect($computer->hostName)->toEqual('Pete@TUNGSTEN');
+    expect($computer->state)->toEqual('disconnected');
+    expect($computer->created)->toBeInstanceOf(Carbon::class);
+    expect($computer->created->format('Y-m-d H:i:s'))->toEqual('2015-11-17 16:06:24');
 });
 
 test('returns null for no computer found', function () {
@@ -30,5 +30,5 @@ test('returns null for no computer found', function () {
 
     $computer = (new ComputerRequest('1234'))->response(1234);
 
-    $this->assertNull($computer);
+    expect($computer)->toBeNull();
 });

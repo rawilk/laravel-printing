@@ -29,9 +29,9 @@ test('can create a print job', function () {
 
     $printJob = (new CreatePrintJobRequest('1234'))->send($pendingJob);
 
-    $this->assertSame(473, $printJob->id);
-    $this->assertInstanceOf(Printer::class, $printJob->printer);
-    $this->assertSame(33, $printJob->printer->id);
+    expect($printJob->id)->toBe(473);
+    expect($printJob->printer)->toBeInstanceOf(Printer::class);
+    expect($printJob->printer->id)->toBe(33);
 });
 
 test('throws an exception if no job is created', function () {

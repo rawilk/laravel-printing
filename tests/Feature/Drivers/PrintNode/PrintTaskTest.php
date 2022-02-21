@@ -28,7 +28,7 @@ it('returns the print job id on a successful print job', function () {
         ->content('foo')
         ->send();
 
-    $this->assertEquals(473, $job->id());
+    expect($job->id())->toEqual(473);
 });
 
 test('printer id is required', function () {

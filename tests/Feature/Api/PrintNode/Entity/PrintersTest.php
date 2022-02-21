@@ -11,7 +11,7 @@ uses(TestCase::class);
 test('creates from an array of printer arrays', function () {
     $printers = (new Printers)->setPrinters(sampleData());
 
-    $this->assertCount(24, $printers->printers);
+    expect($printers->printers)->toHaveCount(24);
     $this->assertContainsOnlyInstancesOf(Printer::class, $printers->printers);
 });
 

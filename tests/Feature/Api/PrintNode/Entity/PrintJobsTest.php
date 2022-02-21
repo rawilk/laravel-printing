@@ -11,7 +11,7 @@ uses(TestCase::class);
 test('creates from an array of print job arrays', function () {
     $printJobs = (new PrintJobs)->setJobs(sampleData());
 
-    $this->assertCount(100, $printJobs->jobs);
+    expect($printJobs->jobs)->toHaveCount(100);
     $this->assertContainsOnlyInstancesOf(PrintJob::class, $printJobs->jobs);
 });
 

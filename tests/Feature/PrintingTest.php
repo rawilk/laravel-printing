@@ -24,16 +24,16 @@ beforeEach(function () {
 
 test('can choose drivers at runtime', function () {
     // Passing nothing into driver should give us the default driver
-    $this->assertInstanceOf(PrintnodePrintTask::class, Printing::driver()->newPrintTask());
+    expect(Printing::driver()->newPrintTask())->toBeInstanceOf(PrintnodePrintTask::class);
 
-    $this->assertInstanceOf(PrintnodePrintTask::class, Printing::driver('printnode')->newPrintTask());
-    $this->assertInstanceOf(CustomDriverPrintTask::class, Printing::driver('custom')->newPrintTask());
+    expect(Printing::driver('printnode')->newPrintTask())->toBeInstanceOf(PrintnodePrintTask::class);
+    expect(Printing::driver('custom')->newPrintTask())->toBeInstanceOf(CustomDriverPrintTask::class);
 });
 
 test('the driver should use the default driver even after driver method has been called', function () {
-    $this->assertInstanceOf(PrintnodePrintTask::class, Printing::newPrintTask());
-    $this->assertInstanceOf(CustomDriverPrintTask::class, Printing::driver('custom')->newPrintTask());
+    expect(Printing::newPrintTask())->toBeInstanceOf(PrintnodePrintTask::class);
+    expect(Printing::driver('custom')->newPrintTask())->toBeInstanceOf(CustomDriverPrintTask::class);
 
     // should use the default (configured as printnode in our test)
-    $this->assertInstanceOf(PrintnodePrintTask::class, Printing::newPrintTask());
+    expect(Printing::newPrintTask())->toBeInstanceOf(PrintnodePrintTask::class);
 });

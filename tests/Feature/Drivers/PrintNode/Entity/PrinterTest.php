@@ -19,12 +19,12 @@ test('creates from api response', function () {
 
     $printer = $this->printNode->printer(39);
 
-    $this->assertInstanceOf(Printer::class, $printer);
-    $this->assertSame(39, $printer->id());
-    $this->assertEquals(['Automatically Select'], $printer->trays());
-    $this->assertTrue($printer->isOnline());
-    $this->assertEquals('Microsoft XPS Document Writer', $printer->name());
-    $this->assertEquals('Microsoft XPS Document Writer', $printer->description());
+    expect($printer)->toBeInstanceOf(Printer::class);
+    expect($printer->id())->toBe(39);
+    expect($printer->trays())->toEqual(['Automatically Select']);
+    expect($printer->isOnline())->toBeTrue();
+    expect($printer->name())->toEqual('Microsoft XPS Document Writer');
+    expect($printer->description())->toEqual('Microsoft XPS Document Writer');
 });
 
 test('can be cast to array', function () {
@@ -48,5 +48,5 @@ test('can be cast to array', function () {
     ];
 
     $this->assertNotEmpty($toArray);
-    $this->assertEquals($expected, $toArray);
+    expect($toArray)->toEqual($expected);
 });

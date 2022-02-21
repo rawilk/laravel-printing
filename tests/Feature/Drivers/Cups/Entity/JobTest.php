@@ -23,22 +23,22 @@ beforeEach(function () {
 });
 
 test('can get the job id', function () {
-    $this->assertSame(123456, createJob()->id());
+    expect(createJob()->id())->toBe(123456);
 });
 
 test('can get the job name', function () {
-    $this->assertEquals('my print job', createJob()->name());
+    expect(createJob()->name())->toEqual('my print job');
 });
 
 test('can get the job state', function () {
-    $this->assertEquals('success', createJob()->state());
+    expect(createJob()->state())->toEqual('success');
 });
 
 test('can get the printer name and id', function () {
     $job = createJob();
 
-    $this->assertEquals('printer-name', $job->printerName());
-    $this->assertEquals('localhost:631', $job->printerId());
+    expect($job->printerName())->toEqual('printer-name');
+    expect($job->printerId())->toEqual('localhost:631');
 });
 
 // Helpers

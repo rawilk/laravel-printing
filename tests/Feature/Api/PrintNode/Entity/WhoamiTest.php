@@ -10,19 +10,19 @@ uses(TestCase::class);
 test('can be created from array', function () {
     $whoami = new Whoami(sampleData());
 
-    $this->assertSame(433, $whoami->id);
-    $this->assertEquals('Peter', $whoami->firstName);
-    $this->assertEquals('Tuthill', $whoami->lastName);
-    $this->assertEquals('peter@omlet.co.uk', $whoami->email);
-    $this->assertFalse($whoami->canCreateSubAccounts);
-    $this->assertSame(10134, $whoami->credits);
-    $this->assertSame(3, $whoami->numComputers);
-    $this->assertSame(110, $whoami->totalPrints);
-    $this->assertIsArray($whoami->tags);
-    $this->assertEmpty($whoami->tags);
-    $this->assertIsArray($whoami->permissions);
-    $this->assertEquals(['Unrestricted'], $whoami->permissions);
-    $this->assertEquals('active', $whoami->state);
+    expect($whoami->id)->toBe(433);
+    expect($whoami->firstName)->toEqual('Peter');
+    expect($whoami->lastName)->toEqual('Tuthill');
+    expect($whoami->email)->toEqual('peter@omlet.co.uk');
+    expect($whoami->canCreateSubAccounts)->toBeFalse();
+    expect($whoami->credits)->toBe(10134);
+    expect($whoami->numComputers)->toBe(3);
+    expect($whoami->totalPrints)->toBe(110);
+    expect($whoami->tags)->toBeArray();
+    expect($whoami->tags)->toBeEmpty();
+    expect($whoami->permissions)->toBeArray();
+    expect($whoami->permissions)->toEqual(['Unrestricted']);
+    expect($whoami->state)->toEqual('active');
 });
 
 test('casts to array', function () {

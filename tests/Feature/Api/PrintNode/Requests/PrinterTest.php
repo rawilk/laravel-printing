@@ -16,19 +16,19 @@ test('can find an accounts printer', function () {
     $printer = (new PrinterRequest('1234'))->response(39);
 
     $this->assertNotNull($printer);
-    $this->assertSame(39, $printer->id);
-    $this->assertInstanceOf(Computer::class, $printer->computer);
-    $this->assertEquals('Microsoft XPS Document Writer', $printer->name);
-    $this->assertEquals('Microsoft XPS Document Writer', $printer->description);
-    $this->assertInstanceOf(PrinterCapabilities::class, $printer->capabilities);
-    $this->assertEquals(['Automatically Select'], $printer->trays());
-    $this->assertInstanceOf(Carbon::class, $printer->created);
-    $this->assertEquals('2015-11-17 13:02:37', $printer->created->format('Y-m-d H:i:s'));
-    $this->assertEquals('online', $printer->state);
-    $this->assertTrue($printer->isOnline());
-    $this->assertFalse($printer->isCollate());
-    $this->assertTrue($printer->isColor());
-    $this->assertSame(1, $printer->copies());
+    expect($printer->id)->toBe(39);
+    expect($printer->computer)->toBeInstanceOf(Computer::class);
+    expect($printer->name)->toEqual('Microsoft XPS Document Writer');
+    expect($printer->description)->toEqual('Microsoft XPS Document Writer');
+    expect($printer->capabilities)->toBeInstanceOf(PrinterCapabilities::class);
+    expect($printer->trays())->toEqual(['Automatically Select']);
+    expect($printer->created)->toBeInstanceOf(Carbon::class);
+    expect($printer->created->format('Y-m-d H:i:s'))->toEqual('2015-11-17 13:02:37');
+    expect($printer->state)->toEqual('online');
+    expect($printer->isOnline())->toBeTrue();
+    expect($printer->isCollate())->toBeFalse();
+    expect($printer->isColor())->toBeTrue();
+    expect($printer->copies())->toBe(1);
 });
 
 test('printer knows if printnode says it is offline', function () {
@@ -36,7 +36,7 @@ test('printer knows if printnode says it is offline', function () {
 
     $printer = (new PrinterRequest('1234'))->response(40);
 
-    $this->assertFalse($printer->isOnline());
+    expect($printer->isOnline())->toBeFalse();
 });
 
 test('printer capabilities will always be available', function () {
@@ -44,9 +44,9 @@ test('printer capabilities will always be available', function () {
 
     $printer = (new PrinterRequest('1234'))->response(34);
 
-    $this->assertInstanceOf(PrinterCapabilities::class, $printer->capabilities);
-    $this->assertIsArray($printer->trays());
-    $this->assertEmpty($printer->trays());
+    expect($printer->capabilities)->toBeInstanceOf(PrinterCapabilities::class);
+    expect($printer->trays())->toBeArray();
+    expect($printer->trays())->toBeEmpty();
 });
 
 test('returns null for no printer found', function () {
@@ -54,5 +54,5 @@ test('returns null for no printer found', function () {
 
     $printer = (new PrinterRequest('1234'))->response(1234);
 
-    $this->assertNull($printer);
+    expect($printer)->toBeNull();
 });

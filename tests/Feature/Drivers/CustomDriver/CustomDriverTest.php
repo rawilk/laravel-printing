@@ -21,27 +21,27 @@ beforeEach(function () {
 });
 
 test('can list a custom drivers printers', function () {
-    $this->assertCount(2, Printing::printers());
-    $this->assertEquals('printer_one', Printing::printers()[0]->id());
-    $this->assertEquals('printer_two', Printing::printers()[1]->id());
+    expect(Printing::printers())->toHaveCount(2);
+    expect(Printing::printers()[0]->id())->toEqual('printer_one');
+    expect(Printing::printers()[1]->id())->toEqual('printer_two');
 });
 
 test('can find a custom drivers printer', function () {
     $printer = Printing::printer('printer_one');
 
-    $this->assertEquals('printer_one', $printer->id());
-    $this->assertTrue($printer->isOnline());
+    expect($printer->id())->toEqual('printer_one');
+    expect($printer->isOnline())->toBeTrue();
 });
 
 test('can get a custom drivers default printer', function () {
     config(['printing.default_printer_id' => 'printer_two']);
 
-    $this->assertEquals('printer_two', Printing::defaultPrinterId());
+    expect(Printing::defaultPrinterId())->toEqual('printer_two');
 
     $defaultPrinter = Printing::defaultPrinter();
 
-    $this->assertEquals('printer_two', $defaultPrinter->id());
-    $this->assertFalse($defaultPrinter->isOnline());
+    expect($defaultPrinter->id())->toEqual('printer_two');
+    expect($defaultPrinter->isOnline())->toBeFalse();
 });
 
 test('can create new print tasks for a custom driver', function () {
@@ -50,6 +50,6 @@ test('can create new print tasks for a custom driver', function () {
         ->content('hello world')
         ->send();
 
-    $this->assertEquals('success', $job->state());
-    $this->assertEquals('printer_one', $job->printerId());
+    expect($job->state())->toEqual('success');
+    expect($job->printerId())->toEqual('printer_one');
 });

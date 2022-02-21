@@ -20,7 +20,7 @@ it('creates the printnode driver', function () {
 
     $factory = new Factory(config('printing'));
 
-    $this->assertInstanceOf(PrintNode::class, $factory->driver());
+    expect($factory->driver())->toBeInstanceOf(PrintNode::class);
 });
 
 test('printnode driver throws an exception if missing api key', function () {
@@ -69,7 +69,7 @@ it('creates the cups driver with no remote server config', function () {
 
     $factory = new Factory(config('printing'));
 
-    $this->assertInstanceOf(Cups::class, $factory->driver());
+    expect($factory->driver())->toBeInstanceOf(Cups::class);
 });
 
 it('creates a cups driver with remote server', function () {
@@ -85,7 +85,7 @@ it('creates a cups driver with remote server', function () {
 
     $factory = new Factory(config('printing'));
 
-    $this->assertInstanceOf(Cups::class, $factory->driver());
+    expect($factory->driver())->toBeInstanceOf(Cups::class);
 });
 
 it('throws an exception if missing the username or password for a remote cups server', function () {
@@ -117,8 +117,8 @@ test('can be extended', function () {
 
     app()['printing.factory']->extend('custom_driver', fn (array $config) => new CustomDriver($config['api_key']));
 
-    $this->assertInstanceOf(CustomDriver::class, app()['printing.factory']->driver());
-    $this->assertEquals('123456', app()['printing.factory']->driver()->apiKey);
+    expect(app()['printing.factory']->driver())->toBeInstanceOf(CustomDriver::class);
+    expect(app()['printing.factory']->driver()->apiKey)->toEqual('123456');
 });
 
 it('throws an exception for unsupported drivers', function () {

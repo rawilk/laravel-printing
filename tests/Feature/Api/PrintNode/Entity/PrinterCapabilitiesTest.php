@@ -10,15 +10,15 @@ uses(TestCase::class);
 test('sets properties correctly', function () {
     $capabilities = new PrinterCapabilities(sampleData());
 
-    $this->assertIsArray($capabilities->bins);
-    $this->assertIsArray($capabilities->papers);
-    $this->assertIsArray($capabilities->printRate);
-    $this->assertFalse($capabilities->supportsCustomPaperSize);
-    $this->assertCount(2, $capabilities->bins);
-    $this->assertIsArray($capabilities->extent);
-    $this->assertCount(2, $capabilities->extent);
-    $this->assertEquals('ppm', $capabilities->printRate['unit']);
-    $this->assertSame(23, $capabilities->printRate['rate']);
+    expect($capabilities->bins)->toBeArray();
+    expect($capabilities->papers)->toBeArray();
+    expect($capabilities->printRate)->toBeArray();
+    expect($capabilities->supportsCustomPaperSize)->toBeFalse();
+    expect($capabilities->bins)->toHaveCount(2);
+    expect($capabilities->extent)->toBeArray();
+    expect($capabilities->extent)->toHaveCount(2);
+    expect($capabilities->printRate['unit'])->toEqual('ppm');
+    expect($capabilities->printRate['rate'])->toBe(23);
 });
 
 test('trays can be used as an alias to bins', function () {
@@ -29,9 +29,9 @@ test('trays can be used as an alias to bins', function () {
         'Tray 1',
     ];
 
-    $this->assertCount(2, $capabilities->trays());
-    $this->assertEquals($expected, $capabilities->bins);
-    $this->assertEquals($expected, $capabilities->trays());
+    expect($capabilities->trays())->toHaveCount(2);
+    expect($capabilities->bins)->toEqual($expected);
+    expect($capabilities->trays())->toEqual($expected);
 });
 
 test('casts to array', function () {

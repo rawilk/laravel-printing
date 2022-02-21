@@ -13,7 +13,7 @@ test('lists an accounts printers', function () {
 
     $response = (new PrintersRequest('1234'))->response();
 
-    $this->assertCount(24, $response->printers);
+    expect($response->printers)->toHaveCount(24);
     $this->assertContainsOnlyInstancesOf(Printer::class, $response->printers);
 });
 
@@ -22,5 +22,5 @@ test('can limit results count', function () {
 
     $response = (new PrintersRequest('1234'))->response(3);
 
-    $this->assertCount(3, $response->printers);
+    expect($response->printers)->toHaveCount(3);
 });

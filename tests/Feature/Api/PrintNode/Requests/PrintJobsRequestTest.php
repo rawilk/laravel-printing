@@ -13,7 +13,7 @@ test('lists an accounts print jobs', function () {
 
     $response = (new PrintJobsRequest('1234'))->response();
 
-    $this->assertCount(100, $response->jobs);
+    expect($response->jobs)->toHaveCount(100);
     $this->assertContainsOnlyInstancesOf(PrintJob::class, $response->jobs);
 });
 
@@ -22,5 +22,5 @@ test('can limit results count', function () {
 
     $response = (new PrintJobsRequest('1234'))->response(3);
 
-    $this->assertCount(3, $response->jobs);
+    expect($response->jobs)->toHaveCount(3);
 });

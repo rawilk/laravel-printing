@@ -13,8 +13,8 @@ test('can find a printers print job', function () {
     $printJob = (new PrinterPrintJobRequest('1234'))->response(33, 473);
 
     $this->assertNotNull($printJob);
-    $this->assertSame(473, $printJob->id);
-    $this->assertSame(33, $printJob->printer->id);
+    expect($printJob->id)->toBe(473);
+    expect($printJob->printer->id)->toBe(33);
 });
 
 test('returns null for job not found', function () {
@@ -22,5 +22,5 @@ test('returns null for job not found', function () {
 
     $printJob = (new PrinterPrintJobRequest('1234'))->response(33, 1234);
 
-    $this->assertNull($printJob);
+    expect($printJob)->toBeNull();
 });

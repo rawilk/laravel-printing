@@ -18,25 +18,25 @@ beforeEach(function () {
 it('prints text', function () {
     $text = (string) (new ReceiptPrinter)->text('Hello world');
 
-    $this->assertEquals(expectedText("Hello world\n"), $text);
+    expect($text)->toEqual(expectedText("Hello world\n"));
 
     $text = (string) (new ReceiptPrinter)->text('Hello world', false);
 
-    $this->assertEquals(expectedText('Hello world'), $text);
+    expect($text)->toEqual(expectedText('Hello world'));
 });
 
 it('can print text in two columns justified on each side', function () {
     $text = (string) (new ReceiptPrinter)->twoColumnText('Hello', 'world');
     $expected = expectedText("Hello                                   world\n");
 
-    $this->assertEquals($expected, $text);
+    expect($text)->toEqual($expected);
 });
 
 it('prints a single dashed line', function () {
     $text = (string) (new ReceiptPrinter)->line();
     $expected = expectedText(str_repeat('-', 45) . "\n");
 
-    $this->assertEquals($expected, $text);
+    expect($text)->toEqual($expected);
 
     config([
         'printing.receipts.line_character_length' => 20,
@@ -45,14 +45,14 @@ it('prints a single dashed line', function () {
     $text = (string) (new ReceiptPrinter)->line();
     $expected = expectedText(str_repeat('-', 20) . "\n");
 
-    $this->assertEquals($expected, $text);
+    expect($text)->toEqual($expected);
 });
 
 it('prints a dashed double line', function () {
     $text = (string) (new ReceiptPrinter)->doubleLine();
     $expected = expectedText(str_repeat('=', 45) . "\n");
 
-    $this->assertEquals($expected, $text);
+    expect($text)->toEqual($expected);
 
     config([
         'printing.receipts.line_character_length' => 20,
@@ -61,28 +61,28 @@ it('prints a dashed double line', function () {
     $text = (string) (new ReceiptPrinter)->doubleLine();
     $expected = expectedText(str_repeat('=', 20) . "\n");
 
-    $this->assertEquals($expected, $text);
+    expect($text)->toEqual($expected);
 });
 
 it('prints a barcode', function () {
     $text = (string) (new ReceiptPrinter)->barcode('1234');
     $expected = expectedText("\x1Dw\x02\x1Dh@\x1DkE\x041234");
 
-    $this->assertEquals($expected, $text);
+    expect($text)->toEqual($expected);
 });
 
 it('sets the line height', function () {
     $text = (string) (new ReceiptPrinter)->lineHeight(4);
     $expected = expectedText("\e3\x04");
 
-    $this->assertEquals($expected, $text);
+    expect($text)->toEqual($expected);
 });
 
 it('sets the left margin', function () {
     $text = (string) (new ReceiptPrinter)->leftMargin(40);
     $expected = expectedText("\x1DL(\x00");
 
-    $this->assertEquals($expected, $text);
+    expect($text)->toEqual($expected);
 });
 
 /**
@@ -92,19 +92,19 @@ it('sets the left margin', function () {
 it('aligns text', function (string $alignment, string $expected) {
     $text = (string) (new ReceiptPrinter)->{"{$alignment}Align"}();
 
-    $this->assertEquals(expectedText($expected), $text);
+    expect($text)->toEqual(expectedText($expected));
 })->with('textAlignments');
 
 it('forwards method calls to the printer object', function () {
     $text = (string) (new ReceiptPrinter)->cut();
     $expected = expectedText("\x1DVA\x03");
 
-    $this->assertEquals($expected, $text);
+    expect($text)->toEqual($expected);
 
     $text = (string) (new ReceiptPrinter)->cut(Printer::CUT_FULL, 6);
     $expected = expectedText("\x1DVA\x06");
 
-    $this->assertEquals($expected, $text);
+    expect($text)->toEqual($expected);
 });
 
 // Datasets

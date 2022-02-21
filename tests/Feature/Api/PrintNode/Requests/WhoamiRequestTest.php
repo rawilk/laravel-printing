@@ -13,11 +13,11 @@ test('gets account info', function () {
 
     $whoami = (new WhoamiRequest('1234'))->response();
 
-    $this->assertSame(433, $whoami->id);
-    $this->assertEquals('Peter', $whoami->firstName);
-    $this->assertEquals('Tuthill', $whoami->lastName);
-    $this->assertEquals('active', $whoami->state);
-    $this->assertSame(10134, $whoami->credits);
+    expect($whoami->id)->toBe(433);
+    expect($whoami->firstName)->toEqual('Peter');
+    expect($whoami->lastName)->toEqual('Tuthill');
+    expect($whoami->state)->toEqual('active');
+    expect($whoami->credits)->toBe(10134);
 });
 
 test('invalid api key does not work', function () {
@@ -34,5 +34,5 @@ test('invalid api key does not work', function () {
 test('actual requests can be made', function () {
     $whoami = (new WhoamiRequest($this->apiKey))->response();
 
-    $this->assertEquals(env('PRINT_NODE_ID'), $whoami->id);
+    expect($whoami->id)->toEqual(env('PRINT_NODE_ID'));
 });

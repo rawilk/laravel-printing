@@ -36,7 +36,7 @@ test('can be cast to array', function () {
     ];
 
     $this->assertNotEmpty($toArray);
-    $this->assertEquals($expected, $toArray);
+    expect($toArray)->toEqual($expected);
 });
 
 test('can be cast to json', function () {
@@ -54,22 +54,22 @@ test('can be cast to json', function () {
         'capabilities' => [],
     ]);
 
-    $this->assertEquals($expected, $json);
+    expect($json)->toEqual($expected);
 });
 
 test('can get the id of the printer', function () {
-    $this->assertEquals('localhost:631', createPrinter()->id());
+    expect(createPrinter()->id())->toEqual('localhost:631');
 });
 
 test('can get the status of the printer', function () {
     $printer = createPrinter();
 
-    $this->assertTrue($printer->isOnline());
-    $this->assertEquals('online', $printer->status());
+    expect($printer->isOnline())->toBeTrue();
+    expect($printer->status())->toEqual('online');
 
     $printer->cupsPrinter()->setStatus('offline');
 
-    $this->assertFalse($printer->isOnline());
+    expect($printer->isOnline())->toBeFalse();
 });
 
 test('can get printer description', function () {
@@ -77,21 +77,21 @@ test('can get printer description', function () {
 
     $printer->cupsPrinter()->setAttribute('printer-info', 'Some description');
 
-    $this->assertEquals('Some description', $printer->description());
+    expect($printer->description())->toEqual('Some description');
 });
 
 test('can get the printers trays', function () {
     $printer = createPrinter();
 
-    $this->assertCount(0, $printer->trays());
+    expect($printer->trays())->toHaveCount(0);
 
     // Capabilities is cached after first retrieval, so we'll just use a fresh instance to test this
     $printer = createPrinter();
 
     $printer->cupsPrinter()->setAttribute('media-source-supported', ['Tray 1']);
 
-    $this->assertCount(1, $printer->trays());
-    $this->assertEquals('Tray 1', $printer->trays()[0]);
+    expect($printer->trays())->toHaveCount(1);
+    expect($printer->trays()[0])->toEqual('Tray 1');
 });
 
 // Helpers

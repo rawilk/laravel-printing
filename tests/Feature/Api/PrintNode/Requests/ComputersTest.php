@@ -13,7 +13,7 @@ test('can list an accounts computers', function () {
 
     $response = (new ComputersRequest('1234'))->response();
 
-    $this->assertCount(3, $response->computers);
+    expect($response->computers)->toHaveCount(3);
     $this->assertContainsOnlyInstancesOf(Computer::class, $response->computers);
 });
 
@@ -22,5 +22,5 @@ test('can limit results count', function () {
 
     $response = (new ComputersRequest('1234'))->response(2);
 
-    $this->assertCount(2, $response->computers);
+    expect($response->computers)->toHaveCount(2);
 });

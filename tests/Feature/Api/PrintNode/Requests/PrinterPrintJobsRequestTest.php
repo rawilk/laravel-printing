@@ -13,10 +13,10 @@ test('lists a printers print jobs', function () {
 
     $response = (new PrinterPrintJobsRequest('1234'))->response(33);
 
-    $this->assertCount(7, $response->jobs);
+    expect($response->jobs)->toHaveCount(7);
     $this->assertContainsOnlyInstancesOf(PrintJob::class, $response->jobs);
 
     $response->jobs->each(function (PrintJob $job) {
-        $this->assertEquals(33, $job->printerId);
+        expect($job->printerId)->toEqual(33);
     });
 });

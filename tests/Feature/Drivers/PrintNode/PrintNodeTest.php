@@ -19,7 +19,7 @@ it('lists an accounts printers', function () {
 
     $printers = $this->printNode->printers();
 
-    $this->assertCount(24, $printers);
+    expect($printers)->toHaveCount(24);
     $this->assertContainsOnlyInstancesOf(Printer::class, $printers);
 });
 
@@ -28,10 +28,10 @@ test('finds an accounts printer', function () {
 
     $printer = $this->printNode->printer(39);
 
-    $this->assertSame(39, $printer->id());
-    $this->assertEquals(['Automatically Select'], $printer->trays());
-    $this->assertEquals('Microsoft XPS Document Writer', $printer->name());
-    $this->assertTrue($printer->isOnline());
+    expect($printer->id())->toBe(39);
+    expect($printer->trays())->toEqual(['Automatically Select']);
+    expect($printer->name())->toEqual('Microsoft XPS Document Writer');
+    expect($printer->isOnline())->toBeTrue();
 });
 
 test('returns null for no printer found', function () {
@@ -39,5 +39,5 @@ test('returns null for no printer found', function () {
 
     $printer = $this->printNode->printer(1234);
 
-    $this->assertNull($printer);
+    expect($printer)->toBeNull();
 });

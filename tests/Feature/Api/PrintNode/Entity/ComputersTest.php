@@ -11,7 +11,7 @@ uses(TestCase::class);
 test('creates from an array of computer arrays', function () {
     $computers = (new Computers)->setComputers(sampleData());
 
-    $this->assertCount(3, $computers->computers);
+    expect($computers->computers)->toHaveCount(3);
     $this->assertContainsOnlyInstancesOf(Computer::class, $computers->computers);
 });
 
