@@ -48,7 +48,7 @@ jobs:
                   composer update --${{ matrix.stability }} --prefer-dist --no-interaction
 
             - name: Execute tests
-              run: vendor/bin/phpunit
+              run: vendor/bin/pest
               env:
                   PRINT_NODE_API_KEY: ${{ secrets.PRINT_NODE_API_KEY }}
                   PRINT_NODE_ID: ${{ secrets.PRINT_NODE_ID }}
