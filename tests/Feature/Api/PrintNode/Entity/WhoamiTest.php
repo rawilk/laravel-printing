@@ -2,66 +2,48 @@
 
 declare(strict_types=1);
 
-namespace Rawilk\Printing\Tests\Feature\Api\PrintNode\Entity;
-
 use Rawilk\Printing\Api\PrintNode\Entity\Whoami;
-use Rawilk\Printing\Tests\TestCase;
 
-class WhoamiTest extends TestCase
-{
-    /** @test */
-    public function can_be_created_from_array(): void
-    {
-        $whoami = new Whoami($this->sampleData());
+test('can be created from array', function () {
+    $whoami = new Whoami(samplePrintNodeData('whoami'));
 
-        $this->assertSame(433, $whoami->id);
-        $this->assertEquals('Peter', $whoami->firstName);
-        $this->assertEquals('Tuthill', $whoami->lastName);
-        $this->assertEquals('peter@omlet.co.uk', $whoami->email);
-        $this->assertFalse($whoami->canCreateSubAccounts);
-        $this->assertSame(10134, $whoami->credits);
-        $this->assertSame(3, $whoami->numComputers);
-        $this->assertSame(110, $whoami->totalPrints);
-        $this->assertIsArray($whoami->tags);
-        $this->assertEmpty($whoami->tags);
-        $this->assertIsArray($whoami->permissions);
-        $this->assertEquals(['Unrestricted'], $whoami->permissions);
-        $this->assertEquals('active', $whoami->state);
-    }
+    expect($whoami->id)->toBe(433);
+    expect($whoami->firstName)->toEqual('Peter');
+    expect($whoami->lastName)->toEqual('Tuthill');
+    expect($whoami->email)->toEqual('peter@omlet.co.uk');
+    expect($whoami->canCreateSubAccounts)->toBeFalse();
+    expect($whoami->credits)->toBe(10134);
+    expect($whoami->numComputers)->toBe(3);
+    expect($whoami->totalPrints)->toBe(110);
+    expect($whoami->tags)->toBeArray();
+    expect($whoami->tags)->toBeEmpty();
+    expect($whoami->permissions)->toBeArray();
+    expect($whoami->permissions)->toEqual(['Unrestricted']);
+    expect($whoami->state)->toEqual('active');
+});
 
-    /** @test */
-    public function casts_to_array(): void
-    {
-        $data = $this->sampleData();
-        $whoami = new Whoami($data);
+test('casts to array', function () {
+    $data = samplePrintNodeData('whoami');
+    $whoami = new Whoami($data);
 
-        $asArray = $whoami->toArray();
+    $asArray = $whoami->toArray();
 
-        foreach ($data as $key => $value) {
-            switch ($key) {
-                case 'Tags':
-                    $key = 'tags';
+    foreach ($data as $key => $value) {
+        switch ($key) {
+            case 'Tags':
+                $key = 'tags';
 
-                    break;
-                case 'firstname':
-                    $key = 'firstName';
+                break;
+            case 'firstname':
+                $key = 'firstName';
 
-                    break;
-                case 'lastname':
-                    $key = 'lastName';
+                break;
+            case 'lastname':
+                $key = 'lastName';
 
-                    break;
-            }
-
-            $this->assertArrayHasKey($key, $asArray);
+                break;
         }
-    }
 
-    protected function sampleData(): array
-    {
-        return json_decode(
-            file_get_contents(__DIR__ . '/../../../../stubs/Api/PrintNode/whoami.json'),
-            true
-        );
+        $this->assertArrayHasKey($key, $asArray);
     }
-}
+});

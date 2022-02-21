@@ -2,50 +2,32 @@
 
 declare(strict_types=1);
 
-namespace Rawilk\Printing\Tests\Feature\Api\PrintNode\Entity;
-
 use Carbon\Carbon;
 use Rawilk\Printing\Api\PrintNode\Entity\Computer;
-use Rawilk\Printing\Tests\TestCase;
 
-class ComputerTest extends TestCase
-{
-    /** @test */
-    public function can_be_created_from_array(): void
-    {
-        $computer = new Computer($this->sampleData());
+test('can be created from array', function () {
+    $computer = new Computer(samplePrintNodeData('computer_single')[0]);
 
-        $this->assertSame(14, $computer->id);
-        $this->assertEquals('TUNGSTEN', $computer->name);
-        $this->assertEquals('192.168.56.1', $computer->inet);
-        $this->assertEquals('Pete@TUNGSTEN', $computer->hostName);
-        $this->assertEquals('disconnected', $computer->state);
-        $this->assertInstanceOf(Carbon::class, $computer->created);
-        $this->assertEquals('2015-11-17 16:06:24', $computer->created->format('Y-m-d H:i:s'));
-    }
+    expect($computer->id)->toBe(14);
+    expect($computer->name)->toEqual('TUNGSTEN');
+    expect($computer->inet)->toEqual('192.168.56.1');
+    expect($computer->hostName)->toEqual('Pete@TUNGSTEN');
+    expect($computer->state)->toEqual('disconnected');
+    expect($computer->created)->toBeInstanceOf(Carbon::class);
+    expect($computer->created->format('Y-m-d H:i:s'))->toEqual('2015-11-17 16:06:24');
+});
 
-    /** @test */
-    public function can_be_cast_to_array(): void
-    {
-        $data = $this->sampleData();
-        $computer = new Computer($data);
+test('can be cast to array', function () {
+    $data = samplePrintNodeData('computer_single')[0];
+    $computer = new Computer($data);
 
-        $asArray = $computer->toArray();
+    $asArray = $computer->toArray();
 
-        foreach ($data as $key => $value) {
-            if ($key === 'hostname') {
-                $key = 'hostName';
-            }
-
-            $this->assertArrayHasKey($key, $asArray);
+    foreach ($data as $key => $value) {
+        if ($key === 'hostname') {
+            $key = 'hostName';
         }
-    }
 
-    protected function sampleData(): array
-    {
-        return json_decode(
-            file_get_contents(__DIR__ . '/../../../../stubs/Api/PrintNode/computer_single.json'),
-            true
-        )[0];
+        $this->assertArrayHasKey($key, $asArray);
     }
-}
+});

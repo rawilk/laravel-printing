@@ -2,80 +2,61 @@
 
 declare(strict_types=1);
 
-namespace Rawilk\Printing\Tests\Feature\Drivers\PrintNode;
-
 use Illuminate\Support\Facades\Http;
 use Rawilk\Printing\Drivers\PrintNode\PrintNode;
 use Rawilk\Printing\Exceptions\PrintTaskFailed;
 use Rawilk\Printing\Tests\Concerns\FakesPrintNodeRequests;
-use Rawilk\Printing\Tests\TestCase;
 
-class PrintTaskTest extends TestCase
-{
-    use FakesPrintNodeRequests;
+uses(FakesPrintNodeRequests::class);
 
-    protected PrintNode $printNode;
+beforeEach(function () {
+    $this->printNode = new PrintNode;
+});
 
-    protected function setUp(): void
-    {
-        parent::setUp();
+it('returns the print job id on a successful print job', function () {
+    Http::fake([
+        'https://api.printnode.com/printjobs' => Http::response(473),
+    ]);
 
-        $this->printNode = new PrintNode;
-    }
+    $this->fakeRequest('printjobs/473', 'print_job_single');
 
-    /** @test */
-    public function it_returns_the_print_job_id_on_a_successful_print_job(): void
-    {
-        Http::fake([
-            'https://api.printnode.com/printjobs' => Http::response(473),
-        ]);
+    $job = $this->printNode
+        ->newPrintTask()
+        ->printer(33)
+        ->content('foo')
+        ->send();
 
-        $this->fakeRequest('printjobs/473', 'print_job_single');
+    expect($job->id())->toEqual(473);
+});
 
-        $job = $this->printNode
-            ->newPrintTask()
-            ->printer(33)
-            ->content('foo')
-            ->send();
+test('printer id is required', function () {
+    $this->expectException(PrintTaskFailed::class);
+    $this->expectExceptionMessage('A printer must be specified to print!');
 
-        $this->assertEquals(473, $job->id());
-    }
+    $this->printNode
+        ->newPrintTask()
+        ->content('foo')
+        ->send();
+});
 
-    /** @test */
-    public function printer_id_is_required(): void
-    {
-        $this->expectException(PrintTaskFailed::class);
-        $this->expectExceptionMessage('A printer must be specified to print!');
+test('print source is required', function () {
+    $this->expectException(PrintTaskFailed::class);
+    $this->expectExceptionMessage('A print source must be specified!');
 
-        $this->printNode
-            ->newPrintTask()
-            ->content('foo')
-            ->send();
-    }
+    $this->printNode
+        ->newPrintTask()
+        ->printSource('')
+        ->printer(33)
+        ->content('foo')
+        ->send();
+});
 
-    /** @test */
-    public function print_source_is_required(): void
-    {
-        $this->expectException(PrintTaskFailed::class);
-        $this->expectExceptionMessage('A print source must be specified!');
+test('content type is required', function () {
+    $this->expectException(PrintTaskFailed::class);
+    $this->expectExceptionMessage('Content type must be specified for this driver!');
 
-        $this->printNode
-            ->newPrintTask()
-            ->printSource('')
-            ->printer(33)
-            ->content('foo')
-            ->send();
-    }
-
-    /** @test */
-    public function content_type_is_required(): void
-    {
-        $this->expectException(PrintTaskFailed::class);
-        $this->expectExceptionMessage('Content type must be specified for this driver!');
-
-        $this->printNode
-            ->newPrintTask()
-            ->printer(33)
-            ->send();
-    }
-}
+    $this->printNode
+        ->newPrintTask()
+        ->printer(33)
+        ->send();
+});

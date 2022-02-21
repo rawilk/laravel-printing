@@ -2,124 +2,89 @@
 
 declare(strict_types=1);
 
-namespace Rawilk\Printing\Tests\Feature\Drivers\Cups\Entity;
-
-use Rawilk\Printing\Drivers\Cups\Entity\Printer;
 use Rawilk\Printing\Drivers\Cups\Support\Client;
-use Rawilk\Printing\Tests\TestCase;
 use Smalot\Cups\Builder\Builder;
 use Smalot\Cups\Manager\JobManager;
-use Smalot\Cups\Model\Printer as CupsPrinter;
 use Smalot\Cups\Transport\ResponseParser;
 
-class PrinterTest extends TestCase
-{
-    protected JobManager $jobManager;
+beforeEach(function () {
+    $client = new Client;
+    $responseParser = new ResponseParser;
+    $builder = new Builder;
 
-    protected function setUp(): void
-    {
-        parent::setUp();
+    $this->jobManager = new JobManager($builder, $client, $responseParser);
+});
 
-        $client = new Client;
-        $responseParser = new ResponseParser;
-        $builder = new Builder;
+test('can be cast to array', function () {
+    $printer = createCupsPrinter();
 
-        $this->jobManager = new JobManager($builder, $client, $responseParser);
-    }
+    $toArray = $printer->toArray();
 
-    /** @test */
-    public function can_be_cast_to_array(): void
-    {
-        $printer = $this->createPrinter();
+    $expected = [
+        'id' => 'localhost:631',
+        'name' => 'printer-name',
+        'description' => null,
+        'online' => true,
+        'status' => 'online',
+        'trays' => [],
+        'capabilities' => [],
+    ];
 
-        $toArray = $printer->toArray();
+    $this->assertNotEmpty($toArray);
+    expect($toArray)->toEqual($expected);
+});
 
-        $expected = [
-            'id' => 'localhost:631',
-            'name' => 'printer-name',
-            'description' => null,
-            'online' => true,
-            'status' => 'online',
-            'trays' => [],
-            'capabilities' => [],
-        ];
+test('can be cast to json', function () {
+    $printer = createCupsPrinter();
 
-        $this->assertNotEmpty($toArray);
-        $this->assertEquals($expected, $toArray);
-    }
+    $json = json_encode($printer);
 
-    /** @test */
-    public function can_be_cast_to_json(): void
-    {
-        $printer = $this->createPrinter();
+    $expected = json_encode([
+        'id' => 'localhost:631',
+        'name' => 'printer-name',
+        'description' => null,
+        'online' => true,
+        'status' => 'online',
+        'trays' => [],
+        'capabilities' => [],
+    ]);
 
-        $json = json_encode($printer);
+    expect($json)->toEqual($expected);
+});
 
-        $expected = json_encode([
-            'id' => 'localhost:631',
-            'name' => 'printer-name',
-            'description' => null,
-            'online' => true,
-            'status' => 'online',
-            'trays' => [],
-            'capabilities' => [],
-        ]);
+test('can get the id of the printer', function () {
+    expect(createCupsPrinter()->id())->toEqual('localhost:631');
+});
 
-        $this->assertEquals($expected, $json);
-    }
+test('can get the status of the printer', function () {
+    $printer = createCupsPrinter();
 
-    /** @test */
-    public function can_get_the_id_of_the_printer(): void
-    {
-        $this->assertEquals('localhost:631', $this->createPrinter()->id());
-    }
+    expect($printer->isOnline())->toBeTrue();
+    expect($printer->status())->toEqual('online');
 
-    /** @test */
-    public function can_get_the_status_of_the_printer(): void
-    {
-        $printer = $this->createPrinter();
+    $printer->cupsPrinter()->setStatus('offline');
 
-        $this->assertTrue($printer->isOnline());
-        $this->assertEquals('online', $printer->status());
+    expect($printer->isOnline())->toBeFalse();
+});
 
-        $printer->cupsPrinter()->setStatus('offline');
+test('can get printer description', function () {
+    $printer = createCupsPrinter();
 
-        $this->assertFalse($printer->isOnline());
-    }
+    $printer->cupsPrinter()->setAttribute('printer-info', 'Some description');
 
-    /** @test */
-    public function can_get_printer_description(): void
-    {
-        $printer = $this->createPrinter();
+    expect($printer->description())->toEqual('Some description');
+});
 
-        $printer->cupsPrinter()->setAttribute('printer-info', 'Some description');
+test('can get the printers trays', function () {
+    $printer = createCupsPrinter();
 
-        $this->assertEquals('Some description', $printer->description());
-    }
+    expect($printer->trays())->toHaveCount(0);
 
-    /** @test */
-    public function can_get_the_printers_trays(): void
-    {
-        $printer = $this->createPrinter();
+    // Capabilities are cached after first retrieval, so we'll just use a fresh instance to test this
+    $printer = createCupsPrinter();
 
-        $this->assertCount(0, $printer->trays());
+    $printer->cupsPrinter()->setAttribute('media-source-supported', ['Tray 1']);
 
-        // Capabilities is cached after first retrieval, so we'll just use a fresh instance to test this
-        $printer = $this->createPrinter();
-
-        $printer->cupsPrinter()->setAttribute('media-source-supported', ['Tray 1']);
-
-        $this->assertCount(1, $printer->trays());
-        $this->assertEquals('Tray 1', $printer->trays()[0]);
-    }
-
-    protected function createPrinter(): Printer
-    {
-        $cupsPrinter = new CupsPrinter;
-        $cupsPrinter->setName('printer-name')
-            ->setUri('localhost:631')
-            ->setStatus('online');
-
-        return new Printer($cupsPrinter, $this->jobManager);
-    }
-}
+    expect($printer->trays())->toHaveCount(1);
+    expect($printer->trays()[0])->toEqual('Tray 1');
+});

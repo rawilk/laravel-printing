@@ -2,48 +2,35 @@
 
 declare(strict_types=1);
 
-namespace Rawilk\Printing\Tests\Feature;
-
 use Rawilk\Printing\Drivers\PrintNode\PrintTask as PrintnodePrintTask;
 use Rawilk\Printing\Facades\Printing;
 use Rawilk\Printing\Tests\Feature\Drivers\CustomDriver\Driver\CustomDriver;
 use Rawilk\Printing\Tests\Feature\Drivers\CustomDriver\Driver\PrintTask as CustomDriverPrintTask;
-use Rawilk\Printing\Tests\TestCase;
 
-class PrintingTest extends TestCase
-{
-    protected function setUp(): void
-    {
-        parent::setUp();
+beforeEach(function () {
+    config([
+        'printing.driver' => 'printnode',
+        'printing.drivers.custom' => [
+            'driver' => 'custom',
+            'api_key' => '123456',
+        ],
+    ]);
 
-        config([
-            'printing.driver' => 'printnode',
-            'printing.drivers.custom' => [
-                'driver' => 'custom',
-                'api_key' => '123456',
-            ],
-        ]);
+    app()['printing.factory']->extend('custom', fn (array $config) => new CustomDriver($config['api_key']));
+});
 
-        $this->app['printing.factory']->extend('custom', fn (array $config) => new CustomDriver($config['api_key']));
-    }
+test('can choose drivers at runtime', function () {
+    // Passing nothing into driver should give us the default driver
+    expect(Printing::driver()->newPrintTask())->toBeInstanceOf(PrintnodePrintTask::class);
 
-    /** @test */
-    public function can_choose_drivers_at_runtime(): void
-    {
-        // Passing nothing into driver should give us the default driver
-        $this->assertInstanceOf(PrintnodePrintTask::class, Printing::driver()->newPrintTask());
+    expect(Printing::driver('printnode')->newPrintTask())->toBeInstanceOf(PrintnodePrintTask::class);
+    expect(Printing::driver('custom')->newPrintTask())->toBeInstanceOf(CustomDriverPrintTask::class);
+});
 
-        $this->assertInstanceOf(PrintnodePrintTask::class, Printing::driver('printnode')->newPrintTask());
-        $this->assertInstanceOf(CustomDriverPrintTask::class, Printing::driver('custom')->newPrintTask());
-    }
+test('the driver should use the default driver even after driver method has been called', function () {
+    expect(Printing::newPrintTask())->toBeInstanceOf(PrintnodePrintTask::class);
+    expect(Printing::driver('custom')->newPrintTask())->toBeInstanceOf(CustomDriverPrintTask::class);
 
-    /** @test */
-    public function the_driver_should_use_the_default_driver_even_after_driver_method_has_been_called(): void
-    {
-        $this->assertInstanceOf(PrintnodePrintTask::class, Printing::newPrintTask());
-        $this->assertInstanceOf(CustomDriverPrintTask::class, Printing::driver('custom')->newPrintTask());
-
-        // should use the default (configured as printnode in our test)
-        $this->assertInstanceOf(PrintnodePrintTask::class, Printing::newPrintTask());
-    }
-}
+    // should use the default (configured as printnode in our test)
+    expect(Printing::newPrintTask())->toBeInstanceOf(PrintnodePrintTask::class);
+});
