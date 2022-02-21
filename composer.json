@@ -31,9 +31,9 @@
         "friendsofphp/php-cs-fixer": "^3.0",
         "mockery/mockery": ">=1.4",
         "orchestra/testbench": "^6.0|^7.0",
-        "phpunit/phpunit": "^9.5",
         "smalot/cups-ipp": "^0.5.0",
-        "spatie/laravel-ray": "^1.29"
+        "spatie/laravel-ray": "^1.29",
+        "pestphp/pest": "^1.20"
     },
     "suggest": {
         "smalot/cups-ipp": "Required when using the CUPS driver"
