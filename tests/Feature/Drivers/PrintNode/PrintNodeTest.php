@@ -5,9 +5,7 @@ declare(strict_types=1);
 use Rawilk\Printing\Drivers\PrintNode\Entity\Printer;
 use Rawilk\Printing\Drivers\PrintNode\PrintNode;
 use Rawilk\Printing\Tests\Concerns\FakesPrintNodeRequests;
-use Rawilk\Printing\Tests\TestCase;
 
-uses(TestCase::class);
 uses(FakesPrintNodeRequests::class);
 
 beforeEach(function () {

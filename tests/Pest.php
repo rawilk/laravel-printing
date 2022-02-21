@@ -1,41 +1,40 @@
 <?php
 
+use Rawilk\Printing\Tests\Feature\Api\PrintNode\PrintNodeTestCase;
+use Rawilk\Printing\Tests\TestCase;
 
-/*
-|--------------------------------------------------------------------------
-| Test Case
-|--------------------------------------------------------------------------
-|
-| The closure you provide to your test functions is always bound to a specific PHPUnit test
-| case class. By default, that class is "PHPUnit\Framework\TestCase". Of course, you may
-| need to change it using the "uses()" function to bind a different classes or traits.
-|
-*/
+uses(TestCase::class)->in('Feature/FactoryTest.php');
+uses(TestCase::class)->in('Feature/PrintingTest.php');
+uses(TestCase::class)->in('Feature/Receipts');
+uses(TestCase::class)->in('Feature/Api/PrintNode/Entity');
+uses(PrintNodeTestCase::class)->in('Feature/Api/PrintNode/Requests');
+uses(TestCase::class)->in('Feature/Drivers');
 
-/** @link https://pestphp.com/docs/underlying-test-case */
+// Helpers
+function samplePrintNodeData(string $file): array
+{
+    return json_decode(
+        file_get_contents(__DIR__ . "/stubs/Api/PrintNode/{$file}.json"),
+        true
+    );
+}
 
-/*
-|--------------------------------------------------------------------------
-| Expectations
-|--------------------------------------------------------------------------
-|
-| When you're writing tests, you often need to check that values meet certain conditions. The
-| "expect()" function gives you access to a set of "expectations" methods that you can use
-| to assert different things. Of course, you may extend the Expectation API at any time.
-|
-*/
+function createCupsJob(): \Rawilk\Printing\Drivers\Cups\Entity\PrintJob
+{
+    $cupsJob = new \Smalot\Cups\Model\Job;
+    $cupsJob->setId(123456)
+        ->setName('my print job')
+        ->setState('success');
 
-/** @link https://pestphp.com/docs/expectations#custom-expectations */
+    return new \Rawilk\Printing\Drivers\Cups\Entity\PrintJob($cupsJob, createCupsPrinter());
+}
 
-/*
-|--------------------------------------------------------------------------
-| Functions
-|--------------------------------------------------------------------------
-|
-| While Pest is very powerful out-of-the-box, you may have some testing code specific to your
-| project that you don't want to repeat in every file. Here you can also expose helpers as
-| global functions to help you to reduce the number of lines of code in your test files.
-|
-*/
+function createCupsPrinter(): \Rawilk\Printing\Drivers\Cups\Entity\Printer
+{
+    $cupsPrinter = new \Smalot\Cups\Model\Printer;
+    $cupsPrinter->setName('printer-name')
+        ->setUri('localhost:631')
+        ->setStatus('online');
 
-/** @link https://pestphp.com/docs/helpers */
+    return new \Rawilk\Printing\Drivers\Cups\Entity\Printer($cupsPrinter, test()->jobManager);
+}

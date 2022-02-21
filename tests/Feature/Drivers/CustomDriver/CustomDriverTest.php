@@ -4,9 +4,6 @@ declare(strict_types=1);
 
 use Rawilk\Printing\Facades\Printing;
 use Rawilk\Printing\Tests\Feature\Drivers\CustomDriver\Driver\CustomDriver;
-use Rawilk\Printing\Tests\TestCase;
-
-uses(TestCase::class);
 
 beforeEach(function () {
     config([

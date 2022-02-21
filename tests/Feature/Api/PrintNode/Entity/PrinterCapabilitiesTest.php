@@ -3,12 +3,9 @@
 declare(strict_types=1);
 
 use Rawilk\Printing\Api\PrintNode\Entity\PrinterCapabilities;
-use Rawilk\Printing\Tests\TestCase;
-
-uses(TestCase::class);
 
 test('sets properties correctly', function () {
-    $capabilities = new PrinterCapabilities(sampleData());
+    $capabilities = new PrinterCapabilities(sampleCapabilitiesData());
 
     expect($capabilities->bins)->toBeArray();
     expect($capabilities->papers)->toBeArray();
@@ -22,7 +19,7 @@ test('sets properties correctly', function () {
 });
 
 test('trays can be used as an alias to bins', function () {
-    $capabilities = new PrinterCapabilities(sampleData());
+    $capabilities = new PrinterCapabilities(sampleCapabilitiesData());
 
     $expected = [
         'Automatically Select',
@@ -35,11 +32,11 @@ test('trays can be used as an alias to bins', function () {
 });
 
 test('casts to array', function () {
-    $capabilities = new PrinterCapabilities(sampleData());
+    $capabilities = new PrinterCapabilities(sampleCapabilitiesData());
 
     $asArray = $capabilities->toArray();
 
-    foreach (sampleData() as $key => $value) {
+    foreach (sampleCapabilitiesData() as $key => $value) {
         if ($key === 'printrate') {
             $key = 'printRate';
         } elseif ($key === 'supports_custom_paper_size') {
@@ -51,7 +48,7 @@ test('casts to array', function () {
 });
 
 // Helpers
-function sampleData(): array
+function sampleCapabilitiesData(): array
 {
     return [
         'bins' => [

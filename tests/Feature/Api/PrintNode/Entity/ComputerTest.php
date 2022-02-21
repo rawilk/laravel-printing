@@ -4,12 +4,9 @@ declare(strict_types=1);
 
 use Carbon\Carbon;
 use Rawilk\Printing\Api\PrintNode\Entity\Computer;
-use Rawilk\Printing\Tests\TestCase;
-
-uses(TestCase::class);
 
 test('can be created from array', function () {
-    $computer = new Computer(sampleData());
+    $computer = new Computer(samplePrintNodeData('computer_single')[0]);
 
     expect($computer->id)->toBe(14);
     expect($computer->name)->toEqual('TUNGSTEN');
@@ -21,7 +18,7 @@ test('can be created from array', function () {
 });
 
 test('can be cast to array', function () {
-    $data = sampleData();
+    $data = samplePrintNodeData('computer_single')[0];
     $computer = new Computer($data);
 
     $asArray = $computer->toArray();
@@ -34,12 +31,3 @@ test('can be cast to array', function () {
         $this->assertArrayHasKey($key, $asArray);
     }
 });
-
-// Helpers
-function sampleData(): array
-{
-    return json_decode(
-        file_get_contents(__DIR__ . '/../../../../stubs/Api/PrintNode/computer_single.json'),
-        true
-    )[0];
-}

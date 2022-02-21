@@ -6,12 +6,9 @@ use Carbon\Carbon;
 use Rawilk\Printing\Api\PrintNode\Entity\Computer;
 use Rawilk\Printing\Api\PrintNode\Entity\Printer;
 use Rawilk\Printing\Api\PrintNode\Entity\PrinterCapabilities;
-use Rawilk\Printing\Tests\TestCase;
-
-uses(TestCase::class);
 
 test('can be create from an array', function () {
-    $printer = new Printer(sampleData());
+    $printer = new Printer(samplePrintNodeData('printer_single')[0]);
 
     expect($printer->id)->toBe(39);
     expect($printer->computer)->toBeInstanceOf(Computer::class);
@@ -27,7 +24,7 @@ test('can be create from an array', function () {
 });
 
 test('casts to array', function () {
-    $data = sampleData();
+    $data = samplePrintNodeData('printer_single')[0];
     $printer = new Printer($data);
 
     $asArray = $printer->toArray();
@@ -40,12 +37,3 @@ test('casts to array', function () {
     expect($asArray['capabilities'])->toBeArray();
     $this->assertArrayHasKey('createTimestamp', $asArray['computer']);
 });
-
-// Helpers
-function sampleData(): array
-{
-    return json_decode(
-        file_get_contents(__DIR__ . '/../../../../stubs/Api/PrintNode/printer_single.json'),
-        true
-    )[0];
-}

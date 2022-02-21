@@ -9,9 +9,6 @@ use Rawilk\Printing\Exceptions\InvalidDriverConfig;
 use Rawilk\Printing\Exceptions\UnsupportedDriver;
 use Rawilk\Printing\Factory;
 use Rawilk\Printing\Tests\Feature\Drivers\CustomDriver\Driver\CustomDriver;
-use Rawilk\Printing\Tests\TestCase;
-
-uses(TestCase::class);
 
 it('creates the printnode driver', function () {
     config([

@@ -5,12 +5,9 @@ declare(strict_types=1);
 use Carbon\Carbon;
 use Rawilk\Printing\Api\PrintNode\Entity\Printer;
 use Rawilk\Printing\Api\PrintNode\Entity\PrintJob;
-use Rawilk\Printing\Tests\TestCase;
-
-uses(TestCase::class);
 
 test('can be created from array', function () {
-    $job = new PrintJob(sampleData());
+    $job = new PrintJob(samplePrintNodeData('print_job_single')[0]);
 
     expect($job->id)->toBe(473);
     expect($job->printer)->toBeInstanceOf(Printer::class);
@@ -25,7 +22,7 @@ test('can be created from array', function () {
 });
 
 test('casts to array', function () {
-    $data = sampleData();
+    $data = samplePrintNodeData('print_job_single')[0];
     $job = new PrintJob($data);
 
     $asArray = $job->toArray();
@@ -46,12 +43,3 @@ test('casts to array', function () {
     // 'createTimestamp' is a custom key added by the printer's toArray() method.
     $this->assertArrayHasKey('createTimestamp', $asArray['printer']);
 });
-
-// Helpers
-function sampleData(): array
-{
-    return json_decode(
-        file_get_contents(__DIR__ . '/../../../../stubs/Api/PrintNode/print_job_single.json'),
-        true
-    )[0];
-}

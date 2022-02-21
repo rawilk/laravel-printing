@@ -4,9 +4,6 @@ declare(strict_types=1);
 
 use Rawilk\Printing\Api\PrintNode\Entity\PrintJob;
 use Rawilk\Printing\Api\PrintNode\Requests\PrintJobsRequest;
-use Rawilk\Printing\Tests\Feature\Api\PrintNode\PrintNodeTestCase;
-
-uses(PrintNodeTestCase::class);
 
 test('lists an accounts print jobs', function () {
     $this->fakeRequest('printjobs', 'print_jobs');

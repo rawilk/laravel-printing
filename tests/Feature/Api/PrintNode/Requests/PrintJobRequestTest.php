@@ -6,9 +6,6 @@ use Rawilk\Printing\Api\PrintNode\Entity\Computer;
 use Rawilk\Printing\Api\PrintNode\Entity\Printer;
 use Rawilk\Printing\Api\PrintNode\Entity\PrintJob;
 use Rawilk\Printing\Api\PrintNode\Requests\PrintJobRequest;
-use Rawilk\Printing\Tests\Feature\Api\PrintNode\PrintNodeTestCase;
-
-uses(PrintNodeTestCase::class);
 
 test('can find a print job', function () {
     $this->fakeRequest('printjobs/473', 'print_job_single');

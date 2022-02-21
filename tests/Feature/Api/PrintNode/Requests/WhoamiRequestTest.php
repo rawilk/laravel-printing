@@ -4,9 +4,6 @@ declare(strict_types=1);
 
 use Rawilk\Printing\Api\PrintNode\Requests\WhoamiRequest;
 use Rawilk\Printing\Exceptions\PrintNodeApiRequestFailed;
-use Rawilk\Printing\Tests\Feature\Api\PrintNode\PrintNodeTestCase;
-
-uses(PrintNodeTestCase::class);
 
 test('gets account info', function () {
     $this->fakeRequest('whoami', 'whoami');

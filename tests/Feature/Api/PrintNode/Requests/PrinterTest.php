@@ -6,9 +6,6 @@ use Carbon\Carbon;
 use Rawilk\Printing\Api\PrintNode\Entity\Computer;
 use Rawilk\Printing\Api\PrintNode\Entity\PrinterCapabilities;
 use Rawilk\Printing\Api\PrintNode\Requests\PrinterRequest;
-use Rawilk\Printing\Tests\Feature\Api\PrintNode\PrintNodeTestCase;
-
-uses(PrintNodeTestCase::class);
 
 test('can find an accounts printer', function () {
     $this->fakeRequest('printers/39', 'printer_single');

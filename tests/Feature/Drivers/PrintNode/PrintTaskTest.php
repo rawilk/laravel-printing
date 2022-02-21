@@ -6,9 +6,7 @@ use Illuminate\Support\Facades\Http;
 use Rawilk\Printing\Drivers\PrintNode\PrintNode;
 use Rawilk\Printing\Exceptions\PrintTaskFailed;
 use Rawilk\Printing\Tests\Concerns\FakesPrintNodeRequests;
-use Rawilk\Printing\Tests\TestCase;
 
-uses(TestCase::class);
 uses(FakesPrintNodeRequests::class);
 
 beforeEach(function () {

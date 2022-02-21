@@ -4,9 +4,6 @@ declare(strict_types=1);
 
 use Rawilk\Printing\Api\PrintNode\Entity\Computer;
 use Rawilk\Printing\Api\PrintNode\Requests\ComputersRequest;
-use Rawilk\Printing\Tests\Feature\Api\PrintNode\PrintNodeTestCase;
-
-uses(PrintNodeTestCase::class);
 
 test('can list an accounts computers', function () {
     $this->fakeRequest('computers', 'computers');

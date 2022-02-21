@@ -3,12 +3,9 @@
 declare(strict_types=1);
 
 use Rawilk\Printing\Api\PrintNode\Entity\Whoami;
-use Rawilk\Printing\Tests\TestCase;
-
-uses(TestCase::class);
 
 test('can be created from array', function () {
-    $whoami = new Whoami(sampleData());
+    $whoami = new Whoami(samplePrintNodeData('whoami'));
 
     expect($whoami->id)->toBe(433);
     expect($whoami->firstName)->toEqual('Peter');
@@ -26,7 +23,7 @@ test('can be created from array', function () {
 });
 
 test('casts to array', function () {
-    $data = sampleData();
+    $data = samplePrintNodeData('whoami');
     $whoami = new Whoami($data);
 
     $asArray = $whoami->toArray();
@@ -50,12 +47,3 @@ test('casts to array', function () {
         $this->assertArrayHasKey($key, $asArray);
     }
 });
-
-// Helpers
-function sampleData(): array
-{
-    return json_decode(
-        file_get_contents(__DIR__ . '/../../../../stubs/Api/PrintNode/whoami.json'),
-        true
-    );
-}

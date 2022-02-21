@@ -6,9 +6,6 @@ use Rawilk\Printing\Drivers\PrintNode\PrintTask as PrintnodePrintTask;
 use Rawilk\Printing\Facades\Printing;
 use Rawilk\Printing\Tests\Feature\Drivers\CustomDriver\Driver\CustomDriver;
 use Rawilk\Printing\Tests\Feature\Drivers\CustomDriver\Driver\PrintTask as CustomDriverPrintTask;
-use Rawilk\Printing\Tests\TestCase;
-
-uses(TestCase::class);
 
 beforeEach(function () {
     config([

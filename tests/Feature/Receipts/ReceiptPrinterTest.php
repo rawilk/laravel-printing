@@ -4,9 +4,6 @@ declare(strict_types=1);
 
 use Mike42\Escpos\Printer;
 use Rawilk\Printing\Receipts\ReceiptPrinter;
-use Rawilk\Printing\Tests\TestCase;
-
-uses(TestCase::class);
 
 beforeEach(function () {
     config([
@@ -117,5 +114,7 @@ dataset('textAlignments', [
 // Helpers
 function expectedText(string $expected): string
 {
-    return static::$startCharacter . $expected;
+    $startCharacter = "\e@";
+
+    return $startCharacter . $expected;
 }

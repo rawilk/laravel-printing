@@ -7,9 +7,6 @@ use Rawilk\Printing\Api\PrintNode\Entity\Printer;
 use Rawilk\Printing\Api\PrintNode\Entity\PrintJob;
 use Rawilk\Printing\Api\PrintNode\Requests\CreatePrintJobRequest;
 use Rawilk\Printing\Exceptions\PrintTaskFailed;
-use Rawilk\Printing\Tests\Feature\Api\PrintNode\PrintNodeTestCase;
-
-uses(PrintNodeTestCase::class);
 
 test('can create a print job', function () {
     Http::fake([

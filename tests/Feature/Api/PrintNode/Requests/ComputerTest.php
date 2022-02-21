@@ -5,9 +5,6 @@ declare(strict_types=1);
 use Carbon\Carbon;
 use Rawilk\Printing\Api\PrintNode\Entity\Computer;
 use Rawilk\Printing\Api\PrintNode\Requests\ComputerRequest;
-use Rawilk\Printing\Tests\Feature\Api\PrintNode\PrintNodeTestCase;
-
-uses(PrintNodeTestCase::class);
 
 test('can find an accounts computer', function () {
     $this->fakeRequest('computers/14', 'computer_single');
