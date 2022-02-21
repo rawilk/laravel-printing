@@ -24,11 +24,11 @@ test('invalid api key does not work', function () {
     $this->expectExceptionCode(401);
     $this->expectExceptionMessage('API Key not found');
 
-    // We are sending an actual api request here!
     (new WhoamiRequest('foo'))->response();
 });
 
 test('actual requests can be made', function () {
+    // We are sending an actual api request here!
     $whoami = (new WhoamiRequest($this->apiKey))->response();
 
     expect($whoami->id)->toEqual(env('PRINT_NODE_ID'));
