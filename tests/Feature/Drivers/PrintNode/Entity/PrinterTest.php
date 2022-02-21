@@ -2,64 +2,51 @@
 
 declare(strict_types=1);
 
-namespace Rawilk\Printing\Tests\Feature\Drivers\PrintNode\Entity;
-
 use Rawilk\Printing\Drivers\PrintNode\Entity\Printer;
 use Rawilk\Printing\Drivers\PrintNode\PrintNode;
 use Rawilk\Printing\Tests\Concerns\FakesPrintNodeRequests;
 use Rawilk\Printing\Tests\TestCase;
 
-class PrinterTest extends TestCase
-{
-    use FakesPrintNodeRequests;
+uses(TestCase::class);
+uses(FakesPrintNodeRequests::class);
 
-    protected PrintNode $printNode;
+beforeEach(function () {
+    $this->printNode = new PrintNode;
+});
 
-    protected function setUp(): void
-    {
-        parent::setUp();
+test('creates from api response', function () {
+    $this->fakeRequest('printers/39', 'printer_single');
 
-        $this->printNode = new PrintNode;
-    }
+    $printer = $this->printNode->printer(39);
 
-    /** @test */
-    public function creates_from_api_response(): void
-    {
-        $this->fakeRequest('printers/39', 'printer_single');
+    $this->assertInstanceOf(Printer::class, $printer);
+    $this->assertSame(39, $printer->id());
+    $this->assertEquals(['Automatically Select'], $printer->trays());
+    $this->assertTrue($printer->isOnline());
+    $this->assertEquals('Microsoft XPS Document Writer', $printer->name());
+    $this->assertEquals('Microsoft XPS Document Writer', $printer->description());
+});
 
-        $printer = $this->printNode->printer(39);
+test('can be cast to array', function () {
+    $this->fakeRequest('printers/39', 'printer_single');
 
-        $this->assertInstanceOf(Printer::class, $printer);
-        $this->assertSame(39, $printer->id());
-        $this->assertEquals(['Automatically Select'], $printer->trays());
-        $this->assertTrue($printer->isOnline());
-        $this->assertEquals('Microsoft XPS Document Writer', $printer->name());
-        $this->assertEquals('Microsoft XPS Document Writer', $printer->description());
-    }
+    $printer = $this->printNode->printer(39);
 
-    /** @test */
-    public function can_be_cast_to_array(): void
-    {
-        $this->fakeRequest('printers/39', 'printer_single');
+    $toArray = $printer->toArray();
 
-        $printer = $this->printNode->printer(39);
+    $capabilities = $printer->capabilities();
+    $expected = [
+        'id' => 39,
+        'name' => 'Microsoft XPS Document Writer',
+        'description' => 'Microsoft XPS Document Writer',
+        'online' => true,
+        'status' => 'online',
+        'trays' => [
+            'Automatically Select',
+        ],
+        'capabilities' => $capabilities,
+    ];
 
-        $toArray = $printer->toArray();
-
-        $capabilities = $printer->capabilities();
-        $expected = [
-            'id' => 39,
-            'name' => 'Microsoft XPS Document Writer',
-            'description' => 'Microsoft XPS Document Writer',
-            'online' => true,
-            'status' => 'online',
-            'trays' => [
-                'Automatically Select',
-            ],
-            'capabilities' => $capabilities,
-        ];
-
-        $this->assertNotEmpty($toArray);
-        $this->assertEquals($expected, $toArray);
-    }
-}
+    $this->assertNotEmpty($toArray);
+    $this->assertEquals($expected, $toArray);
+});

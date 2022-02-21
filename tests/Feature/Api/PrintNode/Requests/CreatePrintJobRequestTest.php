@@ -2,8 +2,6 @@
 
 declare(strict_types=1);
 
-namespace Rawilk\Printing\Tests\Feature\Api\PrintNode\Requests;
-
 use Illuminate\Support\Facades\Http;
 use Rawilk\Printing\Api\PrintNode\Entity\Printer;
 use Rawilk\Printing\Api\PrintNode\Entity\PrintJob;
@@ -11,52 +9,47 @@ use Rawilk\Printing\Api\PrintNode\Requests\CreatePrintJobRequest;
 use Rawilk\Printing\Exceptions\PrintTaskFailed;
 use Rawilk\Printing\Tests\Feature\Api\PrintNode\PrintNodeTestCase;
 
-class CreatePrintJobRequestTest extends PrintNodeTestCase
-{
-    /** @test */
-    public function can_create_a_print_job(): void
-    {
-        Http::fake([
-            'https://api.printnode.com/printjobs' => Http::response(473),
-        ]);
+uses(PrintNodeTestCase::class);
 
-        $this->fakeRequest('printjobs/473', 'print_job_single');
+test('can create a print job', function () {
+    Http::fake([
+        'https://api.printnode.com/printjobs' => Http::response(473),
+    ]);
 
-        $pendingJob = new PrintJob([
-            'contentType' => 'pdf_uri',
-            'content' => base64_encode('foo'),
-            'title' => 'Print Job 1',
-            'source' => 'Google',
-            'options' => [],
-        ]);
-        $pendingJob->printerId = 33;
+    $this->fakeRequest('printjobs/473', 'print_job_single');
 
-        $printJob = (new CreatePrintJobRequest('1234'))->send($pendingJob);
+    $pendingJob = new PrintJob([
+        'contentType' => 'pdf_uri',
+        'content' => base64_encode('foo'),
+        'title' => 'Print Job 1',
+        'source' => 'Google',
+        'options' => [],
+    ]);
+    $pendingJob->printerId = 33;
 
-        $this->assertSame(473, $printJob->id);
-        $this->assertInstanceOf(Printer::class, $printJob->printer);
-        $this->assertSame(33, $printJob->printer->id);
-    }
+    $printJob = (new CreatePrintJobRequest('1234'))->send($pendingJob);
 
-    /** @test */
-    public function throws_an_exception_if_no_job_is_created(): void
-    {
-        Http::fake([
-            'https://api.printnode.com/printjobs' => Http::response(),
-        ]);
+    $this->assertSame(473, $printJob->id);
+    $this->assertInstanceOf(Printer::class, $printJob->printer);
+    $this->assertSame(33, $printJob->printer->id);
+});
 
-        $this->expectException(PrintTaskFailed::class);
-        $this->expectExceptionMessage('The print job failed to create.');
+test('throws an exception if no job is created', function () {
+    Http::fake([
+        'https://api.printnode.com/printjobs' => Http::response(),
+    ]);
 
-        $pendingJob = new PrintJob([
-            'contentType' => 'pdf_uri',
-            'content' => base64_encode('foo'),
-            'title' => 'Print Job 1',
-            'source' => 'Google',
-            'options' => [],
-        ]);
-        $pendingJob->printerId = 33;
+    $this->expectException(PrintTaskFailed::class);
+    $this->expectExceptionMessage('The print job failed to create.');
 
-        (new CreatePrintJobRequest('1234'))->send($pendingJob);
-    }
-}
+    $pendingJob = new PrintJob([
+        'contentType' => 'pdf_uri',
+        'content' => base64_encode('foo'),
+        'title' => 'Print Job 1',
+        'source' => 'Google',
+        'options' => [],
+    ]);
+    $pendingJob->printerId = 33;
+
+    (new CreatePrintJobRequest('1234'))->send($pendingJob);
+});

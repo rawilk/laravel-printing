@@ -2,57 +2,42 @@
 
 declare(strict_types=1);
 
-namespace Rawilk\Printing\Tests\Feature\Drivers\PrintNode;
-
 use Rawilk\Printing\Drivers\PrintNode\Entity\Printer;
 use Rawilk\Printing\Drivers\PrintNode\PrintNode;
 use Rawilk\Printing\Tests\Concerns\FakesPrintNodeRequests;
 use Rawilk\Printing\Tests\TestCase;
 
-class PrintNodeTest extends TestCase
-{
-    use FakesPrintNodeRequests;
+uses(TestCase::class);
+uses(FakesPrintNodeRequests::class);
 
-    protected PrintNode $printNode;
+beforeEach(function () {
+    $this->printNode = new PrintNode;
+});
 
-    protected function setUp(): void
-    {
-        parent::setUp();
+it('lists an accounts printers', function () {
+    $this->fakeRequest('printers', 'printers');
 
-        $this->printNode = new PrintNode;
-    }
+    $printers = $this->printNode->printers();
 
-    /** @test */
-    public function it_lists_an_accounts_printers(): void
-    {
-        $this->fakeRequest('printers', 'printers');
+    $this->assertCount(24, $printers);
+    $this->assertContainsOnlyInstancesOf(Printer::class, $printers);
+});
 
-        $printers = $this->printNode->printers();
+test('finds an accounts printer', function () {
+    $this->fakeRequest('printers/39', 'printer_single');
 
-        $this->assertCount(24, $printers);
-        $this->assertContainsOnlyInstancesOf(Printer::class, $printers);
-    }
+    $printer = $this->printNode->printer(39);
 
-    /** @test */
-    public function finds_an_accounts_printer(): void
-    {
-        $this->fakeRequest('printers/39', 'printer_single');
+    $this->assertSame(39, $printer->id());
+    $this->assertEquals(['Automatically Select'], $printer->trays());
+    $this->assertEquals('Microsoft XPS Document Writer', $printer->name());
+    $this->assertTrue($printer->isOnline());
+});
 
-        $printer = $this->printNode->printer(39);
+test('returns null for no printer found', function () {
+    $this->fakeRequest('printers/1234', 'printer_single_not_found');
 
-        $this->assertSame(39, $printer->id());
-        $this->assertEquals(['Automatically Select'], $printer->trays());
-        $this->assertEquals('Microsoft XPS Document Writer', $printer->name());
-        $this->assertTrue($printer->isOnline());
-    }
+    $printer = $this->printNode->printer(1234);
 
-    /** @test */
-    public function returns_null_for_no_printer_found(): void
-    {
-        $this->fakeRequest('printers/1234', 'printer_single_not_found');
-
-        $printer = $this->printNode->printer(1234);
-
-        $this->assertNull($printer);
-    }
-}
+    $this->assertNull($printer);
+});
