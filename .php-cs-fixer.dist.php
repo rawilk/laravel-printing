@@ -10,7 +10,6 @@ $finder = Symfony\Component\Finder\Finder::create()
     ])
     ->name('*.php')
     ->notName('*.blade.php')
-    ->notName('Timezone.php') // disable it on this class for now to prevent linting errors
     ->ignoreDotFiles(true)
     ->ignoreVCS(true);
 
