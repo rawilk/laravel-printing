@@ -30,7 +30,7 @@ abstract class Entity implements Arrayable, JsonSerializable
         }
     }
 
-    protected function getTimestamp($timestamp): null|Carbon
+    protected function getTimestamp($timestamp): ?Carbon
     {
         if (! is_string($timestamp)) {
             return null;

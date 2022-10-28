@@ -13,7 +13,7 @@ class PrintJob implements PrintJobContract
 {
     use Macroable;
 
-    public null|Printer $printer = null;
+    public ?Printer $printer = null;
 
     public function __construct(protected PrintNodePrintJob $job)
     {
@@ -27,7 +27,7 @@ class PrintJob implements PrintJobContract
         return $this->job;
     }
 
-    public function date(): null|Carbon
+    public function date(): ?Carbon
     {
         return $this->job->created;
     }
@@ -37,7 +37,7 @@ class PrintJob implements PrintJobContract
         return $this->job->id;
     }
 
-    public function name(): null|string
+    public function name(): ?string
     {
         return $this->job->title;
     }
@@ -47,12 +47,12 @@ class PrintJob implements PrintJobContract
         return $this->job->printer?->id;
     }
 
-    public function printerName(): null|string
+    public function printerName(): ?string
     {
         return $this->job->printer?->name;
     }
 
-    public function state(): null|string
+    public function state(): ?string
     {
         return $this->job->state;
     }

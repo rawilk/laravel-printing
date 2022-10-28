@@ -10,11 +10,11 @@ class Printer extends Entity
 {
     public string|int $id;
 
-    public null|string $name = null;
+    public ?string $name = null;
 
-    public null|string $state = null;
+    public ?string $state = null;
 
-    public null|string $description = null;
+    public ?string $description = null;
 
     public bool $default = false;
 
@@ -22,7 +22,7 @@ class Printer extends Entity
 
     public Computer $computer;
 
-    public null|Carbon $created = null;
+    public ?Carbon $created = null;
 
     public function __construct(array $data)
     {
@@ -32,7 +32,7 @@ class Printer extends Entity
         parent::__construct($data);
     }
 
-    public function setCapabilities(null|array $capabilities): self
+    public function setCapabilities(?array $capabilities): self
     {
         if (is_array($capabilities)) {
             $this->capabilities = new PrinterCapabilities($capabilities);

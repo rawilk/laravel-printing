@@ -31,7 +31,6 @@ class Printer implements PrinterContracts, Arrayable, JsonSerializable
 
     public function capabilities(): array
     {
-        /** @psalm-suppress RedundantPropertyInitializationCheck */
         if (! isset($this->capabilities)) {
             $this->capabilities = $this->printer->getAttributes();
         }
@@ -54,7 +53,7 @@ class Printer implements PrinterContracts, Arrayable, JsonSerializable
         return strtolower($this->status()) === 'online';
     }
 
-    public function name(): null|string
+    public function name(): ?string
     {
         return $this->printer->getName();
     }

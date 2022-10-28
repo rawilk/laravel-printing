@@ -8,7 +8,7 @@ use Rawilk\Printing\Api\PrintNode\Entity\PrintJob;
 
 class PrinterPrintJobRequest extends PrintNodeRequest
 {
-    public function response(int $printerId, int $jobId): null|PrintJob
+    public function response(int $printerId, int $jobId): ?PrintJob
     {
         $jobs = $this->getRequest("printers/{$printerId}/printjobs/{$jobId}");
 

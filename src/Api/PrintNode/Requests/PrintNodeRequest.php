@@ -15,14 +15,14 @@ abstract class PrintNodeRequest
 
     protected $http;
 
-    protected int|null $limit = null;
+    protected ?int $limit = null;
 
     /**
      * The ID after (or before, depending on $dir) which to start returning records.
      */
-    protected int|null $offset = null;
+    protected ?int $offset = null;
 
-    protected string|null $dir = null;
+    protected ?string $dir = null;
 
     public function __construct(protected string $apiKey)
     {

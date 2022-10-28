@@ -17,7 +17,7 @@ class Printer implements PrinterContract, Arrayable, JsonSerializable
 {
     use Macroable;
 
-    protected null|array $capabilities = null;
+    protected ?array $capabilities = null;
 
     public function __construct(protected PrintNodePrinter $printer)
     {
@@ -38,7 +38,7 @@ class Printer implements PrinterContract, Arrayable, JsonSerializable
         return $this->printer->capabilities;
     }
 
-    public function description(): null|string
+    public function description(): ?string
     {
         return $this->printer->description;
     }
@@ -53,7 +53,7 @@ class Printer implements PrinterContract, Arrayable, JsonSerializable
         return $this->printer->isOnline();
     }
 
-    public function name(): null|string
+    public function name(): ?string
     {
         return $this->printer->name;
     }
@@ -68,7 +68,7 @@ class Printer implements PrinterContract, Arrayable, JsonSerializable
         return $this->printer->trays();
     }
 
-    public function jobs(int|null $limit = null, int|null $offset = null, string|null $dir = null, string|null $apiKey = null): Collection
+    public function jobs(?int $limit = null, ?int $offset = null, ?string $dir = null, ?string $apiKey = null): Collection
     {
         $api = app(PrintNode::class);
 

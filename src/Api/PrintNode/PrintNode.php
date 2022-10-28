@@ -21,22 +21,22 @@ class PrintNode
         return $this;
     }
 
-    public function computers(int|null $limit = null, int|null $offset = null, string|null $dir = null): Entity\Computers
+    public function computers(?int $limit = null, ?int $offset = null, ?string $dir = null): Entity\Computers
     {
         return (new Requests\ComputersRequest($this->apiKey))->response($limit, $offset, $dir);
     }
 
-    public function computer(int $computerId): null|Entity\Computer
+    public function computer(int $computerId): ?Entity\Computer
     {
         return (new Requests\ComputerRequest($this->apiKey))->response($computerId);
     }
 
-    public function printers(int|null $limit = null, int|null $offset = null, string|null $dir = null): Entity\Printers
+    public function printers(?int $limit = null, ?int $offset = null, ?string $dir = null): Entity\Printers
     {
         return (new Requests\PrintersRequest($this->apiKey))->response($limit, $offset, $dir);
     }
 
-    public function printer(int $printerId): null|Entity\Printer
+    public function printer(int $printerId): ?Entity\Printer
     {
         return (new Requests\PrinterRequest($this->apiKey))->response($printerId);
     }
@@ -51,22 +51,22 @@ class PrintNode
         return (new Requests\CreatePrintJobRequest($this->apiKey))->send($job);
     }
 
-    public function printJobs(int|null $limit = null, int|null $offset = null, string|null $dir = null): Entity\PrintJobs
+    public function printJobs(?int $limit = null, ?int $offset = null, ?string $dir = null): Entity\PrintJobs
     {
         return (new Requests\PrintJobsRequest($this->apiKey))->response($limit, $offset, $dir);
     }
 
-    public function printJob(int $jobId): null|Entity\PrintJob
+    public function printJob(int $jobId): ?Entity\PrintJob
     {
         return (new Requests\PrintJobRequest($this->apiKey))->response($jobId);
     }
 
-    public function printerPrintJobs(int $printerId, int|null $limit = null, int|null $offset = null, string|null $dir = null): Entity\PrintJobs
+    public function printerPrintJobs(int $printerId, ?int $limit = null, ?int $offset = null, ?string $dir = null): Entity\PrintJobs
     {
         return (new Requests\PrinterPrintJobsRequest($this->apiKey))->response($printerId, $limit, $offset, $dir);
     }
 
-    public function printerPrintJob(int $printerId, int $jobId): null|Entity\PrintJob
+    public function printerPrintJob(int $printerId, int $jobId): ?Entity\PrintJob
     {
         return (new Requests\PrinterPrintJobRequest($this->apiKey))->response($printerId, $jobId);
     }

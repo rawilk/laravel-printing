@@ -6,15 +6,15 @@ use Carbon\Carbon;
 
 interface PrintJob
 {
-    public function date(): null|Carbon;
+    public function date(): ?Carbon;
 
     public function id();
 
-    public function name(): null|string;
+    public function name(): ?string;
 
     public function printerId();
 
-    public function printerName(): null|string;
+    public function printerName(): ?string;
 
-    public function state(): null|string;
+    public function state(): ?string;
 }

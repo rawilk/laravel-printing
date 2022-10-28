@@ -10,23 +10,23 @@ class Computer extends Entity
 {
     public string|int $id;
 
-    public null|string $name = null;
+    public ?string $name = null;
 
-    public null|string $hostName = null;
+    public ?string $hostName = null;
 
-    public null|string $state = null;
+    public ?string $state = null;
 
-    public null|string $inet = null;
+    public ?string $inet = null;
 
-    public null|string $inet6 = null;
+    public ?string $inet6 = null;
 
-    public null|string $version = null;
+    public ?string $version = null;
 
-    public null|string $jre = null;
+    public ?string $jre = null;
 
-    public null|Carbon $created = null;
+    public ?Carbon $created = null;
 
-    public function setHostName(null|string $hostName): self
+    public function setHostName(?string $hostName): self
     {
         $this->hostName = $hostName;
 

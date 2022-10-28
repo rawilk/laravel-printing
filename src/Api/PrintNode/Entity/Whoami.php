@@ -8,17 +8,17 @@ class Whoami extends Entity
 {
     public string|int $id;
 
-    public null|string $firstName = null;
+    public ?string $firstName = null;
 
-    public null|string $lastName = null;
+    public ?string $lastName = null;
 
-    public null|string $email = null;
+    public ?string $email = null;
 
     public bool $canCreateSubAccounts = false;
 
-    public null|string $creatorEmail = null;
+    public ?string $creatorEmail = null;
 
-    public null|string $creatorRef = null;
+    public ?string $creatorRef = null;
 
     public array $childAccounts = [];
 
@@ -36,7 +36,7 @@ class Whoami extends Entity
 
     public array $connected = [];
 
-    public null|string $state = null;
+    public ?string $state = null;
 
     public array $permissions = [];
 

@@ -120,7 +120,6 @@ class PrintTask extends BasePrintTask
 
     public function send(): PrintJob
     {
-        /** @psalm-suppress RedundantPropertyInitializationCheck */
         if (! $this->printerId || ! isset($this->printer)) {
             throw PrintTaskFailed::missingPrinterId();
         }

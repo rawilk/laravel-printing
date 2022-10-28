@@ -48,17 +48,17 @@ class PrintJob extends Entity
     /**
      * The date the print job was created.
      */
-    public null|Carbon $created = null;
+    public ?Carbon $created = null;
 
     /**
      * The current state of the print job.
      */
-    public null|string $state = null;
+    public ?string $state = null;
 
     /**
      * The printer used for the print job.
      */
-    public null|Printer $printer = null;
+    public ?Printer $printer = null;
 
     protected const VALID_CONTENT_TYPES = [
         ContentType::PDF_BASE64,

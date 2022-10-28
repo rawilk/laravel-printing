@@ -8,7 +8,7 @@ use Rawilk\Printing\Api\PrintNode\Entity\PrintJobs;
 
 class PrintJobsRequest extends PrintNodeRequest
 {
-    public function response(int|null $limit = null, int|null $offset = null, string|null $dir = null): PrintJobs
+    public function response(?int $limit = null, ?int $offset = null, ?string $dir = null): PrintJobs
     {
         $this->limit = $limit;
         $this->offset = $offset;

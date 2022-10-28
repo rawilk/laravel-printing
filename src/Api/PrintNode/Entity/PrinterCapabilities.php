@@ -20,7 +20,7 @@ class PrinterCapabilities extends Entity
 
     public array $dpis = [];
 
-    public null|array $extent = null;
+    public ?array $extent = null;
 
     public array $medias = [];
 
@@ -28,7 +28,7 @@ class PrinterCapabilities extends Entity
 
     public array $papers = [];
 
-    public null|array $printRate = null;
+    public ?array $printRate = null;
 
     // Alias for bins
     public function trays(): array
@@ -36,7 +36,7 @@ class PrinterCapabilities extends Entity
         return $this->bins;
     }
 
-    public function setPrintrate(null|array $printRate): self
+    public function setPrintrate(?array $printRate): self
     {
         $this->printRate = $printRate;
 

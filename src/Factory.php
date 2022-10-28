@@ -23,7 +23,7 @@ class Factory
     {
     }
 
-    public function driver(null|string $driver = null): Driver
+    public function driver(?string $driver = null): Driver
     {
         $driver = $driver ?: $this->getDriverFromConfig();
 
@@ -50,7 +50,7 @@ class Factory
 
     protected function createPrintnodeDriver(array $config): Driver
     {
-        if (! isset($config['key']) || empty($config['key'])) {
+        if (empty($config['key'])) {
             throw InvalidDriverConfig::invalid('You must provide an api key for the PrintNode driver.');
         }
 
