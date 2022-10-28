@@ -18,36 +18,39 @@ jobs:
                 laravel: [9.*, 8.*]
                 stability: [prefer-lowest, prefer-stable]
                 include:
-                    - laravel: 9.*
-                      testbench: 7.*
-                    - laravel: 8.*
-                      testbench: 6.23
+                    -   laravel: 9.*
+                        testbench: 7.*
+                    -   laravel: 8.*
+                        testbench: ^6.23
 
         name: P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.stability }}
 
         steps:
-            - name: Checkout code
-              uses: actions/checkout@v3
+            -   name: Checkout code
+                uses: actions/checkout@v3
 
-            - name: Setup PHP
-              uses: shivammathur/setup-php@v2
-              with:
-                  php-version: ${{ matrix.php }}
-                  extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick, fileinfo
-                  coverage: none
+            -   name: Setup PHP
+                uses: shivammathur/setup-php@v2
+                with:
+                    php-version: ${{ matrix.php }}
+                    extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick, fileinfo
+                    coverage: none
 
-            - name: Setup problem matchers
-              run: |
-                  echo "::add-matcher::${{ runner.tool_cache }}/php.json"
-                  echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
+            -   name: Setup problem matchers
+                run: |
+                    echo "::add-matcher::${{ runner.tool_cache }}/php.json"
+                    echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
 
-            - name: Install dependencies
-              run: |
-                  composer require "laravel/framework:${{ matrix.laravel }}" "orchestra/testbench:${{ matrix.testbench }}" --no-interaction --no-update
-                  composer update --${{ matrix.stability }} --prefer-dist --no-interaction
+            -   name: Install dependencies
+                run: |
+                    composer require "laravel/framework:${{ matrix.laravel }}" "orchestra/testbench:${{ matrix.testbench }}" --no-interaction --no-update
+                    composer update --${{ matrix.stability }} --prefer-dist --no-interaction
 
-            - name: Execute tests
-              run: vendor/bin/pest -p
-              env:
-                  PRINT_NODE_API_KEY: ${{ secrets.PRINT_NODE_API_KEY }}
-                  PRINT_NODE_ID: ${{ secrets.PRINT_NODE_ID }}
+            -   name: List Installed Dependencies
+                run: composer show -D
+
+            -   name: Execute tests
+                run: vendor/bin/pest -p
+                env:
+                    PRINT_NODE_API_KEY: ${{ secrets.PRINT_NODE_API_KEY }}
+                    PRINT_NODE_ID: ${{ secrets.PRINT_NODE_ID }}
