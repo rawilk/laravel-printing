@@ -15,4 +15,15 @@
             <directory>tests</directory>
         </testsuite>
     </testsuites>
+    <php>
+        <env name="RAY_ENABLED" value="(true)"/>
+        <env name="SEND_CACHE_TO_RAY" value="(false)"/>
+        <env name="SEND_DUMPS_TO_RAY" value="(true)"/>
+        <env name="SEND_JOBS_TO_RAY" value="(false)"/>
+        <env name="SEND_LOG_CALLS_TO_RAY" value="(true)"/>
+        <env name="SEND_QUERIES_TO_RAY" value="(false)"/>
+        <env name="SEND_REQUESTS_TO_RAY" value="(false)"/>
+        <env name="SEND_VIEWS_TO_RAY" value="(false)"/>
+        <env name="SEND_EXCEPTIONS_TO_RAY" value="(true)"/>
+    </php>
 </phpunit>
