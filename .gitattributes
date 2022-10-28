@@ -6,9 +6,10 @@
 /.gitattributes         export-ignore
 /.github                export-ignore
 /.gitignore             export-ignore
-/.php_cs.dist           export-ignore
 /.php-cs-fixer.dist.php export-ignore
+/.php_cs.dist           export-ignore
 /docs                   export-ignore
 /phpunit.xml.dist       export-ignore
+/pint.json              export-ignore
 /psalm.xml.dist         export-ignore
 /tests                  export-ignore
