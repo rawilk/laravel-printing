@@ -19,7 +19,7 @@ You may publish the config file like this:
 php artisan vendor:publish --provider="Rawilk\Printing\PrintingServiceProvider" --tag="config"
 ```
 
-The contents of the default configuration file can be found here: [https://github.com/rawilk/laravel-printing/blob/master/config/printing.php](https://github.com/rawilk/laravel-printing/blob/master/config/printing.php)
+The contents of the default configuration file can be found here: [https://github.com/rawilk/laravel-printing/blob/{branch}/config/printing.php](https://github.com/rawilk/laravel-printing/blob/{branch}/config/printing.php)
 
 ## Setting up a print driver
 
