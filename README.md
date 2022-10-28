@@ -4,7 +4,7 @@
 ![Tests](https://github.com/rawilk/laravel-printing/workflows/Tests/badge.svg?style=flat-square)
 [![Total Downloads](https://img.shields.io/packagist/dt/rawilk/laravel-printing.svg?style=flat-square)](https://packagist.org/packages/rawilk/laravel-printing)
 [![PHP from Packagist](https://img.shields.io/packagist/php-v/rawilk/laravel-printing?style=flat-square)](https://packagist.org/packages/rawilk/laravel-printing)
-[![License](https://img.shields.io/github/license/rawilk/laravel-printing?style=flat-square)](https://github.com/rawilk/laravel-printing/blob/master/LICENSE.md)
+[![License](https://img.shields.io/github/license/rawilk/laravel-printing?style=flat-square)](https://github.com/rawilk/laravel-printing/blob/main/LICENSE.md)
 
 
 Laravel Printing allows your application to directly send PDF documents or raw text directly from a remote server
@@ -42,7 +42,7 @@ You can publish the config file with:
 php artisan vendor:publish --provider="Rawilk\Printing\PrintingServiceProvider" --tag="config"
 ```
 
-The contents of the default configuration file can be found here: https://github.com/rawilk/laravel-printing/blob/master/config/printing.php
+The contents of the default configuration file can be found here: https://github.com/rawilk/laravel-printing/blob/main/config/printing.php
 
 ## Testing
 
