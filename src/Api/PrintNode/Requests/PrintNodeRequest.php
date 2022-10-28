@@ -12,6 +12,7 @@ use Rawilk\Printing\Exceptions\PrintNodeApiRequestFailed;
 abstract class PrintNodeRequest
 {
     protected const BASE_URL = 'https://api.printnode.com/';
+
     protected $http;
 
     protected int|null $limit = null;
@@ -20,6 +21,7 @@ abstract class PrintNodeRequest
      * The ID after (or before, depending on $dir) which to start returning records.
      */
     protected int|null $offset = null;
+
     protected string|null $dir = null;
 
     public function __construct(protected string $apiKey)

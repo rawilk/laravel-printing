@@ -20,6 +20,7 @@ use Smalot\Cups\Model\Printer as SmalotPrinter;
 class PrintTask extends BasePrintTask
 {
     protected Job $job;
+
     protected SmalotPrinter $printer;
 
     public function __construct(protected JobManager $jobManager, protected PrinterManager $printerManager)

@@ -70,7 +70,7 @@ class Printer implements PrinterContracts, Arrayable, JsonSerializable
     }
 
     /**
-     * @param array $params
+     * @param  array  $params
      *  - Possible Params:
      *    -- limit => int
      *    -- status => 'completed', 'not-completed'

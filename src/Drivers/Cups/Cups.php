@@ -23,9 +23,13 @@ class Cups implements Driver
     use Macroable;
 
     protected Builder $builder;
+
     protected Client $client;
+
     protected ResponseParser $responseParser;
+
     protected PrinterManager $printerManager;
+
     protected JobManager $jobManager;
 
     public function __construct()

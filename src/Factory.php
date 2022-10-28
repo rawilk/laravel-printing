@@ -16,6 +16,7 @@ use Rawilk\Printing\Exceptions\UnsupportedDriver;
 class Factory
 {
     protected array $drivers = [];
+
     protected array $customCreators = [];
 
     public function __construct(protected array $config)

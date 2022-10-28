@@ -12,6 +12,7 @@ use Mike42\Escpos\Printer;
 
 /**
  * @see Printer
+ *
  * @method self bitImage(\Mike42\Escpos\EscposImage $image, $size)
  * @method self close()
  * @method self cut(int $mode = Printer::CUT_FULL, int $lines = 3)
@@ -42,7 +43,9 @@ class ReceiptPrinter
     use Macroable;
 
     protected DummyPrintConnector $connector;
+
     protected Printer $printer;
+
     protected static int $lineCharacterLength;
 
     public function __construct()

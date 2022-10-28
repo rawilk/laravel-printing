@@ -9,12 +9,19 @@ use Carbon\Carbon;
 class Printer extends Entity
 {
     public string|int $id;
+
     public null|string $name = null;
+
     public null|string $state = null;
+
     public null|string $description = null;
+
     public bool $default = false;
+
     public PrinterCapabilities $capabilities;
+
     public Computer $computer;
+
     public null|Carbon $created = null;
 
     public function __construct(array $data)

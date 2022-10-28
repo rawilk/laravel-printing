@@ -19,7 +19,7 @@ function samplePrintNodeData(string $file): array
     );
 }
 
-function createCupsJob(): \Rawilk\Printing\Drivers\Cups\Entity\PrintJob
+function createCupsJob(): Rawilk\Printing\Drivers\Cups\Entity\PrintJob
 {
     $cupsJob = new \Smalot\Cups\Model\Job;
     $cupsJob->setId(123456)
@@ -29,7 +29,7 @@ function createCupsJob(): \Rawilk\Printing\Drivers\Cups\Entity\PrintJob
     return new \Rawilk\Printing\Drivers\Cups\Entity\PrintJob($cupsJob, createCupsPrinter());
 }
 
-function createCupsPrinter(): \Rawilk\Printing\Drivers\Cups\Entity\Printer
+function createCupsPrinter(): Rawilk\Printing\Drivers\Cups\Entity\Printer
 {
     $cupsPrinter = new \Smalot\Cups\Model\Printer;
     $cupsPrinter->setName('printer-name')

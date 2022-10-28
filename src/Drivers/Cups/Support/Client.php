@@ -100,14 +100,13 @@ class Client implements HttpClient
         if ($this->username || $this->password) {
             switch ($this->authType) {
                 case self::AUTHTYPE_BASIC:
-                    $pass = base64_encode($this->username.':'.$this->password);
-                    $authentication = 'Basic '.$pass;
+                    $pass = base64_encode($this->username . ':' . $this->password);
+                    $authentication = 'Basic ' . $pass;
 
                     break;
 
                 case self::AUTHTYPE_DIGEST:
                     throw new CupsException('Auth type not supported');
-
                 default:
                     throw new CupsException('Unknown auth type');
             }

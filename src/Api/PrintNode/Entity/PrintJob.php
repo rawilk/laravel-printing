@@ -187,7 +187,7 @@ class PrintJob extends Entity
 
     public function toArray(): array
     {
-        return array_merge(parent::toArray(),  [
+        return array_merge(parent::toArray(), [
             'createTimestamp' => $this->created,
         ]);
     }

@@ -7,16 +7,27 @@ namespace Rawilk\Printing\Api\PrintNode\Entity;
 class PrinterCapabilities extends Entity
 {
     public array $bins = [];
+
     public bool $collate = false;
+
     public bool $color = false;
+
     public int $copies = 0;
+
     public bool $duplex = false;
+
     public bool $supportsCustomPaperSize = false;
+
     public array $dpis = [];
+
     public null|array $extent = null;
+
     public array $medias = [];
+
     public array $nup = [];
+
     public array $papers = [];
+
     public null|array $printRate = null;
 
     // Alias for bins

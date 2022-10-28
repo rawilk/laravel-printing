@@ -83,8 +83,8 @@ it('sets the left margin', function () {
 });
 
 /**
- * @param string $alignment
- * @param string $expected
+ * @param  string  $alignment
+ * @param  string  $expected
  */
 it('aligns text', function (string $alignment, string $expected) {
     $text = (string) (new ReceiptPrinter)->{"{$alignment}Align"}();

@@ -36,7 +36,7 @@ class Printing implements Driver
         return $this;
     }
 
-    public function newPrintTask(): \Rawilk\Printing\Contracts\PrintTask
+    public function newPrintTask(): Contracts\PrintTask
     {
         $task = $this->driver->newPrintTask();
 
@@ -59,9 +59,9 @@ class Printing implements Driver
     }
 
     /**
-     * @param int|null $limit
-     * @param int|null $offset
-     * @param string|null $dir
+     * @param  int|null  $limit
+     * @param  int|null  $offset
+     * @param  string|null  $dir
      * @return \Illuminate\Support\Collection<int, \Rawilk\Printing\Contracts\Printer>
      */
     public function printers(int|null $limit = null, int|null $offset = null, string|null $dir = null): Collection
@@ -78,9 +78,9 @@ class Printing implements Driver
     }
 
     /**
-     * @param int|null $limit
-     * @param int|null $offset
-     * @param string|null $dir
+     * @param  int|null  $limit
+     * @param  int|null  $offset
+     * @param  string|null  $dir
      * @return \Illuminate\Support\Collection<int, \Rawilk\Printing\Contracts\PrintJob>
      */
     public function printJobs(int|null $limit = null, int|null $offset = null, string|null $dir = null): Collection
@@ -111,9 +111,9 @@ class Printing implements Driver
 
     /**
      * @param $printerId
-     * @param int|null $limit
-     * @param int|null $offset
-     * @param string|null $dir
+     * @param  int|null  $limit
+     * @param  int|null  $offset
+     * @param  string|null  $dir
      * @return \Illuminate\Support\Collection<int, \Rawilk\Printing\Contracts\PrintJob>
      */
     public function printerPrintJobs($printerId, int|null $limit = null, int|null $offset = null, string|null $dir = null): Collection
