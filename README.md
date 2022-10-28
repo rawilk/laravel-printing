@@ -22,9 +22,9 @@ $printJob->id(); // the id number returned from the print server
 
 Supported Print Drivers:
 
-- PrintNode: https://printnode.com
-- CUPS: https://cups.org
-- Custom: Configure your own custom driver
+-   PrintNode: https://printnode.com
+-   CUPS: https://cups.org
+-   Custom: Configure your own custom driver
 
 ## Documentation:
 
@@ -39,6 +39,7 @@ composer require rawilk/laravel-printing
 ```
 
 You can publish the config file with:
+
 ```bash
 php artisan vendor:publish --provider="Rawilk\Printing\PrintingServiceProvider" --tag="config"
 ```
@@ -47,7 +48,7 @@ The contents of the default configuration file can be found here: https://github
 
 ## Testing
 
-``` bash
+```bash
 composer test
 ```
 
@@ -65,13 +66,14 @@ If you discover any security related issues, please email randall@randallwilk.de
 
 ## Credits
 
-- [Randall Wilk](https://github.com/rawilk)
-- [All Contributors](../../contributors)
-- _Mike42_ for the [PHP ESC/POS Print Driver](https://github.com/mike42/escpos-php) library
+-   [Randall Wilk](https://github.com/rawilk)
+-   [All Contributors](../../contributors)
+-   _Mike42_ for the [PHP ESC/POS Print Driver](https://github.com/mike42/escpos-php) library
 
 Inspiration for the PrintNode API wrapper comes from:
-- [PrintNode/PrintNode-PHP](https://github.com/PrintNode/PrintNode-PHP)
-- [phatkoala/printnode](https://github.com/PhatKoala/PrintNode)
+
+-   [PrintNode/PrintNode-PHP](https://github.com/PrintNode/PrintNode-PHP)
+-   [phatkoala/printnode](https://github.com/PhatKoala/PrintNode)
 
 ## License
 

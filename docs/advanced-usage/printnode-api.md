@@ -23,6 +23,7 @@ Doing this should work even if you are using the `Printing` facade to interact w
 There are a few extra things you may utilize with this API wrapper class, which are listed below. More methods may be added in the future as well.
 
 ## Whoami
+
 You can use this to find out the account info that is related to your configured api key. It can also be useful just to be sure your api requests
 are actually working as well.
 
@@ -36,6 +37,7 @@ $whoami->email;
 ```
 
 ## Computers
+
 If you are looking to list out an account's registered computers, you may use this method:
 
 ```php
@@ -47,6 +49,7 @@ $response->computers; // a collection of `\Rawilk\Printing\Api\PrintNode\Entity\
 ```
 
 ## Computer
+
 If you know the ID of a computer you want to find, you may use this method:
 
 ```php
@@ -60,5 +63,6 @@ $computer->created; // Carbon instance of date computer was created on your acco
 ```
 
 ## Other Methods
+
 Full a full reference of methods, please refer to API class. Since the API class is `Macroable`, you may add any additional functionality you need to this
 class via a service provider.

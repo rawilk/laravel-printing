@@ -8,7 +8,7 @@ sort: 5
 If you have multiple print drivers you need to print with, you can easily do so by calling
 `driver('driver_name')` on the `Printing` facade. This could be useful if you print receipts
 through PrintNode and then regular documents through CUPS or some other custom driver you have
-installed. 
+installed.
 
 ## Switching on the fly
 

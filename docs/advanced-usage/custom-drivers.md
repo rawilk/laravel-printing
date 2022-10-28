@@ -40,7 +40,7 @@ is done by extending the print factory used by this package. In a service provid
 public function register(): void
 {
     $this->app['printing.factory']->extend('custom', function (array $config) {
-        return new MyCustomDriver($config);    
+        return new MyCustomDriver($config);
     });
 }
 ```

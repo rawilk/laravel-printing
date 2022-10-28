@@ -6,20 +6,22 @@ sort: 2
 `Rawilk\Printing\PrintTask`
 
 ### content
+
 ```php
 /**
- * Set the content to be printed. 
+ * Set the content to be printed.
  *
  * @param string $content
- * @return PrintTask 
+ * @return PrintTask
  */
 public function content($content): self;
 ```
 
 ### file
+
 ```php
 /**
- * Set the path to a pdf file to be printed. 
+ * Set the path to a pdf file to be printed.
  *
  * @param string $filePath
  * @return PrintTask
@@ -28,6 +30,7 @@ public function file(string $filePath): self;
 ```
 
 ### url
+
 ```php
 /**
  * Set a url to be printed.
@@ -39,6 +42,7 @@ public function url(string $url): self;
 ```
 
 ### jobTitle
+
 ```php
 /**
  * Set the title of the print task.
@@ -51,10 +55,11 @@ public function jobTitle(string $jobTitle): self;
 ```
 
 ### printer
+
 ```php
 /**
  * Set the id of the printer to print to. This method must be called
- * when printing. 
+ * when printing.
  *
  * @param \Rawilk\Printing\Contracts\Printer|string|null|int $printerId
  * @return PrintTask
@@ -63,6 +68,7 @@ public function printer(Printer|string|null|int $printerId): self;
 ```
 
 ### printSource
+
 ```php
 /**
  * Set a source of the print task. Defaults to the application name.
@@ -74,17 +80,19 @@ public function printSource(string $printSource): self;
 ```
 
 ### tags
+
 ```php
 /**
- * Add tags to the task if your driver supports it. 
+ * Add tags to the task if your driver supports it.
  *
  * @param string|array|mixed $tags
- * @return PrintTask 
+ * @return PrintTask
  */
 public function tags($tags): self;
 ```
 
 ### tray
+
 ```php
 /**
  * Set a tray to print to if your printer and driver support it.
@@ -96,6 +104,7 @@ public function tray($tray): self;
 ```
 
 ### copies
+
 ```php
 /**
  * Set the amount of copies to print.
@@ -107,10 +116,11 @@ public function copies(int $copies): self;
 ```
 
 ### range
+
 ```php
 /**
  * Set the page range to print.
- * Omit $end to start at a page and continue to the end. 
+ * Omit $end to start at a page and continue to the end.
  *
  * @param int|string $start
  * @param int|null @end
@@ -120,6 +130,7 @@ public function range($start, $end = null): self;
 ```
 
 ### option
+
 ```php
 /**
  * Set an option for the print task that your driver supports.
@@ -132,12 +143,13 @@ public function option(string $key, $value): self;
 ```
 
 ### send
+
 ```php
 /**
- * Send the print task to your print server. 
+ * Send the print task to your print server.
  * If successful, it will return a PrintJob instance.
  *
- * @return PrintJob 
+ * @return PrintJob
  */
 public function send(): PrintJob;
 ```

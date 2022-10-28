@@ -9,6 +9,7 @@ sort: 4
 Some methods on this class have also been added to make interacting with it more convenient.
 
 ### centerAlign
+
 ```php
 /**
  * Center align any new text.
@@ -19,6 +20,7 @@ public function centerAlign(): self;
 ```
 
 ### leftAlign
+
 ```php
 /**
  * Left align any new text
@@ -29,6 +31,7 @@ public function leftAlign(): self;
 ```
 
 ### rightAlign
+
 ```php
 /**
  * Right align any new text.
@@ -39,9 +42,10 @@ public function rightAlign(): self;
 ```
 
 ### leftMargin
+
 ```php
 /**
- * Set the left margin for any new text. 
+ * Set the left margin for any new text.
  *
  * @param int $margin
  * @return ReceiptPrinter
@@ -50,6 +54,7 @@ public function leftMargin(int $margin = 0): self;
 ```
 
 ### lineHeight
+
 ```php
 /**
  * Set the line height for any new text.
@@ -61,6 +66,7 @@ public function lineHeight(int $height = null): self;
 ```
 
 ### text
+
 ```php
 /**
  * Write a line of text to the receipt.
@@ -73,6 +79,7 @@ public function text(string $text, bool $insertNewLine = true): self;
 ```
 
 ### twoColumnText
+
 ```php
 /**
  * Insert a line of text split into two columns, left and right justified.
@@ -86,6 +93,7 @@ public function twoColumnText(string $left, string $right): self;
 ```
 
 ### barcode
+
 ```php
 /**
  * Print a barcode to the receipt.
@@ -98,6 +106,7 @@ public function barcode($barcodeContent, int $type = \Mike42\Escpos\Printer::BAR
 ```
 
 ### line
+
 ```php
 /**
  * Print a line across the receipt using the "-" character.
@@ -108,9 +117,10 @@ public function line(): self;
 ```
 
 ### doubleLine
+
 ```php
 /**
- * Print a line across the receipt using the "=" character. 
+ * Print a line across the receipt using the "=" character.
  *
  * @return ReceiptPrinter
  */
@@ -118,6 +128,7 @@ public function doubleLine(): self;
 ```
 
 ### close
+
 ```php
 /**
  * Close the connection to the receipt printer (this package used a DummyConnection).
@@ -129,6 +140,7 @@ public function close(): self;
 ```
 
 ### cut
+
 ```php
 /**
  * Instruct the receipt printer to cut the paper.
@@ -142,6 +154,7 @@ public function cut(int $mode = \Mike42\Escpos\Printer::CUT_FULL, int $lines = 3
 ```
 
 ### feed
+
 ```php
 /**
  * Feed an empty line(s) to the receipt printer.

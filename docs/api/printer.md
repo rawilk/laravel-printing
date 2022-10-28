@@ -6,6 +6,7 @@ sort: 1
 `Rawilk\Printing\Contracts\Printer`
 
 ### id
+
 ```php
 /**
  * Returns the printer's id.
@@ -16,6 +17,7 @@ public function id();
 ```
 
 ### name
+
 ```php
 /**
  * Returns the printer's name.
@@ -26,6 +28,7 @@ public function name(): ?string;
 ```
 
 ### description
+
 ```php
 /**
  * Returns the printer's description.
@@ -36,6 +39,7 @@ public function description(): ?string;
 ```
 
 ### capabilities
+
 ```php
 /**
  * Returns the printer's capabilities.
@@ -46,6 +50,7 @@ public function capabilities(): array;
 ```
 
 ### trays
+
 ```php
 /**
  * Returns the printer's available trays.
@@ -56,6 +61,7 @@ public function trays(): array;
 ```
 
 ### status
+
 ```php
 /**
  * Returns the printer's current status.
@@ -66,6 +72,7 @@ public function status(): string;
 ```
 
 ### isOnline
+
 ```php
 /**
  * Determine if the printer is currently "online".
@@ -76,6 +83,7 @@ public function isOnline(): bool;
 ```
 
 ### jobs
+
 ```php
 /**
  * Returns the jobs for a printer.
@@ -86,6 +94,7 @@ public function jobs(): Collection;
 ```
 
 ### toArray
+
 ```php
 /**
  * Returns an array representation of the printer.

@@ -15,6 +15,7 @@ Printing::newPrintTask()
 ```
 
 ## Options
+
 There are several options you can set for a print job. You should consult with your print driver to see which options you have available to you.
 
 ```php
@@ -34,7 +35,7 @@ Printing::newPrintTask()
 
 ### Driver Options
 
-- More PrintNode options can be found here: [https://www.printnode.com/en/docs/api/curl#printjob-options](https://www.printnode.com/en/docs/api/curl#printjob-options)
-- More info on using CUPS options can be found here: [https://github.com/smalot/cups-ipp](https://github.com/smalot/cups-ipp)
+-   More PrintNode options can be found here: [https://www.printnode.com/en/docs/api/curl#printjob-options](https://www.printnode.com/en/docs/api/curl#printjob-options)
+-   More info on using CUPS options can be found here: [https://github.com/smalot/cups-ipp](https://github.com/smalot/cups-ipp)
 
 More info on print tasks can be found [in the api reference](/laravel-printing/{version}/api/print-task).
