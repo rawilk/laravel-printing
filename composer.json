@@ -35,8 +35,9 @@
         "pestphp/pest": "^1.20",
         "pestphp/pest-plugin-parallel": "^1.0",
         "php-http/socket-client": "^2.1",
+        "psr/http-client": "^1.0",
         "smalot/cups-ipp": "^0.5.0",
-        "spatie/laravel-ray": "^1.29"
+        "spatie/laravel-ray": "^1.0|^1.29"
     },
     "suggest": {
         "smalot/cups-ipp": "Required when using the CUPS driver"
