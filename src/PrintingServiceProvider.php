@@ -4,24 +4,21 @@ declare(strict_types=1);
 
 namespace Rawilk\Printing;
 
-use Illuminate\Support\ServiceProvider;
 use Rawilk\Printing\Api\PrintNode\PrintNode;
+use Spatie\LaravelPackageTools\Package;
+use Spatie\LaravelPackageTools\PackageServiceProvider;
 
-class PrintingServiceProvider extends ServiceProvider
+class PrintingServiceProvider extends PackageServiceProvider
 {
-    public function boot(): void
+    public function configurePackage(Package $package): void
     {
-        if ($this->app->runningInConsole()) {
-            $this->publishes([
-                __DIR__ . '/../config/printing.php' => config_path('printing.php'),
-            ], 'config');
-        }
+        $package
+            ->name('laravel-printing')
+            ->hasConfigFile();
     }
 
-    public function register(): void
+    public function packageRegistered(): void
     {
-        $this->mergeConfigFrom(__DIR__ . '/../config/printing.php', 'printing');
-
         $printNodeApiKey = $this->app['config']['printing.drivers.printnode.key'];
         $this->app->singleton(PrintNode::class, fn ($app) => new PrintNode((string) $printNodeApiKey));
 

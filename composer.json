@@ -25,7 +25,8 @@
         "php": "^8.0|^8.1",
         "guzzlehttp/guzzle": "^7.4",
         "illuminate/support": "^8.0|^9.0",
-        "mike42/escpos-php": "^3.0"
+        "mike42/escpos-php": "^3.0",
+        "spatie/laravel-package-tools": "^1.13"
     },
     "require-dev": {
         "laravel/pint": "^1.2",
@@ -50,6 +51,7 @@
         }
     },
     "scripts": {
+        "post-autoload-dump": "@php ./vendor/bin/testbench package:discover --ansi",
         "test": "vendor/bin/pest -p",
         "format": "vendor/bin/pint"
     },
