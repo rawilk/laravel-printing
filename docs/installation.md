@@ -36,3 +36,6 @@ To print with laravel printing, you must set up a supported print driver.
 -   Review the [requirements](/docs/laravel-printing/{version}/requirements#cups) for the CUPS driver
 -   If using a remote server, enter your remote server credentials in the `.env` file (see config)
 -   In the terminal, run: `composer require smalot/cups-ipp`
+
+#### Job Names
+If you're having an issue sending the name of the job to CUPS, try changing `JobPrivateValues default` to `JobPrivateValues none` in `/etc/cups/cupsd.conf`.
