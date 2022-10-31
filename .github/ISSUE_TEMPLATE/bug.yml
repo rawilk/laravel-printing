@@ -2,45 +2,53 @@ name: Bug
 description: File a bug report
 labels: [bug]
 body:
-    - type: markdown
-      attributes:
-          value: |
-              Before opening a bug report, please search for the behavior in the existing issues.
+    -   type: markdown
+        attributes:
+            value: |
+                Before opening a bug report, please search for the behavior in the existing issues.
 
-              ---
+                ---
 
-              Thank you for taking the time to file a bug report. To address this bug as fast as possible, we need some information.
-    - type: input
-      id: package
-      attributes:
-          label: Laravel Printing Version
-          description: Which version of the package are you using?
-          placeholder: v3.0.0
-      validations:
-          required: true
-    - type: input
-      id: laravel
-      attributes:
-          label: Laravel Version
-          description: Please provide the full Laravel version of your project.
-          placeholder: v8.6.1
-      validations:
-          required: true
-    - type: textarea
-      id: bug-description
-      attributes:
-          label: Bug description
-          description: What happened?
-      validations:
-          required: true
-    - type: textarea
-      id: steps
-      attributes:
-          label: Steps to reproduce
-          description: What steps do we need to take to reproduce this error?
-    - type: textarea
-      id: logs
-      attributes:
-          label: Relevant log output
-          description: If applicable, provide relevant log (error) output. No need for backticks here.
-          render: shell
+                Thank you for taking the time to file a bug report. To address this bug as fast as possible, we need some information.
+    -   type: input
+        id: package
+        attributes:
+            label: Laravel Printing Version
+            description: Which version of the package are you using?
+            placeholder: v3.0.0
+        validations:
+            required: true
+    -   type: input
+        id: laravel
+        attributes:
+            label: Laravel Version
+            description: Please provide the full Laravel version of your project.
+            placeholder: v8.6.1
+        validations:
+            required: true
+    -   type: input
+        id: driver
+        attributes:
+            label: Print Driver
+            description: Which print driver are you using? Enter N/A if it doesn't apply to this issue.
+            placeholder: PrintNode
+        validations:
+            required: true
+    -   type: textarea
+        id: bug-description
+        attributes:
+            label: Bug description
+            description: What happened?
+        validations:
+            required: true
+    -   type: textarea
+        id: steps
+        attributes:
+            label: Steps to reproduce
+            description: What steps do we need to take to reproduce this error?
+    -   type: textarea
+        id: logs
+        attributes:
+            label: Relevant log output
+            description: If applicable, provide relevant log (error) output. No need for backticks here.
+            render: shell
