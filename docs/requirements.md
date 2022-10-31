@@ -5,10 +5,12 @@ sort: 2
 
 ## General Requirements
 
--   PHP **8.0** or greater
+-   PHP **8.1**<sup>1</sup> or greater
 -   Laravel **8.0** or greater
 -   A printer on your local network that you can print to and that your selected printer can access.
 -   A receipt printer if you are printing receipts
+
+<sup>1</sup> The package doesn't officially support PHP 8.0, but it should still run on that version.
 
 ## Driver Requirements
 
