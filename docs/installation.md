@@ -38,4 +38,5 @@ To print with laravel printing, you must set up a supported print driver.
 -   In the terminal, run: `composer require smalot/cups-ipp`
 
 #### Job Names
+
 If you're having an issue sending the name of the job to CUPS, try changing `JobPrivateValues default` to `JobPrivateValues none` in `/etc/cups/cupsd.conf`.
