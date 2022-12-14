@@ -41,7 +41,7 @@ composer require rawilk/laravel-printing
 You can publish the config file with:
 
 ```bash
-php artisan vendor:publish --provider="Rawilk\Printing\PrintingServiceProvider" --tag="config"
+php artisan vendor:publish --tag="printing-config"
 ```
 
 The contents of the default configuration file can be found here: https://github.com/rawilk/laravel-printing/blob/main/config/printing.php
