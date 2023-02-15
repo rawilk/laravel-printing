@@ -73,7 +73,6 @@ class Printer implements PrinterContracts, Arrayable, JsonSerializable
      *  - Possible Params:
      *    -- limit => int
      *    -- status => 'completed', 'not-completed'
-     * @return \Illuminate\Support\Collection
      */
     public function jobs(array $params = []): Collection
     {

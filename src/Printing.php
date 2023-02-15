@@ -59,9 +59,6 @@ class Printing implements Driver
     }
 
     /**
-     * @param  int|null  $limit
-     * @param  int|null  $offset
-     * @param  string|null  $dir
      * @return \Illuminate\Support\Collection<int, \Rawilk\Printing\Contracts\Printer>
      */
     public function printers(?int $limit = null, ?int $offset = null, ?string $dir = null): Collection
@@ -78,9 +75,6 @@ class Printing implements Driver
     }
 
     /**
-     * @param  int|null  $limit
-     * @param  int|null  $offset
-     * @param  string|null  $dir
      * @return \Illuminate\Support\Collection<int, \Rawilk\Printing\Contracts\PrintJob>
      */
     public function printJobs(?int $limit = null, ?int $offset = null, ?string $dir = null): Collection
@@ -110,10 +104,6 @@ class Printing implements Driver
     }
 
     /**
-     * @param $printerId
-     * @param  int|null  $limit
-     * @param  int|null  $offset
-     * @param  string|null  $dir
      * @return \Illuminate\Support\Collection<int, \Rawilk\Printing\Contracts\PrintJob>
      */
     public function printerPrintJobs($printerId, ?int $limit = null, ?int $offset = null, ?string $dir = null): Collection
