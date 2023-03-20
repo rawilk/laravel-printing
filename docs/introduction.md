@@ -5,7 +5,7 @@ sort: 1
 
 ## Introduction
 
-Laravel Printing allows your application to directly send PDF documents or raw text directly from a remote server to a printer on your local network.
+Printing for Laravel allows your application to directly send PDF documents or raw text directly from a remote server to a printer on your local network.
 Receipts can also be printed by first generating the raw text via the `Rawilk\Printing\Receipts\ReceiptPrinter` class, and then sending the text as a
 raw print job via the `Printing` facade.
 
@@ -32,3 +32,7 @@ Laravel Printing currently only supports one two drivers currently. More drivers
 - [Randall Wilk](https://github.com/rawilk)
 - [All Contributors](https://github.com/rawilk/laravel-printing/contributors)
 - _Mike42_ for the [PHP ESC/POS Print Driver](https://github.com/mike42/escpos-php) library
+
+## Disclaimer
+
+This package is not affiliated with, maintained, authorized, endorsed or sponsored by Laravel or any of its affiliates.
