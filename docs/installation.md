@@ -8,7 +8,7 @@ sort: 4
 laravel-printing can be installed via composer:
 
 ```bash
-composer require rawilk/laravel-printing
+composer require rawilk/laravel-printing:2.0
 ```
 
 ## Publishing the config file

@@ -21,9 +21,7 @@ sort: 2
 
 -   A local print server running CUPS **on the same network** as any printers you are going to print to. See [this guide](https://www.techrepublic.com/article/how-to-configure-a-print-server-with-ubuntu-server-cups-and-bonjour/) for help.
 
-{.tip}
-
-> When using CUPS you can either use a local CUPS server that runs **on the same server as your Laravel installation** (useful for local development), or you can specify an IP address, username, and password for a remote CUPS server. The remote CUPS server **must be on the same network as any printers** you are going to print to.
+> {tip} When using CUPS you can either use a local CUPS server that runs **on the same server as your Laravel installation** (useful for local development), or you can specify an IP address, username, and password for a remote CUPS server. The remote CUPS server **must be on the same network as any printers** you are going to print to.
 
 ## Version Matrix
 
