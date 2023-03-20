@@ -5,7 +5,7 @@ sort: 1
 
 ## Introduction
 
-Laravel Printing allows your application to directly send PDF documents or raw text directly from a remote server to a printer on your local network.
+Printing for Laravel allows your application to directly send PDF documents or raw text directly from a remote server to a printer on your local network.
 Receipts can also be printed by first generating the raw text via the `Rawilk\Printing\Receipts\ReceiptPrinter` class, and then sending the text as a
 raw print job via the `Printing` facade.
 
@@ -38,3 +38,7 @@ Inspiration for the PrintNode API wrapper comes from:
 
 -   [PrintNode/PrintNode-PHP](https://github.com/PrintNode/PrintNode-PHP)
 -   [phatkoala/printnode](https://github.com/PhatKoala/PrintNode)
+
+## Disclaimer
+
+This package is not affiliated with, maintained, authorized, endorsed or sponsored by Laravel or any of its affiliates.

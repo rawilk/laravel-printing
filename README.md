@@ -1,4 +1,4 @@
-# laravel-printing
+# Printing for Laravel
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/rawilk/laravel-printing.svg?style=flat-square)](https://packagist.org/packages/rawilk/laravel-printing)
 ![Tests](https://github.com/rawilk/laravel-printing/workflows/Tests/badge.svg?style=flat-square)
@@ -6,9 +6,9 @@
 [![PHP from Packagist](https://img.shields.io/packagist/php-v/rawilk/laravel-printing?style=flat-square)](https://packagist.org/packages/rawilk/laravel-printing)
 [![License](https://img.shields.io/github/license/rawilk/laravel-printing?style=flat-square)](https://github.com/rawilk/laravel-printing/blob/main/LICENSE.md)
 
-![social image](https://banners.beyondco.de/Laravel%20Printing.png?theme=light&packageManager=composer+require&packageName=rawilk%2Flaravel-printing&pattern=parkayFloor&style=style_1&description=Direct+printing+for+Laravel+apps.&md=1&showWatermark=0&fontSize=100px&images=printer)
+![social image](https://banners.beyondco.de/Printing%20for%20Laravel.png?theme=light&packageManager=composer+require&packageName=rawilk%2Flaravel-printing&pattern=parkayFloor&style=style_1&description=Direct+printing+for+Laravel+apps.&md=1&showWatermark=0&fontSize=100px&images=printer)
 
-Laravel Printing allows your application to directly send PDF documents or raw text directly from a remote server
+Printing for Laravel allows your application to directly send PDF documents or raw text directly from a remote server
 to a printer on your local network. Receipts can also be printed by first generating the raw text via the `Rawilk\Printing\Receipts\ReceiptPrinter` class, and then sending the text as a raw print job via the `Printing` facade.
 
 ```php
@@ -74,6 +74,10 @@ Inspiration for the PrintNode API wrapper comes from:
 
 -   [PrintNode/PrintNode-PHP](https://github.com/PrintNode/PrintNode-PHP)
 -   [phatkoala/printnode](https://github.com/PhatKoala/PrintNode)
+
+## Disclaimer
+
+This package is not affiliated with, maintained, authorized, endorsed or sponsored by Laravel or any of its affiliates.
 
 ## License
 
