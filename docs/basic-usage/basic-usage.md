@@ -26,7 +26,7 @@ No matter which driver you use, each `$printer` object will be be an instance of
 You can find a specific printer if you know the printer's id:
 
 ```php
-Printing::find($printerId);
+Printing::printer($printerId);
 ```
 
 ## Default printer
