@@ -13,7 +13,7 @@ use Rawilk\Printing\Api\PrintNode\Entity\PrinterCapabilities;
 use Rawilk\Printing\Api\PrintNode\PrintNode;
 use Rawilk\Printing\Contracts\Printer as PrinterContract;
 
-class Printer implements PrinterContract, Arrayable, JsonSerializable
+class Printer implements Arrayable, JsonSerializable, PrinterContract
 {
     use Macroable;
 
@@ -68,7 +68,7 @@ class Printer implements PrinterContract, Arrayable, JsonSerializable
         return $this->printer->trays();
     }
 
-    public function jobs(?int $limit = null, ?int $offset = null, ?string $dir = null, ?string $apiKey = null): Collection
+    public function jobs(int $limit = null, int $offset = null, string $dir = null, string $apiKey = null): Collection
     {
         $api = app(PrintNode::class);
 

@@ -16,7 +16,7 @@ final class PrintJob implements PrintJobContract
         $this->printer = $printer;
     }
 
-    public function date(): null|Carbon
+    public function date(): ?Carbon
     {
         return null;
     }

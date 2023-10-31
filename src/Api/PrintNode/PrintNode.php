@@ -21,7 +21,7 @@ class PrintNode
         return $this;
     }
 
-    public function computers(?int $limit = null, ?int $offset = null, ?string $dir = null): Entity\Computers
+    public function computers(int $limit = null, int $offset = null, string $dir = null): Entity\Computers
     {
         return (new Requests\ComputersRequest($this->apiKey))->response($limit, $offset, $dir);
     }
@@ -31,7 +31,7 @@ class PrintNode
         return (new Requests\ComputerRequest($this->apiKey))->response($computerId);
     }
 
-    public function printers(?int $limit = null, ?int $offset = null, ?string $dir = null): Entity\Printers
+    public function printers(int $limit = null, int $offset = null, string $dir = null): Entity\Printers
     {
         return (new Requests\PrintersRequest($this->apiKey))->response($limit, $offset, $dir);
     }
@@ -51,7 +51,7 @@ class PrintNode
         return (new Requests\CreatePrintJobRequest($this->apiKey))->send($job);
     }
 
-    public function printJobs(?int $limit = null, ?int $offset = null, ?string $dir = null): Entity\PrintJobs
+    public function printJobs(int $limit = null, int $offset = null, string $dir = null): Entity\PrintJobs
     {
         return (new Requests\PrintJobsRequest($this->apiKey))->response($limit, $offset, $dir);
     }
@@ -61,7 +61,7 @@ class PrintNode
         return (new Requests\PrintJobRequest($this->apiKey))->response($jobId);
     }
 
-    public function printerPrintJobs(int $printerId, ?int $limit = null, ?int $offset = null, ?string $dir = null): Entity\PrintJobs
+    public function printerPrintJobs(int $printerId, int $limit = null, int $offset = null, string $dir = null): Entity\PrintJobs
     {
         return (new Requests\PrinterPrintJobsRequest($this->apiKey))->response($printerId, $limit, $offset, $dir);
     }

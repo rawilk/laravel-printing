@@ -14,7 +14,7 @@ use Smalot\Cups\Manager\JobManager;
 use Smalot\Cups\Model\JobInterface;
 use Smalot\Cups\Model\Printer as SmalotPrinter;
 
-class Printer implements PrinterContracts, Arrayable, JsonSerializable
+class Printer implements Arrayable, JsonSerializable, PrinterContracts
 {
     use Macroable;
 
