@@ -5,7 +5,7 @@ on:
         paths:
             - '**.php'
             - phpunit.xml.dist
-            - .github/workflows/run-tests.yml
+            - .github/workflows/pest.yml
             - composer.json
     pull_request:
         branches:
