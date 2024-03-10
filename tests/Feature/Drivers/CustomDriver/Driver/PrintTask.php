@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Rawilk\Printing\Tests\Feature\Drivers\CustomDriver\Driver;
 
 use Rawilk\Printing\Contracts\Printer;

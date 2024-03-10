@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Rawilk\Printing\Tests;
 
 use Dotenv\Dotenv;

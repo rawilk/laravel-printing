@@ -56,6 +56,27 @@ class ReceiptPrinter
         static::$lineCharacterLength = config('printing.receipts.line_character_length', 45);
     }
 
+    public function __destruct()
+    {
+        $this->close();
+    }
+
+    public function __toString(): string
+    {
+        return $this->connector->getData();
+    }
+
+    public function __call($name, $arguments)
+    {
+        if (method_exists($this->printer, $name)) {
+            $this->printer->{$name}(...$arguments);
+
+            return $this;
+        }
+
+        throw new InvalidArgumentException("Method [{$name}] not found on receipt printer object.");
+    }
+
     public function centerAlign(): self
     {
         $this->printer->setJustification(Printer::JUSTIFY_CENTER);
@@ -130,26 +151,5 @@ class ReceiptPrinter
     public function doubleLine(): self
     {
         return $this->text(str_repeat('=', static::$lineCharacterLength));
-    }
-
-    public function __toString(): string
-    {
-        return $this->connector->getData();
-    }
-
-    public function __call($name, $arguments)
-    {
-        if (method_exists($this->printer, $name)) {
-            $this->printer->{$name}(...$arguments);
-
-            return $this;
-        }
-
-        throw new InvalidArgumentException("Method [{$name}] not found on receipt printer object.");
-    }
-
-    public function __destruct()
-    {
-        $this->close();
     }
 }

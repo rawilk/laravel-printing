@@ -40,26 +40,6 @@ final class CustomDriver implements Driver
             ->values();
     }
 
-    protected function customPrinters(): array
-    {
-        return [
-            [
-                'id' => 'printer_one',
-                'name' => 'Printer One',
-                'status' => 'online',
-                'capabilities' => [],
-                'description' => 'Printer one description',
-            ],
-            [
-                'id' => 'printer_two',
-                'name' => 'Printer Two',
-                'status' => 'offline',
-                'capabilities' => [],
-                'description' => 'Printer two description',
-            ],
-        ];
-    }
-
     public function printJobs(?int $limit = null, ?int $offset = null, ?string $dir = null): Collection
     {
         return collect();
@@ -78,5 +58,25 @@ final class CustomDriver implements Driver
     public function printerPrintJob($printerId, $jobId): ?PrintJob
     {
         return null;
+    }
+
+    protected function customPrinters(): array
+    {
+        return [
+            [
+                'id' => 'printer_one',
+                'name' => 'Printer One',
+                'status' => 'online',
+                'capabilities' => [],
+                'description' => 'Printer one description',
+            ],
+            [
+                'id' => 'printer_two',
+                'name' => 'Printer Two',
+                'status' => 'offline',
+                'capabilities' => [],
+                'description' => 'Printer two description',
+            ],
+        ];
     }
 }
