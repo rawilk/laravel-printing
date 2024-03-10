@@ -36,6 +36,7 @@
         "pestphp/pest-plugin-laravel": "^1.0|^2.2",
         "php-http/socket-client": "^2.1",
         "psr/http-client": "^1.0",
+        "psr/http-factory": "^1.0",
         "smalot/cups-ipp": "^0.5.0",
         "spatie/laravel-ray": "^1.0|^1.29"
     },
