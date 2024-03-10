@@ -17,6 +17,21 @@ abstract class Entity implements Arrayable, JsonSerializable
         $this->mapResponse($data);
     }
 
+    public function toArray(): array
+    {
+        $publicProperties = (new ReflectionObject($this))->getProperties(ReflectionProperty::IS_PUBLIC);
+
+        return collect($publicProperties)
+            ->mapWithKeys(function (ReflectionProperty $property) {
+                return [$property->name => $this->{$property->name}];
+            })->toArray();
+    }
+
+    public function jsonSerialize(): mixed
+    {
+        return $this->toArray();
+    }
+
     protected function mapResponse(array $data): void
     {
         foreach ($data as $key => $value) {
@@ -43,20 +58,5 @@ abstract class Entity implements Arrayable, JsonSerializable
         }
 
         return $date;
-    }
-
-    public function toArray(): array
-    {
-        $publicProperties = (new ReflectionObject($this))->getProperties(ReflectionProperty::IS_PUBLIC);
-
-        return collect($publicProperties)
-            ->mapWithKeys(function (ReflectionProperty $property) {
-                return [$property->name => $this->{$property->name}];
-            })->toArray();
-    }
-
-    public function jsonSerialize(): mixed
-    {
-        return $this->toArray();
     }
 }

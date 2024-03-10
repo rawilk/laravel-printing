@@ -10,6 +10,13 @@ use Rawilk\Printing\Drivers\PrintNode\ContentType;
 
 class PrintJob extends Entity
 {
+    protected const VALID_CONTENT_TYPES = [
+        ContentType::PDF_BASE64,
+        ContentType::RAW_BASE64,
+        ContentType::PDF_URI,
+        ContentType::RAW_URI,
+    ];
+
     /**
      * The print job's ID.
      */
@@ -59,13 +66,6 @@ class PrintJob extends Entity
      * The printer used for the print job.
      */
     public ?Printer $printer = null;
-
-    protected const VALID_CONTENT_TYPES = [
-        ContentType::PDF_BASE64,
-        ContentType::RAW_BASE64,
-        ContentType::PDF_URI,
-        ContentType::RAW_URI,
-    ];
 
     public function setPrinter(array $data): self
     {
@@ -180,15 +180,15 @@ class PrintJob extends Entity
         return $this;
     }
 
-    protected function isValidContentType(string $type): bool
-    {
-        return in_array($type, static::VALID_CONTENT_TYPES, true);
-    }
-
     public function toArray(): array
     {
         return array_merge(parent::toArray(), [
             'createTimestamp' => $this->created,
         ]);
+    }
+
+    protected function isValidContentType(string $type): bool
+    {
+        return in_array($type, static::VALID_CONTENT_TYPES, true);
     }
 }

@@ -31,14 +31,9 @@ abstract class PrintNodeRequest
         ])->acceptJson();
     }
 
-    protected function endpoint(string $service): string
+    public function postRequest(string $service, array $data = [])
     {
-        return $this->applyPaginationToUrl(static::BASE_URL . $service);
-    }
-
-    protected function getRequest(string $service): array
-    {
-        $response = $this->http->get($this->endpoint($service));
+        $response = $this->http->post($this->endpoint($service), $data);
 
         if (! $response->successful()) {
             $this->handleFailedResponse($response);
@@ -47,9 +42,14 @@ abstract class PrintNodeRequest
         return $response->json();
     }
 
-    public function postRequest(string $service, array $data = [])
+    protected function endpoint(string $service): string
     {
-        $response = $this->http->post($this->endpoint($service), $data);
+        return $this->applyPaginationToUrl(static::BASE_URL . $service);
+    }
+
+    protected function getRequest(string $service): array
+    {
+        $response = $this->http->get($this->endpoint($service));
 
         if (! $response->successful()) {
             $this->handleFailedResponse($response);
