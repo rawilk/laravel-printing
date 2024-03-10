@@ -45,7 +45,7 @@ class PrintNode implements Driver
     /**
      * @return \Illuminate\Support\Collection<int, RawilkPrinter>
      */
-    public function printers(int $limit = null, int $offset = null, string $dir = null): Collection
+    public function printers(?int $limit = null, ?int $offset = null, ?string $dir = null): Collection
     {
         return $this->api
             ->printers($limit, $offset, $dir)
@@ -67,7 +67,7 @@ class PrintNode implements Driver
     /**
      * @return \Illuminate\Support\Collection<int, \Rawilk\Printing\Contracts\PrintJob>
      */
-    public function printJobs(int $limit = null, int $offset = null, string $dir = null): Collection
+    public function printJobs(?int $limit = null, ?int $offset = null, ?string $dir = null): Collection
     {
         return $this->api
             ->printJobs($limit, $offset, $dir)
@@ -75,7 +75,7 @@ class PrintNode implements Driver
             ->map(fn (PrintNodePrintJob $j) => new RawilkPrintJob($j));
     }
 
-    public function printerPrintJobs($printerId, int $limit = null, int $offset = null, string $dir = null): Collection
+    public function printerPrintJobs($printerId, ?int $limit = null, ?int $offset = null, ?string $dir = null): Collection
     {
         return $this->api
             ->printerPrintJobs($printerId, $limit, $offset, $dir)

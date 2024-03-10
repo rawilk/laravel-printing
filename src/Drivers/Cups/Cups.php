@@ -69,7 +69,7 @@ class Cups implements Driver
     }
 
     /** @return \Illuminate\Support\Collection<int, RawilkPrinter> */
-    public function printers(int $limit = null, int $offset = null, string $dir = null): Collection
+    public function printers(?int $limit = null, ?int $offset = null, ?string $dir = null): Collection
     {
         // TODO: find out if CUPS driver can paginate
         $printers = $this->printerManager()->getList();
@@ -85,7 +85,7 @@ class Cups implements Driver
         return null;
     }
 
-    public function printerPrintJobs($printerId, int $limit = null, int $offset = null, string $dir = null): Collection
+    public function printerPrintJobs($printerId, ?int $limit = null, ?int $offset = null, ?string $dir = null): Collection
     {
         // TODO: Implement printerPrintJobs() method.
         return collect();
@@ -98,7 +98,7 @@ class Cups implements Driver
     }
 
     /** @return \Illuminate\Support\Collection<int, \Rawilk\Printing\Contracts\PrintJob> */
-    public function printJobs(int $limit = null, int $offset = null, string $dir = null): Collection
+    public function printJobs(?int $limit = null, ?int $offset = null, ?string $dir = null): Collection
     {
         // TODO: implement printJobs() method.
         return collect();

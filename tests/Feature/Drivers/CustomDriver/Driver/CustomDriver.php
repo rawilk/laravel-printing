@@ -33,7 +33,7 @@ final class CustomDriver implements Driver
             ->first();
     }
 
-    public function printers(int $limit = null, int $offset = null, string|int $dir = null): Collection
+    public function printers(?int $limit = null, ?int $offset = null, string|int|null $dir = null): Collection
     {
         return collect($this->customPrinters())
             ->map(fn (array $data) => new CustomDriverPrinter($data))
@@ -60,7 +60,7 @@ final class CustomDriver implements Driver
         ];
     }
 
-    public function printJobs(int $limit = null, int $offset = null, string $dir = null): Collection
+    public function printJobs(?int $limit = null, ?int $offset = null, ?string $dir = null): Collection
     {
         return collect();
     }
@@ -70,7 +70,7 @@ final class CustomDriver implements Driver
         return null;
     }
 
-    public function printerPrintJobs($printerId, int $limit = null, int $offset = null, string $dir = null): Collection
+    public function printerPrintJobs($printerId, ?int $limit = null, ?int $offset = null, ?string $dir = null): Collection
     {
         return collect();
     }

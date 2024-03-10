@@ -29,7 +29,7 @@ class Printing implements Driver
         return $this->defaultPrinterId;
     }
 
-    public function driver(string $driver = null): self
+    public function driver(?string $driver = null): self
     {
         $this->driver = app('printing.factory')->driver($driver);
 
@@ -61,7 +61,7 @@ class Printing implements Driver
     /**
      * @return \Illuminate\Support\Collection<int, \Rawilk\Printing\Contracts\Printer>
      */
-    public function printers(int $limit = null, int $offset = null, string $dir = null): Collection
+    public function printers(?int $limit = null, ?int $offset = null, ?string $dir = null): Collection
     {
         try {
             $printers = $this->driver->printers($limit, $offset, $dir);
@@ -77,7 +77,7 @@ class Printing implements Driver
     /**
      * @return \Illuminate\Support\Collection<int, \Rawilk\Printing\Contracts\PrintJob>
      */
-    public function printJobs(int $limit = null, int $offset = null, string $dir = null): Collection
+    public function printJobs(?int $limit = null, ?int $offset = null, ?string $dir = null): Collection
     {
         try {
             $printJobs = $this->driver->printJobs($limit, $offset, $dir);
@@ -106,7 +106,7 @@ class Printing implements Driver
     /**
      * @return \Illuminate\Support\Collection<int, \Rawilk\Printing\Contracts\PrintJob>
      */
-    public function printerPrintJobs($printerId, int $limit = null, int $offset = null, string $dir = null): Collection
+    public function printerPrintJobs($printerId, ?int $limit = null, ?int $offset = null, ?string $dir = null): Collection
     {
         try {
             $printJobs = $this->driver->printerPrintJobs($printerId, $limit, $offset, $dir);

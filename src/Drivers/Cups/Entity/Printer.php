@@ -70,9 +70,9 @@ class Printer implements Arrayable, JsonSerializable, PrinterContracts
 
     /**
      * @param  array  $params
-     *  - Possible Params:
-     *    -- limit => int
-     *    -- status => 'completed', 'not-completed'
+     *                         - Possible Params:
+     *                         -- limit => int
+     *                         -- status => 'completed', 'not-completed'
      */
     public function jobs(array $params = []): Collection
     {

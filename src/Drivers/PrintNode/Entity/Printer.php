@@ -68,7 +68,7 @@ class Printer implements Arrayable, JsonSerializable, PrinterContract
         return $this->printer->trays();
     }
 
-    public function jobs(int $limit = null, int $offset = null, string $dir = null, string $apiKey = null): Collection
+    public function jobs(?int $limit = null, ?int $offset = null, ?string $dir = null, ?string $apiKey = null): Collection
     {
         $api = app(PrintNode::class);
 

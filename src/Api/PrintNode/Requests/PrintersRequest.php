@@ -8,7 +8,7 @@ use Rawilk\Printing\Api\PrintNode\Entity\Printers;
 
 class PrintersRequest extends PrintNodeRequest
 {
-    public function response(int $limit = null, int $offset = null, string $dir = null): Printers
+    public function response(?int $limit = null, ?int $offset = null, ?string $dir = null): Printers
     {
         $this->limit = $limit;
         $this->offset = $offset;

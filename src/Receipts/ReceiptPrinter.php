@@ -84,7 +84,7 @@ class ReceiptPrinter
         return $this;
     }
 
-    public function lineHeight(int $height = null): self
+    public function lineHeight(?int $height = null): self
     {
         $this->printer->setLineSpacing($height);
 

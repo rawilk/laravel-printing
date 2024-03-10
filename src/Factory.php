@@ -23,7 +23,7 @@ class Factory
     {
     }
 
-    public function driver(string $driver = null): Driver
+    public function driver(?string $driver = null): Driver
     {
         $driver = $driver ?: $this->getDriverFromConfig();
 

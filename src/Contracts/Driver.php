@@ -10,13 +10,13 @@ interface Driver
 
     public function printer($printerId = null): ?Printer;
 
-    public function printers(int $limit = null, int $offset = null, string $dir = null): Collection;
+    public function printers(?int $limit = null, ?int $offset = null, ?string $dir = null): Collection;
 
-    public function printJobs(int $limit = null, int $offset = null, string $dir = null): Collection;
+    public function printJobs(?int $limit = null, ?int $offset = null, ?string $dir = null): Collection;
 
     public function printJob($jobId = null): ?PrintJob;
 
-    public function printerPrintJobs($printerId, int $limit = null, int $offset = null, string $dir = null): Collection;
+    public function printerPrintJobs($printerId, ?int $limit = null, ?int $offset = null, ?string $dir = null): Collection;
 
     public function printerPrintJob($printerId, $jobId): ?PrintJob;
 }
