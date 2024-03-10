@@ -67,7 +67,7 @@ jobs:
                 run: composer show -D
 
             -   name: Execute tests
-                run: vendor/bin/pest -p
+                run: vendor/bin/pest
                 env:
                     PRINT_NODE_API_KEY: ${{ secrets.PRINT_NODE_API_KEY }}
                     PRINT_NODE_ID: ${{ secrets.PRINT_NODE_ID }}
