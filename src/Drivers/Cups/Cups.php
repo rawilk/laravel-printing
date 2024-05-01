@@ -67,7 +67,7 @@ class Cups implements Driver
             ->addOperationAttributes(
                 [
                     'job-uri' => new Uri($jobId),
-                    'requested-attributes' => new Keyword(['all']),
+                    'requested-attributes' => new Keyword(['job-uri', 'job-state', 'number-of-documents', 'job-name', 'document-format', 'date-time-at-creation', 'job-printer-state-message', 'job-printer-uri']),
                 ]
             );
 
