@@ -27,9 +27,9 @@ class Resolution extends Text
     }
 
 
-    public static function decode(string $binary, ?int $length = null): mixed
+    public static function fromBinary(string $binary, ?int $length = null): self
     {
         $value = unpack('Np/Np2/cu', $binary);
-        return $value['p'] . 'x' . $value['p2'] . static::$unitMap[$value['u']];
+        return new static($value['p'] . 'x' . $value['p2'] . static::$unitMap[$value['u']]);
     }
 }

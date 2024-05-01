@@ -45,11 +45,11 @@ class Printing implements Driver
 
     public function printer($printerId = null): ?Printer
     {
-        //try {
+        try {
             $printer = $this->driver->printer($printerId);
-        //} catch (Throwable $e) {
-        //    $printer = null;
-        //}
+        } catch (Throwable $e) {
+            $printer = null;
+        }
 
         $this->resetDriver();
 
