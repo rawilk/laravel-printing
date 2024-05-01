@@ -4,129 +4,115 @@ declare(strict_types=1);
 
 namespace Rawilk\Printing\Drivers\Cups;
 
-use Illuminate\Support\Collection;
-use Illuminate\Support\Traits\Macroable;
+use Rawilk\Printing\Api\Cups\Cups as CupsApi;
+use Rawilk\Printing\Api\Cups\Operation;
+use Rawilk\Printing\Api\Cups\Request;
+use Rawilk\Printing\Api\Cups\Types\Primitive\Keyword;
+use Rawilk\Printing\Api\Cups\Types\Uri;
+use Rawilk\Printing\Api\Cups\Version;
 use Rawilk\Printing\Contracts\Driver;
 use Rawilk\Printing\Contracts\Printer;
 use Rawilk\Printing\Contracts\PrintJob;
 use Rawilk\Printing\Drivers\Cups\Entity\Printer as RawilkPrinter;
-use Rawilk\Printing\Drivers\Cups\Support\Client;
-use Rawilk\Printing\Exceptions\InvalidDriverConfig;
-use Smalot\Cups\Builder\Builder;
-use Smalot\Cups\Manager\JobManager;
-use Smalot\Cups\Manager\PrinterManager;
-use Smalot\Cups\Model\Printer as SmalotPrinter;
-use Smalot\Cups\Transport\ResponseParser;
+use Rawilk\Printing\Drivers\Cups\PrintTask;
 
 class Cups implements Driver
 {
-    use Macroable;
-
-    protected Builder $builder;
-
-    protected Client $client;
-
-    protected ResponseParser $responseParser;
-
-    protected PrinterManager $printerManager;
-
-    protected JobManager $jobManager;
+    private CupsApi $api;
 
     public function __construct()
     {
-        $this->client = new Client;
-        $this->responseParser = new ResponseParser;
-        $this->builder = new Builder(__DIR__ . '/config/');
-    }
-
-    public function remoteServer(string $ip, string $username, string $password, int $port = 631): void
-    {
-        if (! $username || ! $password) {
-            throw InvalidDriverConfig::invalid('Remote CUPS server requires a username and password.');
-        }
-
-        $this->client = new Client(
-            $username,
-            $password,
-            ['remote_socket' => "tcp://{$ip}:{$port}"]
-        );
+        $this->api = app(CupsApi::class);
     }
 
     public function newPrintTask(): \Rawilk\Printing\Contracts\PrintTask
     {
-        return new PrintTask($this->jobManager(), $this->printerManager());
+        return new PrintTask();
     }
 
     public function printer($printerId = null): ?Printer
     {
-        $printer = $this->printerManager()->findByUri($printerId);
+        $request = new Request();
+        $request->setVersion(Version::V1_1)
+            ->setOperation(Operation::GET_PRINTER_ATTRIBUTES)
+            ->addOperationAttributes(['printer-uri' => new Uri($printerId)]);
 
-        if ($printer) {
-            return new RawilkPrinter($printer, $this->jobManager());
-        }
-
-        return null;
+        return $this->api->makeRequest($request)->getPrinters()->first();
     }
 
-    /** @return \Illuminate\Support\Collection<int, RawilkPrinter> */
-    public function printers(?int $limit = null, ?int $offset = null, ?string $dir = null): Collection
+    /**
+     * CUPS doesn't support limit, offset
+     *
+     * Printers have a lot of attributes, without the requested attributes filter
+     * the request will be about 2x slower
+     *
+     * @return \Illuminate\Support\Collection<RawilkPrinter>
+     */
+    public function printers(?int $limit = null, ?int $offset = null, ?string $dir = null): \Illuminate\Support\Collection
     {
-        // TODO: find out if CUPS driver can paginate
-        $printers = $this->printerManager()->getList();
+        $request = new Request();
+        $request->setVersion(Version::V1_1)
+            ->setOperation(Operation::CUPS_GET_PRINTERS);
 
-        return collect($printers)
-            ->map(fn (SmalotPrinter $printer) => new RawilkPrinter($printer, $this->jobManager()))
-            ->values();
+        $printers = $this->api->makeRequest($request)->getPrinters();
+
+        return $printers->slice($offset, $limit)->values();
     }
 
     public function printJob($jobId = null): ?PrintJob
     {
-        // TODO: Implement printJob() method.
-        return null;
+        $request = new Request();
+        $request->setVersion(Version::V1_1)
+            ->setOperation(Operation::GET_JOB_ATTRIBUTES)
+            ->addOperationAttributes(
+                [
+                    'job-uri' => new Uri($jobId),
+                    'requested-attributes' => new Keyword(['all']),
+                ]
+            );
+
+        return $this->api->makeRequest($request)->getJobs()->first();
     }
 
-    public function printerPrintJobs($printerId, ?int $limit = null, ?int $offset = null, ?string $dir = null): Collection
+    /**
+     * Returns in-progress jobs
+     */
+    public function printerPrintJobs($printerId, ?int $limit = null, ?int $offset = null, ?string $dir = null): \Illuminate\Support\Collection
     {
-        // TODO: Implement printerPrintJobs() method.
-        return collect();
+        $request = new Request();
+        $request->setVersion(Version::V1_1)
+            ->setOperation(Operation::GET_JOBS)
+            ->addOperationAttributes(
+                [
+                    'printer-uri' => new Uri($printerId),
+                    'which-jobs' => new Keyword('not-completed'),
+                    'requested-attributes' => new Keyword(['job-uri', 'job-state', 'number-of-documents', 'job-name', 'document-format', 'date-time-at-creation', 'job-printer-state-message', 'job-printer-uri']),
+                ]
+            );
+
+        return $this->api->makeRequest($request)->getJobs();
     }
 
     public function printerPrintJob($printerId, $jobId): ?PrintJob
     {
-        // TODO: Implement printerPrintJob() method.
-        return null;
+        return $this->printJob($jobId);
     }
 
-    /** @return \Illuminate\Support\Collection<int, \Rawilk\Printing\Contracts\PrintJob> */
-    public function printJobs(?int $limit = null, ?int $offset = null, ?string $dir = null): Collection
+    /**
+     * @return \Illuminate\Support\Collection<\Rawilk\Printing\Contracts\PrintJob>
+     */
+    public function printJobs(?int $limit = null, ?int $offset = null, ?string $dir = null): \Illuminate\Support\Collection
     {
-        // TODO: implement printJobs() method.
-        return collect();
-    }
+        $printerUris = $this->printers()->map(fn ($i) => $i->id());
 
-    protected function jobManager(): JobManager
-    {
-        if (! isset($this->jobManager)) {
-            $this->jobManager = new JobManager(
-                $this->builder,
-                $this->client,
-                $this->responseParser
-            );
-        }
+        $jobs = collect();
+        // Make request for each printer...
+        $printerUris->each(
+            function ($uri) use ($jobs) {
+                $jobs->push(...$this->printerPrintJobs($uri));
+            }
+        );
 
-        return $this->jobManager;
-    }
-
-    protected function printerManager(): PrinterManager
-    {
-        if (! isset($this->printerManager)) {
-            $this->printerManager = new PrinterManager(
-                $this->builder,
-                $this->client,
-                $this->responseParser
-            );
-        }
-
-        return $this->printerManager;
+        return $jobs;
     }
 }

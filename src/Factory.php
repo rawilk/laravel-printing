@@ -37,13 +37,7 @@ class Factory
 
     protected function createCupsDriver(array $config): Driver
     {
-        $cups = new Cups;
-
-        if (isset($config['ip'])) {
-            $cups->remoteServer($config['ip'], $config['username'], $config['password'], $config['port']);
-        }
-
-        return $cups;
+        return new Cups();
     }
 
     protected function createPrintnodeDriver(array $config): Driver

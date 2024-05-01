@@ -1,82 +1,78 @@
 {
-    "name": "rawilk/laravel-printing",
-    "description": "Direct printing for Laravel apps",
-    "keywords": [
-        "rawilk",
-        "laravel-printing",
-        "PrintNode",
-        "CUPS",
-        "ipp",
-        "Receipt printing",
-        "Direct printing",
-        "Raw printing"
+  "name": "rawilk/laravel-printing",
+  "description": "Direct printing for Laravel apps",
+  "keywords": [
+    "rawilk",
+    "laravel-printing",
+    "PrintNode",
+    "CUPS",
+    "ipp",
+    "Receipt printing",
+    "Direct printing",
+    "Raw printing"
+  ],
+  "homepage": "https://github.com/rawilk/laravel-printing",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Randall Wilk",
+      "email": "randall@randallwilk.dev",
+      "homepage": "https://randallwilk.dev",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": "^8.0|^8.1|^8.2|^8.3",
+    "guzzlehttp/guzzle": "^7.5",
+    "illuminate/support": "^8.0|^9.0|^10.0|^11.0",
+    "mike42/escpos-php": "^4.0",
+    "spatie/laravel-package-tools": "^1.2|^1.13"
+  },
+  "require-dev": {
+    "laravel/pint": "^1.5",
+    "mockery/mockery": ">=1.4",
+    "orchestra/testbench": "^6.0|^7.0|^8.0|^9.0",
+    "pestphp/pest": "^1.20|^2.34",
+    "pestphp/pest-plugin-laravel": "^1.0|^2.2",
+    "php-http/socket-client": "^2.1",
+    "php-http/message-factory": "^1.1",
+    "psr/http-message": "1.*",
+    "psr/http-client": "^1.0",
+    "spatie/laravel-ray": "^1.0|^1.29"
+  },
+  "autoload": {
+    "psr-4": {
+      "Rawilk\\Printing\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Rawilk\\Printing\\Tests\\": "tests"
+    }
+  },
+  "scripts": {
+    "post-autoload-dump": [
+      "@php ./vendor/bin/testbench package:discover --ansi"
     ],
-    "homepage": "https://github.com/rawilk/laravel-printing",
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Randall Wilk",
-            "email": "randall@randallwilk.dev",
-            "homepage": "https://randallwilk.dev",
-            "role": "Developer"
-        }
-    ],
-    "require": {
-        "php": "^8.0",
-        "guzzlehttp/guzzle": "^7.5",
-        "illuminate/support": "^8.0|^9.0|^10.0|^11.0|^12.0",
-        "mike42/escpos-php": "^4.0",
-        "spatie/laravel-package-tools": "^1.2|^1.13"
-    },
-    "require-dev": {
-        "laravel/pint": "^1.5",
-        "mockery/mockery": ">=1.4",
-        "orchestra/testbench": "^6.0|^7.0|^8.0|^9.0|^10.0",
-        "pestphp/pest": "^1.20|^2.34|^3.7",
-        "pestphp/pest-plugin-laravel": "^1.0|^2.2|^3.1",
-        "php-http/socket-client": "^2.1",
-        "php-http/message-factory": "^1.1",
-        "psr/http-message": "1.*|^2.0",
-        "psr/http-client": "^1.0",
-        "smalot/cups-ipp": "^0.5.0",
-        "spatie/laravel-ray": "^1.0|^1.29"
-    },
-    "suggest": {
-        "smalot/cups-ipp": "Required when using the CUPS driver"
-    },
-    "autoload": {
-        "psr-4": {
-            "Rawilk\\Printing\\": "src"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "Rawilk\\Printing\\Tests\\": "tests"
-        }
-    },
-    "scripts": {
-        "post-autoload-dump": [
-            "@php ./vendor/bin/testbench package:discover --ansi"
-        ],
-        "test": "vendor/bin/pest -p",
-        "format": "vendor/bin/pint --dirty"
-    },
-    "config": {
-        "sort-packages": true,
-        "allow-plugins": {
-            "pestphp/pest-plugin": true
-        }
-    },
-    "extra": {
-        "laravel": {
-            "providers": [
-                "Rawilk\\Printing\\PrintingServiceProvider"
-            ],
-            "aliases": {
-                "Printing": "Rawilk\\Printing\\Facades\\Printing"
-            }
-        }
-    },
-    "minimum-stability": "dev",
-    "prefer-stable": true
+    "test": "vendor/bin/pest -p",
+    "format": "vendor/bin/pint --dirty"
+  },
+  "config": {
+    "sort-packages": true,
+    "allow-plugins": {
+      "pestphp/pest-plugin": true
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Rawilk\\Printing\\PrintingServiceProvider"
+      ],
+      "aliases": {
+        "Printing": "Rawilk\\Printing\\Facades\\Printing"
+      }
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
 }

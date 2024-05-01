@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Rawilk\Printing;
 
+use Rawilk\Printing\Api\Cups\Cups;
 use Rawilk\Printing\Api\PrintNode\PrintNode;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
@@ -28,6 +29,14 @@ class PrintingServiceProvider extends PackageServiceProvider
         );
 
         $this->app->singleton('printing.driver', fn ($app) => $app['printing.factory']->driver());
+
+        $this->app->singleton(Cups::class, fn ($app) => new Cups(
+            $app['config']['printing']['drivers']['cups']['ip'],
+            $app['config']['printing']['drivers']['cups']['username'],
+            $app['config']['printing']['drivers']['cups']['password'],
+            $app['config']['printing']['drivers']['cups']['port'],
+            $app['config']['printing']['drivers']['cups']['secure'] ?? false,
+        ));
 
         $this->app->singleton(
             Printing::class,

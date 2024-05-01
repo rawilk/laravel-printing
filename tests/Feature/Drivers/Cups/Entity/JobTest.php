@@ -2,21 +2,8 @@
 
 declare(strict_types=1);
 
-use Rawilk\Printing\Drivers\Cups\Support\Client;
-use Smalot\Cups\Builder\Builder;
-use Smalot\Cups\Manager\JobManager;
-use Smalot\Cups\Transport\ResponseParser;
-
-beforeEach(function () {
-    $client = new Client;
-    $responseParser = new ResponseParser;
-    $builder = new Builder;
-
-    $this->jobManager = new JobManager($builder, $client, $responseParser);
-});
-
 test('can get the job id', function () {
-    expect(createCupsJob()->id())->toBe(123456);
+    expect(createCupsJob()->id())->toBe('localhost:631/jobs/123');
 });
 
 test('can get the job name', function () {
@@ -24,12 +11,12 @@ test('can get the job name', function () {
 });
 
 test('can get the job state', function () {
-    expect(createCupsJob()->state())->toEqual('success');
+    expect(createCupsJob()->state())->toEqual('completed');
 });
 
 test('can get the printer name and id', function () {
     $job = createCupsJob();
 
     expect($job->printerName())->toEqual('printer-name');
-    expect($job->printerId())->toEqual('localhost:631');
+    expect($job->printerId())->toEqual('localhost:631/printers/printer-name');
 });
