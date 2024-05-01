@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+use Rawilk\Printing\Drivers\Cups\Entity\Printer;
+use Rawilk\Printing\Drivers\Cups\Entity\PrintJob;
 use Rawilk\Printing\Tests\Feature\Api\PrintNode\PrintNodeTestCase;
 use Rawilk\Printing\Tests\TestCase;
 
@@ -23,20 +25,24 @@ function samplePrintNodeData(string $file): array
 
 function createCupsJob(): Rawilk\Printing\Drivers\Cups\Entity\PrintJob
 {
-    $cupsJob = new \Smalot\Cups\Model\Job;
-    $cupsJob->setId(123456)
-        ->setName('my print job')
-        ->setState('success');
+    $cupsJob = new PrintJob([
+        'job-uri' => new Rawilk\Printing\Api\Cups\Types\Uri('localhost:631/jobs/123'),
+        'job-printer-uri' => new Rawilk\Printing\Api\Cups\Types\Uri('localhost:631/printers/printer-name'),
+        'job-name' => new Rawilk\Printing\Api\Cups\Types\TextWithoutLanguage('my print job'),
+        'job-state' => new Rawilk\Printing\Api\Cups\Types\Primitive\Enum(Rawilk\Printing\Drivers\Cups\Enum\JobState::COMPLETED->value),
+    ]);
 
-    return new \Rawilk\Printing\Drivers\Cups\Entity\PrintJob($cupsJob, createCupsPrinter());
+    return $cupsJob;
 }
 
-function createCupsPrinter(): Rawilk\Printing\Drivers\Cups\Entity\Printer
+function createCupsPrinter(array $attributes = []): Rawilk\Printing\Drivers\Cups\Entity\Printer
 {
-    $cupsPrinter = new \Smalot\Cups\Model\Printer;
-    $cupsPrinter->setName('printer-name')
-        ->setUri('localhost:631')
-        ->setStatus('online');
+    $cupsPrinter = new Printer([
+        'printer-name' => new Rawilk\Printing\Api\Cups\Types\TextWithoutLanguage('printer-name'),
+        'printer-state' => new Rawilk\Printing\Api\Cups\Types\Primitive\Enum(Rawilk\Printing\Drivers\Cups\Enum\PrinterState::IDLE->value),
+        'printer-uri-supported' => new Rawilk\Printing\Api\Cups\Types\TextWithoutLanguage('localhost:631'),
+        ...$attributes
+    ]);
 
-    return new \Rawilk\Printing\Drivers\Cups\Entity\Printer($cupsPrinter, test()->jobManager);
+    return $cupsPrinter;
 }
