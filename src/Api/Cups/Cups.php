@@ -25,7 +25,13 @@ class Cups
      */
     public function makeRequest(Request $request): Response
     {
-        $http = Http::withBody($request->encode())->withHeaders(
+        $http = Http::withBody($request->encode());
+
+        if ($this->username || $this->password) {
+            $http->withBasicAuth($this->username, $this->password);
+        }
+
+        $http = $http->withHeaders(
             [
             "Content-Type" => "application/ipp"
             ]
