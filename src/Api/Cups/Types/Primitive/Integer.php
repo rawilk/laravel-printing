@@ -13,7 +13,7 @@ class Integer extends Type
 
     public function encode(): string
     {
-        return pack('n', strlen($this->value)) . pack('N', $this->value);
+        return pack('n', 4) . pack('N', $this->value);
     }
 
     public static function fromBinary(string $binary, ?int $length = null): self
