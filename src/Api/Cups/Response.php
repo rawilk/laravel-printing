@@ -84,17 +84,14 @@ class Response
 
             // Array of values
             if ($attrName === '') {
-                $lastAttr = $attributes[array_key_last($attributes)];
+                $index = array_key_last($attributes);
+                $lastAttr = $attributes[$index];
 
-                if ($typeTag !== TypeTag::RANGEOFINTEGER->value && gettype($lastAttr->value) !== 'array') {
-                    $lastAttr->value = [$lastAttr->value];
+                if (!is_array($lastAttr)) {
+                    $attributes[$index] = [$lastAttr];
                 }
 
-                if ($typeTag == TypeTag::RANGEOFINTEGER->value) {
-                    $lastAttr->value[] = $attribute->value[0];
-                } else {
-                    $lastAttr->value[] = $attribute->value;
-                }
+                $attributes[$index][] = $attribute;
             } else {
                 $attributes[$attrName] = $attribute;
             }

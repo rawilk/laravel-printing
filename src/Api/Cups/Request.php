@@ -62,7 +62,7 @@ class Request
     }
 
     /**
-     * @param array<string, \Rawilk\Printing\Api\Cups\Type> $attributes
+     * @param array<string, \Rawilk\Printing\Api\Cups\Type|\Rawilk\Printing\Api\Cups\Type[]>> $attributes
      */
     public function addOperationAttributes(array $attributes)
     {
@@ -71,7 +71,7 @@ class Request
     }
 
     /**
-     * @param array<string, \Rawilk\Printing\Api\Cups\Type> $attributes
+     * @param array<string, \Rawilk\Printing\Api\Cups\Type|\Rawilk\Printing\Api\Cups\Type[]> $attributes
      */
     public function addJobAttributes(array $attributes)
     {

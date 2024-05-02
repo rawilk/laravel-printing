@@ -14,7 +14,7 @@ abstract class AttributeGroup
     protected int $tag;
 
     /**
-     * @var array<string, \Rawilk\Printing\Api\Cups\Type>
+     * @var array<string, \Rawilk\Printing\Api\Cups\Type|array<int, \Rawilk\Printing\Api\Cups\Type>>
      */
     protected array $attributes = [];
 
@@ -29,7 +29,7 @@ abstract class AttributeGroup
     }
 
     /**
-     * @var array<string, \Rawilk\Printing\Api\Cups\Type>
+     * @var array<string, \Rawilk\Printing\Api\Cups\Type|array<int, \Rawilk\Printing\Api\Cups\Type>>
      */
     public function getAttributes()
     {
@@ -40,7 +40,7 @@ abstract class AttributeGroup
     {
         $binary = pack('c', $this->tag);
         foreach ($this->attributes as $name => $value) {
-            if (gettype($value->value) === 'array') {
+            if (gettype($value) === 'array') {
                 $binary .= $this->handleArrayEncode($name, $value);
                 continue;
             }
@@ -56,23 +56,27 @@ abstract class AttributeGroup
 
     /**
      * If attribute is an array, the attribute name after the first element is empty
+     * @param string $name
+     * @param array<int, \Rawilk\Printing\Api\Cups\Type> $values
      */
-    private function handleArrayEncode(string $name, \Rawilk\Printing\Api\Cups\Type $value): string
+    private function handleArrayEncode(string $name, array $values): string
     {
         $str = '';
-        for ($i = 0; $i < sizeof($value->value); $i++) {
+        if (get_class($values[0]) === \Rawilk\Printing\Api\Cups\Types\RangeOfInteger::class) {
+            \Rawilk\Printing\Api\Cups\Types\RangeOfInteger::checkOverlaps($values);
+        }
+        for ($i = 0; $i < sizeof($values); $i++) {
             $_name = $name;
             if ($i !== 0) {
                 $_name = '';
             }
             $nameLen = strlen($_name);
 
-            $str .= pack('c', $value->getTag()); // Value tag
+            $str .= pack('c', $values[$i]->getTag()); // Value tag
             $str .= pack('n', $nameLen); // Attribute key length
             $str .= pack('a' . $nameLen, $_name); // Attribute key
 
-            $class = $value::class;
-            $str .= (new $class($value->value[$i]))->encode();
+            $str .= $values[$i]->encode();
         }
         return $str;
     }

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Rawilk\Printing\Api\Cups\Types;
 
+use Rawilk\Printing\Api\Cups\Exceptions\RangeOverlap;
 use Rawilk\Printing\Api\Cups\Type;
 use Rawilk\Printing\Api\Cups\TypeTag;
 
@@ -12,12 +13,10 @@ class RangeOfInteger extends Type
     protected int $tag = TypeTag::RANGEOFINTEGER->value;
 
     /**
-     * @param array<int, int[]>|int[] $value
+     * @param int[] $value - Array of 2 integers
      */
     public function __construct(public mixed $value)
     {
-        parent::__construct($value);
-        $this->checkOverlaps();
     }
 
     public function encode(): string
@@ -28,36 +27,27 @@ class RangeOfInteger extends Type
     public static function fromBinary(string $binary, ?int $length = null): self
     {
         $value = unpack('Nl/Nu', $binary);
-        return new static([[$value['l'], $value['u']]]);
+        return new static([$value['l'], $value['u']]);
     }
 
-    public function addRange($lower, $upper)
-    {
-        $this->value[] = [$lower, $upper];
-        $this->checkOverlaps();
-    }
-
-    private function sortValues()
+    /**
+     * Sorts and checks the array for overlaps
+     *
+     * @param array<int, RangeOfInteger> $values
+     * @throws RangeOverlap
+     */
+    public static function checkOverlaps(array &$values)
     {
         usort(
-            $this->value,
+            $values,
             function ($a, $b) {
-                return $a[0] - $b[0];
+                return $a->value[0] - $b->value[0];
             }
         );
-    }
 
-    private function checkOverlaps()
-    {
-        if (gettype($this->value[0]) !== 'array') {
-            return;
-        }
-        $this->sortValues();
-        $ranges = $this->value;
-
-        $count = count($ranges);
+        $count = count($values);
         for ($i = 0; $i < $count - 1; $i++) {
-            if ($ranges[$i][1] >= $ranges[$i + 1][0]) {
+            if ($values[$i]->value[1] >= $values[$i + 1]->value[0]) {
                 throw new \Rawilk\Printing\Api\Cups\Exceptions\RangeOverlap('Range overlap is not allowed!');
             }
         }
