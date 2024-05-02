@@ -124,9 +124,9 @@ class PrintTask extends BasePrintTask
                     'printer-uri' => new Uri($this->printerId),
                     'document-format' => new MimeMedia($this->contentType),
                     'job-name' => new NameWithoutLanguage($this->resolveJobTitle()),
-                    ...$this->options
                 ]
             )
+            ->addJobAttributes($this->options)
             ->setContent($this->content);
 
         return $this->api->makeRequest($request)->getJobs()->first();
