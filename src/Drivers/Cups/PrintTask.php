@@ -67,7 +67,7 @@ class PrintTask extends BasePrintTask
 
     /**
      * @param string $key
-     * @param Type   $value
+     * @param Type|Type[] $value
      */
     public function option(string $key, $value): self
     {
@@ -84,9 +84,12 @@ class PrintTask extends BasePrintTask
     public function range($start, $end = null): self
     {
         if (!array_key_exists('page-ranges', $this->options)) {
-            $this->options['page-ranges'] = new RangeOfInteger([[$start, $end]]);
+            $this->options['page-ranges'] = new RangeOfInteger([$start, $end]);
         } else {
-            $this->options['page-ranges']->addRange($start, $end);
+            if (!is_array($this->options['page-ranges'])) {
+                $this->options['page-ranges'] = [$this->options['page-ranges']];
+            }
+            $this->options['page-ranges'][] = new RangeOfInteger([$start, $end]);
         }
         return $this;
     }
