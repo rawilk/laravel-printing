@@ -16,8 +16,11 @@ class Unknown extends Type
         return pack('n', 0) . '';
     }
 
-    public static function fromBinary(string $binary, ?int $length = null): self
+    public static function fromBinary(string $binary, int &$offset): array
     {
-        return new static(null);
+        $attrName = self::nameFromBinary($binary, $offset);
+        $offset += 2; // Value length
+
+        return [$attrName, new static(null)];
     }
 }

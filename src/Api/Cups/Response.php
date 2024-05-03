@@ -65,22 +65,13 @@ class Response
             $type = TypeTag::tryFrom($typeTag);
             $offset++;
 
-            $nameLen = (unpack('n', $binary, $offset))[1];
-            $offset += 2;
-
-            $attrName = unpack('a' . $nameLen, $binary, $offset)[1];
-            $offset += $nameLen;
-
             if (!$type) {
-                throw new UnknownType("Unknown type tag \"$typeTag\" for attribute \"$attrName\".");
+                throw new UnknownType("Unknown type tag \"$typeTag\".");
             }
 
-            $valueLen = (unpack('n', $binary, $offset))[1];
-            $offset += 2;
-
             $typeClass = $type->getClass();
-            $attribute = $typeClass::fromBinary(substr($binary, $offset, $valueLen), $valueLen);
-            $offset += $valueLen;
+            [$attrName, $attribute] = $typeClass::fromBinary($binary, $offset);
+
 
             // Array of values
             if ($attrName === '') {

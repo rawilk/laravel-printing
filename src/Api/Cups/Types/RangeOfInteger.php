@@ -24,10 +24,17 @@ class RangeOfInteger extends Type
         return pack('n', 8) . pack('N', $this->value[0]) .  pack('N', $this->value[1]);
     }
 
-    public static function fromBinary(string $binary, ?int $length = null): self
+    public static function fromBinary(string $binary, int &$offset): array
     {
-        $value = unpack('Nl/Nu', $binary);
-        return new static([$value['l'], $value['u']]);
+        $attrName = self::nameFromBinary($binary, $offset);
+
+        $valueLen = (unpack('n', $binary, $offset))[1];
+        $offset += 2;
+
+        $value = unpack('Nl/Nu', $binary, $offset);
+        $offset += $valueLen;
+
+        return [$attrName, new static([$value['l'], $value['u']])];
     }
 
     /**

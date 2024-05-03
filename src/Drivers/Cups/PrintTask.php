@@ -103,15 +103,6 @@ class PrintTask extends BasePrintTask
         return $this;
     }
 
-    /**
-     * @param string $tray
-     */
-    public function tray($value): self
-    {
-        $this->option('media', new Keyword($value));
-        return $this;
-    }
-
     public function send(): PrintJob
     {
         $this->ensureValidJob();

@@ -16,8 +16,16 @@ class Boolean extends Type
         return pack('n', 1) . pack('c', intval($this->value));
     }
 
-    public static function fromBinary(string $binary, ?int $length = null): self
+    public static function fromBinary(string $binary, int &$offset): array
     {
-        return new static((bool) unpack('c', $binary)[1]);
+        $attrName = self::nameFromBinary($binary, $offset);
+
+        $valueLen = (unpack('n', $binary, $offset))[1];
+        $offset += 2;
+
+        $value = (bool) unpack('c', $binary, $offset)[1];
+        $offset += $valueLen;
+
+        return [$attrName, new static($value)];
     }
 }

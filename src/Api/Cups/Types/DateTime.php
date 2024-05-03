@@ -34,13 +34,19 @@ class DateTime extends Type
             . pack('c', self::unpad($matches[3]));
     }
 
-    public static function fromBinary(string $binary, ?int $length = null): self
+    public static function fromBinary(string $binary, int &$offset): array
     {
-        $data = unpack('nY/cm/cd/cH/ci/cs/cfff/aUTCSym/cUTCm/cUTCs', $binary);
-        return new static(
-            Carbon::createFromFormat(
-                'YmdHisO',
-                $data['Y']
+        $attrName = self::nameFromBinary($binary, $offset);
+
+        $valueLen = (unpack('n', $binary, $offset))[1];
+        $offset += 2;
+
+        $data = unpack('nY/cm/cd/cH/ci/cs/cfff/aUTCSym/cUTCm/cUTCs', $binary, $offset);
+        $offset += $valueLen;
+
+        $value = Carbon::createFromFormat(
+            'YmdHisO',
+            $data['Y']
                 . str_pad((string) $data['m'], 2, '0', STR_PAD_LEFT)
                 . str_pad((string) $data['d'], 2, '0', STR_PAD_LEFT)
                 . str_pad((string) $data['H'], 2, '0', STR_PAD_LEFT)
@@ -49,8 +55,9 @@ class DateTime extends Type
                 . $data['UTCSym']
                 . str_pad((string)$data['UTCm'], 2, '0', STR_PAD_LEFT)
                 . str_pad((string)$data['UTCs'], 2, '0', STR_PAD_LEFT)
-            )
         );
+
+        return [$attrName, new static($value)];
     }
 
     private static function unpad(string $str)
