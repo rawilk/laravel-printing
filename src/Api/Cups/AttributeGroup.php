@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Rawilk\Printing\Api\Cups;
 
+use Rawilk\Printing\Api\Cups\Exceptions\TypeNotSpecified;
+
 abstract class AttributeGroup
 {
     /**
@@ -44,11 +46,16 @@ abstract class AttributeGroup
                 $binary .= $this->handleArrayEncode($name, $value);
                 continue;
             }
-            $nameLen = strlen($name);
+            if (!$value instanceof Type) {
+                throw new TypeNotSpecified('Attribute value has to be of type ' . Type::class);
+            }
 
+            $nameLen = strlen($name);
             $binary .= pack('c', $value->getTag());
+
             $binary .= pack('n', $nameLen); // Attribute key length
             $binary .= pack('a' . $nameLen, $name); // Attribute key
+
             $binary .= $value->encode();  // Attribute value (with length)
         }
         return $binary;
@@ -62,7 +69,7 @@ abstract class AttributeGroup
     private function handleArrayEncode(string $name, array $values): string
     {
         $str = '';
-        if (get_class($values[0]) === \Rawilk\Printing\Api\Cups\Types\RangeOfInteger::class) {
+        if ($values[0] instanceof \Rawilk\Printing\Api\Cups\Types\RangeOfInteger) {
             \Rawilk\Printing\Api\Cups\Types\RangeOfInteger::checkOverlaps($values);
         }
         for ($i = 0; $i < sizeof($values); $i++) {

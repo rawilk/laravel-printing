@@ -16,8 +16,16 @@ class Integer extends Type
         return pack('n', 4) . pack('N', $this->value);
     }
 
-    public static function fromBinary(string $binary, ?int $length = null): self
+    public static function fromBinary(string $binary, int &$offset): array
     {
-        return new static(unpack('N', $binary)[1]);
+        $attrName = self::nameFromBinary($binary, $offset);
+
+        $valueLen = (unpack('n', $binary, $offset))[1];
+        $offset += 2;
+
+        $value = unpack('N', $binary, $offset)[1];
+        $offset += $valueLen;
+
+        return [$attrName, new static($value)];
     }
 }

@@ -16,8 +16,16 @@ class Text extends Type
         return pack('n', strlen($this->value)) . pack('a' . strlen($this->value), $this->value);
     }
 
-    public static function fromBinary(string $binary, ?int $length = null): self
+    public static function fromBinary(string $binary, int &$offset): array
     {
-        return new static(unpack('a' . $length, $binary)[1]);
+        $attrName = self::nameFromBinary($binary, $offset);
+
+        $valueLen = (unpack('n', $binary, $offset))[1];
+        $offset += 2;
+
+        $value = unpack('a' . $valueLen, $binary, $offset)[1];
+        $offset += $valueLen;
+
+        return [$attrName, new static($value)];
     }
 }

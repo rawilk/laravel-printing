@@ -26,10 +26,16 @@ class Resolution extends Text
             . pack('c', $reverseMap[$matches[3]]);
     }
 
-
-    public static function fromBinary(string $binary, ?int $length = null): self
+    public static function fromBinary(string $binary, int &$offset): array
     {
-        $value = unpack('Np/Np2/cu', $binary);
-        return new static($value['p'] . 'x' . $value['p2'] . static::$unitMap[$value['u']]);
+        $attrName = self::nameFromBinary($binary, $offset);
+
+        $valueLen = (unpack('n', $binary, $offset))[1];
+        $offset += 2;
+
+        $value = unpack('Np/Np2/cu', $binary, $offset);
+        $offset += $valueLen;
+
+        return [$attrName, new static($value['p'] . 'x' . $value['p2'] . static::$unitMap[$value['u']])];
     }
 }
