@@ -83,7 +83,7 @@ class PrintTask extends BasePrintTask
 
     public function user(string $name): self
     {
-        $this->option('requesting-user-name', new NameWithoutLanguage($name));
+        $this->option('requesting-user-name', new NameWithoutLanguage(iconv("UTF-8", "ASCII//TRANSLIT", $name)));
         return $this;
     }
 
