@@ -81,6 +81,12 @@ class PrintTask extends BasePrintTask
         return $this;
     }
 
+    public function user(string $name): self
+    {
+        $this->option('requesting-user-name', new NameWithoutLanguage($name));
+        return $this;
+    }
+
     public function range($start, $end = null): self
     {
         if (!array_key_exists('page-ranges', $this->options)) {
