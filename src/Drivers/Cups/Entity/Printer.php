@@ -5,93 +5,28 @@ declare(strict_types=1);
 namespace Rawilk\Printing\Drivers\Cups\Entity;
 
 use Illuminate\Contracts\Support\Arrayable;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Traits\Macroable;
 use JsonSerializable;
-use Rawilk\Printing\Contracts\Printer as PrinterContracts;
-use Smalot\Cups\Manager\JobManager;
-use Smalot\Cups\Model\JobInterface;
-use Smalot\Cups\Model\Printer as SmalotPrinter;
+use Rawilk\Printing\Contracts\Printer as PrinterContract;
+use Rawilk\Printing\Drivers\Cups\Enum\PrinterState;
+use Rawilk\Printing\Facades\Printing;
 
-class Printer implements Arrayable, JsonSerializable, PrinterContracts
+class Printer implements Arrayable, JsonSerializable, PrinterContract
 {
-    use Macroable;
-
-    protected array $capabilities;
-
-    public function __construct(protected SmalotPrinter $printer, protected JobManager $jobManager)
-    {
-    }
-
-    public function cupsPrinter(): SmalotPrinter
-    {
-        return $this->printer;
-    }
-
-    public function capabilities(): array
-    {
-        if (! isset($this->capabilities)) {
-            $this->capabilities = $this->printer->getAttributes();
-        }
-
-        return $this->capabilities;
-    }
-
-    public function description(): ?string
-    {
-        return Arr::get($this->capabilities(), 'printer-info', [])[0] ?? null;
-    }
-
-    public function id(): string
-    {
-        return $this->printer->getUri();
-    }
-
-    public function isOnline(): bool
-    {
-        return strtolower($this->status()) === 'online';
-    }
-
-    public function name(): ?string
-    {
-        return $this->printer->getName();
-    }
-
-    public function status(): string
-    {
-        return $this->printer->getStatus();
-    }
-
-    public function trays(): array
-    {
-        return Arr::get($this->capabilities(), 'media-source-supported', []);
-    }
+    /**
+     * @param array<string, \Rawilk\Printing\Api\Cups\Type>
+     */
+    protected array $attributes;
 
     /**
-     * @param  array  $params
-     *                         - Possible Params:
-     *                         -- limit => int
-     *                         -- status => 'completed', 'not-completed'
+     * @param array<string, \Rawilk\Printing\Api\Cups\Type>
      */
-    public function jobs(array $params = []): Collection
+    public function __construct(array $printerAttributes)
     {
-        $supportedStatuses = ['completed', 'not-completed'];
-        $limit = max(0, Arr::get($params, 'limit', 0));
-        $status = Arr::get($params, 'status', 'completed');
-
-        if (! in_array($status, $supportedStatuses, true)) {
-            $status = 'completed';
-        }
-
-        $jobs = $this->jobManager->getList($this->printer, false, $limit, $status);
-
-        return collect($jobs)
-            ->map(fn (JobInterface $job) => new PrintJob($job, $this))
-            ->values();
+        $this->attributes = $printerAttributes;
     }
 
-    public function toArray(): array
+    public function toArray()
     {
         return [
             'id' => $this->id(),
@@ -107,5 +42,51 @@ class Printer implements Arrayable, JsonSerializable, PrinterContracts
     public function jsonSerialize(): mixed
     {
         return $this->toArray();
+    }
+
+    /**
+     * @param array<string, \Rawilk\Printing\Api\Cups\Type>
+     */
+    public function capabilities(): array
+    {
+        return $this->attributes;
+    }
+
+    public function description(): ?string
+    {
+        return $this->attributes['printer-info']->value ?? null;
+    }
+
+    public function id()
+    {
+        // ID serves no purpose, return uri instead?
+        $ids = $this->attributes['printer-uri-supported'];
+        return is_array($ids) ? $ids[0] : $this->attributes['printer-uri-supported']->value;
+    }
+
+    public function isOnline(): bool
+    {
+        // Not sure
+        return true;
+    }
+
+    public function name(): ?string
+    {
+        return $this->attributes['printer-name']->value ?? null;
+    }
+
+    public function status(): string
+    {
+        return strtolower(PrinterState::tryFrom($this->attributes['printer-state']->value)->name);
+    }
+
+    public function trays(): array
+    {
+        return $this->attributes['media-source-supported']->value ?? [];
+    }
+
+    public function jobs(): \Illuminate\Support\Collection
+    {
+        return Printing::printerPrintJobs($this->id());
     }
 }

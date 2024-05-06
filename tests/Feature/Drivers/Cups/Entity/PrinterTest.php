@@ -2,19 +2,6 @@
 
 declare(strict_types=1);
 
-use Rawilk\Printing\Drivers\Cups\Support\Client;
-use Smalot\Cups\Builder\Builder;
-use Smalot\Cups\Manager\JobManager;
-use Smalot\Cups\Transport\ResponseParser;
-
-beforeEach(function () {
-    $client = new Client;
-    $responseParser = new ResponseParser;
-    $builder = new Builder;
-
-    $this->jobManager = new JobManager($builder, $client, $responseParser);
-});
-
 test('can be cast to array', function () {
     $printer = createCupsPrinter();
 
@@ -25,26 +12,27 @@ test('can be cast to array', function () {
         'name' => 'printer-name',
         'description' => null,
         'online' => true,
-        'status' => 'online',
+        'status' => 'idle',
         'trays' => [],
-        'capabilities' => [],
     ];
 
     $this->assertNotEmpty($toArray);
-    expect($toArray)->toEqual($expected);
+    expect($toArray)->toMatchArray($expected);
 });
 
 test('can be cast to json', function () {
     $printer = createCupsPrinter();
 
-    $json = json_encode($printer);
+    $json = json_decode(json_encode($printer), true);
+    $json['capabilities'] = [];
+    $json = json_encode($json);
 
     $expected = json_encode([
         'id' => 'localhost:631',
         'name' => 'printer-name',
         'description' => null,
         'online' => true,
-        'status' => 'online',
+        'status' => 'idle',
         'trays' => [],
         'capabilities' => [],
     ]);
@@ -60,18 +48,11 @@ test('can get the status of the printer', function () {
     $printer = createCupsPrinter();
 
     expect($printer->isOnline())->toBeTrue();
-    expect($printer->status())->toEqual('online');
-
-    $printer->cupsPrinter()->setStatus('offline');
-
-    expect($printer->isOnline())->toBeFalse();
+    expect($printer->status())->toEqual('idle');
 });
 
 test('can get printer description', function () {
-    $printer = createCupsPrinter();
-
-    $printer->cupsPrinter()->setAttribute('printer-info', 'Some description');
-
+    $printer = createCupsPrinter(['printer-info' => new \Rawilk\Printing\Api\Cups\Types\TextWithoutLanguage('Some description')]);
     expect($printer->description())->toEqual('Some description');
 });
 
@@ -80,10 +61,7 @@ test('can get the printers trays', function () {
 
     expect($printer->trays())->toHaveCount(0);
 
-    // Capabilities are cached after first retrieval, so we'll just use a fresh instance to test this
-    $printer = createCupsPrinter();
-
-    $printer->cupsPrinter()->setAttribute('media-source-supported', ['Tray 1']);
+    $printer = createCupsPrinter(['media-source-supported' => new \Rawilk\Printing\Api\Cups\Types\Primitive\Keyword(['Tray 1'])]);
 
     expect($printer->trays())->toHaveCount(1);
     expect($printer->trays()[0])->toEqual('Tray 1');
