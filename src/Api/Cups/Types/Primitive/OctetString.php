@@ -8,5 +8,5 @@ use Rawilk\Printing\Api\Cups\Enums\TypeTag;
 
 class OctetString extends Text
 {
-    protected int $tag = TypeTag::OCTETSTRING->value;
+    protected int $tag = TypeTag::OctetString->value;
 }

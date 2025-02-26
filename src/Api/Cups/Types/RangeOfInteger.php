@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Rawilk\Printing\Api\Cups\Types;
 
+use Rawilk\Printing\Api\Cups\Enums\TypeTag;
 use Rawilk\Printing\Api\Cups\Exceptions\RangeOverlap;
 use Rawilk\Printing\Api\Cups\Type;
-use Rawilk\Printing\Api\Cups\Enums\TypeTag;
 
 class RangeOfInteger extends Type
 {
-    protected int $tag = TypeTag::RANGEOFINTEGER->value;
+    protected int $tag = TypeTag::RangeOfInteger->value;
 
     /**
      * @param  int[]  $value  - Array of 2 integers

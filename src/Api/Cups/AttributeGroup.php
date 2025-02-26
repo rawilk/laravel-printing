@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Rawilk\Printing\Api\Cups;
 
 use Rawilk\Printing\Api\Cups\Exceptions\TypeNotSpecified;
+use Rawilk\Printing\Api\Cups\Types\RangeOfInteger;
 
 abstract class AttributeGroup
 {
@@ -15,15 +16,7 @@ abstract class AttributeGroup
      */
     protected int $tag;
 
-    /**
-     * @var array<string, \Rawilk\Printing\Api\Cups\Type|array<int, \Rawilk\Printing\Api\Cups\Type>>
-     */
-    protected array $attributes = [];
-
-    public function __construct(array $attributes = [])
-    {
-        $this->attributes = $attributes;
-    }
+    public function __construct(protected array $attributes = []) {}
 
     public function __set($name, $value)
     {
@@ -31,9 +24,9 @@ abstract class AttributeGroup
     }
 
     /**
-     * @var array<string, \Rawilk\Printing\Api\Cups\Type|array<int, \Rawilk\Printing\Api\Cups\Type>>
+     * @return array<string, \Rawilk\Printing\Api\Cups\Type|array<int, \Rawilk\Printing\Api\Cups\Type>>
      */
-    public function getAttributes()
+    public function getAttributes(): array
     {
         return $this->attributes;
     }
@@ -41,12 +34,14 @@ abstract class AttributeGroup
     public function encode(): string
     {
         $binary = pack('c', $this->tag);
+
         foreach ($this->attributes as $name => $value) {
-            if (gettype($value) === 'array') {
+            if (is_array($value)) {
                 $binary .= $this->handleArrayEncode($name, $value);
 
                 continue;
             }
+
             if (! $value instanceof Type) {
                 throw new TypeNotSpecified('Attribute value has to be of type ' . Type::class);
             }
@@ -71,21 +66,25 @@ abstract class AttributeGroup
     private function handleArrayEncode(string $name, array $values): string
     {
         $str = '';
-        if ($values[0] instanceof \Rawilk\Printing\Api\Cups\Types\RangeOfInteger) {
-            \Rawilk\Printing\Api\Cups\Types\RangeOfInteger::checkOverlaps($values);
+
+        if ($values[0] instanceof RangeOfInteger) {
+            RangeOfInteger::checkOverlaps($values);
         }
-        for ($i = 0; $i < count($values); $i++) {
+
+        foreach ($values as $i => $iValue) {
             $_name = $name;
+
             if ($i !== 0) {
                 $_name = '';
             }
+
             $nameLen = strlen($_name);
 
-            $str .= pack('c', $values[$i]->getTag()); // Value tag
+            $str .= pack('c', $iValue->getTag()); // Value tag
             $str .= pack('n', $nameLen); // Attribute key length
             $str .= pack('a' . $nameLen, $_name); // Attribute key
 
-            $str .= $values[$i]->encode();
+            $str .= $iValue->encode();
         }
 
         return $str;

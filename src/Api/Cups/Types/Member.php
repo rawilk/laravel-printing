@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Rawilk\Printing\Api\Cups\Types;
 
-use Rawilk\Printing\Api\Cups\Type;
 use Rawilk\Printing\Api\Cups\Enums\TypeTag;
+use Rawilk\Printing\Api\Cups\Type;
 
 class Member extends Type
 {
-    protected int $tag = TypeTag::MEMBER->value;
+    protected int $tag = TypeTag::Member->value;
 
     /**
      * @see https://datatracker.ietf.org/doc/html/rfc3382#section-7.2

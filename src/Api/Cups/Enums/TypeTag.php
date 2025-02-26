@@ -5,75 +5,58 @@ declare(strict_types=1);
 namespace Rawilk\Printing\Api\Cups\Enums;
 
 use Rawilk\Printing\Api\Cups\Exceptions\UnknownType;
-use Rawilk\Printing\Api\Cups\Types\Charset;
-use Rawilk\Printing\Api\Cups\Types\Collection;
-use Rawilk\Printing\Api\Cups\Types\DateTime;
-use Rawilk\Printing\Api\Cups\Types\Member;
-use Rawilk\Printing\Api\Cups\Types\MimeMedia;
-use Rawilk\Printing\Api\Cups\Types\NameWithoutLanguage;
-use Rawilk\Printing\Api\Cups\Types\NaturalLanguage;
-use Rawilk\Printing\Api\Cups\Types\Primitive\Boolean;
-use Rawilk\Printing\Api\Cups\Types\Primitive\Enum;
-use Rawilk\Printing\Api\Cups\Types\Primitive\Integer;
-use Rawilk\Printing\Api\Cups\Types\Primitive\Keyword;
-use Rawilk\Printing\Api\Cups\Types\Primitive\NoValue;
-use Rawilk\Printing\Api\Cups\Types\Primitive\OctetString;
-use Rawilk\Printing\Api\Cups\Types\Primitive\Unknown;
-use Rawilk\Printing\Api\Cups\Types\RangeOfInteger;
-use Rawilk\Printing\Api\Cups\Types\Resolution;
-use Rawilk\Printing\Api\Cups\Types\TextWithoutLanguage;
-use Rawilk\Printing\Api\Cups\Types\Uri;
+use Rawilk\Printing\Api\Cups\Types;
 
 enum TypeTag: int
 {
-    case UNSUPPORTED = 0x10;
-    case UNKNOWN = 0x12;
-    case NOVALUE = 0x13;
-    case BOOLEAN = 0x22;
-    case INTEGER = 0x21;
-    case ENUM = 0x23;
-    case OCTETSTRING = 0x30;
-    case DATETIME = 0x31;
-    case RESOLUTION = 0x32;
-    case RANGEOFINTEGER = 0x33;
-    case COLLECTION = 0x34;
-    case TEXTWITHLANGUAGE = 0x35;
-    case NAMEWITHLANGUAGE = 0x36;
-    case COLLECTION_END = 0x37;
-    case TEXTWITHOUTLANGUAGE = 0x41;
-    case NAMEWITHOUTLANGUAGE = 0x42;
-    case KEYWORD = 0x44;
-    case URI = 0x45;
-    case URISCHEME = 0x46;
-    case CHARSET = 0x47;
-    case NATURALLANGUAGE = 0x48;
-    case MIMEMEDIATYPE = 0x49;
-    case MEMBER = 0x4A;
-    case NAME = 0x0008;
-    case STATUSCODE = 0x000D;
-    case TEXT = 0x000E;
+    case UnSupported = 0x10;
+    case Unknown = 0x12;
+    case NoValue = 0x13;
+    case Boolean = 0x22;
+    case Integer = 0x21;
+    case Enum = 0x23;
+    case OctetString = 0x30;
+    case DateTime = 0x31;
+    case Resolution = 0x32;
+    case RangeOfInteger = 0x33;
+    case Collection = 0x34;
+    case TextWithLanguage = 0x35;
+    case NameWithLanguage = 0x36;
+    case CollectionEnd = 0x37;
+    case TextWithoutLanguage = 0x41;
+    case NameWithoutLanguage = 0x42;
+    case Keyword = 0x44;
+    case Uri = 0x45;
+    case UriScheme = 0x46;
+    case Charset = 0x47;
+    case NaturalLanguage = 0x48;
+    case MimeMediaType = 0x49;
+    case Member = 0x4A;
+    case Name = 0x0008;
+    case StatusCode = 0x000D;
+    case Text = 0x000E;
 
     public function getClass(): string
     {
-        return match ($this->value) {
-            self::CHARSET->value => Charset::class,
-            self::NATURALLANGUAGE->value => NaturalLanguage::class,
-            self::OCTETSTRING->value => OctetString::class,
-            self::INTEGER->value => Integer::class,
-            self::DATETIME->value => DateTime::class,
-            self::NOVALUE->value => NoValue::class,
-            self::NAMEWITHOUTLANGUAGE->value => NameWithoutLanguage::class,
-            self::URI->value => Uri::class,
-            self::BOOLEAN->value => Boolean::class,
-            self::ENUM->value => Enum::class,
-            self::TEXTWITHOUTLANGUAGE->value => TextWithoutLanguage::class,
-            self::KEYWORD->value => Keyword::class,
-            self::UNKNOWN->value => Unknown::class,
-            self::MIMEMEDIATYPE->value => MimeMedia::class,
-            self::RESOLUTION->value => Resolution::class,
-            self::RANGEOFINTEGER->value => RangeOfInteger::class,
-            self::COLLECTION->value => Collection::class,
-            self::MEMBER->value => Member::class,
+        return match ($this) {
+            self::Charset => Types\Charset::class,
+            self::NaturalLanguage => Types\NaturalLanguage::class,
+            self::OctetString => Types\Primitive\OctetString::class,
+            self::Integer => Types\Primitive\Integer::class,
+            self::DateTime => Types\DateTime::class,
+            self::NoValue => Types\Primitive\NoValue::class,
+            self::NameWithoutLanguage => Types\NameWithoutLanguage::class,
+            self::Uri => Types\Uri::class,
+            self::Boolean => Types\Primitive\Boolean::class,
+            self::Enum => Types\Primitive\Enum::class,
+            self::TextWithoutLanguage => Types\TextWithoutLanguage::class,
+            self::Keyword => Types\Primitive\Keyword::class,
+            self::Unknown => Types\Primitive\Unknown::class,
+            self::MimeMediaType => Types\MimeMedia::class,
+            self::Resolution => Types\Resolution::class,
+            self::RangeOfInteger => Types\RangeOfInteger::class,
+            self::Collection => Types\Collection::class,
+            self::Member => Types\Member::class,
             default => throw new UnknownType('Unknown type')
         };
     }

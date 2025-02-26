@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace Rawilk\Printing\Api\Cups\Types;
 
 use Illuminate\Support\Carbon;
-use Rawilk\Printing\Api\Cups\Type;
 use Rawilk\Printing\Api\Cups\Enums\TypeTag;
+use Rawilk\Printing\Api\Cups\Type;
 
 class DateTime extends Type
 {
-    protected int $tag = TypeTag::DATETIME->value;
+    protected int $tag = TypeTag::DateTime->value;
 
     /**
      * @param  Carbon  $value

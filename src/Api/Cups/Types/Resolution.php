@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Rawilk\Printing\Api\Cups\Types;
 
-use Rawilk\Printing\Api\Cups\Types\Primitive\Text;
 use Rawilk\Printing\Api\Cups\Enums\TypeTag;
+use Rawilk\Printing\Api\Cups\Types\Primitive\Text;
 
 class Resolution extends Text
 {
-    protected int $tag = TypeTag::RESOLUTION->value;
+    protected int $tag = TypeTag::Resolution->value;
 
     private static $unitMap = [
         3 => 'dpi',

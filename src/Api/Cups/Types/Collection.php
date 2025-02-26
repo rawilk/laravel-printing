@@ -4,18 +4,18 @@ declare(strict_types=1);
 
 namespace Rawilk\Printing\Api\Cups\Types;
 
-use Rawilk\Printing\Api\Cups\Type;
 use Rawilk\Printing\Api\Cups\Enums\TypeTag;
+use Rawilk\Printing\Api\Cups\Type;
 
 /**
  * @see https://datatracker.ietf.org/doc/html/rfc3382#section-7.2
  */
 class Collection extends Type
 {
-    protected int $tag = TypeTag::COLLECTION->value;
+    protected int $tag = TypeTag::Collection->value;
 
     // Collection has an end tag
-    protected int $endTag = TypeTag::COLLECTION_END->value;
+    protected int $endTag = TypeTag::CollectionEnd->value;
 
     /**
      * @param  array  $value  - Array of members
@@ -28,7 +28,7 @@ class Collection extends Type
         $offset += 2; // Value length
 
         $members = [];
-        while (unpack('ctag', $binary, $offset)['tag'] === TypeTag::MEMBER->value) {
+        while (unpack('ctag', $binary, $offset)['tag'] === TypeTag::Member->value) {
             $nextTag = (unpack('ctag', $binary, $offset))['tag'];
             $offset++;
 
@@ -51,7 +51,7 @@ class Collection extends Type
         $binary = pack('n', 0); // Value length is 0
 
         foreach ($this->value as $key => $value) {
-            $binary .= pack('c', TypeTag::MEMBER->value);
+            $binary .= pack('c', TypeTag::Member->value);
             $binary .= pack('n', 0); // Member name length is 0
 
             $binary .= pack('n', strlen($key));
