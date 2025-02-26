@@ -6,10 +6,10 @@ All notable changes to `laravel-printing` will be documented in this file.
 
 ### What's Changed
 
-* Bump aglipanci/laravel-pint-action from 2.3.1 to 2.4 by @dependabot in https://github.com/rawilk/laravel-printing/pull/90
-* Bump dependabot/fetch-metadata from 1.6.0 to 2.2.0 by @dependabot in https://github.com/rawilk/laravel-printing/pull/94
-* Laravel 12.x Compatibility by @laravel-shift in https://github.com/rawilk/laravel-printing/pull/97
-* Add PHP 8.4 Compatibility by @rawilk in https://github.com/rawilk/laravel-printing/pull/98
+- Bump aglipanci/laravel-pint-action from 2.3.1 to 2.4 by @dependabot in https://github.com/rawilk/laravel-printing/pull/90
+- Bump dependabot/fetch-metadata from 1.6.0 to 2.2.0 by @dependabot in https://github.com/rawilk/laravel-printing/pull/94
+- Laravel 12.x Compatibility by @laravel-shift in https://github.com/rawilk/laravel-printing/pull/97
+- Add PHP 8.4 Compatibility by @rawilk in https://github.com/rawilk/laravel-printing/pull/98
 
 **Full Changelog**: https://github.com/rawilk/laravel-printing/compare/v3.0.4...v3.0.5
 
