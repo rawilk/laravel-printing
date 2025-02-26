@@ -11,6 +11,11 @@ class Boolean extends Type
 {
     protected int $tag = TypeTag::BOOLEAN->value;
 
+    public function encode(): string
+    {
+        return pack('n', 1) . pack('c', intval($this->value));
+    }
+
     public static function fromBinary(string $binary, int &$offset): array
     {
         $attrName = self::nameFromBinary($binary, $offset);
@@ -22,10 +27,5 @@ class Boolean extends Type
         $offset += $valueLen;
 
         return [$attrName, new static($value)];
-    }
-
-    public function encode(): string
-    {
-        return pack('n', 1) . pack('c', intval($this->value));
     }
 }

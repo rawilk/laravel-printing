@@ -6,13 +6,13 @@ namespace Rawilk\Printing\Api\Cups;
 
 use Rawilk\Printing\Api\Cups\Exceptions\UnknownType;
 use Rawilk\Printing\Api\Cups\Types\Charset;
-use Rawilk\Printing\Api\Cups\Types\Collection;
 use Rawilk\Printing\Api\Cups\Types\DateTime;
-use Rawilk\Printing\Api\Cups\Types\Member;
 use Rawilk\Printing\Api\Cups\Types\MimeMedia;
 use Rawilk\Printing\Api\Cups\Types\NameWithoutLanguage;
 use Rawilk\Printing\Api\Cups\Types\NaturalLanguage;
 use Rawilk\Printing\Api\Cups\Types\Primitive\Boolean;
+use Rawilk\Printing\Api\Cups\Types\Collection;
+use Rawilk\Printing\Api\Cups\Types\Member;
 use Rawilk\Printing\Api\Cups\Types\Primitive\Enum;
 use Rawilk\Printing\Api\Cups\Types\Primitive\Integer;
 use Rawilk\Printing\Api\Cups\Types\Primitive\Keyword;
@@ -48,7 +48,7 @@ enum TypeTag: int
     case CHARSET = 0x47;
     case NATURALLANGUAGE = 0x48;
     case MIMEMEDIATYPE = 0x49;
-    case MEMBER = 0x4A;
+    case MEMBER = 0x4a;
     case NAME = 0x0008;
     case STATUSCODE = 0x000D;
     case TEXT = 0x000E;

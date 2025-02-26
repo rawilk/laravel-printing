@@ -11,6 +11,11 @@ class Enum extends Type
 {
     protected int $tag = TypeTag::ENUM->value;
 
+    public function encode(): string
+    {
+        return pack('n', 4) . pack('N', $this->value);
+    }
+
     public static function fromBinary(string $binary, int &$offset): array
     {
         $attrName = self::nameFromBinary($binary, $offset);
@@ -22,10 +27,5 @@ class Enum extends Type
         $offset += $valueLen;
 
         return [$attrName, new static($value)];
-    }
-
-    public function encode(): string
-    {
-        return pack('n', 4) . pack('N', $this->value);
     }
 }

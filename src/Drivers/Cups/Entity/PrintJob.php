@@ -5,52 +5,75 @@ declare(strict_types=1);
 namespace Rawilk\Printing\Drivers\Cups\Entity;
 
 use Carbon\Carbon;
-use Illuminate\Support\Traits\Macroable;
+use Illuminate\Contracts\Support\Arrayable;
+use JsonSerializable;
 use Rawilk\Printing\Contracts\PrintJob as PrintJobContract;
-use Smalot\Cups\Model\JobInterface;
+use Rawilk\Printing\Drivers\Cups\Enum\JobState;
 
-class PrintJob implements PrintJobContract
+class PrintJob implements PrintJobContract, Arrayable, JsonSerializable
 {
-    use Macroable;
+    /**
+     * @param array<string, \Rawilk\Printing\Api\Cups\Type>
+     */
+    protected array $attributes;
 
-    public function __construct(protected JobInterface $job, protected ?Printer $printer = null) {}
+    /**
+     * @param array<string, \Rawilk\Printing\Api\Cups\Type>
+     */
+    public function __construct(array $printerAttributes)
+    {
+        $this->attributes = $printerAttributes;
+    }
+
+    public function toArray()
+    {
+        return [
+            'id' => $this->id(),
+            'date' => $this->date(),
+            'name' => $this->name(),
+            'printerId' => $this->printerId(),
+            'printerName' => $this->printerName(),
+            'state' => $this->state(),
+        ];
+    }
+
+    public function jsonSerialize(): mixed
+    {
+        return $this->toArray();
+    }
 
     public function date(): ?Carbon
     {
-        // Not sure if it is possible to retrieve the date.
-        return null;
+        return $this->attributes['date-time-at-creation']->value ?? null;
     }
 
     public function id()
     {
-        return $this->job->getId();
+        // Id serves no purpose, return uri instead?
+        return $this->attributes['job-uri']->value ?? null;
     }
 
     public function name(): ?string
     {
-        return $this->job->getName();
+        return $this->attributes['job-name']->value ?? null;
     }
 
     public function printerId()
     {
-        if ($this->printer) {
-            return $this->printer->id();
-        }
-
-        return null;
+        return $this->attributes['job-printer-uri']->value ?? null;
     }
 
     public function printerName(): ?string
     {
-        if ($this->printer) {
-            return $this->printer->name();
+        // Extract name from uri
+        if (preg_match('/printers\/(.*)$/', $this->printerId(), $matches)) {
+            return $matches[1];
         }
-
         return null;
     }
 
     public function state(): ?string
     {
-        return $this->job->getState();
+        return strtolower(JobState::tryFrom($this->attributes['job-state']->value)->name);
     }
 }

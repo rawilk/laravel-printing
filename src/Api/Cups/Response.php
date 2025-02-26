@@ -11,9 +11,7 @@ use Rawilk\Printing\Drivers\Cups\Entity\PrintJob;
 class Response
 {
     private Version $version;
-
     private int $requestId = 1;
-
     private int $statusCode;
 
     /**
@@ -36,39 +34,9 @@ class Response
         return $this->requestId;
     }
 
-    /**
-     * @return \Illuminate\Support\Collection<Printer>
-     */
-    public function getPrinters()
-    {
-        $printers = collect();
-        foreach ($this->attributeGroups as $group) {
-            if ($group instanceof \Rawilk\Printing\Api\Cups\Attributes\PrinterGroup) {
-                $printers->push(new Printer($group->getAttributes()));
-            }
-        }
-
-        return $printers;
-    }
-
-    /**
-     * @return \Illuminate\Support\Collection<PrintJob>
-     */
-    public function getJobs()
-    {
-        $jobs = collect();
-        foreach ($this->attributeGroups as $group) {
-            if ($group instanceof \Rawilk\Printing\Api\Cups\Attributes\JobGroup) {
-                $jobs->push(new PrintJob($group->getAttributes()));
-            }
-        }
-
-        return $jobs;
-    }
-
     private function decode(string $binary)
     {
-        $data = unpack('cmajorVer/cminorVer/ncode/NrequestId/ctag', $binary);
+        $data = unpack("cmajorVer/cminorVer/ncode/NrequestId/ctag", $binary);
 
         $this->statusCode = $data['code'];
         $this->version = Version::tryFrom($data['majorVer'] . '.' . $data['minorVer']);
@@ -92,24 +60,25 @@ class Response
     {
         $attributes = [];
         $nextTag = -1;
-        while (! AttributeGroupTag::tryFrom($nextTag)) {
+        while (!AttributeGroupTag::tryFrom($nextTag)) {
             $typeTag = (unpack('ctypeTag', $binary, $offset))['typeTag'];
             $type = TypeTag::tryFrom($typeTag);
             $offset++;
 
-            if (! $type) {
-                throw new UnknownType("Unknown type tag \"{$typeTag}\".");
+            if (!$type) {
+                throw new UnknownType("Unknown type tag \"$typeTag\".");
             }
 
             $typeClass = $type->getClass();
             [$attrName, $attribute] = $typeClass::fromBinary($binary, $offset);
+
 
             // Array of values
             if ($attrName === '') {
                 $index = array_key_last($attributes);
                 $lastAttr = $attributes[$index];
 
-                if (! is_array($lastAttr)) {
+                if (!is_array($lastAttr)) {
                     $attributes[$index] = [$lastAttr];
                 }
 
@@ -118,7 +87,7 @@ class Response
                 $attributes[$attrName] = $attribute;
             }
 
-            $nextTag = (unpack('ctag', $binary, $offset))['tag'];
+            $nextTag = (unpack("ctag", $binary, $offset))['tag'];
         }
         $offset++;
 
@@ -141,19 +110,45 @@ class Response
         if (array_key_exists('status-message', $attributes)) {
             return $attributes['status-message']->value;
         }
-
         return '';
     }
 
     private function getGroupIndex(string $className): int
     {
-        for ($i = 0; $i < count($this->attributeGroups); $i++) {
+        for ($i = 0; $i < sizeof($this->attributeGroups); $i++) {
             if ($this->attributeGroups[$i] instanceof $className) {
                 return $i;
             }
         }
-        $this->attributeGroups[] = new $className;
+        $this->attributeGroups[] = new $className();
+        return sizeof($this->attributeGroups) - 1;
+    }
 
-        return count($this->attributeGroups) - 1;
+    /**
+     * @return \Illuminate\Support\Collection<Printer>
+     */
+    public function getPrinters()
+    {
+        $printers = collect();
+        foreach ($this->attributeGroups as $group) {
+            if ($group instanceof \Rawilk\Printing\Api\Cups\Attributes\PrinterGroup) {
+                $printers->push(new Printer($group->getAttributes()));
+            }
+        }
+        return $printers;
+    }
+
+    /**
+     * @return \Illuminate\Support\Collection<PrintJob>
+     */
+    public function getJobs()
+    {
+        $jobs = collect();
+        foreach ($this->attributeGroups as $group) {
+            if ($group instanceof \Rawilk\Printing\Api\Cups\Attributes\JobGroup) {
+                $jobs->push(new PrintJob($group->getAttributes()));
+            }
+        }
+        return $jobs;
     }
 }

@@ -19,7 +19,9 @@ class Factory
 
     protected array $customCreators = [];
 
-    public function __construct(protected array $config) {}
+    public function __construct(protected array $config)
+    {
+    }
 
     public function driver(?string $driver = null): Driver
     {
@@ -37,7 +39,7 @@ class Factory
 
     protected function createCupsDriver(array $config): Driver
     {
-        return new Cups;
+        return new Cups();
     }
 
     protected function createPrintnodeDriver(array $config): Driver

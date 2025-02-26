@@ -11,6 +11,14 @@ class Member extends Type
 {
     protected int $tag = TypeTag::MEMBER->value;
 
+    public function encode(): string
+    {
+        $binary = pack('c', $this->value->getTag());
+        $binary .= pack('n', 0); // Name length is 0
+        $binary .= $this->value->encode();
+        return $binary;
+    }
+
     /**
      * @see https://datatracker.ietf.org/doc/html/rfc3382#section-7.2
      */
@@ -26,7 +34,7 @@ class Member extends Type
         $value = unpack('a' . $valueLen, $binary, $offset)[1];
         $offset += $valueLen;
 
-        $nextTag = (unpack('ctag', $binary, $offset))['tag'];
+        $nextTag = (unpack("ctag", $binary, $offset))['tag'];
         $offset++;
 
         $type = TypeTag::tryFrom($nextTag);
@@ -36,14 +44,5 @@ class Member extends Type
         $value2 = $typeClass::fromBinary($binary, $offset)[1];
 
         return [$value, new static($value2)];
-    }
-
-    public function encode(): string
-    {
-        $binary = pack('c', $this->value->getTag());
-        $binary .= pack('n', 0); // Name length is 0
-        $binary .= $this->value->encode();
-
-        return $binary;
     }
 }

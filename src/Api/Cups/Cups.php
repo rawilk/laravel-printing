@@ -14,7 +14,8 @@ class Cups
         private ?string $password,
         private int $port = 631,
         private bool $secure = false
-    ) {}
+    ) {
+    }
 
     /**
      * @throws Illuminate\Http\Client\ConnectionException
@@ -32,7 +33,7 @@ class Cups
 
         $http = $http->withHeaders(
             [
-                'Content-Type' => 'application/ipp',
+            "Content-Type" => "application/ipp"
             ]
         )->post($this->getScheme() . '://' . $this->ip . ':' . $this->port . '/admin')
             ->throwIfClientError();

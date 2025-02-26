@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Rawilk\Printing\Api\Cups;
 
 enum Version: string
@@ -14,7 +12,6 @@ enum Version: string
     public function encode(): string
     {
         $version = explode('.', (string) $this->value);
-
         return pack('c', $version[0]) . pack('c', $version[1]);
     }
 }

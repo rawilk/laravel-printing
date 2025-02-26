@@ -11,6 +11,11 @@ class Text extends Type
 {
     protected int $tag = TypeTag::TEXT->value;
 
+    public function encode(): string
+    {
+        return pack('n', strlen($this->value)) . pack('a' . strlen($this->value), $this->value);
+    }
+
     public static function fromBinary(string $binary, int &$offset): array
     {
         $attrName = self::nameFromBinary($binary, $offset);
@@ -22,10 +27,5 @@ class Text extends Type
         $offset += $valueLen;
 
         return [$attrName, new static($value)];
-    }
-
-    public function encode(): string
-    {
-        return pack('n', strlen($this->value)) . pack('a' . strlen($this->value), $this->value);
     }
 }

@@ -13,9 +13,26 @@ class DateTime extends Type
     protected int $tag = TypeTag::DATETIME->value;
 
     /**
-     * @param  Carbon  $value
+     * @param Carbon $value
      */
-    public function __construct(public mixed $value) {}
+    public function __construct(public mixed $value)
+    {
+    }
+
+    public function encode(): string
+    {
+        preg_match('/([+-])(\d{2}):(\d{2})/', $this->value->getOffsetString(), $matches);
+        return pack('n', 11) . pack('n', $this->value->format('Y'))
+            . pack('c', $this->value->format('m'))
+            . pack('c', $this->value->format('d'))
+            . pack('c', $this->value->format('H'))
+            . pack('c', $this->value->format('i'))
+            . pack('c', $this->value->format('s'))
+            . pack('c', 0)
+            . pack('a', $matches[1])
+            . pack('c', self::unpad($matches[2]))
+            . pack('c', self::unpad($matches[3]));
+    }
 
     public static function fromBinary(string $binary, int &$offset): array
     {
@@ -36,27 +53,11 @@ class DateTime extends Type
                 . str_pad((string) $data['i'], 2, '0', STR_PAD_LEFT)
                 . str_pad((string) $data['s'], 2, '0', STR_PAD_LEFT)
                 . $data['UTCSym']
-                . str_pad((string) $data['UTCm'], 2, '0', STR_PAD_LEFT)
-                . str_pad((string) $data['UTCs'], 2, '0', STR_PAD_LEFT)
+                . str_pad((string)$data['UTCm'], 2, '0', STR_PAD_LEFT)
+                . str_pad((string)$data['UTCs'], 2, '0', STR_PAD_LEFT)
         );
 
         return [$attrName, new static($value)];
-    }
-
-    public function encode(): string
-    {
-        preg_match('/([+-])(\d{2}):(\d{2})/', $this->value->getOffsetString(), $matches);
-
-        return pack('n', 11) . pack('n', $this->value->format('Y'))
-            . pack('c', $this->value->format('m'))
-            . pack('c', $this->value->format('d'))
-            . pack('c', $this->value->format('H'))
-            . pack('c', $this->value->format('i'))
-            . pack('c', $this->value->format('s'))
-            . pack('c', 0)
-            . pack('a', $matches[1])
-            . pack('c', self::unpad($matches[2]))
-            . pack('c', self::unpad($matches[3]));
     }
 
     private static function unpad(string $str)
@@ -65,7 +66,6 @@ class DateTime extends Type
         if ($unpaddedStr === '') {
             $unpaddedStr = '0';  // Ensure "00" becomes "0"
         }
-
         return $unpaddedStr;
     }
 }
