@@ -6,7 +6,7 @@ namespace Rawilk\Printing\Api\Cups\Types;
 
 use Rawilk\Printing\Api\Cups\Exceptions\RangeOverlap;
 use Rawilk\Printing\Api\Cups\Type;
-use Rawilk\Printing\Api\Cups\TypeTag;
+use Rawilk\Printing\Api\Cups\Enums\TypeTag;
 
 class RangeOfInteger extends Type
 {

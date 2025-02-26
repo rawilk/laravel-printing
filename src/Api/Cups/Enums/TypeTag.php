@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Rawilk\Printing\Api\Cups;
+namespace Rawilk\Printing\Api\Cups\Enums;
 
 use Rawilk\Printing\Api\Cups\Exceptions\UnknownType;
 use Rawilk\Printing\Api\Cups\Types\Charset;

@@ -15,7 +15,7 @@ use Rawilk\Printing\Api\Cups\Types\Primitive\Integer;
 use Rawilk\Printing\Api\Cups\Types\Primitive\Keyword;
 use Rawilk\Printing\Api\Cups\Types\RangeOfInteger;
 use Rawilk\Printing\Api\Cups\Types\Uri;
-use Rawilk\Printing\Api\Cups\Version;
+use Rawilk\Printing\Api\Cups\Enums\Version;
 use Rawilk\Printing\Contracts\PrintJob;
 use Rawilk\Printing\Exceptions\InvalidSource;
 use Rawilk\Printing\Exceptions\PrintTaskFailed;
@@ -119,7 +119,7 @@ class PrintTask extends BasePrintTask
         $this->ensureValidJob();
 
         $request = new Request;
-        $request->setVersion(Version::V1_1)
+        $request->setVersion(\Rawilk\Printing\Api\Cups\Enums\Version::V1_1)
             ->setOperation(Operation::PRINT_JOB)
             ->addOperationAttributes(
                 [

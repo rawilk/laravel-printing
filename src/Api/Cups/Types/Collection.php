@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Rawilk\Printing\Api\Cups\Types;
 
 use Rawilk\Printing\Api\Cups\Type;
-use Rawilk\Printing\Api\Cups\TypeTag;
+use Rawilk\Printing\Api\Cups\Enums\TypeTag;
 
 /**
  * @see https://datatracker.ietf.org/doc/html/rfc3382#section-7.2

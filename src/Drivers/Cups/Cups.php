@@ -9,7 +9,7 @@ use Rawilk\Printing\Api\Cups\Operation;
 use Rawilk\Printing\Api\Cups\Request;
 use Rawilk\Printing\Api\Cups\Types\Primitive\Keyword;
 use Rawilk\Printing\Api\Cups\Types\Uri;
-use Rawilk\Printing\Api\Cups\Version;
+use Rawilk\Printing\Api\Cups\Enums\Version;
 use Rawilk\Printing\Contracts\Driver;
 use Rawilk\Printing\Contracts\Printer;
 use Rawilk\Printing\Contracts\PrintJob;
@@ -32,7 +32,7 @@ class Cups implements Driver
     public function printer($printerId = null): ?Printer
     {
         $request = new Request;
-        $request->setVersion(Version::V2_1)
+        $request->setVersion(\Rawilk\Printing\Api\Cups\Enums\Version::V2_1)
             ->setOperation(Operation::GET_PRINTER_ATTRIBUTES)
             ->addOperationAttributes(['printer-uri' => new Uri($printerId)]);
 
@@ -50,7 +50,7 @@ class Cups implements Driver
     public function printers(?int $limit = null, ?int $offset = null, ?string $dir = null): \Illuminate\Support\Collection
     {
         $request = new Request;
-        $request->setVersion(Version::V2_1)
+        $request->setVersion(\Rawilk\Printing\Api\Cups\Enums\Version::V2_1)
             ->setOperation(Operation::CUPS_GET_PRINTERS);
 
         $printers = $this->api->makeRequest($request)->getPrinters();
@@ -61,7 +61,7 @@ class Cups implements Driver
     public function printJob($jobId = null): ?PrintJob
     {
         $request = new Request;
-        $request->setVersion(Version::V2_1)
+        $request->setVersion(\Rawilk\Printing\Api\Cups\Enums\Version::V2_1)
             ->setOperation(Operation::GET_JOB_ATTRIBUTES)
             ->addOperationAttributes([
                 'job-uri' => new Uri($jobId),
@@ -86,7 +86,7 @@ class Cups implements Driver
     public function printerPrintJobs($printerId, ?int $limit = null, ?int $offset = null, ?string $dir = null): \Illuminate\Support\Collection
     {
         $request = new Request;
-        $request->setVersion(Version::V2_1)
+        $request->setVersion(\Rawilk\Printing\Api\Cups\Enums\Version::V2_1)
             ->setOperation(Operation::GET_JOBS)
             ->addOperationAttributes([
                 'printer-uri' => new Uri($printerId),

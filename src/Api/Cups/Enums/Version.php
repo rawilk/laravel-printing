@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Rawilk\Printing\Api\Cups;
+namespace Rawilk\Printing\Api\Cups\Enums;
 
 enum Version: string
 {

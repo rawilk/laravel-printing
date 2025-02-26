@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Rawilk\Printing\Api\Cups;
 
 use Rawilk\Printing\Api\Cups\Enums\AttributeGroupTag;
+use Rawilk\Printing\Api\Cups\Enums\Version;
 use Rawilk\Printing\Api\Cups\Types\Charset;
 use Rawilk\Printing\Api\Cups\Types\NaturalLanguage;
 
