@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Rawilk\Printing\Api\Cups;
 
+use Rawilk\Printing\Api\Cups\Enums\AttributeGroupTag;
 use Rawilk\Printing\Api\Cups\Exceptions\UnknownType;
 use Rawilk\Printing\Drivers\Cups\Entity\Printer;
 use Rawilk\Printing\Drivers\Cups\Entity\PrintJob;

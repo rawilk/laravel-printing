@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Rawilk\Printing\Api\Cups;
+namespace Rawilk\Printing\Api\Cups\Enums;
 
 use Rawilk\Printing\Api\Cups\Attributes\JobGroup;
 use Rawilk\Printing\Api\Cups\Attributes\OperationGroup;
