@@ -14,7 +14,6 @@ use Rawilk\Printing\Contracts\Driver;
 use Rawilk\Printing\Contracts\Printer;
 use Rawilk\Printing\Contracts\PrintJob;
 use Rawilk\Printing\Drivers\Cups\Entity\Printer as RawilkPrinter;
-use Rawilk\Printing\Drivers\Cups\PrintTask;
 
 class Cups implements Driver
 {
@@ -27,12 +26,12 @@ class Cups implements Driver
 
     public function newPrintTask(): \Rawilk\Printing\Contracts\PrintTask
     {
-        return new PrintTask();
+        return new PrintTask;
     }
 
     public function printer($printerId = null): ?Printer
     {
-        $request = new Request();
+        $request = new Request;
         $request->setVersion(Version::V2_1)
             ->setOperation(Operation::GET_PRINTER_ATTRIBUTES)
             ->addOperationAttributes(['printer-uri' => new Uri($printerId)]);
@@ -50,7 +49,7 @@ class Cups implements Driver
      */
     public function printers(?int $limit = null, ?int $offset = null, ?string $dir = null): \Illuminate\Support\Collection
     {
-        $request = new Request();
+        $request = new Request;
         $request->setVersion(Version::V2_1)
             ->setOperation(Operation::CUPS_GET_PRINTERS);
 
@@ -61,21 +60,21 @@ class Cups implements Driver
 
     public function printJob($jobId = null): ?PrintJob
     {
-        $request = new Request();
+        $request = new Request;
         $request->setVersion(Version::V2_1)
             ->setOperation(Operation::GET_JOB_ATTRIBUTES)
             ->addOperationAttributes([
-                    'job-uri' => new Uri($jobId),
-                    'requested-attributes' => [
-                        new Keyword('job-uri'),
-                        new Keyword('job-state'),
-                        new Keyword('number-of-documents'),
-                        new Keyword('job-name'),
-                        new Keyword('document-format'),
-                        new Keyword('date-time-at-creation'),
-                        new Keyword('job-printer-state-message'),
-                        new Keyword('job-printer-uri')
-                    ],
+                'job-uri' => new Uri($jobId),
+                'requested-attributes' => [
+                    new Keyword('job-uri'),
+                    new Keyword('job-state'),
+                    new Keyword('number-of-documents'),
+                    new Keyword('job-name'),
+                    new Keyword('document-format'),
+                    new Keyword('date-time-at-creation'),
+                    new Keyword('job-printer-state-message'),
+                    new Keyword('job-printer-uri'),
+                ],
             ]);
 
         return $this->api->makeRequest($request)->getJobs()->first();
@@ -86,22 +85,22 @@ class Cups implements Driver
      */
     public function printerPrintJobs($printerId, ?int $limit = null, ?int $offset = null, ?string $dir = null): \Illuminate\Support\Collection
     {
-        $request = new Request();
+        $request = new Request;
         $request->setVersion(Version::V2_1)
             ->setOperation(Operation::GET_JOBS)
             ->addOperationAttributes([
-                    'printer-uri' => new Uri($printerId),
-                    'which-jobs' => new Keyword('not-completed'),
-                    'requested-attributes' => [
-                        new Keyword('job-uri'),
-                        new Keyword('job-state'),
-                        new Keyword('number-of-documents'),
-                        new Keyword('job-name'),
-                        new Keyword('document-format'),
-                        new Keyword('date-time-at-creation'),
-                        new Keyword('job-printer-state-message'),
-                        new Keyword('job-printer-uri')
-                    ],
+                'printer-uri' => new Uri($printerId),
+                'which-jobs' => new Keyword('not-completed'),
+                'requested-attributes' => [
+                    new Keyword('job-uri'),
+                    new Keyword('job-state'),
+                    new Keyword('number-of-documents'),
+                    new Keyword('job-name'),
+                    new Keyword('document-format'),
+                    new Keyword('date-time-at-creation'),
+                    new Keyword('job-printer-state-message'),
+                    new Keyword('job-printer-uri'),
+                ],
             ]);
 
         return $this->api->makeRequest($request)->getJobs();

@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Rawilk\Printing\Drivers\Cups\Entity;
 
 use Illuminate\Contracts\Support\Arrayable;
-use Illuminate\Support\Collection;
 use JsonSerializable;
 use Rawilk\Printing\Contracts\Printer as PrinterContract;
 use Rawilk\Printing\Drivers\Cups\Enum\PrinterState;
@@ -61,6 +60,7 @@ class Printer implements Arrayable, JsonSerializable, PrinterContract
     {
         // ID serves no purpose, return uri instead?
         $ids = $this->attributes['printer-uri-supported'];
+
         return is_array($ids) ? $ids[0] : $this->attributes['printer-uri-supported']->value;
     }
 
