@@ -12,11 +12,6 @@ class DateTime extends Type
 {
     protected int $tag = TypeTag::DateTime->value;
 
-    /**
-     * @param  Carbon  $value
-     */
-    public function __construct(public mixed $value) {}
-
     public static function fromBinary(string $binary, int &$offset): array
     {
         $attrName = self::nameFromBinary($binary, $offset);
@@ -59,7 +54,7 @@ class DateTime extends Type
             . pack('c', self::unpad($matches[3]));
     }
 
-    private static function unpad(string $str)
+    private static function unpad(string $str): string
     {
         $unpaddedStr = ltrim($str, '0');
         if ($unpaddedStr === '') {

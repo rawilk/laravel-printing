@@ -12,11 +12,6 @@ class RangeOfInteger extends Type
 {
     protected int $tag = TypeTag::RangeOfInteger->value;
 
-    /**
-     * @param  int[]  $value  - Array of 2 integers
-     */
-    public function __construct(public mixed $value) {}
-
     public static function fromBinary(string $binary, int &$offset): array
     {
         $attrName = self::nameFromBinary($binary, $offset);
@@ -37,11 +32,11 @@ class RangeOfInteger extends Type
      *
      * @throws RangeOverlap
      */
-    public static function checkOverlaps(array &$values)
+    public static function checkOverlaps(array &$values): bool
     {
         usort(
             $values,
-            function ($a, $b) {
+            static function ($a, $b) {
                 return $a->value[0] - $b->value[0];
             }
         );
@@ -49,7 +44,7 @@ class RangeOfInteger extends Type
         $count = count($values);
         for ($i = 0; $i < $count - 1; $i++) {
             if ($values[$i]->value[1] >= $values[$i + 1]->value[0]) {
-                throw new \Rawilk\Printing\Api\Cups\Exceptions\RangeOverlap('Range overlap is not allowed!');
+                throw new RangeOverlap('Range overlap is not allowed!');
             }
         }
 

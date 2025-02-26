@@ -17,11 +17,6 @@ class Collection extends Type
     // Collection has an end tag
     protected int $endTag = TypeTag::CollectionEnd->value;
 
-    /**
-     * @param  array  $value  - Array of members
-     */
-    public function __construct(public mixed $value) {}
-
     public static function fromBinary(string $binary, int &$offset): array
     {
         $attrName = self::nameFromBinary($binary, $offset);

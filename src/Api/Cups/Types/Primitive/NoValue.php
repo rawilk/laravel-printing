@@ -21,6 +21,6 @@ class NoValue extends Type
 
     public function encode(): string
     {
-        return pack('n', 0) . '';
+        return pack('n', 0);
     }
 }

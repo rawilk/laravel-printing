@@ -26,6 +26,6 @@ class Boolean extends Type
 
     public function encode(): string
     {
-        return pack('n', 1) . pack('c', intval($this->value));
+        return pack('n', 1) . pack('c', (int) $this->value);
     }
 }

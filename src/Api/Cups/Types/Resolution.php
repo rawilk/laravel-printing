@@ -11,7 +11,7 @@ class Resolution extends Text
 {
     protected int $tag = TypeTag::Resolution->value;
 
-    private static $unitMap = [
+    private static array $unitMap = [
         3 => 'dpi',
         4 => 'dpc',
     ];
