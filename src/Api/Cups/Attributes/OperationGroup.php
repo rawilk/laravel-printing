@@ -9,5 +9,5 @@ use Rawilk\Printing\Api\Cups\AttributeGroupTag;
 
 class OperationGroup extends AttributeGroup
 {
-    protected int $tag = AttributeGroupTag::OPERATION_ATTRIBUTES->value;
+    protected int $tag = AttributeGroupTag::OperationAttributes->value;
 }

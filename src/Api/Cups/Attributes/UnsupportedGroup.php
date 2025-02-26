@@ -9,5 +9,5 @@ use Rawilk\Printing\Api\Cups\AttributeGroupTag;
 
 class UnsupportedGroup extends AttributeGroup
 {
-    protected int $tag = AttributeGroupTag::UNSUPPORTED_ATTRIBUTES->value;
+    protected int $tag = AttributeGroupTag::UnSupportedAttributes->value;
 }

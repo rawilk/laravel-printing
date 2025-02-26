@@ -9,5 +9,5 @@ use Rawilk\Printing\Api\Cups\AttributeGroupTag;
 
 class JobGroup extends AttributeGroup
 {
-    protected int $tag = AttributeGroupTag::JOB_ATTRIBUTES->value;
+    protected int $tag = AttributeGroupTag::JobAttributes->value;
 }

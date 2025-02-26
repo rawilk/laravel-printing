@@ -9,5 +9,5 @@ use Rawilk\Printing\Api\Cups\AttributeGroupTag;
 
 class PrinterGroup extends AttributeGroup
 {
-    protected int $tag = AttributeGroupTag::PRINTER_ATTRIBUTES->value;
+    protected int $tag = AttributeGroupTag::PrinterAttributes->value;
 }

@@ -78,7 +78,7 @@ class Response
         $offset = 9;
 
         $this->attributeGroups = [];
-        while (AttributeGroupTag::tryFrom($nextTag) && $nextTag !== AttributeGroupTag::END_OF_ATTRIBUTES->value) {
+        while (AttributeGroupTag::tryFrom($nextTag) && $nextTag !== AttributeGroupTag::EndOfAttributes->value) {
             $currentTag = $nextTag;
             $attributes = $this->extractAttributes($binary, $offset, $nextTag);
             $className = AttributeGroupTag::getGroupClassByTag($currentTag);

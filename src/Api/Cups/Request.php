@@ -97,7 +97,7 @@ class Request
         foreach ($this->attributeGroups as $group) {
             $binary .= $group->encode();
         }
-        $binary .= pack('c', AttributeGroupTag::END_OF_ATTRIBUTES->value);
+        $binary .= pack('c', AttributeGroupTag::EndOfAttributes->value);
 
         if ($this->content) {
             $binary .= $this->content;
