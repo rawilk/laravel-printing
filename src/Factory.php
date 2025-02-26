@@ -19,9 +19,7 @@ class Factory
 
     protected array $customCreators = [];
 
-    public function __construct(protected array $config)
-    {
-    }
+    public function __construct(protected array $config) {}
 
     public function driver(?string $driver = null): Driver
     {

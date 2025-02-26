@@ -15,9 +15,7 @@ class Printing implements Driver
 {
     use Macroable;
 
-    public function __construct(protected Driver $driver, protected mixed $defaultPrinterId = null)
-    {
-    }
+    public function __construct(protected Driver $driver, protected mixed $defaultPrinterId = null) {}
 
     public function defaultPrinter(): ?Printer
     {

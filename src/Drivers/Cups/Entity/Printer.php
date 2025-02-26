@@ -20,9 +20,7 @@ class Printer implements Arrayable, JsonSerializable, PrinterContracts
 
     protected array $capabilities;
 
-    public function __construct(protected SmalotPrinter $printer, protected JobManager $jobManager)
-    {
-    }
+    public function __construct(protected SmalotPrinter $printer, protected JobManager $jobManager) {}
 
     public function cupsPrinter(): SmalotPrinter
     {

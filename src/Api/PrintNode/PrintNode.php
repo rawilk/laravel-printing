@@ -10,9 +10,7 @@ class PrintNode
 {
     use Macroable;
 
-    public function __construct(private string $apiKey)
-    {
-    }
+    public function __construct(private string $apiKey) {}
 
     public function setApiKey(string $apiKey): self
     {

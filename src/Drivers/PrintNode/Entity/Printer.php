@@ -19,9 +19,7 @@ class Printer implements Arrayable, JsonSerializable, PrinterContract
 
     protected ?array $capabilities = null;
 
-    public function __construct(protected PrintNodePrinter $printer)
-    {
-    }
+    public function __construct(protected PrintNodePrinter $printer) {}
 
     public function printer(): PrintNodePrinter
     {

@@ -58,7 +58,7 @@ class Client implements HttpClient
             $socketClientOptions['remote_socket'] = self::SOCKET_URL;
         }
 
-        $messageFactory = new GuzzleMessageFactory();
+        $messageFactory = new GuzzleMessageFactory;
         $socketClient = new SocketHttpClient($messageFactory, $socketClientOptions);
         $host = preg_match(
             '/unix:\/\//',
@@ -67,9 +67,9 @@ class Client implements HttpClient
         $this->httpClient = new PluginClient(
             $socketClient,
             [
-                new ErrorPlugin(),
-                new ContentLengthPlugin(),
-                new DecoderPlugin(),
+                new ErrorPlugin,
+                new ContentLengthPlugin,
+                new DecoderPlugin,
                 new AddHostPlugin(new Uri($host)),
             ]
         );

@@ -6,6 +6,4 @@ namespace Rawilk\Printing\Exceptions;
 
 use Exception;
 
-class PrintNodeApiRequestFailed extends Exception
-{
-}
+class PrintNodeApiRequestFailed extends Exception {}
