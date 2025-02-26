@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Rawilk\Printing\Api\Cups;
 
+use Rawilk\Printing\Api\Cups\Attributes\JobGroup;
+use Rawilk\Printing\Api\Cups\Attributes\OperationGroup;
 use Rawilk\Printing\Api\Cups\Enums\AttributeGroupTag;
 use Rawilk\Printing\Api\Cups\Enums\Operation;
 use Rawilk\Printing\Api\Cups\Enums\Version;
@@ -12,30 +14,28 @@ use Rawilk\Printing\Api\Cups\Types\NaturalLanguage;
 
 class Request
 {
-    private Version $version;
+    protected Version $version;
 
-    private int $operation;
+    protected int $operation;
 
-    private int $requestId = 1;
+    protected int $requestId = 1;
 
-    private string $content = '';
+    protected string $content = '';
 
     /**
      * @var \Rawilk\Printing\Api\Cups\AttributeGroup[]
      */
-    private array $attributeGroups = [];
+    protected array $attributeGroups = [];
 
     public function __construct()
     {
-        $this->addOperationAttributes(
-            [
-                'attributes-charset' => new Charset('utf-8'),
-                'attributes-natural-language' => new NaturalLanguage('en'),
-            ]
-        );
+        $this->addOperationAttributes([
+            'attributes-charset' => new Charset('utf-8'),
+            'attributes-natural-language' => new NaturalLanguage('en'),
+        ]);
     }
 
-    public function setVersion(Version $version)
+    public function setVersion(Version $version): static
     {
         $this->version = $version;
 
@@ -49,18 +49,17 @@ class Request
         return $this;
     }
 
-    /**
-     * Set file contents to print
-     */
-    public function setContent(string $content)
+    public function setContent(string $content): static
     {
         $this->content = $content;
+
+        return $this;
     }
 
     /**
      * You may optionally specify the request ID, default is 1
      */
-    public function setRequestId(int $requestId)
+    public function setRequestId(int $requestId): static
     {
         $this->requestId = $requestId;
 
@@ -68,11 +67,11 @@ class Request
     }
 
     /**
-     * @param array<string, \Rawilk\Printing\Api\Cups\Type|\Rawilk\Printing\Api\Cups\Type[]>> $attributes
+     * @param  array<string, \Rawilk\Printing\Api\Cups\Type|\Rawilk\Printing\Api\Cups\Type[]>  $attributes
      */
-    public function addOperationAttributes(array $attributes)
+    public function addOperationAttributes(array $attributes): static
     {
-        $this->setAttributes(\Rawilk\Printing\Api\Cups\Attributes\OperationGroup::class, $attributes);
+        $this->setAttributes(OperationGroup::class, $attributes);
 
         return $this;
     }
@@ -80,16 +79,15 @@ class Request
     /**
      * @param  array<string, \Rawilk\Printing\Api\Cups\Type|\Rawilk\Printing\Api\Cups\Type[]>  $attributes
      */
-    public function addJobAttributes(array $attributes)
+    public function addJobAttributes(array $attributes): static
     {
-        $this->setAttributes(\Rawilk\Printing\Api\Cups\Attributes\JobGroup::class, $attributes);
+        $this->setAttributes(JobGroup::class, $attributes);
 
         return $this;
     }
 
-    public function encode()
+    public function encode(): string
     {
-
         $binary = $this->version->encode();
         $binary .= pack('n', $this->operation);
         $binary .= pack('N', $this->requestId);
@@ -97,6 +95,7 @@ class Request
         foreach ($this->attributeGroups as $group) {
             $binary .= $group->encode();
         }
+
         $binary .= pack('c', AttributeGroupTag::EndOfAttributes->value);
 
         if ($this->content) {
@@ -106,21 +105,23 @@ class Request
         return $binary;
     }
 
-    private function setAttributes(string $className, array $attributes)
+    protected function setAttributes(string $className, array $attributes): void
     {
         $index = $this->getGroupIndex($className);
+
         foreach ($attributes as $name => $value) {
-            $this->attributeGroups[$index]->$name = $value;
+            $this->attributeGroups[$index]->{$name} = $value;
         }
     }
 
-    private function getGroupIndex(string $className): int
+    protected function getGroupIndex(string $className): int
     {
-        for ($i = 0; $i < count($this->attributeGroups); $i++) {
-            if ($this->attributeGroups[$i] instanceof $className) {
-                return $i;
+        foreach ($this->attributeGroups as $index => $attributeGroup) {
+            if ($attributeGroup instanceof $className) {
+                return $index;
             }
         }
+
         $this->attributeGroups[] = new $className;
 
         return count($this->attributeGroups) - 1;
