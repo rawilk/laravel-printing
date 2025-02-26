@@ -17,21 +17,21 @@ All notable changes to `laravel-printing` will be documented in this file.
 
 ### What's Changed
 
-* Bump actions/stale from 5 to 8 by @dependabot in https://github.com/rawilk/laravel-printing/pull/58
-* Bump dependabot/fetch-metadata from 1.3.6 to 1.4.0 by @dependabot in https://github.com/rawilk/laravel-printing/pull/59
-* Bump dependabot/fetch-metadata from 1.4.0 to 1.5.1 by @dependabot in https://github.com/rawilk/laravel-printing/pull/60
-* Bump dependabot/fetch-metadata from 1.5.1 to 1.6.0 by @dependabot in https://github.com/rawilk/laravel-printing/pull/68
-* Update basic-usage.md by @vanrijs in https://github.com/rawilk/laravel-printing/pull/78
-* Bump stefanzweifel/git-auto-commit-action from 4 to 5 by @dependabot in https://github.com/rawilk/laravel-printing/pull/75
-* Bump aglipanci/laravel-pint-action from 2.2.0 to 2.3.1 by @dependabot in https://github.com/rawilk/laravel-printing/pull/80
-* Laravel 11.x Compatibility by @laravel-shift in https://github.com/rawilk/laravel-printing/pull/84
-* Add php 8.3 support by @rawilk in https://github.com/rawilk/laravel-printing/pull/85
-* Chore: Update Pint Config by @rawilk in https://github.com/rawilk/laravel-printing/pull/86
+- Bump actions/stale from 5 to 8 by @dependabot in https://github.com/rawilk/laravel-printing/pull/58
+- Bump dependabot/fetch-metadata from 1.3.6 to 1.4.0 by @dependabot in https://github.com/rawilk/laravel-printing/pull/59
+- Bump dependabot/fetch-metadata from 1.4.0 to 1.5.1 by @dependabot in https://github.com/rawilk/laravel-printing/pull/60
+- Bump dependabot/fetch-metadata from 1.5.1 to 1.6.0 by @dependabot in https://github.com/rawilk/laravel-printing/pull/68
+- Update basic-usage.md by @vanrijs in https://github.com/rawilk/laravel-printing/pull/78
+- Bump stefanzweifel/git-auto-commit-action from 4 to 5 by @dependabot in https://github.com/rawilk/laravel-printing/pull/75
+- Bump aglipanci/laravel-pint-action from 2.2.0 to 2.3.1 by @dependabot in https://github.com/rawilk/laravel-printing/pull/80
+- Laravel 11.x Compatibility by @laravel-shift in https://github.com/rawilk/laravel-printing/pull/84
+- Add php 8.3 support by @rawilk in https://github.com/rawilk/laravel-printing/pull/85
+- Chore: Update Pint Config by @rawilk in https://github.com/rawilk/laravel-printing/pull/86
 
 ### New Contributors
 
-* @vanrijs made their first contribution in https://github.com/rawilk/laravel-printing/pull/78
-* @laravel-shift made their first contribution in https://github.com/rawilk/laravel-printing/pull/84
+- @vanrijs made their first contribution in https://github.com/rawilk/laravel-printing/pull/78
+- @laravel-shift made their first contribution in https://github.com/rawilk/laravel-printing/pull/84
 
 **Full Changelog**: https://github.com/rawilk/laravel-printing/compare/v3.0.3...v3.0.4
 
