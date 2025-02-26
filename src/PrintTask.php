@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Rawilk\Printing;
 
+use Illuminate\Support\Str;
 use Illuminate\Support\Traits\Macroable;
 use Rawilk\Printing\Contracts\Printer;
 use Rawilk\Printing\Contracts\PrintTask as PrintTaskContract;
@@ -119,6 +120,6 @@ abstract class PrintTask implements PrintTaskContract
             return $this->jobTitle;
         }
 
-        return 'job_' . uniqid('', false) . '_' . date('Ymdhis');
+        return 'job_' . Str::random(8) . '_' . date('Ymdhis');
     }
 }
