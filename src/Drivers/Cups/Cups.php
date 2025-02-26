@@ -5,11 +5,9 @@ declare(strict_types=1);
 namespace Rawilk\Printing\Drivers\Cups;
 
 use Rawilk\Printing\Api\Cups\Cups as CupsApi;
-use Rawilk\Printing\Api\Cups\Operation;
 use Rawilk\Printing\Api\Cups\Request;
 use Rawilk\Printing\Api\Cups\Types\Primitive\Keyword;
 use Rawilk\Printing\Api\Cups\Types\Uri;
-use Rawilk\Printing\Api\Cups\Enums\Version;
 use Rawilk\Printing\Contracts\Driver;
 use Rawilk\Printing\Contracts\Printer;
 use Rawilk\Printing\Contracts\PrintJob;
@@ -33,7 +31,7 @@ class Cups implements Driver
     {
         $request = new Request;
         $request->setVersion(\Rawilk\Printing\Api\Cups\Enums\Version::V2_1)
-            ->setOperation(Operation::GET_PRINTER_ATTRIBUTES)
+            ->setOperation(\Rawilk\Printing\Api\Cups\Enums\Operation::GetPrinterAttributes)
             ->addOperationAttributes(['printer-uri' => new Uri($printerId)]);
 
         return $this->api->makeRequest($request)->getPrinters()->first();
@@ -51,7 +49,7 @@ class Cups implements Driver
     {
         $request = new Request;
         $request->setVersion(\Rawilk\Printing\Api\Cups\Enums\Version::V2_1)
-            ->setOperation(Operation::CUPS_GET_PRINTERS);
+            ->setOperation(\Rawilk\Printing\Api\Cups\Enums\Operation::CupsGetPrinters);
 
         $printers = $this->api->makeRequest($request)->getPrinters();
 
@@ -62,7 +60,7 @@ class Cups implements Driver
     {
         $request = new Request;
         $request->setVersion(\Rawilk\Printing\Api\Cups\Enums\Version::V2_1)
-            ->setOperation(Operation::GET_JOB_ATTRIBUTES)
+            ->setOperation(\Rawilk\Printing\Api\Cups\Enums\Operation::GetJobAttributes)
             ->addOperationAttributes([
                 'job-uri' => new Uri($jobId),
                 'requested-attributes' => [
@@ -87,7 +85,7 @@ class Cups implements Driver
     {
         $request = new Request;
         $request->setVersion(\Rawilk\Printing\Api\Cups\Enums\Version::V2_1)
-            ->setOperation(Operation::GET_JOBS)
+            ->setOperation(\Rawilk\Printing\Api\Cups\Enums\Operation::GetJobs)
             ->addOperationAttributes([
                 'printer-uri' => new Uri($printerId),
                 'which-jobs' => new Keyword('not-completed'),

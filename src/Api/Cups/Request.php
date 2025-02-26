@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Rawilk\Printing\Api\Cups;
 
 use Rawilk\Printing\Api\Cups\Enums\AttributeGroupTag;
+use Rawilk\Printing\Api\Cups\Enums\Operation;
 use Rawilk\Printing\Api\Cups\Enums\Version;
 use Rawilk\Printing\Api\Cups\Types\Charset;
 use Rawilk\Printing\Api\Cups\Types\NaturalLanguage;
@@ -41,12 +42,9 @@ class Request
         return $this;
     }
 
-    /**
-     * @see \Rawilk\Printing\Api\Cups\Operation Operations supported
-     */
-    public function setOperation($operation)
+    public function setOperation(int|Operation $operation): static
     {
-        $this->operation = $operation;
+        $this->operation = $operation instanceof Operation ? $operation->value : $operation;
 
         return $this;
     }

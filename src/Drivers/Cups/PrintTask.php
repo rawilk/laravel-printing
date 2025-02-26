@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Rawilk\Printing\Drivers\Cups;
 
 use Rawilk\Printing\Api\Cups\Cups;
-use Rawilk\Printing\Api\Cups\Operation;
+use Rawilk\Printing\Api\Cups\Enums\Operation;
 use Rawilk\Printing\Api\Cups\Request;
 use Rawilk\Printing\Api\Cups\Type;
 use Rawilk\Printing\Api\Cups\Types\MimeMedia;
@@ -15,7 +15,6 @@ use Rawilk\Printing\Api\Cups\Types\Primitive\Integer;
 use Rawilk\Printing\Api\Cups\Types\Primitive\Keyword;
 use Rawilk\Printing\Api\Cups\Types\RangeOfInteger;
 use Rawilk\Printing\Api\Cups\Types\Uri;
-use Rawilk\Printing\Api\Cups\Enums\Version;
 use Rawilk\Printing\Contracts\PrintJob;
 use Rawilk\Printing\Exceptions\InvalidSource;
 use Rawilk\Printing\Exceptions\PrintTaskFailed;
@@ -120,7 +119,7 @@ class PrintTask extends BasePrintTask
 
         $request = new Request;
         $request->setVersion(\Rawilk\Printing\Api\Cups\Enums\Version::V1_1)
-            ->setOperation(Operation::PRINT_JOB)
+            ->setOperation(Operation::PrintJob)
             ->addOperationAttributes(
                 [
                     'printer-uri' => new Uri($this->printerId),
