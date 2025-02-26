@@ -20,14 +20,14 @@ abstract class AttributeGroup
      */
     protected array $attributes = [];
 
-    public function __set($name, $value)
-    {
-        $this->attributes[$name] = $value;
-    }
-
     public function __construct(array $attributes = [])
     {
         $this->attributes = $attributes;
+    }
+
+    public function __set($name, $value)
+    {
+        $this->attributes[$name] = $value;
     }
 
     /**
@@ -44,9 +44,10 @@ abstract class AttributeGroup
         foreach ($this->attributes as $name => $value) {
             if (gettype($value) === 'array') {
                 $binary .= $this->handleArrayEncode($name, $value);
+
                 continue;
             }
-            if (!$value instanceof Type) {
+            if (! $value instanceof Type) {
                 throw new TypeNotSpecified('Attribute value has to be of type ' . Type::class);
             }
 
@@ -58,13 +59,14 @@ abstract class AttributeGroup
 
             $binary .= $value->encode();  // Attribute value (with length)
         }
+
         return $binary;
     }
 
     /**
      * If attribute is an array, the attribute name after the first element is empty
-     * @param string $name
-     * @param array<int, \Rawilk\Printing\Api\Cups\Type> $values
+     *
+     * @param  array<int, \Rawilk\Printing\Api\Cups\Type>  $values
      */
     private function handleArrayEncode(string $name, array $values): string
     {
@@ -72,7 +74,7 @@ abstract class AttributeGroup
         if ($values[0] instanceof \Rawilk\Printing\Api\Cups\Types\RangeOfInteger) {
             \Rawilk\Printing\Api\Cups\Types\RangeOfInteger::checkOverlaps($values);
         }
-        for ($i = 0; $i < sizeof($values); $i++) {
+        for ($i = 0; $i < count($values); $i++) {
             $_name = $name;
             if ($i !== 0) {
                 $_name = '';
@@ -85,6 +87,7 @@ abstract class AttributeGroup
 
             $str .= $values[$i]->encode();
         }
+
         return $str;
     }
 }

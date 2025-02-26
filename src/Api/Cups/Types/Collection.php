@@ -18,10 +18,32 @@ class Collection extends Type
     protected int $endTag = TypeTag::COLLECTION_END->value;
 
     /**
-     * @param array $value - Array of members
+     * @param  array  $value  - Array of members
      */
-    public function __construct(public mixed $value)
+    public function __construct(public mixed $value) {}
+
+    public static function fromBinary(string $binary, int &$offset): array
     {
+        $attrName = self::nameFromBinary($binary, $offset);
+        $offset += 2; // Value length
+
+        $members = [];
+        while (unpack('ctag', $binary, $offset)['tag'] === TypeTag::MEMBER->value) {
+            $nextTag = (unpack('ctag', $binary, $offset))['tag'];
+            $offset++;
+
+            $type = TypeTag::tryFrom($nextTag);
+            $typeClass = $type->getClass();
+
+            [$name, $value] = $typeClass::fromBinary($binary, $offset);
+            $members[$name] = $value;
+        }
+
+        // Collection end tags
+        $offset++; // 0x37
+        $offset += 4; // Name, value length
+
+        return [$attrName, new static($members)];
     }
 
     public function encode(): string
@@ -44,29 +66,5 @@ class Collection extends Type
         $binary .= pack('n', 0); // End tag value length is 0
 
         return $binary;
-    }
-
-    public static function fromBinary(string $binary, int &$offset): array
-    {
-        $attrName = self::nameFromBinary($binary, $offset);
-        $offset += 2; // Value length
-
-        $members = [];
-        while (unpack("ctag", $binary, $offset)['tag'] === TypeTag::MEMBER->value) {
-            $nextTag = (unpack("ctag", $binary, $offset))['tag'];
-            $offset++;
-
-            $type = TypeTag::tryFrom($nextTag);
-            $typeClass = $type->getClass();
-
-            [$name, $value] = $typeClass::fromBinary($binary, $offset);
-            $members[$name] = $value;
-        }
-
-        // Collection end tags
-        $offset++; // 0x37
-        $offset += 4; // Name, value length
-
-        return [$attrName, new static($members)];
     }
 }

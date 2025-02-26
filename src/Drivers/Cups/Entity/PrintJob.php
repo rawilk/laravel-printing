@@ -10,7 +10,7 @@ use JsonSerializable;
 use Rawilk\Printing\Contracts\PrintJob as PrintJobContract;
 use Rawilk\Printing\Drivers\Cups\Enum\JobState;
 
-class PrintJob implements PrintJobContract, Arrayable, JsonSerializable
+class PrintJob implements Arrayable, JsonSerializable, PrintJobContract
 {
     /**
      * @param array<string, \Rawilk\Printing\Api\Cups\Type>
@@ -69,6 +69,7 @@ class PrintJob implements PrintJobContract, Arrayable, JsonSerializable
         if (preg_match('/printers\/(.*)$/', $this->printerId(), $matches)) {
             return $matches[1];
         }
+
         return null;
     }
 

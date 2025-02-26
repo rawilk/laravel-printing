@@ -10,8 +10,11 @@ use Rawilk\Printing\Api\Cups\Types\NaturalLanguage;
 class Request
 {
     private Version $version;
+
     private int $operation;
+
     private int $requestId = 1;
+
     private string $content = '';
 
     /**
@@ -32,6 +35,7 @@ class Request
     public function setVersion(Version $version)
     {
         $this->version = $version;
+
         return $this;
     }
 
@@ -41,6 +45,7 @@ class Request
     public function setOperation($operation)
     {
         $this->operation = $operation;
+
         return $this;
     }
 
@@ -58,6 +63,7 @@ class Request
     public function setRequestId(int $requestId)
     {
         $this->requestId = $requestId;
+
         return $this;
     }
 
@@ -67,35 +73,18 @@ class Request
     public function addOperationAttributes(array $attributes)
     {
         $this->setAttributes(\Rawilk\Printing\Api\Cups\Attributes\OperationGroup::class, $attributes);
+
         return $this;
     }
 
     /**
-     * @param array<string, \Rawilk\Printing\Api\Cups\Type|\Rawilk\Printing\Api\Cups\Type[]> $attributes
+     * @param  array<string, \Rawilk\Printing\Api\Cups\Type|\Rawilk\Printing\Api\Cups\Type[]>  $attributes
      */
     public function addJobAttributes(array $attributes)
     {
         $this->setAttributes(\Rawilk\Printing\Api\Cups\Attributes\JobGroup::class, $attributes);
+
         return $this;
-    }
-
-    private function setAttributes(string $className, array $attributes)
-    {
-        $index = $this->getGroupIndex($className);
-        foreach ($attributes as $name => $value) {
-            $this->attributeGroups[$index]->$name = $value;
-        }
-    }
-
-    private function getGroupIndex(string $className): int
-    {
-        for ($i = 0; $i < sizeof($this->attributeGroups); $i++) {
-            if ($this->attributeGroups[$i] instanceof $className) {
-                return $i;
-            }
-        }
-        $this->attributeGroups[] = new $className();
-        return sizeof($this->attributeGroups) - 1;
     }
 
     public function encode()
@@ -115,5 +104,25 @@ class Request
         }
 
         return $binary;
+    }
+
+    private function setAttributes(string $className, array $attributes)
+    {
+        $index = $this->getGroupIndex($className);
+        foreach ($attributes as $name => $value) {
+            $this->attributeGroups[$index]->$name = $value;
+        }
+    }
+
+    private function getGroupIndex(string $className): int
+    {
+        for ($i = 0; $i < count($this->attributeGroups); $i++) {
+            if ($this->attributeGroups[$i] instanceof $className) {
+                return $i;
+            }
+        }
+        $this->attributeGroups[] = new $className;
+
+        return count($this->attributeGroups) - 1;
     }
 }
