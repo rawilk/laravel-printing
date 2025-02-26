@@ -39,7 +39,7 @@ class Factory
 
     protected function createCupsDriver(array $config): Driver
     {
-        return new Cups();
+        return new Cups;
     }
 
     protected function createPrintnodeDriver(array $config): Driver
