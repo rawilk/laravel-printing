@@ -9,7 +9,7 @@ use Rawilk\Printing\Api\PrintNode\PrintNode;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
-class PrintingServiceProvider extends PackageServiceProvider
+final class PrintingServiceProvider extends PackageServiceProvider
 {
     public function configurePackage(Package $package): void
     {
