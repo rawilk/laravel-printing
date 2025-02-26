@@ -3,7 +3,7 @@ name: Tests
 on:
   push:
     paths:
-      - **.php
+      - '**.php'
       - phpunit.xml.dist
       - .github/workflows/pest.yml
       - composer.json
@@ -19,7 +19,7 @@ jobs:
       fail-fast: true
       matrix:
         php: [8.3, 8.2, 8.1]
-        laravel: ['8.*', '9.*', '10.*', '11.*', '12.*']
+        laravel: [12.*, 11.*, 10.*, 9.*, 8.*]
         stability: [prefer-lowest, prefer-stable]
         include:
           - laravel: 10.*
