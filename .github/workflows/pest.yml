@@ -18,7 +18,7 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        php: [8.4, 8.3, 8.2, 8.1]
+        php: [8.3, 8.2, 8.1]
         laravel: [12.*, 11.*, 10.*, 9.*, 8.*]
         stability: [prefer-lowest, prefer-stable]
         include:
@@ -38,15 +38,11 @@ jobs:
             stability: prefer-lowest
           - laravel: 9.*
             php: 8.3
-          - laravel: 9.*
-            php: 8.4
           - laravel: 8.*
             php: 8.2
             stability: prefer-lowest
           - laravel: 8.*
             php: 8.3
-          - laravel: 8.*
-            php: 8.4
           - laravel: 11.*
             php: 8.1
           - laravel: 12.*
