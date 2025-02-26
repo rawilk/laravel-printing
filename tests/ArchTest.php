@@ -37,6 +37,10 @@ arch('contracts')->expect('Rawilk\Printing\Contracts')
     ->not->toHaveSuffix('Contract')
     ->toBeInterfaces();
 
+arch('enums')->expect('Rawilk\Printing\Enums')
+    ->toBeEnums()
+    ->not->toHaveSuffix('Enum');
+
 arch('exceptions')->expect('Rawilk\Printing\Exceptions')
     ->not->toHaveSuffix('Exception')
     ->toExtend(Exception::class);
