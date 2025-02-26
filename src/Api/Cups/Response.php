@@ -4,37 +4,42 @@ declare(strict_types=1);
 
 namespace Rawilk\Printing\Api\Cups;
 
+use Illuminate\Support\Collection;
+use Rawilk\Printing\Api\Cups\Attributes\JobGroup;
+use Rawilk\Printing\Api\Cups\Attributes\OperationGroup;
+use Rawilk\Printing\Api\Cups\Attributes\PrinterGroup;
 use Rawilk\Printing\Api\Cups\Enums\AttributeGroupTag;
 use Rawilk\Printing\Api\Cups\Enums\TypeTag;
 use Rawilk\Printing\Api\Cups\Enums\Version;
+use Rawilk\Printing\Api\Cups\Exceptions\ClientError;
 use Rawilk\Printing\Api\Cups\Exceptions\UnknownType;
 use Rawilk\Printing\Drivers\Cups\Entity\Printer;
 use Rawilk\Printing\Drivers\Cups\Entity\PrintJob;
 
 class Response
 {
-    private Version $version;
+    protected Version $version;
 
-    private int $requestId = 1;
+    protected int $requestId = 1;
 
-    private int $statusCode;
+    protected int $statusCode;
 
     /**
      * @var \Rawilk\Printing\Api\Cups\AttributeGroup[]
      */
-    private array $attributeGroups = [];
+    protected array $attributeGroups = [];
 
     public function __construct(string $binaryData)
     {
         $this->decode($binaryData);
     }
 
-    public function getVersion()
+    public function getVersion(): Version
     {
         return $this->version;
     }
 
-    public function getRequestId()
+    public function getRequestId(): int
     {
         return $this->requestId;
     }
@@ -42,11 +47,12 @@ class Response
     /**
      * @return \Illuminate\Support\Collection<Printer>
      */
-    public function getPrinters()
+    public function getPrinters(): Collection
     {
         $printers = collect();
+
         foreach ($this->attributeGroups as $group) {
-            if ($group instanceof \Rawilk\Printing\Api\Cups\Attributes\PrinterGroup) {
+            if ($group instanceof PrinterGroup) {
                 $printers->push(new Printer($group->getAttributes()));
             }
         }
@@ -57,11 +63,12 @@ class Response
     /**
      * @return \Illuminate\Support\Collection<PrintJob>
      */
-    public function getJobs()
+    public function getJobs(): Collection
     {
         $jobs = collect();
+
         foreach ($this->attributeGroups as $group) {
-            if ($group instanceof \Rawilk\Printing\Api\Cups\Attributes\JobGroup) {
+            if ($group instanceof JobGroup) {
                 $jobs->push(new PrintJob($group->getAttributes()));
             }
         }
@@ -69,7 +76,7 @@ class Response
         return $jobs;
     }
 
-    private function decode(string $binary)
+    protected function decode(string $binary): void
     {
         $data = unpack('cmajorVer/cminorVer/ncode/NrequestId/ctag', $binary);
 
@@ -88,21 +95,23 @@ class Response
             $this->attributeGroups[] = new $className($attributes);
         }
 
-        $this->checkSuccessfulResponse();
+        $this->checkForSuccessfulResponse();
     }
 
-    private function extractAttributes(string $binary, int &$offset, mixed &$nextTag)
+    protected function extractAttributes(string $binary, int &$offset, mixed &$nextTag)
     {
         $attributes = [];
         $nextTag = -1;
+
         while (! AttributeGroupTag::tryFrom($nextTag)) {
             $typeTag = (unpack('ctypeTag', $binary, $offset))['typeTag'];
             $type = TypeTag::tryFrom($typeTag);
             $offset++;
 
-            if (! $type) {
-                throw new UnknownType("Unknown type tag \"{$typeTag}\".");
-            }
+            throw_unless(
+                $type,
+                new UnknownType("Unknown type tag \"{$typeTag}\".")
+            );
 
             $typeClass = $type->getClass();
             [$attrName, $attribute] = $typeClass::fromBinary($binary, $offset);
@@ -123,24 +132,30 @@ class Response
 
             $nextTag = (unpack('ctag', $binary, $offset))['tag'];
         }
+
         $offset++;
 
         return $attributes;
     }
 
-    private function checkSuccessfulResponse()
+    protected function checkForSuccessfulResponse(): void
     {
-        if ($this->statusCode >= 0x0400 && $this->statusCode <= 0x04FF) {
-            throw new \Rawilk\Printing\Api\Cups\Exceptions\ClientError($this->getStatusMessage());
-        } elseif ($this->statusCode >= 0x0500 && $this->statusCode <= 0x05FF) {
-            throw new \Rawilk\Printing\Api\Cups\Exceptions\ClientError($this->getStatusMessage());
-        }
+        throw_if(
+            $this->statusCode >= 0x0400 && $this->statusCode <= 0x04FF,
+            new ClientError($this->getStatusMessage()),
+        );
+
+        throw_if(
+            $this->statusCode >= 0x0500 && $this->statusCode <= 0x05FF,
+            new ClientError($this->getStatusMessage()),
+        );
     }
 
-    private function getStatusMessage(): string
+    protected function getStatusMessage(): string
     {
-        $group = $this->attributeGroups[$this->getGroupIndex(\Rawilk\Printing\Api\Cups\Attributes\OperationGroup::class)];
+        $group = $this->attributeGroups[$this->getGroupIndex(OperationGroup::class)];
         $attributes = $group->getAttributes();
+
         if (array_key_exists('status-message', $attributes)) {
             return $attributes['status-message']->value;
         }
@@ -148,13 +163,14 @@ class Response
         return '';
     }
 
-    private function getGroupIndex(string $className): int
+    protected function getGroupIndex(string $className): int
     {
-        for ($i = 0; $i < count($this->attributeGroups); $i++) {
-            if ($this->attributeGroups[$i] instanceof $className) {
-                return $i;
+        foreach ($this->attributeGroups as $index => $attributeGroup) {
+            if ($attributeGroup instanceof $className) {
+                return $index;
             }
         }
+
         $this->attributeGroups[] = new $className;
 
         return count($this->attributeGroups) - 1;
