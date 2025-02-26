@@ -4,6 +4,7 @@ on:
     push:
         paths:
             - "*.md"
+            - .github/workflows/markdown-normalize.yml
 
 jobs:
     normalize:
@@ -12,8 +13,12 @@ jobs:
         steps:
             -   name: Git checkout
                 uses: actions/checkout@v3
+                with:
+                    ref: ${{ github.head_ref }}
+                    fetch-depth: 0
 
             -   name: Prettify markdown
                 uses: creyD/prettier_action@v4.3
                 with:
                     prettier_options: --write **/*.md
+                    only_changed: True
