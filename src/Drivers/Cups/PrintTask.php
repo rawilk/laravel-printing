@@ -62,41 +62,45 @@ class PrintTask extends BasePrintTask
                 break;
         }
         $this->option('orientation-requested', new Enum($orientation));
+
         return $this;
     }
 
     /**
-     * @param string $key
-     * @param Type|Type[] $value
+     * @param  Type|Type[]  $value
      */
     public function option(string $key, $value): self
     {
         $this->options[$key] = $value;
+
         return $this;
     }
 
     public function copies(int $copies): self
     {
         $this->option('copies', new Integer($copies));
+
         return $this;
     }
 
     public function user(string $name): self
     {
-        $this->option('requesting-user-name', new NameWithoutLanguage(iconv("UTF-8", "ASCII//TRANSLIT", $name)));
+        $this->option('requesting-user-name', new NameWithoutLanguage(iconv('UTF-8', 'ASCII//TRANSLIT', $name)));
+
         return $this;
     }
 
     public function range($start, $end = null): self
     {
-        if (!array_key_exists('page-ranges', $this->options)) {
+        if (! array_key_exists('page-ranges', $this->options)) {
             $this->options['page-ranges'] = new RangeOfInteger([$start, $end]);
         } else {
-            if (!is_array($this->options['page-ranges'])) {
+            if (! is_array($this->options['page-ranges'])) {
                 $this->options['page-ranges'] = [$this->options['page-ranges']];
             }
             $this->options['page-ranges'][] = new RangeOfInteger([$start, $end]);
         }
+
         return $this;
     }
 
@@ -106,6 +110,7 @@ class PrintTask extends BasePrintTask
     public function sides(string $value): self
     {
         $this->option('sides', new Keyword($value));
+
         return $this;
     }
 
@@ -113,7 +118,7 @@ class PrintTask extends BasePrintTask
     {
         $this->ensureValidJob();
 
-        $request = new Request();
+        $request = new Request;
         $request->setVersion(Version::V1_1)
             ->setOperation(Operation::PRINT_JOB)
             ->addOperationAttributes(
@@ -131,19 +136,19 @@ class PrintTask extends BasePrintTask
 
     protected function ensureValidJob(): void
     {
-        if (!$this->printerId) {
+        if (! $this->printerId) {
             throw PrintTaskFailed::missingPrinterId();
         }
 
-        if (!$this->printSource) {
+        if (! $this->printSource) {
             throw PrintTaskFailed::missingSource();
         }
 
-        if (!$this->contentType) {
+        if (! $this->contentType) {
             throw PrintTaskFailed::missingContentType();
         }
 
-        if (!$this->content) {
+        if (! $this->content) {
             throw PrintTaskFailed::noContent();
         }
     }

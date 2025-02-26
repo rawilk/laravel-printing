@@ -41,7 +41,7 @@ function createCupsPrinter(array $attributes = []): Rawilk\Printing\Drivers\Cups
         'printer-name' => new Rawilk\Printing\Api\Cups\Types\TextWithoutLanguage('printer-name'),
         'printer-state' => new Rawilk\Printing\Api\Cups\Types\Primitive\Enum(Rawilk\Printing\Drivers\Cups\Enum\PrinterState::IDLE->value),
         'printer-uri-supported' => new Rawilk\Printing\Api\Cups\Types\TextWithoutLanguage('localhost:631'),
-        ...$attributes
+        ...$attributes,
     ]);
 
     return $cupsPrinter;
