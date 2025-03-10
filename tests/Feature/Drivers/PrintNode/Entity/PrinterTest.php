@@ -2,37 +2,36 @@
 
 declare(strict_types=1);
 
+use Illuminate\Support\Facades\Http;
+use Rawilk\Printing\Api\PrintNode\PrintNode;
+use Rawilk\Printing\Api\PrintNode\Resources\Printer as PrinterResource;
 use Rawilk\Printing\Drivers\PrintNode\Entity\Printer;
-use Rawilk\Printing\Drivers\PrintNode\PrintNode;
-use Rawilk\Printing\Tests\Concerns\FakesPrintNodeRequests;
-
-uses(FakesPrintNodeRequests::class);
+use Rawilk\Printing\Drivers\PrintNode\Entity\PrintJob;
 
 beforeEach(function () {
-    $this->printNode = new PrintNode;
+    Http::preventStrayRequests();
+    PrintNode::setApiKey('my-key');
+
+    $this->resource = PrinterResource::make(
+        samplePrintNodeData('printer_single')[0],
+    );
 });
 
 test('creates from api response', function () {
-    $this->fakeRequest('printers/39', 'printer_single');
+    $printer = new Printer($this->resource);
 
-    $printer = $this->printNode->printer(39);
-
-    expect($printer)->toBeInstanceOf(Printer::class);
-    expect($printer->id())->toBe(39);
-    expect($printer->trays())->toEqual(['Automatically Select']);
-    expect($printer->isOnline())->toBeTrue();
-    expect($printer->name())->toEqual('Microsoft XPS Document Writer');
-    expect($printer->description())->toEqual('Microsoft XPS Document Writer');
+    expect($printer)
+        ->id()->toBe(39)
+        ->trays()->toEqualCanonicalizing(['Automatically Select'])
+        ->isOnline()->toBeTrue()
+        ->name()->toBe('Microsoft XPS Document Writer')
+        ->description()->toBe('Microsoft XPS Document Writer')
+        ->printer()->toBe($this->resource);
 });
 
-test('can be cast to array', function () {
-    $this->fakeRequest('printers/39', 'printer_single');
+it('can be cast to array', function () {
+    $printer = new Printer($this->resource);
 
-    $printer = $this->printNode->printer(39);
-
-    $toArray = $printer->toArray();
-
-    $capabilities = $printer->capabilities();
     $expected = [
         'id' => 39,
         'name' => 'Microsoft XPS Document Writer',
@@ -42,9 +41,21 @@ test('can be cast to array', function () {
         'trays' => [
             'Automatically Select',
         ],
-        'capabilities' => $capabilities,
+        'capabilities' => $this->resource->capabilities->toArray(),
     ];
 
-    $this->assertNotEmpty($toArray);
-    expect($toArray)->toEqual($expected);
+    expect($printer->toArray())->toEqualCanonicalizing($expected);
+});
+
+it('can fetch jobs that have been sent to it', function () {
+    Http::fake([
+        '/printers/39/printjobs' => Http::response(samplePrintNodeData('print_jobs')),
+    ]);
+
+    $printer = new Printer($this->resource);
+
+    $jobs = $printer->jobs();
+
+    expect($jobs)->toHaveCount(100)
+        ->toContainOnlyInstancesOf(PrintJob::class);
 });

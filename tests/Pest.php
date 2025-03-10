@@ -2,24 +2,38 @@
 
 declare(strict_types=1);
 
+use Rawilk\Printing\Api\PrintNode\PrintNode;
 use Rawilk\Printing\Drivers\Cups\Entity\Printer;
 use Rawilk\Printing\Drivers\Cups\Entity\PrintJob;
-use Rawilk\Printing\Tests\Feature\Api\PrintNode\PrintNodeTestCase;
 use Rawilk\Printing\Tests\TestCase;
 
-uses(TestCase::class)->in('Feature/FactoryTest.php');
-uses(TestCase::class)->in('Feature/PrintingTest.php');
-uses(TestCase::class)->in('Feature/Receipts');
-uses(TestCase::class)->in('Feature/Api/PrintNode/Entity');
-uses(PrintNodeTestCase::class)->in('Feature/Api/PrintNode/Requests');
-uses(TestCase::class)->in('Feature/Drivers');
+uses(TestCase::class)->in(
+    'Unit',
+    'Feature',
+);
+
+uses()->afterEach(function () {
+    PrintNode::setApiKey(null);
+})->in(
+    'Feature/Drivers/PrintNode',
+    'Feature/Api/PrintNode',
+);
+
+// uses(TestCase::class)->in('Feature/FactoryTest.php');
+// uses(TestCase::class)->in('Feature/PrintingTest.php');
+// uses(TestCase::class)->in('Feature/Receipts');
+// uses(TestCase::class)->in('Feature/Api/PrintNode/Entity');
+// uses(PrintNodeTestCase::class)->in('Feature/Api/PrintNode/Requests');
+// uses(TestCase::class)->in('Feature/Drivers');
 
 // Helpers
 function samplePrintNodeData(string $file): array
 {
     return json_decode(
-        file_get_contents(__DIR__ . "/stubs/Api/PrintNode/{$file}.json"),
-        true
+        file_get_contents(__DIR__ . "/Feature/Api/PrintNode/Fixtures/responses/{$file}.json"),
+        true,
+        512,
+        JSON_THROW_ON_ERROR,
     );
 }
 

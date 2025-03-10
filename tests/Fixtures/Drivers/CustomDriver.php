@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Rawilk\Printing\Tests\Feature\Drivers\CustomDriver\Driver;
+namespace Rawilk\Printing\Tests\Fixtures\Drivers;
 
 use Illuminate\Support\Collection;
 use Rawilk\Printing\Contracts\Driver;
