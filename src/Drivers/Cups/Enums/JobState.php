@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Rawilk\Printing\Drivers\Cups\Enum;
+namespace Rawilk\Printing\Drivers\Cups\Enums;
 
 enum JobState: int
 {

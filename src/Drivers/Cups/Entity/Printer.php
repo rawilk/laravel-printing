@@ -7,7 +7,7 @@ namespace Rawilk\Printing\Drivers\Cups\Entity;
 use Illuminate\Contracts\Support\Arrayable;
 use JsonSerializable;
 use Rawilk\Printing\Contracts\Printer as PrinterContract;
-use Rawilk\Printing\Drivers\Cups\Enum\PrinterState;
+use Rawilk\Printing\Drivers\Cups\Enums\PrinterState;
 use Rawilk\Printing\Facades\Printing;
 
 class Printer implements Arrayable, JsonSerializable, PrinterContract

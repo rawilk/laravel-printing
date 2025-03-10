@@ -8,7 +8,7 @@ use Carbon\Carbon;
 use Illuminate\Contracts\Support\Arrayable;
 use JsonSerializable;
 use Rawilk\Printing\Contracts\PrintJob as PrintJobContract;
-use Rawilk\Printing\Drivers\Cups\Enum\JobState;
+use Rawilk\Printing\Drivers\Cups\Enums\JobState;
 
 class PrintJob implements Arrayable, JsonSerializable, PrintJobContract
 {

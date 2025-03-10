@@ -43,7 +43,7 @@ function createCupsJob(): Rawilk\Printing\Drivers\Cups\Entity\PrintJob
         'job-uri' => new Rawilk\Printing\Api\Cups\Types\Uri('localhost:631/jobs/123'),
         'job-printer-uri' => new Rawilk\Printing\Api\Cups\Types\Uri('localhost:631/printers/printer-name'),
         'job-name' => new Rawilk\Printing\Api\Cups\Types\TextWithoutLanguage('my print job'),
-        'job-state' => new Rawilk\Printing\Api\Cups\Types\Primitive\Enum(Rawilk\Printing\Drivers\Cups\Enum\JobState::COMPLETED->value),
+        'job-state' => new Rawilk\Printing\Api\Cups\Types\Primitive\Enum(\Rawilk\Printing\Drivers\Cups\Enums\JobState::COMPLETED->value),
     ]);
 
     return $cupsJob;
@@ -53,7 +53,7 @@ function createCupsPrinter(array $attributes = []): Rawilk\Printing\Drivers\Cups
 {
     $cupsPrinter = new Printer([
         'printer-name' => new Rawilk\Printing\Api\Cups\Types\TextWithoutLanguage('printer-name'),
-        'printer-state' => new Rawilk\Printing\Api\Cups\Types\Primitive\Enum(Rawilk\Printing\Drivers\Cups\Enum\PrinterState::IDLE->value),
+        'printer-state' => new Rawilk\Printing\Api\Cups\Types\Primitive\Enum(\Rawilk\Printing\Drivers\Cups\Enums\PrinterState::IDLE->value),
         'printer-uri-supported' => new Rawilk\Printing\Api\Cups\Types\TextWithoutLanguage('localhost:631'),
         ...$attributes,
     ]);
