@@ -6,11 +6,11 @@ namespace Rawilk\Printing\Drivers\Cups\Enums;
 
 enum JobState: int
 {
-    case PENDING = 0x03;
-    case PENDING_HELD = 0x04;
-    case PROCESSING = 0x05;
-    case PROCESSING_STOPPED = 0x06;
-    case CANCELLED = 0x07;
-    case ABORTED = 0x08;
-    case COMPLETED = 0x09;
+    case Pending = 0x03;
+    case PendingHeld = 0x04;
+    case Processing = 0x05;
+    case ProcessingStopped = 0x06;
+    case Cancelled = 0x07;
+    case Aborted = 0x08;
+    case Completed = 0x09;
 }
