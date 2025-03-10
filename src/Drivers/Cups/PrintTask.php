@@ -7,6 +7,7 @@ namespace Rawilk\Printing\Drivers\Cups;
 use Rawilk\Printing\Api\Cups\Cups;
 use Rawilk\Printing\Api\Cups\Enums\ContentType;
 use Rawilk\Printing\Api\Cups\Enums\Operation;
+use Rawilk\Printing\Api\Cups\Enums\Orientation;
 use Rawilk\Printing\Api\Cups\Request;
 use Rawilk\Printing\Api\Cups\Type;
 use Rawilk\Printing\Api\Cups\Types\MimeMedia;
@@ -46,21 +47,13 @@ class PrintTask extends BasePrintTask
 
     public function orientation(string $value): self
     {
-        switch ($value) {
-            case 'reverse-portrait':
-                $orientation = Orientation::REVERSE_PORTRAIT;
-                break;
-            case 'reverse-landscape':
-                $orientation = Orientation::REVERSE_LANDSCAPE;
-                break;
-            case 'landscape':
-                $orientation = Orientation::LANDSCAPE;
-                break;
-            case 'portrait':
-            default:
-                $orientation = Orientation::PORTRAIT;
-                break;
-        }
+        $orientation = match ($value) {
+            'reverse-portrait' => Orientation::ReversePortrait->value,
+            'reverse-landscape' => Orientation::ReverseLandscape->value,
+            'landscape' => Orientation::Landscape->value,
+            default => Orientation::Portrait->value,
+        };
+
         $this->option('orientation-requested', new Enum($orientation));
 
         return $this;
