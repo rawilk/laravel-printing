@@ -98,7 +98,7 @@ class PrintTask extends BasePrintTask
     }
 
     /**
-     * @see \Rawilk\Printing\Drivers\Cups\Sides
+     * @see \Rawilk\Printing\Api\Cups\Enums\Side
      */
     public function sides(string $value): self
     {
