@@ -16,7 +16,9 @@ abstract class AttributeGroup
      */
     protected int $tag;
 
-    public function __construct(protected array $attributes = []) {}
+    public function __construct(protected array $attributes = [])
+    {
+    }
 
     public function __set($name, $value)
     {

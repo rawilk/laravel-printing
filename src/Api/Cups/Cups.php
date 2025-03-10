@@ -15,7 +15,8 @@ class Cups
         protected ?string $password,
         protected int $port = 631,
         protected bool $secure = false
-    ) {}
+    ) {
+    }
 
     public function makeRequest(Request $request): Response
     {

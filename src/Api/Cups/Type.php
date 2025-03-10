@@ -10,7 +10,9 @@ abstract class Type implements JsonSerializable
 {
     protected int $tag;
 
-    public function __construct(public mixed $value) {}
+    public function __construct(public mixed $value)
+    {
+    }
 
     /**
      * Returns attribute from binary and increments offset
