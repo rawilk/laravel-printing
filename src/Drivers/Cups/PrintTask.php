@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Rawilk\Printing\Drivers\Cups;
 
 use Rawilk\Printing\Api\Cups\Cups;
+use Rawilk\Printing\Api\Cups\Enums\ContentType;
 use Rawilk\Printing\Api\Cups\Enums\Operation;
 use Rawilk\Printing\Api\Cups\Request;
 use Rawilk\Printing\Api\Cups\Type;
@@ -32,7 +33,7 @@ class PrintTask extends BasePrintTask
         $this->api = app(Cups::class);
     }
 
-    public function content($content, string $contentType = ContentType::PDF): self
+    public function content($content, string $contentType = ContentType::Pdf->value): static
     {
         if (! $contentType) {
             throw new InvalidSource('Content type is required for the Cups driver.');
