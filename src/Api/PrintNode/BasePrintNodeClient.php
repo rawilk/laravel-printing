@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Rawilk\Printing\Api\PrintNode;
 
 use Illuminate\Support\Collection;
+use Illuminate\Support\Traits\Conditionable;
 use Illuminate\Support\Traits\Macroable;
 use InvalidArgumentException;
 use Rawilk\Printing\Api\PrintNode\Exceptions\AuthenticationFailure;
@@ -17,6 +18,7 @@ use Rawilk\Printing\Api\PrintNode\Util\Util;
  */
 class BasePrintNodeClient implements PrintNodeClientInterface
 {
+    use Conditionable;
     use Macroable;
 
     public const API_BASE = 'https://api.printnode.com';
