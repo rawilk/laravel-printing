@@ -4,6 +4,12 @@ declare(strict_types=1);
 
 namespace Rawilk\Printing\Exceptions;
 
-use Exception;
+use Rawilk\Printing\Api\PrintNode\Exceptions\PrintNodeApiRequestFailed as BaseException;
 
-class PrintNodeApiRequestFailed extends Exception {}
+/**
+ * @deprecated Use `Rawilk\Printing\Api\PrintNode\Exceptions`
+ * namespace instead. This will be removed in a future version.
+ */
+class PrintNodeApiRequestFailed extends BaseException
+{
+}

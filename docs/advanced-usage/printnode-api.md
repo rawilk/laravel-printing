@@ -9,13 +9,13 @@ If you use the PrintNode driver and need more flexibility than what you get with
 The easiest way to do this is by resolving it out of the container:
 
 ```php
-$api = app(\Rawilk\Printing\Api\PrintNode\PrintNode::class);
+$api = app(\Rawilk\Printing\Api\PrintNode\PrintNodeClientTemp::class);
 ```
 
 The api class automatically receives your api key from the config, but if you need to change it on the fly, you can do it like this:
 
 ```php
-app(\Rawilk\Printing\Api\PrintNode\PrintNode::class)->setApiKey('your-new-key');
+app(\Rawilk\Printing\Api\PrintNode\PrintNodeClientTemp::class)->setApiKey('your-new-key');
 ```
 
 Doing this should work even if you are using the `Printing` facade to interact with the api.

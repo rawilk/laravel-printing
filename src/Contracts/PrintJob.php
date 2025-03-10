@@ -4,11 +4,13 @@ declare(strict_types=1);
 
 namespace Rawilk\Printing\Contracts;
 
-use Carbon\Carbon;
+use Carbon\CarbonInterface;
+use Illuminate\Contracts\Support\Arrayable;
+use JsonSerializable;
 
-interface PrintJob
+interface PrintJob extends Arrayable, JsonSerializable
 {
-    public function date(): ?Carbon;
+    public function date(): ?CarbonInterface;
 
     public function id();
 

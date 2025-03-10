@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 use Rawilk\Printing\Facades\Printing;
-use Rawilk\Printing\Tests\Feature\Drivers\CustomDriver\Driver\CustomDriver;
+use Rawilk\Printing\Tests\Fixtures\Drivers\CustomDriver;
 
 beforeEach(function () {
     config([

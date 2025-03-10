@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Rawilk\Printing;
 
+use BackedEnum;
 use Illuminate\Support\Str;
+use Illuminate\Support\Traits\Conditionable;
 use Illuminate\Support\Traits\Macroable;
 use Rawilk\Printing\Contracts\Printer;
 use Rawilk\Printing\Contracts\PrintTask as PrintTaskContract;
@@ -12,6 +14,7 @@ use Rawilk\Printing\Exceptions\InvalidSource;
 
 abstract class PrintTask implements PrintTaskContract
 {
+    use Conditionable;
     use Macroable;
 
     protected string $jobTitle = '';
@@ -29,14 +32,14 @@ abstract class PrintTask implements PrintTaskContract
         $this->printSource = config('app.name');
     }
 
-    public function content($content): self
+    public function content($content): static
     {
         $this->content = $content;
 
         return $this;
     }
 
-    public function file(string $filePath): self
+    public function file(string $filePath): static
     {
         if (! file_exists($filePath)) {
             throw InvalidSource::fileNotFound($filePath);
@@ -47,7 +50,7 @@ abstract class PrintTask implements PrintTaskContract
         return $this;
     }
 
-    public function url(string $url): self
+    public function url(string $url): static
     {
         if (! preg_match('/^https?:\/\//', $url)) {
             throw InvalidSource::invalidUrl($url);
@@ -58,14 +61,14 @@ abstract class PrintTask implements PrintTaskContract
         return $this;
     }
 
-    public function jobTitle(string $jobTitle): self
+    public function jobTitle(string $jobTitle): static
     {
         $this->jobTitle = $jobTitle;
 
         return $this;
     }
 
-    public function printer(Printer|string|null|int $printerId): self
+    public function printer(Printer|string|null|int $printerId): static
     {
         if ($printerId instanceof Printer) {
             $printerId = $printerId->id();
@@ -76,40 +79,42 @@ abstract class PrintTask implements PrintTaskContract
         return $this;
     }
 
-    public function printSource(string $printSource): self
+    public function printSource(string $printSource): static
     {
         $this->printSource = $printSource;
 
         return $this;
     }
 
-    /*
+    /**
      * Not all drivers may support tagging jobs.
      */
-    public function tags($tags): self
+    public function tags($tags): static
     {
         return $this;
     }
 
-    /*
+    /**
      * Not all drivers may support this feature.
      */
-    public function tray($tray): self
+    public function tray($tray): static
     {
         return $this;
     }
 
-    /*
+    /**
      * Not all drivers might support this option.
      */
-    public function copies(int $copies): self
+    public function copies(int $copies): static
     {
         return $this;
     }
 
-    public function option(string $key, $value): self
+    public function option(string|BackedEnum $key, $value): static
     {
-        $this->options[$key] = $value;
+        $keyValue = $key instanceof BackedEnum ? $key->value : $key;
+
+        $this->options[$keyValue] = $value;
 
         return $this;
     }

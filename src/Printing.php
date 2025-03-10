@@ -5,17 +5,36 @@ declare(strict_types=1);
 namespace Rawilk\Printing;
 
 use Illuminate\Support\Collection;
+use Illuminate\Support\Traits\Conditionable;
 use Illuminate\Support\Traits\Macroable;
+use Psr\Log\LoggerInterface;
 use Rawilk\Printing\Contracts\Driver;
+use Rawilk\Printing\Contracts\Logger;
 use Rawilk\Printing\Contracts\Printer;
 use Rawilk\Printing\Contracts\PrintJob;
+use Rawilk\Printing\Enums\PrintDriver;
 use Throwable;
 
 class Printing implements Driver
 {
+    use Conditionable;
     use Macroable;
 
-    public function __construct(protected Driver $driver, protected mixed $defaultPrinterId = null) {}
+    public static null|LoggerInterface|Logger $logger = null;
+
+    public function __construct(protected Driver $driver, protected mixed $defaultPrinterId = null)
+    {
+    }
+
+    public static function getLogger(): null|LoggerInterface|Logger
+    {
+        return static::$logger;
+    }
+
+    public static function setLogger(LoggerInterface|Logger $logger): void
+    {
+        static::$logger = $logger;
+    }
 
     public function defaultPrinter(): ?Printer
     {
@@ -27,9 +46,9 @@ class Printing implements Driver
         return $this->defaultPrinterId;
     }
 
-    public function driver(?string $driver = null): self
+    public function driver(null|string|PrintDriver $driver = null): static
     {
-        $this->driver = app('printing.factory')->driver($driver);
+        $this->driver = app(Factory::class)->driver($driver);
 
         return $this;
     }

@@ -1,14 +1,16 @@
 <?php
 
+/** @deprecated Move to Unit test */
+
 declare(strict_types=1);
 
 use Rawilk\Printing\Drivers\Cups\Cups;
-use Rawilk\Printing\Drivers\PrintNode\PrintNode;
+use Rawilk\Printing\Drivers\PrintNode\PrintNodeTemp;
 use Rawilk\Printing\Exceptions\DriverConfigNotFound;
 use Rawilk\Printing\Exceptions\InvalidDriverConfig;
 use Rawilk\Printing\Exceptions\UnsupportedDriver;
 use Rawilk\Printing\Factory;
-use Rawilk\Printing\Tests\Feature\Drivers\CustomDriver\Driver\CustomDriver;
+use Rawilk\Printing\Tests\Fixtures\Drivers\CustomDriver;
 
 it('creates the printnode driver', function () {
     config([
@@ -17,7 +19,7 @@ it('creates the printnode driver', function () {
 
     $factory = new Factory(config('printing'));
 
-    expect($factory->driver())->toBeInstanceOf(PrintNode::class);
+    expect($factory->driver())->toBeInstanceOf(PrintNodeTemp::class);
 });
 
 test('printnode driver throws an exception if missing api key', function () {

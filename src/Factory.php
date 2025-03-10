@@ -4,26 +4,36 @@ declare(strict_types=1);
 
 namespace Rawilk\Printing;
 
+use BackedEnum;
 use Closure;
 use Illuminate\Support\Arr;
 use Rawilk\Printing\Contracts\Driver;
-use Rawilk\Printing\Drivers\Cups\Cups;
-use Rawilk\Printing\Drivers\PrintNode\PrintNode;
+use Rawilk\Printing\Enums\PrintDriver;
 use Rawilk\Printing\Exceptions\DriverConfigNotFound;
-use Rawilk\Printing\Exceptions\InvalidDriverConfig;
 use Rawilk\Printing\Exceptions\UnsupportedDriver;
 
 class Factory
 {
     protected array $drivers = [];
 
+    /**
+     * @var array<string, Closure> An array callback functions to create custom drivers.
+     */
     protected array $customCreators = [];
 
-    public function __construct(protected array $config) {}
-
-    public function driver(?string $driver = null): Driver
+    public function __construct(protected array $config)
     {
-        $driver = $driver ?: $this->getDriverFromConfig();
+    }
+
+    public function driver(null|string|PrintDriver $driver = null): Driver
+    {
+        if ($driver instanceof BackedEnum) {
+            $driver = (string) $driver->value;
+        }
+
+        if (blank($driver)) {
+            $driver = $this->getDefaultDriverName();
+        }
 
         return $this->drivers[$driver] = $this->get($driver);
     }
@@ -35,18 +45,29 @@ class Factory
         return $this;
     }
 
+    public function getConfig(): array
+    {
+        return $this->config;
+    }
+
+    public function updateConfig(array $config): void
+    {
+        $this->config = array_replace_recursive($this->config, $config);
+
+        // Reset our drivers for potential changes to credentials.
+        $this->drivers = [];
+    }
+
     protected function createCupsDriver(array $config): Driver
     {
-        return new Cups;
+        return new Drivers\Cups\Cups;
     }
 
     protected function createPrintnodeDriver(array $config): Driver
     {
-        if (empty($config['key'])) {
-            throw InvalidDriverConfig::invalid('You must provide an api key for the PrintNode driver.');
-        }
+        PrintDriver::PrintNode->ensureConfigIsValid($config);
 
-        return new PrintNode;
+        return new Drivers\PrintNode\PrintNode($config['key'] ?? null);
     }
 
     protected function get(string $driver): Driver
@@ -54,9 +75,9 @@ class Factory
         return $this->drivers[$driver] ?? $this->resolve($driver);
     }
 
-    protected function getDriverFromConfig(): string
+    protected function getDefaultDriverName(): string
     {
-        return $this->config['driver'] ?? 'printnode';
+        return $this->config['driver'] ?? PrintDriver::PrintNode->value;
     }
 
     protected function getDriverConfig(string $driver): ?array
@@ -66,29 +87,38 @@ class Factory
 
     protected function resolve(string $driver): Driver
     {
-        if (isset($this->drivers[$driver])) {
+        if (Arr::has($this->drivers, $driver)) {
             return $this->drivers[$driver];
         }
 
         $config = $this->getDriverConfig($driver);
 
-        if (! is_array($config)) {
-            throw DriverConfigNotFound::forDriver($driver);
+        if ($this->hasCustomCreator($config['driver'] ?? $driver)) {
+            return $this->callCustomCreator($config, $config['driver'] ?? $driver);
         }
 
-        if (isset($this->customCreators[$config['driver'] ?? ''])) {
-            return $this->callCustomCreator($config);
-        }
+        $method = 'create' . ucfirst($driver) . 'Driver';
 
-        if (! method_exists($this, $method = 'create' . ucfirst($driver) . 'Driver')) {
-            throw UnsupportedDriver::driver($driver);
-        }
+        throw_unless(
+            method_exists($this, $method),
+            UnsupportedDriver::driver($driver),
+        );
+
+        throw_unless(
+            is_array($config),
+            DriverConfigNotFound::forDriver($driver),
+        );
 
         return $this->$method($config);
     }
 
-    protected function callCustomCreator(array $config): Driver
+    protected function hasCustomCreator(string $driver): bool
     {
-        return $this->customCreators[$config['driver']]($config);
+        return Arr::has($this->customCreators, $driver);
+    }
+
+    protected function callCustomCreator(?array $config, string $driver): Driver
+    {
+        return $this->customCreators[$driver]($config);
     }
 }
