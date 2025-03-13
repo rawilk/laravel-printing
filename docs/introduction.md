@@ -39,6 +39,10 @@ Inspiration for the PrintNode API wrapper comes from:
 -   [PrintNode/PrintNode-PHP](https://github.com/PrintNode/PrintNode-PHP)
 -   [phatkoala/printnode](https://github.com/PhatKoala/PrintNode)
 
+Inspiration for certain aspects of the API implementations comes from:
+
+- [stripe-php](https://github.com/stripe/stripe-php)
+
 ## Disclaimer
 
 This package is not affiliated with, maintained, authorized, endorsed or sponsored by Laravel or any of its affiliates.
