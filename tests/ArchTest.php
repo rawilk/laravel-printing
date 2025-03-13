@@ -18,6 +18,8 @@ use Rawilk\Printing\Exceptions\ExceptionInterface;
 use Rawilk\Printing\Exceptions\PrintingException;
 use Rawilk\Printing\PrintingServiceProvider;
 
+use function Pest\version;
+
 describe('architecture testing', function () {
     arch('security')->preset()->security();
 
@@ -127,4 +129,7 @@ describe('architecture testing', function () {
             ->toExtend(PrintNodeAbstractService::class)->ignoring([PrintNodeServiceFactory::class])
             ->toHaveSuffix('Service')->ignoring([PrintNodeServiceFactory::class]);
     });
-})->skip(! function_exists('arch'), 'arch() function not available with current pest version');
+})->skip(
+    (! function_exists('arch')) || version_compare(version(), '3.0', '<'),
+    'Architecture tests are skipped because `arch()` is not available or Pest is below v3',
+);
