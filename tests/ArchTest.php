@@ -19,7 +19,7 @@ use Rawilk\Printing\Exceptions\PrintingException;
 use Rawilk\Printing\PrintingServiceProvider;
 
 describe('architecture testing', function () {
-    arch()->preset()->security();
+    arch('security')->preset()->security();
 
     arch('strict types')->expect('Rawilk\Printing')->toUseStrictTypes();
     arch('strict equality')->expect('Rawilk\Printing')->toUseStrictEquality();
