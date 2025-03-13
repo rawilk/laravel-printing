@@ -4,145 +4,170 @@ declare(strict_types=1);
 
 namespace Rawilk\Printing\Drivers\Cups;
 
-use Rawilk\Printing\Api\Cups\Cups;
+use BackedEnum;
+use Rawilk\Printing\Api\Cups\CupsClient;
 use Rawilk\Printing\Api\Cups\Enums\ContentType;
-use Rawilk\Printing\Api\Cups\Enums\Operation;
+use Rawilk\Printing\Api\Cups\Enums\OperationAttribute;
 use Rawilk\Printing\Api\Cups\Enums\Orientation;
-use Rawilk\Printing\Api\Cups\Request;
-use Rawilk\Printing\Api\Cups\Type;
-use Rawilk\Printing\Api\Cups\Types\MimeMedia;
-use Rawilk\Printing\Api\Cups\Types\NameWithoutLanguage;
-use Rawilk\Printing\Api\Cups\Types\Primitive\Enum;
-use Rawilk\Printing\Api\Cups\Types\Primitive\Integer;
-use Rawilk\Printing\Api\Cups\Types\Primitive\Keyword;
-use Rawilk\Printing\Api\Cups\Types\RangeOfInteger;
-use Rawilk\Printing\Api\Cups\Types\Uri;
-use Rawilk\Printing\Contracts\PrintJob;
-use Rawilk\Printing\Exceptions\InvalidSource;
+use Rawilk\Printing\Api\Cups\Enums\Side;
+use Rawilk\Printing\Api\Cups\PendingPrintJob;
+use Rawilk\Printing\Api\Cups\Util\RequestOptions;
+use Rawilk\Printing\Drivers\Cups\Entity\PrintJob as PrintJobContract;
+use Rawilk\Printing\Exceptions\InvalidArgument;
 use Rawilk\Printing\Exceptions\PrintTaskFailed;
 use Rawilk\Printing\PrintTask as BasePrintTask;
 
 class PrintTask extends BasePrintTask
 {
-    protected string $contentType;
+    protected PendingPrintJob $pendingJob;
 
-    private Cups $api;
-
-    public function __construct()
+    public function __construct(protected CupsClient $client)
     {
         parent::__construct();
-        $this->api = app(Cups::class);
+
+        $this->pendingJob = PendingPrintJob::make();
     }
 
-    public function content($content, string $contentType = ContentType::Pdf->value): static
+    public function content($content, string|ContentType $contentType = ContentType::Pdf): static
     {
-        if (! $contentType) {
-            throw new InvalidSource('Content type is required for the Cups driver.');
+        $this->pendingJob
+            ->setContent($content)
+            ->setContentType($contentType);
+
+        return $this;
+    }
+
+    public function file(string $filePath, string|ContentType $contentType = ContentType::Pdf): static
+    {
+        $this->pendingJob->addFile($filePath, $contentType);
+
+        return $this;
+    }
+
+    public function url(string $url): static
+    {
+        parent::url($url);
+
+        $this->pendingJob->setContent($this->content);
+
+        return $this;
+    }
+
+    public function option(BackedEnum|string $key, $value): static
+    {
+        $this->pendingJob->setOption($key, $value);
+
+        return $this;
+    }
+
+    public function copies(int $copies): static
+    {
+        $this->pendingJob->setOption(
+            OperationAttribute::Copies,
+            OperationAttribute::Copies->toType($copies),
+        );
+
+        return $this;
+    }
+
+    public function range($start, $end = null): static
+    {
+        $this->pendingJob->range($start, $end);
+
+        return $this;
+    }
+
+    // region Cups specific setters
+    public function contentType(string|ContentType $contentType): static
+    {
+        $this->pendingJob->setContentType($contentType);
+
+        return $this;
+    }
+
+    public function orientation(string|Orientation $value): static
+    {
+        $enum = $value instanceof Orientation
+            ? $value
+            : match ($value) {
+                'reverse-portrait' => Orientation::ReversePortrait,
+                'reverse-landscape' => Orientation::ReverseLandscape,
+                'landscape' => Orientation::Landscape,
+                default => Orientation::Portrait,
+            };
+
+        $this->pendingJob->setOption(
+            OperationAttribute::OrientationRequested,
+            OperationAttribute::OrientationRequested->toType($enum->value),
+        );
+
+        return $this;
+    }
+
+    public function sides(string|Side $value): static
+    {
+        $enum = is_string($value)
+            ? Side::tryFrom($value)
+            : $value;
+
+        if (! $enum instanceof Side) {
+            throw new InvalidArgument(
+                'Invalid side "' . $value . '" for the cups driver. Accepted values are: ' .
+                implode(', ', array_column(Side::cases(), 'value')),
+            );
         }
-        $this->contentType = $contentType;
-        parent::content($content);
 
-        return $this;
+        return $this->option(
+            OperationAttribute::Sides,
+            OperationAttribute::Sides->toType($enum->value),
+        );
     }
 
-    public function orientation(string $value): self
+    public function user(string $name): static
     {
-        $orientation = match ($value) {
-            'reverse-portrait' => Orientation::ReversePortrait->value,
-            'reverse-landscape' => Orientation::ReverseLandscape->value,
-            'landscape' => Orientation::Landscape->value,
-            default => Orientation::Portrait->value,
-        };
-
-        $this->option('orientation-requested', new Enum($orientation));
+        $this->pendingJob->setOption(
+            OperationAttribute::RequestingUserName,
+            OperationAttribute::RequestingUserName->toType($name),
+        );
 
         return $this;
     }
+    // endregion
 
-    /**
-     * @param  Type|Type[]  $value
-     */
-    public function option(string $key, $value): self
-    {
-        $this->options[$key] = $value;
-
-        return $this;
-    }
-
-    public function copies(int $copies): self
-    {
-        $this->option('copies', new Integer($copies));
-
-        return $this;
-    }
-
-    public function user(string $name): self
-    {
-        $this->option('requesting-user-name', new NameWithoutLanguage(iconv('UTF-8', 'ASCII//TRANSLIT', $name)));
-
-        return $this;
-    }
-
-    public function range($start, $end = null): self
-    {
-        if (! array_key_exists('page-ranges', $this->options)) {
-            $this->options['page-ranges'] = new RangeOfInteger([$start, $end]);
-        } else {
-            if (! is_array($this->options['page-ranges'])) {
-                $this->options['page-ranges'] = [$this->options['page-ranges']];
-            }
-            $this->options['page-ranges'][] = new RangeOfInteger([$start, $end]);
-        }
-
-        return $this;
-    }
-
-    /**
-     * @see \Rawilk\Printing\Api\Cups\Enums\Side
-     */
-    public function sides(string $value): self
-    {
-        $this->option('sides', new Keyword($value));
-
-        return $this;
-    }
-
-    public function send(): PrintJob
+    public function send(array|null|RequestOptions $opts = null): PrintJobContract
     {
         $this->ensureValidJob();
 
-        $request = new Request;
-        $request->setVersion(\Rawilk\Printing\Api\Cups\Enums\Version::V1_1)
-            ->setOperation(Operation::PrintJob)
-            ->addOperationAttributes(
-                [
-                    'printer-uri' => new Uri($this->printerId),
-                    'document-format' => new MimeMedia($this->contentType),
-                    'job-name' => new NameWithoutLanguage($this->resolveJobTitle()),
-                ]
-            )
-            ->addJobAttributes($this->options)
-            ->setContent($this->content);
+        $this->pendingJob
+            ->setPrinter($this->printerId)
+            ->setTitle($this->resolveJobTitle())
+            ->setSource($this->printSource);
 
-        return $this->api->makeRequest($request)->getJobs()->first();
+        $printJob = $this->client->printJobs->create($this->pendingJob, $opts);
+
+        return new PrintJobContract($printJob);
     }
 
     protected function ensureValidJob(): void
     {
-        if (! $this->printerId) {
-            throw PrintTaskFailed::missingPrinterId();
-        }
+        throw_unless(
+            filled($this->printerId),
+            PrintTaskFailed::missingPrinterId(),
+        );
 
-        if (! $this->printSource) {
-            throw PrintTaskFailed::missingSource();
-        }
+        throw_unless(
+            filled($this->printSource),
+            PrintTaskFailed::missingSource(),
+        );
 
-        if (! $this->contentType) {
-            throw PrintTaskFailed::missingContentType();
-        }
+        throw_unless(
+            filled($this->pendingJob->contentType),
+            PrintTaskFailed::missingContentType(),
+        );
 
-        if (! $this->content) {
-            throw PrintTaskFailed::noContent();
-        }
+        throw_unless(
+            filled($this->pendingJob->content),
+            PrintTaskFailed::noContent(),
+        );
     }
 }

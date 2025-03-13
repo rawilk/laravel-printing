@@ -3,7 +3,8 @@
 declare(strict_types=1);
 
 use Rawilk\Printing\Facades\Printing;
-use Rawilk\Printing\Tests\Fixtures\Drivers\CustomDriver;
+use Rawilk\Printing\Factory;
+use Rawilk\Printing\Tests\Fixtures\Drivers\Custom\CustomDriver;
 
 beforeEach(function () {
     config([
@@ -14,31 +15,35 @@ beforeEach(function () {
         ],
     ]);
 
-    app()['printing.factory']->extend('custom_driver', fn (array $config) => new CustomDriver($config['api_key']));
+    app()[Factory::class]->extend('custom_driver', fn (array $config) => new CustomDriver($config['api_key']));
 });
 
-test('can list a custom drivers printers', function () {
-    expect(Printing::printers())->toHaveCount(2);
-    expect(Printing::printers()[0]->id())->toEqual('printer_one');
-    expect(Printing::printers()[1]->id())->toEqual('printer_two');
+it('can list a custom drivers printers', function () {
+    $printers = Printing::printers();
+
+    expect($printers)->toHaveCount(2)
+        ->and($printers[0])->id()->toBe('printer_one')
+        ->and($printers[1])->id()->toBe('printer_two');
 });
 
-test('can find a custom drivers printer', function () {
+it('can find a custom drivers printer', function () {
     $printer = Printing::printer('printer_one');
 
-    expect($printer->id())->toEqual('printer_one');
-    expect($printer->isOnline())->toBeTrue();
+    expect($printer)
+        ->id()->toBe('printer_one')
+        ->isOnline()->toBeTrue();
 });
 
 test('can get a custom drivers default printer', function () {
     config(['printing.default_printer_id' => 'printer_two']);
 
-    expect(Printing::defaultPrinterId())->toEqual('printer_two');
+    expect(Printing::defaultPrinterId())->toBe('printer_two');
 
     $defaultPrinter = Printing::defaultPrinter();
 
-    expect($defaultPrinter->id())->toEqual('printer_two');
-    expect($defaultPrinter->isOnline())->toBeFalse();
+    expect($defaultPrinter)
+        ->id()->toBe('printer_two')
+        ->isOnline()->toBeFalse();
 });
 
 test('can create new print tasks for a custom driver', function () {
@@ -47,6 +52,7 @@ test('can create new print tasks for a custom driver', function () {
         ->content('hello world')
         ->send();
 
-    expect($job->state())->toEqual('success');
-    expect($job->printerId())->toEqual('printer_one');
+    expect($job)
+        ->state()->toBe('success')
+        ->printerId()->toBe('printer_one');
 });

@@ -31,12 +31,35 @@ enum PrintDriver: string
         }
 
         throw_if(
-            blank(data_get($config, 'key')),
+            blank($key),
             InvalidDriverConfig::invalid('You must provide an api key for the PrintNode driver.'),
         );
     }
 
     protected function validateCupsConfig(array $config): void
     {
+        $ip = data_get($config, 'ip');
+        throw_if(
+            $ip !== null && blank($ip),
+            InvalidDriverConfig::invalid('An IP address is required for the CUPS driver.'),
+        );
+
+        $secure = data_get($config, 'secure');
+        throw_if(
+            $secure !== null && (! is_bool($secure)),
+            InvalidDriverConfig::invalid('A boolean value must be provided for the secure option for the CUPS driver.'),
+        );
+
+        $port = data_get($config, 'port');
+        throw_if(
+            $port !== null && blank($port),
+            InvalidDriverConfig::invalid('A port must be provided for the CUPS driver.'),
+        );
+
+        throw_if(
+            $port !== null &&
+            ((! is_int($port)) || $port < 1),
+            InvalidDriverConfig::invalid('A valid port number was not provided for the CUPS driver.'),
+        );
     }
 }

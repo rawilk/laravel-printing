@@ -4,28 +4,76 @@ declare(strict_types=1);
 
 namespace Rawilk\Printing\Drivers\Cups\Entity;
 
-use Illuminate\Contracts\Support\Arrayable;
-use JsonSerializable;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Traits\Macroable;
+use Rawilk\Printing\Api\Cups\Resources\Printer as CupsPrinter;
+use Rawilk\Printing\Concerns\SerializesToJson;
 use Rawilk\Printing\Contracts\Printer as PrinterContract;
-use Rawilk\Printing\Drivers\Cups\Enums\PrinterState;
 use Rawilk\Printing\Facades\Printing;
 
-class Printer implements Arrayable, JsonSerializable, PrinterContract
+class Printer implements PrinterContract
 {
-    /**
-     * @param array<string, \Rawilk\Printing\Api\Cups\Type>
-     */
-    protected array $attributes;
+    use Macroable;
+    use SerializesToJson;
 
-    /**
-     * @param array<string, \Rawilk\Printing\Api\Cups\Type>
-     */
-    public function __construct(array $printerAttributes)
+    public function __construct(protected readonly CupsPrinter $printer)
     {
-        $this->attributes = $printerAttributes;
     }
 
-    public function toArray()
+    public function __debugInfo(): ?array
+    {
+        return $this->printer->__debugInfo();
+    }
+
+    public function printer(): CupsPrinter
+    {
+        return $this->printer;
+    }
+
+    /**
+     * @return array<string, \Rawilk\Printing\Api\Cups\Type|array>
+     */
+    public function capabilities(): array
+    {
+        return $this->printer->capabilities();
+    }
+
+    public function description(): ?string
+    {
+        return $this->printer->printerInfo;
+    }
+
+    public function id(): string
+    {
+        return $this->printer->uri;
+    }
+
+    public function isOnline(): bool
+    {
+        return $this->printer->isOnline();
+    }
+
+    public function name(): ?string
+    {
+        return $this->printer->printerName;
+    }
+
+    public function status(): string
+    {
+        return $this->printer->state()?->name;
+    }
+
+    public function trays(): array
+    {
+        return $this->printer->trays();
+    }
+
+    public function jobs(): Collection
+    {
+        return Printing::printerPrintJobs($this->id());
+    }
+
+    public function toArray(): array
     {
         return [
             'id' => $this->id(),
@@ -36,57 +84,5 @@ class Printer implements Arrayable, JsonSerializable, PrinterContract
             'trays' => $this->trays(),
             'capabilities' => $this->capabilities(),
         ];
-    }
-
-    public function jsonSerialize(): mixed
-    {
-        return $this->toArray();
-    }
-
-    /**
-     * @param array<string, \Rawilk\Printing\Api\Cups\Type>
-     */
-    public function capabilities(): array
-    {
-        return $this->attributes;
-    }
-
-    public function description(): ?string
-    {
-        return $this->attributes['printer-info']->value ?? null;
-    }
-
-    public function id()
-    {
-        // ID serves no purpose, return uri instead?
-        $ids = $this->attributes['printer-uri-supported'];
-
-        return is_array($ids) ? $ids[0] : $this->attributes['printer-uri-supported']->value;
-    }
-
-    public function isOnline(): bool
-    {
-        // Not sure
-        return true;
-    }
-
-    public function name(): ?string
-    {
-        return $this->attributes['printer-name']->value ?? null;
-    }
-
-    public function status(): string
-    {
-        return strtolower(PrinterState::tryFrom($this->attributes['printer-state']->value)->name);
-    }
-
-    public function trays(): array
-    {
-        return $this->attributes['media-source-supported']->value ?? [];
-    }
-
-    public function jobs(): \Illuminate\Support\Collection
-    {
-        return Printing::printerPrintJobs($this->id());
     }
 }

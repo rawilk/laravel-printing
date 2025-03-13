@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
+use Rawilk\Printing\Api\Cups\Enums as CupsEnum;
+use Rawilk\Printing\Api\Cups\Types as CupsType;
 use Rawilk\Printing\Api\PrintNode\PrintNode;
-use Rawilk\Printing\Drivers\Cups\Entity\Printer;
-use Rawilk\Printing\Drivers\Cups\Entity\PrintJob;
 use Rawilk\Printing\Tests\TestCase;
 
 uses(TestCase::class)->in(
@@ -37,26 +37,23 @@ function samplePrintNodeData(string $file): array
     );
 }
 
-function createCupsJob(): Rawilk\Printing\Drivers\Cups\Entity\PrintJob
+function baseCupsJobData(): array
 {
-    $cupsJob = new PrintJob([
-        'job-uri' => new Rawilk\Printing\Api\Cups\Types\Uri('localhost:631/jobs/123'),
-        'job-printer-uri' => new Rawilk\Printing\Api\Cups\Types\Uri('localhost:631/printers/printer-name'),
-        'job-name' => new Rawilk\Printing\Api\Cups\Types\TextWithoutLanguage('my print job'),
-        'job-state' => new Rawilk\Printing\Api\Cups\Types\Primitive\Enum(\Rawilk\Printing\Drivers\Cups\Enums\JobState::Completed->value),
-    ]);
-
-    return $cupsJob;
+    return [
+        'uri' => 'localhost:631/jobs/123',
+        'job-uri' => new CupsType\Uri('localhost:631/jobs/123'),
+        'job-printer-uri' => new CupsType\Uri('localhost:631/printers/TestPrinter'),
+        'job-name' => new CupsType\TextWithoutLanguage('my print job'),
+        'job-state' => new CupsType\Primitive\Enum(CupsEnum\JobState::Completed->value),
+    ];
 }
 
-function createCupsPrinter(array $attributes = []): Rawilk\Printing\Drivers\Cups\Entity\Printer
+function baseCupsPrinterData(): array
 {
-    $cupsPrinter = new Printer([
-        'printer-name' => new Rawilk\Printing\Api\Cups\Types\TextWithoutLanguage('printer-name'),
-        'printer-state' => new Rawilk\Printing\Api\Cups\Types\Primitive\Enum(\Rawilk\Printing\Drivers\Cups\Enums\PrinterState::Idle->value),
-        'printer-uri-supported' => new Rawilk\Printing\Api\Cups\Types\TextWithoutLanguage('localhost:631'),
-        ...$attributes,
-    ]);
-
-    return $cupsPrinter;
+    return [
+        'uri' => 'localhost:631',
+        'printer-uri-supported' => new CupsType\TextWithoutLanguage('localhost:631'),
+        'printer-name' => new CupsType\TextWithoutLanguage('TestPrinter'),
+        'printer-state' => new CupsType\Primitive\Enum(CupsEnum\PrinterState::Idle->value),
+    ];
 }

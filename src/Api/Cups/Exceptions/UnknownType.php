@@ -4,12 +4,8 @@ declare(strict_types=1);
 
 namespace Rawilk\Printing\Api\Cups\Exceptions;
 
-use Exception;
+use Rawilk\Printing\Exceptions\PrintingException;
 
-class UnknownType extends Exception
+class UnknownType extends PrintingException
 {
-    public static function invalid(string $message): self
-    {
-        return new static($message);
-    }
 }

@@ -14,6 +14,7 @@ use Rawilk\Printing\Api\PrintNode\Exceptions\RequestOptionsFoundInParams;
 use Rawilk\Printing\Api\PrintNode\Exceptions\UnexpectedValue;
 use Rawilk\Printing\Api\PrintNode\Util\Util;
 use Rawilk\Printing\Exceptions\InvalidArgument;
+use SensitiveParameter;
 
 /** @internal */
 class PrintNodeApiRequestor
@@ -25,7 +26,7 @@ class PrintNodeApiRequestor
     private static array $optionsKeys = ['api_key', 'idempotency_key', 'api_base'];
 
     public function __construct(
-        private readonly ?string $apiKey = null,
+        #[SensitiveParameter] private readonly ?string $apiKey = null,
         ?string $apiBase = null,
     ) {
         $apiBase ??= BasePrintNodeClient::API_BASE;

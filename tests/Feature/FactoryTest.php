@@ -10,7 +10,7 @@ use Rawilk\Printing\Exceptions\DriverConfigNotFound;
 use Rawilk\Printing\Exceptions\InvalidDriverConfig;
 use Rawilk\Printing\Exceptions\UnsupportedDriver;
 use Rawilk\Printing\Factory;
-use Rawilk\Printing\Tests\Fixtures\Drivers\CustomDriver;
+use Rawilk\Printing\Tests\Fixtures\Drivers\Custom\CustomDriver;
 
 it('creates the printnode driver', function () {
     config([

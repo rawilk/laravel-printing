@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Rawilk\Printing;
 
-use Rawilk\Printing\Api\Cups\Cups;
+use Rawilk\Printing\Contracts\Driver;
 use Rawilk\Printing\Contracts\Logger;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
@@ -25,19 +25,11 @@ final class PrintingServiceProvider extends PackageServiceProvider
             fn ($app) => new Factory($app['config']['printing'])
         );
 
-        $this->app->singleton('printing.driver', fn ($app) => $app[Factory::class]->driver());
-
-        $this->app->singleton(Cups::class, fn ($app) => new Cups(
-            $app['config']['printing']['drivers']['cups']['ip'],
-            $app['config']['printing']['drivers']['cups']['username'],
-            $app['config']['printing']['drivers']['cups']['password'],
-            $app['config']['printing']['drivers']['cups']['port'],
-            $app['config']['printing']['drivers']['cups']['secure'] ?? false,
-        ));
+        $this->app->singleton(Driver::class, fn ($app) => $app[Factory::class]->driver());
 
         $this->app->singleton(
             Printing::class,
-            fn ($app) => new Printing($app['printing.driver'], $app['config']['printing.default_printer_id'])
+            fn ($app) => new Printing($app[Driver::class], $app['config']['printing.default_printer_id'])
         );
 
         $this->bindLogger();
@@ -52,7 +44,7 @@ final class PrintingServiceProvider extends PackageServiceProvider
     {
         return [
             Factory::class,
-            'printing.driver',
+            Driver::class,
             Printing::class,
         ];
     }

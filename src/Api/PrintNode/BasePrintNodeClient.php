@@ -12,6 +12,7 @@ use Rawilk\Printing\Api\PrintNode\Exceptions\AuthenticationFailure;
 use Rawilk\Printing\Api\PrintNode\Exceptions\UnexpectedValue;
 use Rawilk\Printing\Api\PrintNode\Util\RequestOptions;
 use Rawilk\Printing\Api\PrintNode\Util\Util;
+use SensitiveParameter;
 
 /**
  * Note: This client is inspired from Stripe's php sdk client.
@@ -32,7 +33,7 @@ class BasePrintNodeClient implements PrintNodeClientInterface
 
     private RequestOptions $defaultOpts;
 
-    public function __construct(string|array|null $config = [])
+    public function __construct(#[SensitiveParameter] string|array|null $config = [])
     {
         if (is_string($config)) {
             $config = ['api_key' => $config];

@@ -10,10 +10,10 @@ use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Support\Traits\Macroable;
 use JsonSerializable;
 use Rawilk\Printing\Api\PrintNode\Util\RequestOptions;
-use Rawilk\Printing\Api\PrintNode\Util\Set;
 use Rawilk\Printing\Api\PrintNode\Util\Util;
 use Rawilk\Printing\Exceptions\InvalidArgument;
 use Rawilk\Printing\Printing;
+use Rawilk\Printing\Util\Set;
 
 /**
  * Represents some kind of resource retrieved from the PrintNode API.

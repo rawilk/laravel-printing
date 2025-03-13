@@ -11,6 +11,7 @@ use Illuminate\Support\Traits\Macroable;
 use Rawilk\Printing\Contracts\Printer;
 use Rawilk\Printing\Contracts\PrintTask as PrintTaskContract;
 use Rawilk\Printing\Exceptions\InvalidSource;
+use Throwable;
 
 abstract class PrintTask implements PrintTaskContract
 {
@@ -41,20 +42,32 @@ abstract class PrintTask implements PrintTaskContract
 
     public function file(string $filePath): static
     {
-        if (! file_exists($filePath)) {
-            throw InvalidSource::fileNotFound($filePath);
+        throw_unless(
+            file_exists($filePath),
+            InvalidSource::fileNotFound($filePath),
+        );
+
+        try {
+            $content = file_get_contents($filePath);
+        } catch (Throwable) {
+            throw InvalidSource::cannotOpenFile($filePath);
         }
 
-        $this->content = file_get_contents($filePath);
+        if (blank($content)) {
+            Printing::getLogger()?->error("No content retrieved from file: {$filePath}");
+        }
+
+        $this->content = $content;
 
         return $this;
     }
 
     public function url(string $url): static
     {
-        if (! preg_match('/^https?:\/\//', $url)) {
-            throw InvalidSource::invalidUrl($url);
-        }
+        throw_unless(
+            preg_match('/^https?:\/\//', $url),
+            InvalidSource::invalidUrl($url),
+        );
 
         $this->content = file_get_contents($url);
 

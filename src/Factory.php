@@ -11,6 +11,7 @@ use Rawilk\Printing\Contracts\Driver;
 use Rawilk\Printing\Enums\PrintDriver;
 use Rawilk\Printing\Exceptions\DriverConfigNotFound;
 use Rawilk\Printing\Exceptions\UnsupportedDriver;
+use SensitiveParameter;
 
 class Factory
 {
@@ -21,7 +22,7 @@ class Factory
      */
     protected array $customCreators = [];
 
-    public function __construct(protected array $config)
+    public function __construct(#[SensitiveParameter] protected array $config)
     {
     }
 
@@ -58,12 +59,14 @@ class Factory
         $this->drivers = [];
     }
 
-    protected function createCupsDriver(array $config): Driver
+    protected function createCupsDriver(#[SensitiveParameter] array $config): Driver
     {
-        return new Drivers\Cups\Cups;
+        PrintDriver::Cups->ensureConfigIsValid($config);
+
+        return new Drivers\Cups\Cups($config);
     }
 
-    protected function createPrintnodeDriver(array $config): Driver
+    protected function createPrintnodeDriver(#[SensitiveParameter] array $config): Driver
     {
         PrintDriver::PrintNode->ensureConfigIsValid($config);
 

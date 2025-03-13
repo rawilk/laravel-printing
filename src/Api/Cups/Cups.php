@@ -4,49 +4,89 @@ declare(strict_types=1);
 
 namespace Rawilk\Printing\Api\Cups;
 
-use Illuminate\Support\Facades\Http;
-use Rawilk\Printing\Api\Cups\Exceptions\ServerError;
+use SensitiveParameter;
 
-class Cups
+final class Cups
 {
-    public function __construct(
-        protected string $ip,
-        protected ?string $username,
-        protected ?string $password,
-        protected int $port = 631,
-        protected bool $secure = false
-    ) {
+    public const DEFAULT_PORT = 631;
+
+    public const DEFAULT_SECURE = false;
+
+    /**
+     * The IP of the server the CUPS instance is running on.
+     */
+    public static ?string $ip = null;
+
+    /**
+     * The username to authenticate to the CUPS server with.
+     */
+    public static ?string $username = null;
+
+    /**
+     * The password to authenticate to the CUPS server with.
+     */
+    public static ?string $password = null;
+
+    /**
+     * The port the CUPS server is running on.
+     */
+    public static int $port = self::DEFAULT_PORT;
+
+    /**
+     * Indicates if http requests to the CUPS server should use `https`.
+     */
+    public static bool $secure = self::DEFAULT_SECURE;
+
+    public static function getIp(): ?string
+    {
+        return self::$ip;
     }
 
-    public function makeRequest(Request $request): Response
+    public static function getAuth(): array
     {
-        $http = Http::withBody($request->encode())
-            ->when(
-                $this->username || $this->password,
-                fn (Http $http) => $http->withBasicAuth($this->username ?? '', $this->password ?? ''),
-            )
-            ->withHeaders([
-                'Content-Type' => 'application/ipp',
-            ]);
-
-        $response = $http->post($this->getAdminUrl())
-            ->throwIfClientError();
-
-        throw_unless(
-            $response->ok(),
-            new ServerError('Cups server request failed.'),
-        );
-
-        return new Response($response->body());
+        return [self::$username, self::$password];
     }
 
-    protected function getAdminUrl(): string
+    public static function getPort(): int
     {
-        return $this->getScheme() . '://' . $this->ip . ':' . $this->port . '/admin';
+        return self::$port;
     }
 
-    protected function getScheme(): string
+    public static function getSecure(): bool
     {
-        return $this->secure ? 'https' : 'http';
+        return self::$secure;
+    }
+
+    public static function setIp(?string $ip): void
+    {
+        self::$ip = $ip;
+    }
+
+    public static function setAuth(?string $username, #[SensitiveParameter] ?string $password): void
+    {
+        self::$username = $username;
+        self::$password = $password;
+    }
+
+    public static function setPort(int $port): void
+    {
+        self::$port = $port;
+    }
+
+    public static function setSecure(bool $secure): void
+    {
+        self::$secure = $secure;
+    }
+
+    /**
+     * Reset credentials to default. This is mostly useful for testing.
+     */
+    public static function reset(): void
+    {
+        self::$ip = null;
+        self::$username = null;
+        self::$password = null;
+        self::$port = self::DEFAULT_PORT;
+        self::$secure = self::DEFAULT_SECURE;
     }
 }

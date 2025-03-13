@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Rawilk\Printing\Api\Cups\Types;
 
-use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Date;
 use Rawilk\Printing\Api\Cups\Enums\TypeTag;
 use Rawilk\Printing\Api\Cups\Type;
 
@@ -22,7 +22,7 @@ class DateTime extends Type
         $data = unpack('nY/cm/cd/cH/ci/cs/cfff/aUTCSym/cUTCm/cUTCs', $binary, $offset);
         $offset += $valueLen;
 
-        $value = Carbon::createFromFormat(
+        $value = Date::createFromFormat(
             'YmdHisO',
             $data['Y']
                 . str_pad((string) $data['m'], 2, '0', STR_PAD_LEFT)

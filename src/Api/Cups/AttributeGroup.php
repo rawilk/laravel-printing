@@ -4,10 +4,13 @@ declare(strict_types=1);
 
 namespace Rawilk\Printing\Api\Cups;
 
+use ArrayAccess;
+use Illuminate\Contracts\Support\Arrayable;
+use JsonSerializable;
 use Rawilk\Printing\Api\Cups\Exceptions\TypeNotSpecified;
 use Rawilk\Printing\Api\Cups\Types\RangeOfInteger;
 
-abstract class AttributeGroup
+abstract class AttributeGroup implements Arrayable, ArrayAccess, JsonSerializable
 {
     /**
      * Every attribute group has a specific delimiter tag
@@ -44,9 +47,11 @@ abstract class AttributeGroup
                 continue;
             }
 
-            if (! $value instanceof Type) {
-                throw new TypeNotSpecified('Attribute value has to be of type ' . Type::class);
-            }
+            throw_unless(
+                $value instanceof Type,
+                TypeNotSpecified::class,
+                'Attribute value has to be of type ' . Type::class,
+            );
 
             $nameLen = strlen($name);
             $binary .= pack('c', $value->getTag());
@@ -58,6 +63,38 @@ abstract class AttributeGroup
         }
 
         return $binary;
+    }
+
+    // region ArrayAccess
+    public function offsetExists(mixed $offset): bool
+    {
+        return array_key_exists($offset, $this->attributes);
+    }
+
+    public function offsetGet(mixed $offset): mixed
+    {
+        return $this->attributes[$offset] ?? null;
+    }
+
+    public function offsetSet(mixed $offset, mixed $value): void
+    {
+        $this->attributes[$offset] = $value;
+    }
+
+    public function offsetUnset(mixed $offset): void
+    {
+        unset($this->attributes[$offset]);
+    }
+    // endregion
+
+    public function toArray(): array
+    {
+        return $this->attributes;
+    }
+
+    public function jsonSerialize(): mixed
+    {
+        return $this->toArray();
     }
 
     /**

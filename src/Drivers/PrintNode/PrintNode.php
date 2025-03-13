@@ -11,6 +11,7 @@ use Rawilk\Printing\Api\PrintNode\Util\RequestOptions;
 use Rawilk\Printing\Contracts\Driver;
 use Rawilk\Printing\Drivers\PrintNode\Entity\Printer as PrinterContract;
 use Rawilk\Printing\Drivers\PrintNode\Entity\PrintJob as PrintJobContract;
+use SensitiveParameter;
 
 class PrintNode implements Driver
 {
@@ -18,7 +19,7 @@ class PrintNode implements Driver
 
     protected PrintNodeClient $client;
 
-    public function __construct(?string $apiKey = null)
+    public function __construct(#[SensitiveParameter] ?string $apiKey = null)
     {
         $this->client = app(PrintNodeClient::class, ['config' => ['api_key' => $apiKey]]);
     }

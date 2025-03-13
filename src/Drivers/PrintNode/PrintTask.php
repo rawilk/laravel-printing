@@ -13,7 +13,6 @@ use Rawilk\Printing\Api\PrintNode\PendingPrintJob;
 use Rawilk\Printing\Api\PrintNode\PrintNodeClient;
 use Rawilk\Printing\Api\PrintNode\Util\RequestOptions;
 use Rawilk\Printing\Drivers\PrintNode\Entity\PrintJob as PrintJobContract;
-use Rawilk\Printing\Exceptions\InvalidSource;
 use Rawilk\Printing\Exceptions\PrintTaskFailed;
 use Rawilk\Printing\PrintTask as BasePrintTask;
 
@@ -41,11 +40,6 @@ class PrintTask extends BasePrintTask
 
     public function file(string $filePath): static
     {
-        throw_unless(
-            file_exists($filePath),
-            InvalidSource::fileNotFound($filePath),
-        );
-
         $this->pendingJob->addPdfFile($filePath);
 
         return $this;
@@ -91,6 +85,13 @@ class PrintTask extends BasePrintTask
     }
 
     // region PrintNode specific setters
+    public function contentType(string|ContentType $contentType): static
+    {
+        $this->pendingJob->setContentType($contentType);
+
+        return $this;
+    }
+
     public function fitToPage(bool $condition): static
     {
         return $this->option(PrintJobOption::FitToPage, $condition);

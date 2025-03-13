@@ -6,8 +6,8 @@ use Rawilk\Printing\Drivers\PrintNode\PrintTask as PrintNodePrintTask;
 use Rawilk\Printing\Enums\PrintDriver;
 use Rawilk\Printing\Facades\Printing;
 use Rawilk\Printing\Factory;
-use Rawilk\Printing\Tests\Feature\Drivers\CustomDriver\Driver\PrintTask as CustomDriverPrintTask;
-use Rawilk\Printing\Tests\Fixtures\Drivers\CustomDriver;
+use Rawilk\Printing\Tests\Fixtures\Drivers\Custom\CustomDriver;
+use Rawilk\Printing\Tests\Fixtures\Drivers\Custom\PrintTask as CustomDriverPrintTask;
 
 beforeEach(function () {
     config([

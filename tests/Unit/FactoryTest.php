@@ -9,13 +9,14 @@ use Rawilk\Printing\Contracts\Driver as DriverContract;
 use Rawilk\Printing\Contracts\Printer;
 use Rawilk\Printing\Contracts\PrintJob;
 use Rawilk\Printing\Contracts\PrintTask;
+use Rawilk\Printing\Drivers\Cups\Cups as CupsDriver;
 use Rawilk\Printing\Drivers\PrintNode\PrintNode as PrintNodeDriver;
 use Rawilk\Printing\Enums\PrintDriver;
 use Rawilk\Printing\Exceptions\DriverConfigNotFound;
 use Rawilk\Printing\Exceptions\InvalidDriverConfig;
 use Rawilk\Printing\Exceptions\UnsupportedDriver;
 use Rawilk\Printing\Factory;
-use Rawilk\Printing\Tests\Fixtures\Drivers\CustomDriver;
+use Rawilk\Printing\Tests\Fixtures\Drivers\Custom\CustomDriver;
 
 it('can update configuration', function () {
     $factory = new Factory([
@@ -69,6 +70,19 @@ it('can create a driver by name', function (PrintDriver $driver, array $config, 
         'config' => ['key' => 'foo'],
         'expect' => function (PrintNodeDriver $driver) {
             expect($driver->getApiKey())->toBe('foo');
+        },
+    ],
+    'cups' => fn () => [
+        'driver' => PrintDriver::Cups,
+        'config' => ['ip' => '127.0.0.1', 'port' => 8080],
+        'expect' => function (CupsDriver $driver) {
+            expect($driver->getConfig())->toEqualCanonicalizing([
+                'ip' => '127.0.0.1',
+                'username' => null,
+                'password' => null,
+                'port' => 8080,
+                'secure' => false,
+            ]);
         },
     ],
 ]);
@@ -195,4 +209,54 @@ describe('printnode', function () {
 
         $factory->driver();
     })->throws(InvalidDriverConfig::class, 'You must provide an api key for the PrintNode driver.');
+});
+
+describe('cups', function () {
+    beforeEach(function () {
+        config([
+            'printing.driver' => PrintDriver::Cups->value,
+
+            'printing.drivers' => [
+                PrintDriver::Cups->value => [
+                    'ip' => '127.0.0.1',
+                ],
+            ],
+        ]);
+    });
+
+    it('creates the cups driver', function () {
+        $factory = new Factory(config('printing'));
+
+        $driver = $factory->driver();
+
+        expect($driver)->toBeInstanceOf(CupsDriver::class)
+            ->getConfig()->toHaveKey('ip', '127.0.0.1');
+    });
+
+    test('ip can be null in config', function () {
+        config()->set('printing.drivers.' . PrintDriver::Cups->value . '.ip', null);
+
+        $factory = new Factory(config('printing'));
+
+        $driver = $factory->driver();
+
+        expect($driver->getConfig()['ip'])->toBeNull();
+    });
+
+    it('handles invalid config', function (array $config, string $exceptionMessage) {
+        config()->set('printing.drivers.' . PrintDriver::Cups->value, $config);
+
+        $factory = new Factory(config('printing'));
+
+        $this->expectException(InvalidDriverConfig::class);
+        $this->expectExceptionMessage($exceptionMessage);
+
+        $factory->driver();
+    })->with([
+        'blank ip' => [['ip' => ''], 'An IP address is required'],
+        'invalid secure' => [['secure' => 'true'], 'A boolean value must be provided for the secure option'],
+        'blank port' => [['port' => ''], 'A port must be provided'],
+        'non-numeric port' => [['port' => 'foo'], 'A valid port number'],
+        'invalid port' => [['port' => 0], 'A valid port number'],
+    ]);
 });

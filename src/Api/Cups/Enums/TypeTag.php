@@ -36,6 +36,9 @@ enum TypeTag: int
     case StatusCode = 0x000D;
     case Text = 0x000E;
 
+    /**
+     * @return class-string<\Rawilk\Printing\Api\Cups\Type>
+     */
     public function getClass(): string
     {
         return match ($this) {
@@ -57,6 +60,7 @@ enum TypeTag: int
             self::RangeOfInteger => Types\RangeOfInteger::class,
             self::Collection => Types\Collection::class,
             self::Member => Types\Member::class,
+            self::Text => Types\Primitive\Text::class,
             default => throw new UnknownType('Unknown type')
         };
     }
