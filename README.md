@@ -22,9 +22,9 @@ $printJob->id(); // the id number returned from the print server
 
 Supported Print Drivers:
 
--   PrintNode: https://printnode.com
--   CUPS: https://cups.org
--   Custom: Configure your own custom driver
+- PrintNode: https://printnode.com
+- CUPS: https://cups.org
+- Custom: Configure your own custom driver
 
 ## Documentation:
 
@@ -66,14 +66,14 @@ If you discover any security related issues, please email randall@randallwilk.de
 
 ## Credits
 
--   [Randall Wilk](https://github.com/rawilk)
--   [All Contributors](../../contributors)
--   _Mike42_ for the [PHP ESC/POS Print Driver](https://github.com/mike42/escpos-php) library
+- [Randall Wilk](https://github.com/rawilk)
+- [All Contributors](../../contributors)
+- _Mike42_ for the [PHP ESC/POS Print Driver](https://github.com/mike42/escpos-php) library
 
 Inspiration for the PrintNode API wrapper comes from:
 
--   [PrintNode/PrintNode-PHP](https://github.com/PrintNode/PrintNode-PHP)
--   [phatkoala/printnode](https://github.com/PhatKoala/PrintNode)
+- [PrintNode/PrintNode-PHP](https://github.com/PrintNode/PrintNode-PHP)
+- [phatkoala/printnode](https://github.com/PhatKoala/PrintNode)
 
 Inspiration for certain aspects of the API implementations comes from:
 
