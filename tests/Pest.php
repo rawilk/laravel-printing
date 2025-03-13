@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use Rawilk\Printing\Api\Cups\Cups;
 use Rawilk\Printing\Api\Cups\Enums as CupsEnum;
 use Rawilk\Printing\Api\Cups\Types as CupsType;
 use Rawilk\Printing\Api\PrintNode\PrintNode;
@@ -19,12 +20,12 @@ uses()->afterEach(function () {
     'Feature/Api/PrintNode',
 );
 
-// uses(TestCase::class)->in('Feature/FactoryTest.php');
-// uses(TestCase::class)->in('Feature/PrintingTest.php');
-// uses(TestCase::class)->in('Feature/Receipts');
-// uses(TestCase::class)->in('Feature/Api/PrintNode/Entity');
-// uses(PrintNodeTestCase::class)->in('Feature/Api/PrintNode/Requests');
-// uses(TestCase::class)->in('Feature/Drivers');
+uses()->afterEach(function () {
+    Cups::reset();
+})->in(
+    'Feature/Drivers/Cups',
+    'Feature/Api/Cups',
+);
 
 // Helpers
 function samplePrintNodeData(string $file): array
