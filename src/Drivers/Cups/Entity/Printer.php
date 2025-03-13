@@ -7,8 +7,10 @@ namespace Rawilk\Printing\Drivers\Cups\Entity;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Traits\Macroable;
 use Rawilk\Printing\Api\Cups\Resources\Printer as CupsPrinter;
+use Rawilk\Printing\Api\Cups\Util\RequestOptions;
 use Rawilk\Printing\Concerns\SerializesToJson;
 use Rawilk\Printing\Contracts\Printer as PrinterContract;
+use Rawilk\Printing\Enums\PrintDriver;
 use Rawilk\Printing\Facades\Printing;
 
 class Printer implements PrinterContract
@@ -68,9 +70,12 @@ class Printer implements PrinterContract
         return $this->printer->trays();
     }
 
-    public function jobs(): Collection
-    {
-        return Printing::printerPrintJobs($this->id());
+    public function jobs(
+        array $params = [],
+        array|null|RequestOptions $opts = null,
+    ): Collection {
+        return Printing::driver(PrintDriver::Cups)
+            ->printerPrintJobs($this->id(), null, null, null, $params, $opts);
     }
 
     public function toArray(): array
