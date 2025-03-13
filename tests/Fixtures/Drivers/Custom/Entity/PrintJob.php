@@ -6,7 +6,6 @@ namespace Rawilk\Printing\Tests\Fixtures\Drivers\Custom\Entity;
 
 use Carbon\Carbon;
 use Rawilk\Printing\Contracts\PrintJob as PrintJobContract;
-use Rawilk\Printing\Tests\Fixtures\Drivers\Custom\Entity\Printer;
 
 final class PrintJob implements PrintJobContract
 {
