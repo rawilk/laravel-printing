@@ -59,6 +59,11 @@ class Printing implements Driver
         return $this;
     }
 
+    public function getDriver(): Driver
+    {
+        return $this->getActiveDriver();
+    }
+
     public function newPrintTask(): Contracts\PrintTask
     {
         return $this->executeDriverCall(

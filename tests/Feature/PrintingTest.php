@@ -174,3 +174,11 @@ test('a driver implementation can define extra parameters on the interface metho
 
     expect($data)->toEqualCanonicalizing(['foo' => 'bar']);
 });
+
+test('printnode api key can be updated from the facade', function () {
+    Printing::driver(PrintDriver::PrintNode)->getDriver()->setApiKey('new-key');
+
+    $driver = app(Factory::class)->driver(PrintDriver::PrintNode);
+
+    expect($driver->getApiKey())->toBe('new-key');
+});
