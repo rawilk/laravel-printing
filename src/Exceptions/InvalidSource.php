@@ -4,17 +4,20 @@ declare(strict_types=1);
 
 namespace Rawilk\Printing\Exceptions;
 
-use Exception;
-
-class InvalidSource extends Exception
+class InvalidSource extends PrintingException
 {
-    public static function fileNotFound(string $filePath): self
+    public static function fileNotFound(string $filePath): static
     {
         return new static("File not found: {$filePath}");
     }
 
-    public static function invalidUrl(string $url): self
+    public static function invalidUrl(string $url): static
     {
         return new static("Invalid source url: {$url}");
+    }
+
+    public static function cannotOpenFile(string $filePath): static
+    {
+        return new static("Could not open file: {$filePath}");
     }
 }

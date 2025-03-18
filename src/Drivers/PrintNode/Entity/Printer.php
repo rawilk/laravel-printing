@@ -4,22 +4,27 @@ declare(strict_types=1);
 
 namespace Rawilk\Printing\Drivers\PrintNode\Entity;
 
-use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Traits\Macroable;
-use JsonSerializable;
-use Rawilk\Printing\Api\PrintNode\Entity\Printer as PrintNodePrinter;
-use Rawilk\Printing\Api\PrintNode\Entity\PrinterCapabilities;
-use Rawilk\Printing\Api\PrintNode\PrintNode;
+use Rawilk\Printing\Api\PrintNode\Resources\Printer as PrintNodePrinter;
+use Rawilk\Printing\Api\PrintNode\Resources\Support\PrinterCapabilities;
+use Rawilk\Printing\Api\PrintNode\Util\RequestOptions;
+use Rawilk\Printing\Concerns\SerializesToJson;
 use Rawilk\Printing\Contracts\Printer as PrinterContract;
 
-class Printer implements Arrayable, JsonSerializable, PrinterContract
+class Printer implements PrinterContract
 {
     use Macroable;
+    use SerializesToJson;
 
-    protected ?array $capabilities = null;
+    public function __construct(protected readonly PrintNodePrinter $printer)
+    {
+    }
 
-    public function __construct(protected PrintNodePrinter $printer) {}
+    public function __debugInfo(): ?array
+    {
+        return $this->printer->__debugInfo();
+    }
 
     public function printer(): PrintNodePrinter
     {
@@ -66,17 +71,12 @@ class Printer implements Arrayable, JsonSerializable, PrinterContract
         return $this->printer->trays();
     }
 
-    public function jobs(?int $limit = null, ?int $offset = null, ?string $dir = null, ?string $apiKey = null): Collection
+    /**
+     * @return Collection<int, PrintJob>
+     */
+    public function jobs(?array $params = null, null|array|RequestOptions $opts = null): Collection
     {
-        $api = app(PrintNode::class);
-
-        if ($apiKey) {
-            $api->setApiKey($apiKey);
-        }
-
-        $printJobs = $api->printerPrintJobs($this->id(), $limit, $offset, $dir);
-
-        return $printJobs->jobs->map(fn ($job) => new PrintJob($job));
+        return $this->printer->printJobs($params, $opts)->mapInto(PrintJob::class);
     }
 
     public function toArray(): array
@@ -90,10 +90,5 @@ class Printer implements Arrayable, JsonSerializable, PrinterContract
             'trays' => $this->trays(),
             'capabilities' => $this->capabilities(),
         ];
-    }
-
-    public function jsonSerialize(): mixed
-    {
-        return $this->toArray();
     }
 }

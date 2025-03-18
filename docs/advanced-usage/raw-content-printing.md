@@ -13,6 +13,8 @@ a pdf file.
 Send a string of text to be printed using the `content()` method on PrintTask. This is the method you should be using if you are printing
 a receipt.
 
+Some drivers also may require you to set a content type as well. Be sure to refer to the specific driver's api when setting the content.
+
 ```php
 Printing::newPrintTask()
     ->printer($printerId)

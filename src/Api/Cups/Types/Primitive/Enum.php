@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Rawilk\Printing\Api\Cups\Types\Primitive;
 
+use Rawilk\Printing\Api\Cups\Enums\TypeTag;
 use Rawilk\Printing\Api\Cups\Type;
-use Rawilk\Printing\Api\Cups\TypeTag;
 
 class Enum extends Type
 {
-    protected int $tag = TypeTag::ENUM->value;
+    protected int $tag = TypeTag::Enum->value;
 
     public static function fromBinary(string $binary, int &$offset): array
     {

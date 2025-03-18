@@ -4,39 +4,45 @@ declare(strict_types=1);
 
 namespace Rawilk\Printing\Drivers\Cups;
 
-use Rawilk\Printing\Api\Cups\Cups as CupsApi;
-use Rawilk\Printing\Api\Cups\Operation;
-use Rawilk\Printing\Api\Cups\Request;
-use Rawilk\Printing\Api\Cups\Types\Primitive\Keyword;
-use Rawilk\Printing\Api\Cups\Types\Uri;
-use Rawilk\Printing\Api\Cups\Version;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Traits\Macroable;
+use Rawilk\Printing\Api\Cups\CupsClient;
+use Rawilk\Printing\Api\Cups\Util\RequestOptions;
 use Rawilk\Printing\Contracts\Driver;
-use Rawilk\Printing\Contracts\Printer;
-use Rawilk\Printing\Contracts\PrintJob;
-use Rawilk\Printing\Drivers\Cups\Entity\Printer as RawilkPrinter;
+use Rawilk\Printing\Drivers\Cups\Entity\Printer as PrinterContract;
+use Rawilk\Printing\Drivers\Cups\Entity\PrintJob as PrintJobContract;
+use SensitiveParameter;
 
 class Cups implements Driver
 {
-    private CupsApi $api;
+    use Macroable;
 
-    public function __construct()
+    protected CupsClient $client;
+
+    public function __construct(#[SensitiveParameter] ?array $config = [])
     {
-        $this->api = app(CupsApi::class);
+        $this->client = app(CupsClient::class, ['config' => $config]);
     }
 
-    public function newPrintTask(): \Rawilk\Printing\Contracts\PrintTask
+    public function getConfig(): array
     {
-        return new PrintTask;
+        return $this->client->getConfig();
     }
 
-    public function printer($printerId = null): ?Printer
+    public function newPrintTask(): PrintTask
     {
-        $request = new Request;
-        $request->setVersion(Version::V2_1)
-            ->setOperation(Operation::GET_PRINTER_ATTRIBUTES)
-            ->addOperationAttributes(['printer-uri' => new Uri($printerId)]);
+        return new PrintTask($this->client);
+    }
 
-        return $this->api->makeRequest($request)->getPrinters()->first();
+    public function printer($printerId = null, array $params = [], array|null|RequestOptions $opts = null): ?PrinterContract
+    {
+        $printer = $this->client->printers->retrieve($printerId, $params, $opts);
+
+        if (! $printer) {
+            return null;
+        }
+
+        return new PrinterContract($printer);
     }
 
     /**
@@ -45,87 +51,74 @@ class Cups implements Driver
      * Printers have a lot of attributes, without the requested attributes filter
      * the request will be about 2x slower
      *
-     * @return \Illuminate\Support\Collection<RawilkPrinter>
+     * @return \Illuminate\Support\Collection<int, PrinterContract>
      */
-    public function printers(?int $limit = null, ?int $offset = null, ?string $dir = null): \Illuminate\Support\Collection
-    {
-        $request = new Request;
-        $request->setVersion(Version::V2_1)
-            ->setOperation(Operation::CUPS_GET_PRINTERS);
+    public function printers(
+        ?int $limit = null,
+        ?int $offset = null,
+        ?string $dir = null,
+        array $params = [],
+        array|null|RequestOptions $opts = null,
+    ): Collection {
+        $printers = $this->client->printers->all($params, $opts);
 
-        $printers = $this->api->makeRequest($request)->getPrinters();
-
-        return $printers->slice($offset, $limit)->values();
+        return $printers
+            ->slice($offset ?? 0, $limit)
+            ->values()
+            ->mapInto(PrinterContract::class);
     }
 
-    public function printJob($jobId = null): ?PrintJob
+    public function printJob($jobId = null, array $params = [], array|null|RequestOptions $opts = null): ?PrintJobContract
     {
-        $request = new Request;
-        $request->setVersion(Version::V2_1)
-            ->setOperation(Operation::GET_JOB_ATTRIBUTES)
-            ->addOperationAttributes([
-                'job-uri' => new Uri($jobId),
-                'requested-attributes' => [
-                    new Keyword('job-uri'),
-                    new Keyword('job-state'),
-                    new Keyword('number-of-documents'),
-                    new Keyword('job-name'),
-                    new Keyword('document-format'),
-                    new Keyword('date-time-at-creation'),
-                    new Keyword('job-printer-state-message'),
-                    new Keyword('job-printer-uri'),
-                ],
-            ]);
+        $job = $this->client->printJobs->retrieve($jobId, $params, $opts);
 
-        return $this->api->makeRequest($request)->getJobs()->first();
+        if (! $job) {
+            return null;
+        }
+
+        return new PrintJobContract($job);
     }
 
     /**
-     * Returns in-progress jobs
+     * Note: $limit, $offset, $dir do nothing currently.
      */
-    public function printerPrintJobs($printerId, ?int $limit = null, ?int $offset = null, ?string $dir = null): \Illuminate\Support\Collection
-    {
-        $request = new Request;
-        $request->setVersion(Version::V2_1)
-            ->setOperation(Operation::GET_JOBS)
-            ->addOperationAttributes([
-                'printer-uri' => new Uri($printerId),
-                'which-jobs' => new Keyword('not-completed'),
-                'requested-attributes' => [
-                    new Keyword('job-uri'),
-                    new Keyword('job-state'),
-                    new Keyword('number-of-documents'),
-                    new Keyword('job-name'),
-                    new Keyword('document-format'),
-                    new Keyword('date-time-at-creation'),
-                    new Keyword('job-printer-state-message'),
-                    new Keyword('job-printer-uri'),
-                ],
-            ]);
-
-        return $this->api->makeRequest($request)->getJobs();
-    }
-
-    public function printerPrintJob($printerId, $jobId): ?PrintJob
-    {
-        return $this->printJob($jobId);
+    public function printerPrintJobs(
+        $printerId,
+        ?int $limit = null,
+        ?int $offset = null,
+        ?string $dir = null,
+        array $params = [],
+        array|null|RequestOptions $opts = null,
+    ): Collection {
+        return $this->client->printers->printJobs(
+            parentUri: $printerId,
+            params: $params,
+            opts: $opts,
+        )->mapInto(PrintJobContract::class);
     }
 
     /**
-     * @return \Illuminate\Support\Collection<\Rawilk\Printing\Contracts\PrintJob>
+     * There isn't really a way to do this with CUPS, but the normal `printJob()` method call
+     * should yield the same result anyway.
      */
-    public function printJobs(?int $limit = null, ?int $offset = null, ?string $dir = null): \Illuminate\Support\Collection
+    public function printerPrintJob($printerId, $jobId, array|null|RequestOptions $opts = null): ?PrintJobContract
     {
-        $printerUris = $this->printers()->map(fn ($i) => $i->id());
+        return $this->printJob($jobId, $opts);
+    }
 
-        $jobs = collect();
-        // Make request for each printer...
-        $printerUris->each(
-            function ($uri) use ($jobs) {
-                $jobs->push(...$this->printerPrintJobs($uri));
-            }
-        );
-
-        return $jobs;
+    /**
+     * Note: $limit, $offset, $dir do nothing currently.
+     *
+     * @return \Illuminate\Support\Collection<PrintJobContract>
+     */
+    public function printJobs(
+        ?int $limit = null,
+        ?int $offset = null,
+        ?string $dir = null,
+        array $params = [],
+        array|null|RequestOptions $opts = null,
+    ): Collection {
+        return $this->client->printJobs->all($params, $opts)
+            ->mapInto(PrintJobContract::class);
     }
 }

@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+use Rawilk\Printing\Enums\PrintDriver;
+
 return [
     /*
     |--------------------------------------------------------------------------
@@ -11,7 +13,7 @@ return [
     | Supported: `printnode`, `cups`
     |
     */
-    'driver' => env('PRINTING_DRIVER', 'printnode'),
+    'driver' => env('PRINTING_DRIVER', PrintDriver::PrintNode->value),
 
     /*
     |--------------------------------------------------------------------------
@@ -22,15 +24,18 @@ return [
     |
     */
     'drivers' => [
-        'printnode' => [
+        PrintDriver::PrintNode->value => [
+            'driver' => PrintDriver::PrintNode->value,
             'key' => env('PRINT_NODE_API_KEY'),
         ],
-        'cups' => [
+
+        PrintDriver::Cups->value => [
+            'driver' => PrintDriver::Cups->value,
             'ip' => env('CUPS_SERVER_IP'),
             'username' => env('CUPS_SERVER_USERNAME'),
             'password' => env('CUPS_SERVER_PASSWORD'),
-            'port' => env('CUPS_SERVER_PORT', 631),
-            'secure' => env('CUPS_SERVER_SECURE', false),
+            'port' => env('CUPS_SERVER_PORT'),
+            'secure' => env('CUPS_SERVER_SECURE'),
         ],
 
         /*
@@ -82,4 +87,16 @@ return [
          */
         'barcode_width' => 2,
     ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Printing Logger
+    |--------------------------------------------------------------------------
+    |
+    | This setting defines which logging channel will be used by this package
+    | to write log messages. You are free to specify any of your logging
+    | channels listed inside the "logging" configuration file.
+    |
+    */
+    'logger' => env('PRINTING_LOGGER'),
 ];

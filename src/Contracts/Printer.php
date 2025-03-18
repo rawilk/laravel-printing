@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace Rawilk\Printing\Contracts;
 
+use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Support\Collection;
+use JsonSerializable;
 
-interface Printer
+interface Printer extends Arrayable, JsonSerializable
 {
     public function capabilities(): array;
 

@@ -4,28 +4,65 @@ declare(strict_types=1);
 
 namespace Rawilk\Printing\Drivers\Cups\Entity;
 
-use Carbon\Carbon;
-use Illuminate\Contracts\Support\Arrayable;
-use JsonSerializable;
+use Carbon\CarbonInterface;
+use Illuminate\Support\Facades\Date;
+use Illuminate\Support\Traits\Macroable;
+use Rawilk\Printing\Api\Cups\Resources\PrintJob as CupsPrintJob;
+use Rawilk\Printing\Concerns\SerializesToJson;
 use Rawilk\Printing\Contracts\PrintJob as PrintJobContract;
-use Rawilk\Printing\Drivers\Cups\Enum\JobState;
 
-class PrintJob implements Arrayable, JsonSerializable, PrintJobContract
+class PrintJob implements PrintJobContract
 {
-    /**
-     * @param array<string, \Rawilk\Printing\Api\Cups\Type>
-     */
-    protected array $attributes;
+    use Macroable;
+    use SerializesToJson;
 
-    /**
-     * @param array<string, \Rawilk\Printing\Api\Cups\Type>
-     */
-    public function __construct(array $printerAttributes)
+    public function __construct(protected readonly CupsPrintJob $job)
     {
-        $this->attributes = $printerAttributes;
     }
 
-    public function toArray()
+    public function __debugInfo(): ?array
+    {
+        return $this->job->__debugInfo();
+    }
+
+    public function job(): CupsPrintJob
+    {
+        return $this->job;
+    }
+
+    public function date(): ?CarbonInterface
+    {
+        $date = $this->job->dateTimeAtCreation;
+
+        return filled($date) ? Date::parse($date) : null;
+    }
+
+    public function id(): string
+    {
+        return $this->job->uri;
+    }
+
+    public function name(): ?string
+    {
+        return $this->job->jobName;
+    }
+
+    public function printerId(): string
+    {
+        return $this->job->jobPrinterUri;
+    }
+
+    public function printerName(): ?string
+    {
+        return $this->job->printerName();
+    }
+
+    public function state(): ?string
+    {
+        return strtolower($this->job->state()?->name);
+    }
+
+    public function toArray(): array
     {
         return [
             'id' => $this->id(),
@@ -35,46 +72,5 @@ class PrintJob implements Arrayable, JsonSerializable, PrintJobContract
             'printerName' => $this->printerName(),
             'state' => $this->state(),
         ];
-    }
-
-    public function jsonSerialize(): mixed
-    {
-        return $this->toArray();
-    }
-
-    public function date(): ?Carbon
-    {
-        return $this->attributes['date-time-at-creation']->value ?? null;
-    }
-
-    public function id()
-    {
-        // Id serves no purpose, return uri instead?
-        return $this->attributes['job-uri']->value ?? null;
-    }
-
-    public function name(): ?string
-    {
-        return $this->attributes['job-name']->value ?? null;
-    }
-
-    public function printerId()
-    {
-        return $this->attributes['job-printer-uri']->value ?? null;
-    }
-
-    public function printerName(): ?string
-    {
-        // Extract name from uri
-        if (preg_match('/printers\/(.*)$/', $this->printerId(), $matches)) {
-            return $matches[1];
-        }
-
-        return null;
-    }
-
-    public function state(): ?string
-    {
-        return strtolower(JobState::tryFrom($this->attributes['job-state']->value)->name);
     }
 }

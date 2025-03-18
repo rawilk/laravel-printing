@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Rawilk\Printing\Contracts;
 
+use BackedEnum;
+
 interface PrintTask
 {
     public function content($content): self;
@@ -16,7 +18,7 @@ interface PrintTask
 
     public function printer(Printer|string|null|int $printerId): self;
 
-    public function option(string $key, $value): self;
+    public function option(BackedEnum|string $key, $value): self;
 
     public function range($start, $end = null): self;
 

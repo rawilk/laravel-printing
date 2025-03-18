@@ -6,91 +6,123 @@ namespace Rawilk\Printing\Drivers\PrintNode;
 
 use Illuminate\Support\Collection;
 use Illuminate\Support\Traits\Macroable;
-use Rawilk\Printing\Api\PrintNode\Entity\Printer as PrintNodePrinter;
-use Rawilk\Printing\Api\PrintNode\Entity\PrintJob as PrintNodePrintJob;
-use Rawilk\Printing\Api\PrintNode\PrintNode as PrintNodeApi;
+use Rawilk\Printing\Api\PrintNode\PrintNodeClient;
+use Rawilk\Printing\Api\PrintNode\Util\RequestOptions;
 use Rawilk\Printing\Contracts\Driver;
-use Rawilk\Printing\Contracts\Printer;
-use Rawilk\Printing\Contracts\PrintJob;
-use Rawilk\Printing\Drivers\PrintNode\Entity\Printer as RawilkPrinter;
-use Rawilk\Printing\Drivers\PrintNode\Entity\PrintJob as RawilkPrintJob;
+use Rawilk\Printing\Drivers\PrintNode\Entity\Printer as PrinterContract;
+use Rawilk\Printing\Drivers\PrintNode\Entity\PrintJob as PrintJobContract;
+use SensitiveParameter;
 
 class PrintNode implements Driver
 {
     use Macroable;
 
-    protected PrintNodeApi $api;
+    protected PrintNodeClient $client;
 
-    public function __construct()
+    public function __construct(#[SensitiveParameter] ?string $apiKey = null)
     {
-        $this->api = app(PrintNodeApi::class);
+        $this->client = app(PrintNodeClient::class, ['config' => ['api_key' => $apiKey]]);
     }
 
-    public function newPrintTask(): \Rawilk\Printing\Contracts\PrintTask
+    public function getApiKey(): ?string
     {
-        return new PrintTask($this->api);
+        return $this->client->getApiKey();
     }
 
-    public function printer($printerId = null): ?Printer
+    public function setApiKey(?string $apiKey): static
     {
-        $printer = $this->api->printer((int) $printerId);
+        $this->client->setApiKey($apiKey);
+
+        return $this;
+    }
+
+    public function newPrintTask(): PrintTask
+    {
+        return new PrintTask($this->client);
+    }
+
+    public function printer($printerId = null, ?array $params = null, null|array|RequestOptions $opts = null): ?PrinterContract
+    {
+        $printer = $this->client->printers->retrieve((int) $printerId, $params, $opts);
 
         if (! $printer) {
             return null;
         }
 
-        return new RawilkPrinter($printer);
+        return new PrinterContract($printer);
     }
 
-    /**
-     * @return \Illuminate\Support\Collection<int, RawilkPrinter>
-     */
-    public function printers(?int $limit = null, ?int $offset = null, ?string $dir = null): Collection
-    {
-        return $this->api
-            ->printers($limit, $offset, $dir)
-            ->printers
-            ->map(fn (PrintNodePrinter $p) => new RawilkPrinter($p));
+    public function printers(
+        ?int $limit = null,
+        ?int $offset = null,
+        ?string $dir = null,
+        null|array|RequestOptions $opts = null,
+    ): Collection {
+        return $this->client->printers->all(
+            params: static::formatPaginationParams($limit, $offset, $dir),
+            opts: $opts,
+        )->mapInto(PrinterContract::class);
     }
 
-    public function printJob($jobId = null): ?PrintJob
+    public function printJobs(
+        ?int $limit = null,
+        ?int $offset = null,
+        ?string $dir = null,
+        null|array|RequestOptions $opts = null,
+    ): Collection {
+        return $this->client->printJobs->all(
+            params: static::formatPaginationParams($limit, $offset, $dir),
+            opts: $opts,
+        )->mapInto(PrintJobContract::class);
+    }
+
+    public function printJob($jobId = null, ?array $params = null, null|array|RequestOptions $opts = null): ?PrintJobContract
     {
-        $job = $this->api->printJob((int) $jobId);
+        $job = $this->client->printJobs->retrieve((int) $jobId, $params, $opts);
 
         if (! $job) {
             return null;
         }
 
-        return new RawilkPrintJob($job);
+        return new PrintJobContract($job);
     }
 
-    /**
-     * @return \Illuminate\Support\Collection<int, \Rawilk\Printing\Contracts\PrintJob>
-     */
-    public function printJobs(?int $limit = null, ?int $offset = null, ?string $dir = null): Collection
-    {
-        return $this->api
-            ->printJobs($limit, $offset, $dir)
-            ->jobs
-            ->map(fn (PrintNodePrintJob $j) => new RawilkPrintJob($j));
+    public function printerPrintJobs(
+        $printerId,
+        ?int $limit = null,
+        ?int $offset = null,
+        ?string $dir = null,
+        null|array|RequestOptions $opts = null,
+    ): Collection {
+        return $this->client->printers->printJobs(
+            parentId: (int) $printerId,
+            params: static::formatPaginationParams($limit, $offset, $dir),
+            opts: $opts,
+        )->mapInto(PrintJobContract::class);
     }
 
-    public function printerPrintJobs($printerId, ?int $limit = null, ?int $offset = null, ?string $dir = null): Collection
+    public function printerPrintJob($printerId, $jobId, ?array $params = null, null|array|RequestOptions $opts = null): ?PrintJobContract
     {
-        return $this->api
-            ->printerPrintJobs($printerId, $limit, $offset, $dir)
-            ->jobs
-            ->map(fn (PrintNodePrintJob $j) => new RawilkPrintJob($j));
-    }
-
-    public function printerPrintJob($printerId, $jobId): ?PrintJob
-    {
-        $job = $this->api->printerPrintJob((int) $printerId, (int) $jobId);
+        $job = $this->client->printers->printJob(
+            parentId: (int) $printerId,
+            printJobId: (int) $jobId,
+            params: $params,
+            opts: $opts,
+        );
 
         if (! $job) {
             return null;
         }
 
-        return new RawilkPrintJob($job);
+        return new PrintJobContract($job);
+    }
+
+    protected static function formatPaginationParams(?int $limit, ?int $offset, ?string $dir): array
+    {
+        return array_filter([
+            'limit' => $limit,
+            'after' => $offset,
+            'dir' => $dir,
+        ]);
     }
 }

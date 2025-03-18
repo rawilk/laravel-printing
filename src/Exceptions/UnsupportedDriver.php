@@ -4,11 +4,9 @@ declare(strict_types=1);
 
 namespace Rawilk\Printing\Exceptions;
 
-use Exception;
-
-class UnsupportedDriver extends Exception
+class UnsupportedDriver extends PrintingException
 {
-    public static function driver(string $driver): self
+    public static function driver(string $driver): static
     {
         return new static("Unsupported print driver: {$driver}");
     }

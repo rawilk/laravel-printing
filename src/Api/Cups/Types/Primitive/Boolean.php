@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Rawilk\Printing\Api\Cups\Types\Primitive;
 
+use Rawilk\Printing\Api\Cups\Enums\TypeTag;
 use Rawilk\Printing\Api\Cups\Type;
-use Rawilk\Printing\Api\Cups\TypeTag;
 
 class Boolean extends Type
 {
-    protected int $tag = TypeTag::BOOLEAN->value;
+    protected int $tag = TypeTag::Boolean->value;
 
     public static function fromBinary(string $binary, int &$offset): array
     {
@@ -26,6 +26,6 @@ class Boolean extends Type
 
     public function encode(): string
     {
-        return pack('n', 1) . pack('c', intval($this->value));
+        return pack('n', 1) . pack('c', (int) $this->value);
     }
 }

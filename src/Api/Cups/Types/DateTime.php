@@ -4,18 +4,13 @@ declare(strict_types=1);
 
 namespace Rawilk\Printing\Api\Cups\Types;
 
-use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Date;
+use Rawilk\Printing\Api\Cups\Enums\TypeTag;
 use Rawilk\Printing\Api\Cups\Type;
-use Rawilk\Printing\Api\Cups\TypeTag;
 
 class DateTime extends Type
 {
-    protected int $tag = TypeTag::DATETIME->value;
-
-    /**
-     * @param  Carbon  $value
-     */
-    public function __construct(public mixed $value) {}
+    protected int $tag = TypeTag::DateTime->value;
 
     public static function fromBinary(string $binary, int &$offset): array
     {
@@ -27,7 +22,7 @@ class DateTime extends Type
         $data = unpack('nY/cm/cd/cH/ci/cs/cfff/aUTCSym/cUTCm/cUTCs', $binary, $offset);
         $offset += $valueLen;
 
-        $value = Carbon::createFromFormat(
+        $value = Date::createFromFormat(
             'YmdHisO',
             $data['Y']
                 . str_pad((string) $data['m'], 2, '0', STR_PAD_LEFT)
@@ -59,7 +54,7 @@ class DateTime extends Type
             . pack('c', self::unpad($matches[3]));
     }
 
-    private static function unpad(string $str)
+    private static function unpad(string $str): string
     {
         $unpaddedStr = ltrim($str, '0');
         if ($unpaddedStr === '') {

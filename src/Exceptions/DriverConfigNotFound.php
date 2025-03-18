@@ -4,11 +4,9 @@ declare(strict_types=1);
 
 namespace Rawilk\Printing\Exceptions;
 
-use Exception;
-
-class DriverConfigNotFound extends Exception
+class DriverConfigNotFound extends PrintingException
 {
-    public static function forDriver(string $driver): self
+    public static function forDriver(string $driver): static
     {
         return new static("Driver config not found for print driver [{$driver}].");
     }
