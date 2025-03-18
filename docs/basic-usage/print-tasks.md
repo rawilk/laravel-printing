@@ -38,7 +38,7 @@ Depending on the driver being used, there may be additional methods and even par
 ### Driver Options
 
 - See [PrintNode PrintTask](/docs/laravel-printing/{version}/printnode/print-task) for more options for the PrintNode driver.
-- More info on using CUPS options can be found here: [https://github.com/smalot/cups-ipp](https://github.com/smalot/cups-ipp)
+- See [CUPS PrintTask](/docs/laravel-printing/{version}/cups/print-task) for more options for the CUPS driver.
 
 ## Conditionable
 
