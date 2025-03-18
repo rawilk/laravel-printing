@@ -78,7 +78,7 @@ Retrieve all print jobs associated with a given printer. Pass an array for `$par
 
 #### printJob
 
-_Collection<int, Rawilk\Printing\Api\PrintNode\Resources\PrintJob>|Rawilk\Printing\Api\PrintNode\Resources\PrintJob_
+_Collection<int, Rawilk\Printing\Api\PrintNode\Resources\PrintJob>|Rawilk\Printing\Api\PrintNode\Resources\PrintJob>_
 
 Retrieve a single or set of print jobs associated with a given printer.
 
