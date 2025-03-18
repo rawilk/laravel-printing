@@ -19,7 +19,7 @@ foreach ($printers as $printer) {
 }
 ```
 
-No matter which driver you use, each `$printer` object will be be an instance of `Rawilk\Printing\Contracts\Printer`. More info on the printer object [here](/laravel-printing/{version}/basic-usage/printer).
+No matter which driver you use, each `$printer` object will be an instance of `Rawilk\Printing\Contracts\Printer`. More info on the printer object [here](/laravel-printing/{version}/basic-usage/printer).
 
 ## Finding a printer
 

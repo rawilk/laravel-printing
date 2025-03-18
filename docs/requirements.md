@@ -7,7 +7,7 @@ sort: 2
 
 -   PHP **8.1**<sup>1</sup> or greater
 -   Laravel **8.0** or greater
--   A printer on your local network that you can print to and that your selected printer can access.
+-   A printer on your local network that you can print to and that your selected driver can access.
 -   A receipt printer if you are printing receipts
 
 <sup>1</sup> The package doesn't officially support PHP 8.0, but it should still run on that version.
@@ -28,9 +28,11 @@ sort: 2
 ## Version Matrix
 
 | Laravel | Minimum Version | Maximum Version |
-| ------- | --------------- | --------------- |
+| ------- | --------------- |-----------------|
 | 6.0     | 1.0.0           | 1.3.0           |
 | 7.0     | 1.0.0           | 1.3.0           |
-| 8.0     | 1.2.2           |                 |
-| 9.0     | 3.0.0           |                 |
+| 8.0     | 1.2.2           | 3.0.5           |
+| 9.0     | 3.0.0           | 3.0.5           |
 | 10.0    | 3.0.2           |                 |
+| 11.0 | 3.0.4 | |
+| 12.0 | 3.0.5 | |
