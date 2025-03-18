@@ -173,6 +173,31 @@ Unless your application is interacting with the Cups api wrapper directly, this 
 
 Each resource is now fetched or created from service classes that are referenced by the `CupsClient` class.
 
+### Singletons
+
+**Likelihood Of Impact: Low**
+
+The singletons for the CUPS and PrintNode API wrappers have been removed, however the client classes can still be resolved out of the container. For example, for PrintNode you would resolve it like this now:
+
+```php
+use Rawilk\Printing\Api\PrintNode\PrintNodeClient;
+
+$client = app(PrintNodeClient::class, ['config' => ['api_key' => 'your-api-key']]);
+```
+
+If you were resolving the singletons for `printing.factory` or `printing.driver` out of the container, you now need to resolve them using the class names instead. 
+
+```php
+use Rawilk\Printing\Factory;
+use Rawilk\Printing\Contracts\Driver;
+
+// printing.factory
+app(Factory::class);
+
+// printing.driver
+app(Driver::class);
+```
+
 ### Miscellaneous
 
 I also encourage you to view the changes in the `rawilk/laravel-printing` [GitHub repository](https://github.com/rawilk/laravel-printing). There may be changes not documented here that affect your integration. You can easily view all changes between this version and version 3.x with the [GitHub comparison tool](https://github.com/rawilk/laravel-printing/compare/3.0.5...4.0.0).
