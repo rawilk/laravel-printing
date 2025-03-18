@@ -23,20 +23,8 @@ The contents of the default configuration file can be found here: [https://githu
 
 ## Setting up a print driver
 
-To print with laravel printing, you must set up a supported print driver.
+To print with laravel printing, you must either setup a supported driver, or write and configure a custom driver.
 
-### PrintNode
-
--   You must sign up for an account at PrintNode. You can sign up here: [https://app.printnode.com/app/login/register](https://app.printnode.com/app/login/register)
--   Review the [requirements](/docs/laravel-printing/{version}/requirements#printnode) for the PrintNode driver
--   Enter your api key in your `.env` file: `PRINT_NODE_API_KEY=your-api-key`
-
-### CUPS
-
--   Review the [requirements](/docs/laravel-printing/{version}/requirements#cups) for the CUPS driver
--   If using a remote server, enter your remote server credentials in the `.env` file (see config)
--   In the terminal, run: `composer require smalot/cups-ipp`
-
-#### Job Names
-
-If you're having an issue sending the name of the job to CUPS, try changing `JobPrivateValues default` to `JobPrivateValues none` in `/etc/cups/cupsd.conf`.
+- For PrintNode: [PrintNode Overview](/docs/laravel-printing/{version}/printnode/overview)
+- For CUPS: [CUPS Overview](/docs/laravel-printing/{version}/cups/overview)
+- For Custom Drivers: [Custom Drivers](/docs/laravel-printing/{version}/advanced-usage/custom-drivers)

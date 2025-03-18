@@ -12,6 +12,8 @@ raw print job via the `Printing` facade.
 Here's a simple example of what you can do with this package:
 
 ```php
+use Rawilk\Printing\Facades\Printing;
+
 $printJob = Printing::newPrintTask()
     ->printer($printerId)
     ->file('path_to_file.pdf')

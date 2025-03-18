@@ -5,62 +5,70 @@ sort: 2
 
 ## Introduction
 
-Each printer object should be an implementation of `Rawilk\Printing\Contracts\Printer`. The printer has several properties on it that can
-be accessed via these methods:
+Each printer object returned from a `Driver` should be an implementation of `Rawilk\Printing\Contracts\Printer`. A printer represents a physical printer on your print server.
 
-## Printer Id
+## Reference
 
-Your print server will create a unique id for each printer you have on it. You can retrieve the id like this:
+`Rawilk\Printing\Contracts\Printer`
 
-```php
-$printer->id()
-```
+### Methods
+<hr>
 
-## Printer Name
+#### id
 
-Each printer should also have a name, which can be retrieved like this:
+_string|int_
 
-```php
-$printer->name()
-```
+A print server typically assigns some kind of id or uri for a printer. For example, `CUPS` will return the uri to the printer.
 
-## Capabilities
+<hr>
 
-Your print server should be able to return a listing of the printer's capabilities. You can retrieve an array of them via:
+#### name 
 
-```php
-$printer->capabilities()
-```
+_?string_
 
-## Trays
+If reported by the driver, the printer's name.
 
-If your printer and print driver support it, you can get a listing of your printer's available trays for use later:
+<hr>
 
-```php
-$printer->trays()
-```
+#### description
 
-## Printer status
+_?string_
 
-Your print server should return a text representation of your printer's current status:
+If reported by the driver, a brief description of the printer.
 
-```php
-$printer->status()
-```
+<hr>
 
-You can also check if the printer is online via:
+#### capabilities
 
-```php
-$printer->isOnline()
-```
+_array_
 
-## Description
+If reported by the driver, this should be an array of the printer's capabilities (e.g., trays, collation, etc.)
 
-If your printer has a description set on it, it can be retrieved via:
+<hr>
 
-```php
-$printer->description()
-```
+#### trays
+
+_array_
+
+If your printer and print driver support it, you can get a listing of your printer's available trays for use later.
+
+<hr>
+
+#### status
+
+_string_
+
+The printer's current reported status.
+
+<hr>
+
+#### isOnline
+
+_bool_
+
+Indicates if the printer has reported itself to be online.
+
+<hr>
 
 ## Serialization
 
@@ -71,5 +79,7 @@ The printer object can also be cast to array or json, and it will return the fol
 -   description
 -   online
 -   status
--   trays
--   capabilities (PrintNode only currently)
+-   trays (If supported by the driver)
+-   capabilities (If supported by the driver)
+
+> {note} Some drivers may serialize this slightly different.

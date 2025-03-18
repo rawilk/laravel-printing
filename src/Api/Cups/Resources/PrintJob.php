@@ -14,7 +14,7 @@ use Rawilk\Printing\Api\Cups\Enums\OperationAttribute;
  * @property-read string $uri The uri to the job. Alias to `$jobUri`
  * @property-read string $jobUri The uri to the job.
  * @property-read null|string $jobName The name of the job.
- * @property-read string $jobPrinterUri The uri to the job the printer was sent to.
+ * @property-read string $jobPrinterUri The uri to the printer the job was sent to.
  * @property-read int $jobState An integer representation of the job's state.
  * @property-read null|string $dateTimeAtCreation The date/time the job was sent to the printer.
  */

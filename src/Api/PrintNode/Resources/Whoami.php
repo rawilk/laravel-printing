@@ -24,7 +24,7 @@ use Rawilk\Printing\Api\PrintNode\PrintNodeApiResource;
  * @property array $versions A collection of versions set on this account
  * @property array $connected A collection of computer IDs signed in on this account
  * @property array $Tags A collection of tags set on this account
- * @property array $ApiKeys A collection of al the api keys set on this account
+ * @property array $ApiKeys A collection of all the api keys set on this account
  * @property string $state The status of the account
  * @property array $permissions The permissions set on this account
  */

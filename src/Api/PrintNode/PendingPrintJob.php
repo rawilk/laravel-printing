@@ -16,6 +16,7 @@ use Rawilk\Printing\Exceptions\InvalidArgument;
 use Rawilk\Printing\Exceptions\InvalidOption;
 use Rawilk\Printing\Exceptions\InvalidSource;
 use Rawilk\Printing\Printing;
+use SensitiveParameter;
 use Throwable;
 
 class PendingPrintJob implements Arrayable
@@ -211,7 +212,7 @@ class PendingPrintJob implements Arrayable
 
     public function setAuth(
         string $username,
-        ?string $password,
+        #[SensitiveParameter] ?string $password,
         string|AuthenticationType $authenticationType = AuthenticationType::Basic,
     ): static {
         $type = $authenticationType instanceof AuthenticationType

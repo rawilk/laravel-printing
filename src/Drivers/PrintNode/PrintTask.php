@@ -15,6 +15,7 @@ use Rawilk\Printing\Api\PrintNode\Util\RequestOptions;
 use Rawilk\Printing\Drivers\PrintNode\Entity\PrintJob as PrintJobContract;
 use Rawilk\Printing\Exceptions\PrintTaskFailed;
 use Rawilk\Printing\PrintTask as BasePrintTask;
+use SensitiveParameter;
 
 class PrintTask extends BasePrintTask
 {
@@ -118,7 +119,7 @@ class PrintTask extends BasePrintTask
 
     public function withAuth(
         string $username,
-        ?string $password,
+        #[SensitiveParameter] ?string $password,
         string|AuthenticationType $authenticationType = AuthenticationType::Basic,
     ): static {
         $this->pendingJob->setAuth($username, $password, $authenticationType);
