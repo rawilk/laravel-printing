@@ -200,4 +200,4 @@ app(Driver::class);
 
 ### Miscellaneous
 
-I also encourage you to view the changes in the `rawilk/laravel-printing` [GitHub repository](https://github.com/rawilk/laravel-printing). There may be changes not documented here that affect your integration. You can easily view all changes between this version and version 3.x with the [GitHub comparison tool](https://github.com/rawilk/laravel-printing/compare/3.0.5...4.0.0).
+I also encourage you to view the changes in the `rawilk/laravel-printing` [GitHub repository](https://github.com/rawilk/laravel-printing). There may be changes not documented here that affect your integration. You can easily view all changes between this version and version 3.x with the [GitHub comparison tool](https://github.com/rawilk/laravel-printing/compare/v3.0.5...v4.0.0-beta.1).
