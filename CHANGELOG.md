@@ -7,15 +7,18 @@ All notable changes to `laravel-printing` will be documented in this file.
 This release is a pre-release! It is considered mostly stable, however breaking changes may possibly be introduced before a stable 4.x release is published, however I will do my best to prevent breaking changes as bugs are discovered and patched in this major version.
 
 ### What's Changed
-* Cups by @vatsake in https://github.com/rawilk/laravel-printing/pull/92
-* Bump aglipanci/laravel-pint-action from 2.4 to 2.5 by @dependabot in https://github.com/rawilk/laravel-printing/pull/101
-* [Release] 4.x by @rawilk in https://github.com/rawilk/laravel-printing/pull/99
-* Bump dependabot/fetch-metadata from 2.2.0 to 2.3.0 by @dependabot in https://github.com/rawilk/laravel-printing/pull/100
+
+- Cups by @vatsake in https://github.com/rawilk/laravel-printing/pull/92
+- Bump aglipanci/laravel-pint-action from 2.4 to 2.5 by @dependabot in https://github.com/rawilk/laravel-printing/pull/101
+- [Release] 4.x by @rawilk in https://github.com/rawilk/laravel-printing/pull/99
+- Bump dependabot/fetch-metadata from 2.2.0 to 2.3.0 by @dependabot in https://github.com/rawilk/laravel-printing/pull/100
 
 ### New Contributors
-* @vatsake made their first contribution in https://github.com/rawilk/laravel-printing/pull/92
+
+- @vatsake made their first contribution in https://github.com/rawilk/laravel-printing/pull/92
 
 ### Breaking Changes
+
 - Drop Laravel 8 & 9 support
 - Drop PHP 8.0 support
 - Drop PHP 8.1 support
@@ -33,6 +36,7 @@ This release is a pre-release! It is considered mostly stable, however breaking 
 - Force `Rawilk\Printing\Contracts\PrintJob` interface to use `Arrayable` and `JsonSerializable`
 
 ### Other Changes
+
 - Use `Str::random()` instead of `uniqid` when generating print job names
 - Add new `PrintDriver` enum
 - Add logging (configurable through .env through `PRINTING_LOGGER`)
