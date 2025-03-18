@@ -28,7 +28,7 @@ Supported Print Drivers:
 
 ## Documentation:
 
-For documentation, please visit: https://randallwilk.dev/docs/laravel-printing
+For documentation, please visit: https://randallwilk.dev/docs/laravel-printing/v3
 
 ## Installation
 
@@ -44,7 +44,7 @@ You can publish the config file with:
 php artisan vendor:publish --tag="printing-config"
 ```
 
-The contents of the default configuration file can be found here: https://github.com/rawilk/laravel-printing/blob/main/config/printing.php
+The contents of the default configuration file can be found here: https://github.com/rawilk/laravel-printing/blob/v3/config/printing.php
 
 ## Testing
 
