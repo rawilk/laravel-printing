@@ -10,18 +10,18 @@ on several classes the package offers. This may be a preferred alternative to fo
 
 The following classes are macroable:
 
--   `Rawilk\Printing\Api\Cups\CupsClient`
--   `Rawilk\Printing\Api\Cups\CupsObject` - all cups resource objects are also macroable
--   `Rawilk\Printing\Api\Cups\PendingPrintJob`
--   `Rawilk\Printing\Api\PrintNode\PrintNodeClient`
--   `Rawilk\Printing\Api\PrintNode\PendingPrintJob`
--   `Rawilk\Printing\Api\PrintNode\PrintNodeObject` - all PrintNode resource objects are also macroable
--   `Rawilk\Printing\Drivers\Cups\Cups`
--   `Rawilk\Printing\Drivers\Cups\Entity\PrintJob`
--   `Rawilk\Printing\Drivers\Cups\Entity\Printer`
--   `Rawilk\Printing\Drivers\PrintNode\Enity\PrintJob`
--   `Rawilk\Printing\Drivers\PrintNode\Enity\Printer`
--   `Rawilk\Printing\Drivers\PrintNode\PrintNode`
--   `Rawilk\Printing\PrintTask`
--   `Rawilk\Printing\Printing`
--   `Rawilk\Printing\Receipts\ReceiptPrinter`
+- `Rawilk\Printing\Api\Cups\CupsClient`
+- `Rawilk\Printing\Api\Cups\CupsObject` - all cups resource objects are also macroable
+- `Rawilk\Printing\Api\Cups\PendingPrintJob`
+- `Rawilk\Printing\Api\PrintNode\PrintNodeClient`
+- `Rawilk\Printing\Api\PrintNode\PendingPrintJob`
+- `Rawilk\Printing\Api\PrintNode\PrintNodeObject` - all PrintNode resource objects are also macroable
+- `Rawilk\Printing\Drivers\Cups\Cups`
+- `Rawilk\Printing\Drivers\Cups\Entity\PrintJob`
+- `Rawilk\Printing\Drivers\Cups\Entity\Printer`
+- `Rawilk\Printing\Drivers\PrintNode\Enity\PrintJob`
+- `Rawilk\Printing\Drivers\PrintNode\Enity\Printer`
+- `Rawilk\Printing\Drivers\PrintNode\PrintNode`
+- `Rawilk\Printing\PrintTask`
+- `Rawilk\Printing\Printing`
+- `Rawilk\Printing\Receipts\ReceiptPrinter`

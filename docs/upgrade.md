@@ -23,7 +23,7 @@ You should update the following dependencies in your application's `composer.jso
 
 **Likelihood Of Impact: Medium**
 
-The server your application is running on must be using  a minimum of php 8.2.
+The server your application is running on must be using a minimum of php 8.2.
 
 ### Printer Interface
 
@@ -57,7 +57,7 @@ public function date(): ?CarbonInterface;
 
 **Likelihood Of Impact: Low**
 
-Every custom exception class thrown by the package now either extends the `Rawilk\Printing\Exceptions\PrintingException` base exception and/or implements the `Rawilk\Printing\Exceptions\ExceptionInterface` interface. 
+Every custom exception class thrown by the package now either extends the `Rawilk\Printing\Exceptions\PrintingException` base exception and/or implements the `Rawilk\Printing\Exceptions\ExceptionInterface` interface.
 
 This shouldn't really affect anything, however you may now listen for that base exception or interface in a `try/catch` instead to catch any exceptions the package will throw.
 
@@ -111,7 +111,7 @@ Printing::printer($printerId, [], ['api_key' => 'my-key']);
 
 > {note} You cannot utilize php's named arguments when passing in extra parameters like this because these arguments do not exist on the underlying Printing service class method signatures.
 
-Another option you have for dynamically setting the api key is by setting it on the `PrintNode` api class. 
+Another option you have for dynamically setting the api key is by setting it on the `PrintNode` api class.
 
 ```php
 use Rawilk\Printing\Api\PrintNode\PrintNode;
@@ -119,7 +119,7 @@ use Rawilk\Printing\Api\PrintNode\PrintNode;
 PrintNode::setApiKey('my-key');
 ```
 
-> {note} An api key set in the `config/printing.php` configuration for `printnode` will take precedence over this method. Set the config value to `null` to avoid any issues if  you are doing this.
+> {note} An api key set in the `config/printing.php` configuration for `printnode` will take precedence over this method. Set the config value to `null` to avoid any issues if you are doing this.
 
 One other way to update the api key is by setting it on the driver itself. This is the least recommended way of doing it, but it's still an option.
 
@@ -185,7 +185,7 @@ use Rawilk\Printing\Api\PrintNode\PrintNodeClient;
 $client = app(PrintNodeClient::class, ['config' => ['api_key' => 'your-api-key']]);
 ```
 
-If you were resolving the singletons for `printing.factory` or `printing.driver` out of the container, you now need to resolve them using the class names instead. 
+If you were resolving the singletons for `printing.factory` or `printing.driver` out of the container, you now need to resolve them using the class names instead.
 
 ```php
 use Rawilk\Printing\Factory;

@@ -14,6 +14,7 @@ Refer to [PrintTask](/docs/laravel-printing/{version}/basic-usage/print-tasks) f
 ## Reference
 
 ### Methods
+
 <hr>
 
 #### content
@@ -22,10 +23,10 @@ _PrintTask_
 
 Sets the content to be printed. You may also specify the content type through here as well. With PrintNode, you may either print raw content or pdf content. The driver will automatically base64_encode the content for you.
 
-| param | type                                                    | default                |
-| --- |---------------------------------------------------------|------------------------|
-| `$content` | string                                                  |                        |
-| `$contentType` | string\Rawilk\Printing\Api\PrintNode\Enums\ContentType  | `ContentType::RawBase64` |
+| param          | type                                                   | default                  |
+| -------------- | ------------------------------------------------------ | ------------------------ |
+| `$content`     | string                                                 |                          |
+| `$contentType` | string\Rawilk\Printing\Api\PrintNode\Enums\ContentType | `ContentType::RawBase64` |
 
 <hr>
 
@@ -33,10 +34,10 @@ Sets the content to be printed. You may also specify the content type through he
 
 _PrintTask_
 
-Specify a file path to fetch the contents from to print. With PrintNode, the file must be a PDF file. The driver will handle encoding the pdf content with base64_encode automatically. 
+Specify a file path to fetch the contents from to print. With PrintNode, the file must be a PDF file. The driver will handle encoding the pdf content with base64_encode automatically.
 
-| param | type |
-| --- | --- |
+| param       | type   |
+| ----------- | ------ |
 | `$filePath` | string |
 
 <hr>
@@ -47,10 +48,10 @@ _PrintTask_
 
 Specify an url for PrintNode to fetch content from to print. PrintNode typically expects an url to a pdf document, however raw html content can also be printed by setting the `$raw` argument to `true`.
 
-| param | type | default |
-| --- | --- | --- |
-| `$url` | string | |
-| `$raw` | bool | `false` |
+| param  | type   | default |
+| ------ | ------ | ------- |
+| `$url` | string |         |
+| `$raw` | bool   | `false` |
 
 See [withAuth](#user-content-withAuth) if your url requires authentication to access it.
 
@@ -65,7 +66,7 @@ Set an option for the print job. Please refer to [PrintJob Options](https://www.
 You may also refer to and use the [PrintJobOption](https://github.com/rawilk/laravel-printing/blob/main/src/Api/PrintNode/Enums/PrintJobOption.php) enum for setting options on a print job.
 
 | param    | type                   |
-|----------|------------------------|
+| -------- | ---------------------- |
 | `$key`   | string\|PrintJobOption |
 | `$value` | mixed                  |
 
@@ -75,12 +76,12 @@ You may also refer to and use the [PrintJobOption](https://github.com/rawilk/lar
 
 _PrintTask_
 
-Specify a range of pages to print from a PDF. 
+Specify a range of pages to print from a PDF.
 
-| param | type              | default | 
-| --- |-------------------|---------|
+| param    | type              | default |
+| -------- | ----------------- | ------- |
 | `$start` | string\|int       |
-| `$end` | string\|int\|null | null    |
+| `$end`   | string\|int\|null | null    |
 
 Examples:
 
@@ -97,8 +98,8 @@ _PrintTask_
 
 Print to a specific tray on a printer if the printer supports it.
 
-| param | type |
-| --- | --- |
+| param   | type   |
+| ------- | ------ |
 | `$tray` | string |
 
 <hr>
@@ -109,9 +110,9 @@ _PrintTask_
 
 The number of copies to print. Defaults to `1`. Maximum value is as reported by the printer capabilities property `copies` on the printer.
 
-| param | type |
-| --- | --- |
-| `$copies` | int |
+| param     | type |
+| --------- | ---- |
+| `$copies` | int  |
 
 <hr>
 
@@ -121,8 +122,8 @@ _PrintTask_
 
 Specify the content type for the print job.
 
-| param | type |
-| --- | --- |
+| param          | type                                                    |
+| -------------- | ------------------------------------------------------- |
 | `$contentType` | string\|Rawilk\Printing\Api\PrintNode\Enums\ContentType |
 
 <hr>
@@ -133,8 +134,8 @@ _PrintTask_
 
 Indicates the printer should automatically fit the document to the page.
 
-| param | type |
-| --- | --- |
+| param        | type |
+| ------------ | ---- |
 | `$condition` | bool |
 
 <hr>
@@ -145,8 +146,8 @@ _PrintTask_
 
 Specify the name of the paper size to print on. This must be one of the keys in the object returned by the printer capability property `papers`.
 
-| param | type |
-| --- | --- |
+| param    | type   |
+| -------- | ------ |
 | `$paper` | string |
 
 <hr>
@@ -159,9 +160,9 @@ The maximum number of seconds PrintNode should retain the print job in the event
 
 The value provided to this method should be in seconds.
 
-| param | type |
-| --- | --- |
-| `$expireAfter` | int |
+| param          | type |
+| -------------- | ---- |
+| `$expireAfter` | int  |
 
 <hr>
 
@@ -175,9 +176,9 @@ This is the only way to produce multiple copies when RAW printing.
 
 This value defaults to `1`.
 
-| param | type |
-| --- | --- |
-| `$qty` | int |
+| param  | type |
+| ------ | ---- |
+| `$qty` | int  |
 
 <hr>
 
@@ -185,14 +186,14 @@ This value defaults to `1`.
 
 _PrintTask_
 
-When sending an url to PrintNode to print, and that url requires authentication to access it, this method should be used. 
+When sending an url to PrintNode to print, and that url requires authentication to access it, this method should be used.
 
 This supports both HTTP basic and Digest Authentication where you can specify a username and password.
 
-| param | type                                                           | default                     | 
-| --- |----------------------------------------------------------------|-----------------------------|
-| `$username` | string                                                         |                             |
-| `$password` | string                                                         |                             |
+| param                 | type                                                           | default                     |
+| --------------------- | -------------------------------------------------------------- | --------------------------- |
+| `$username`           | string                                                         |                             |
+| `$password`           | string                                                         |                             |
 | `$authenticationType` | string\|Rawilk\Printing\Api\PrintNode\Enums\AuthenticationType | `AuthenticationType::Basic` |
 
 <hr>
@@ -205,8 +206,8 @@ Create and send the print job to your printer. The driver will return an object 
 
 You may also specify a specific api key to use and/or additional headers to send through with the request with the `$opts` argument.
 
-| param | type                                                           | default | 
-| --- |----------------------------------------------------------------|---------|
+| param   | type                                                           | default |
+| ------- | -------------------------------------------------------------- | ------- |
 | `$opts` | null\|array\|Rawilk\Printing\Api\PrintNode\Util\RequestOptions | null    |
 
 The most common use case for this argument is setting an api key to use for a single request. You can do so like this:

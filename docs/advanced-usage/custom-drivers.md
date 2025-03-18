@@ -65,21 +65,21 @@ use Rawilk\Printing\Contracts\PrintJob;
 
 class MyCustomDriver implements Driver
 {
-    public function __construct(protected array $config = []) 
+    public function __construct(protected array $config = [])
     {
     }
-    
+
     public function newPrintTask(): PrintTask
     {
         return new PrintTask;
     }
-    
+
     public function printer(
         $printerId = null,
     ): ?Printer {
         // ...
     }
-    
+
     public function printers(
         ?int $limit = null,
         ?int $offset = null,
@@ -87,7 +87,7 @@ class MyCustomDriver implements Driver
     ): Collection {
         // ...
     }
-    
+
     public function printJobs(
         ?int $limit = null,
         ?int $offset = null,
@@ -95,15 +95,15 @@ class MyCustomDriver implements Driver
     ): Collection {
         // ...
     }
-    
+
     public function printJob(
         $jobId = null,
     ): ?PrintJob {
         // ...
     }
-    
+
     /**
-     * Return all jobs from a given printer. 
+     * Return all jobs from a given printer.
      */
     public function printerPrintJobs(
         $printerId,
@@ -113,13 +113,13 @@ class MyCustomDriver implements Driver
     ): Collection {
         // ...
     }
-    
+
     /**
      * Search for a print job from a given printer.
      */
     public function printerPrintJob(
         $printerId,
-        $jobId,    
+        $jobId,
     ): ?PrintJob {
         // ...
     }
@@ -139,24 +139,24 @@ use Rawilk\Printing\Contracts\Printer as PrinterContract;
 class Printer implements PrinterContract
 {
     public function capabilities(): array {}
-    
+
     public function description(): ?string {}
-    
+
     public function id() {}
-    
+
     public function isOnline() : bool {}
-    
+
     public function name(): ?string {}
-    
+
     public function status(): string {}
-    
+
     public function trays(): array {}
-    
+
     /**
      * @return Collection<int, \Rawilk\Printing\Contracts\PrintJob>
      */
     public function jobs(): Collection {}
-    
+
     public function toArray(): array {}
 }
 ```
@@ -172,17 +172,17 @@ use Carbon\CarbonInterface;
 class PrintJob implements PrintJobContract
 {
     public function date(): ?CarbonInterface {}
-    
+
     public function id() {}
-    
+
     public function name(): ?string {}
-    
+
     public function printerId() {}
-    
+
     public function printerName(): ?string {}
-    
+
     public function state(): ?string {}
-    
+
     public function toArray(): array {}
 }
 ```

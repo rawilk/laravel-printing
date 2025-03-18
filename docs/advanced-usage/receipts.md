@@ -51,6 +51,7 @@ $receipt = (string) (new ReceiptPrinter)
 The package's ReceiptPrinter implementation is actually a wrapper around the `Mike42\Escpos\Printer` class. Most method calls are forwarded to that class if they are not found on the `ReceiptPrinter`. Some methods have also been added to make interacting with it more convenient.
 
 ### Methods
+
 <hr>
 
 #### centerAlign
@@ -75,9 +76,9 @@ Right align any new text.
 
 Set the left margin for any new text. The unit for the margin will be `dots`.
 
-| param | type | default |
-| --- | --- | --- |
-| `$margin` | int | 0 |
+| param     | type | default |
+| --------- | ---- | ------- |
+| `$margin` | int  | 0       |
 
 <hr>
 
@@ -85,9 +86,9 @@ Set the left margin for any new text. The unit for the margin will be `dots`.
 
 Set the line height for any new text. The unit for the line height will be `dots`. Use `null` or omit the `$height` parameter to reset the line height to the printer's defaults for any new text.
 
-| param | type | default |
-| --- | --- | --- |
-| `$height` | int|null | null |
+| param     | type | default |
+| --------- | ---- | ------- | ---- |
+| `$height` | int  | null    | null |
 
 <hr>
 
@@ -95,10 +96,10 @@ Set the line height for any new text. The unit for the line height will be `dots
 
 Write a line of text to the receipt.
 
-| param | type | default | description                                                            |
-| --- | --- | --- |------------------------------------------------------------------------|
-| `$text` | string | | the text to print                                                      |
-| `$insertNewLine` | bool | true | Set to `true` to insert a new line character at the end of your string |
+| param            | type   | default | description                                                            |
+| ---------------- | ------ | ------- | ---------------------------------------------------------------------- |
+| `$text`          | string |         | the text to print                                                      |
+| `$insertNewLine` | bool   | true    | Set to `true` to insert a new line character at the end of your string |
 
 <hr>
 
@@ -106,10 +107,10 @@ Write a line of text to the receipt.
 
 Insert a line of text split into two columns, left and right justified. Useful for stuff like writing a line item and its price on a line.
 
-| param | type |
-| --- | --- |
-| `$left` | string |
-| `$right` | string | 
+| param    | type   |
+| -------- | ------ |
+| `$left`  | string |
+| `$right` | string |
 
 <hr>
 
@@ -117,10 +118,10 @@ Insert a line of text split into two columns, left and right justified. Useful f
 
 Print a barcode to the receipt.
 
-| param | type | default |
-| --- | --- |---------|
-| `$barcodeContent` | string |         |
-| `$type` | int | `Mike42\Escpos\Printer::BARCODE_CODE39`        |
+| param             | type   | default                                 |
+| ----------------- | ------ | --------------------------------------- |
+| `$barcodeContent` | string |                                         |
+| `$type`           | int    | `Mike42\Escpos\Printer::BARCODE_CODE39` |
 
 <hr>
 
@@ -146,18 +147,18 @@ Close the connection to the receipt printer (this package uses a `DummyConnectio
 
 Instruct the receipt printer to cut the paper; can be called multiple times.
 
-| param | type | default |
-| --- | --- | --- |
-| `$mode` | int | `Mike42\Escpos\Printer::CUT_FULL` |
-| `$lines` | int | 3 |
+| param    | type | default                           |
+| -------- | ---- | --------------------------------- |
+| `$mode`  | int  | `Mike42\Escpos\Printer::CUT_FULL` |
+| `$lines` | int  | 3                                 |
 
 #### lines
 
 Feed an empty line(s) to the receipt printer.
 
-| param | type | default |
-| --- | --- | --- | 
-| `$lines` | int | 1 |
+| param    | type | default |
+| -------- | ---- | ------- |
+| `$lines` | int  | 1       |
 
 <hr>
 

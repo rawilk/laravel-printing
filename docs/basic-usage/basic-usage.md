@@ -37,7 +37,7 @@ If you have a default printer id set in the config file, you can easily access t
 
 ```php
 // returns an instance of Rawilk\Printing\Contracts\Printer if the printer is found
-Printing::defaultPrinter(); 
+Printing::defaultPrinter();
 
 // or for just the id
 Printing::defaultPrinterId();

@@ -18,6 +18,7 @@ See the [API Overview](/docs/laravel-printing/{version}/printnode/api) for more 
 ## Reference
 
 ### Methods
+
 <hr>
 
 #### all
@@ -26,10 +27,10 @@ _Collection<int, Rawilk\Printing\Api\PrintNode\Resources\PrintJob>_
 
 Retrieve all print jobs associated with a PrintNode account.
 
-| param | type | default | 
-| --- | --- | --- |
-| `$params` | array\|null | null |
-| `$opts` | null\|array\|RequestOptions | null |
+| param     | type                        | default |
+| --------- | --------------------------- | ------- |
+| `$params` | array\|null                 | null    |
+| `$opts`   | null\|array\|RequestOptions | null    |
 
 <hr>
 
@@ -39,10 +40,10 @@ _Rawilk\Printing\Api\PrintNode\Resources\PrintJob_
 
 Create a new print job for PrintNode to send to a physical printer. Note: although the `$params` argument accepts an array, it is recommended to send through a `PendingPrintJob` object instead.
 
-| param | type                        | default | 
-| --- |-----------------------------| --- |
-| `$params` | array\|PendingPrintJob      | null |
-| `$opts` | null\|array\|RequestOptions | null |
+| param     | type                        | default |
+| --------- | --------------------------- | ------- |
+| `$params` | array\|PendingPrintJob      | null    |
+| `$opts`   | null\|array\|RequestOptions | null    |
 
 Example:
 
@@ -68,11 +69,11 @@ _Rawilk\Printing\Api\PrintNode\Resources\PrintJob_
 
 Retrieve a print job by ID.
 
-| param | type                        | default | description                   |
-| --- |-----------------------------| --- |-------------------------------|
-| `$id` | int                         | | the print job's ID |
-| `$params` | array\|null                 | null | not applicable to this request |
-| `$opts` | null\|array\|RequestOptions | null |                               |
+| param     | type                        | default | description                    |
+| --------- | --------------------------- | ------- | ------------------------------ |
+| `$id`     | int                         |         | the print job's ID             |
+| `$params` | array\|null                 | null    | not applicable to this request |
+| `$opts`   | null\|array\|RequestOptions | null    |                                |
 
 <hr>
 
@@ -83,10 +84,10 @@ _Collection<int, Rawilk\Printing\Api\PrintNode\Resources\PrintJob>_
 Retrieve a specific set of print jobs.
 
 | param     | type                        | default | description       |
-|-----------|-----------------------------| --- |-------------------|
-| `$ids`    | array                       | | the print job IDs |
-| `$params` | array\|null                 | null |                   |
-| `$opts`   | null\|array\|RequestOptions | null |                   |
+| --------- | --------------------------- | ------- | ----------------- |
+| `$ids`    | array                       |         | the print job IDs |
+| `$params` | array\|null                 | null    |                   |
+| `$opts`   | null\|array\|RequestOptions | null    |                   |
 
 <hr>
 
@@ -99,9 +100,9 @@ Retrieve all print job states for an account.
 Note: If a `limit` is passed in with `$params`, it applies to the amount of print jobs to retrieve states for. For example, if there are 3 print jobs with 5 states each, and a limit of 2 is specified, a total of 10 print job states will be received.
 
 | param     | type                        | default |
-|-----------|-----------------------------| --- |
-| `$params` | array\|null                 | null |
-| `$opts`   | null\|array\|RequestOptions | null |
+| --------- | --------------------------- | ------- |
+| `$params` | array\|null                 | null    |
+| `$opts`   | null\|array\|RequestOptions | null    |
 
 <hr>
 
@@ -111,11 +112,11 @@ _Collection<int, Rawilk\Printing\Api\PrintNode\Resources\PrintJobState>_
 
 Retrieve the print job states for a given print job.
 
-| param     | type                        | default | description |
-|-----------|-----------------------------| --- | --- |
-| `$parentId` | int\|array | | the print job's ID |
-| `$params` | array\|null                 | null | |
-| `$opts`   | null\|array\|RequestOptions | null | |
+| param       | type                        | default | description        |
+| ----------- | --------------------------- | ------- | ------------------ |
+| `$parentId` | int\|array                  |         | the print job's ID |
+| `$params`   | array\|null                 | null    |                    |
+| `$opts`     | null\|array\|RequestOptions | null    |                    |
 
 <hr>
 
@@ -126,10 +127,10 @@ _array_
 Cancel (delete) a set of pending print jobs. Method will return an array of affected IDs. Omit or use an empty array of `$ids` to delete all jobs.
 
 | param     | type                        | default |
-|-----------|-----------------------------| --- |
-| `$ids` | array | |
-| `$params` | array\|null                 | null |
-| `$opts`   | null\|array\|RequestOptions | null |
+| --------- | --------------------------- | ------- |
+| `$ids`    | array                       |         |
+| `$params` | array\|null                 | null    |
+| `$opts`   | null\|array\|RequestOptions | null    |
 
 <hr>
 
@@ -139,11 +140,11 @@ _array_
 
 Cancel (delete) a given pending print job. Method will return an array of affected IDs.
 
-| param    | type                        | default |
-|----------|-----------------------------| --- |
-| `$id` | int                         | |
-| `$params` | array\|null                 | null |
-| `$opts`  | null\|array\|RequestOptions | null |
+| param     | type                        | default |
+| --------- | --------------------------- | ------- |
+| `$id`     | int                         |         |
+| `$params` | array\|null                 | null    |
+| `$opts`   | null\|array\|RequestOptions | null    |
 
 <hr>
 
@@ -154,6 +155,7 @@ Cancel (delete) a given pending print job. Method will return an array of affect
 A `PrintJob` represents a print job in the PrintNode API.
 
 ### Properties
+
 <hr>
 
 #### id
@@ -221,6 +223,7 @@ The current state of the print job.
 <hr>
 
 ### Methods
+
 <hr>
 
 #### createdAt
@@ -245,10 +248,10 @@ _Rawilk\Printing\Api\PrintNode\Resources\PrintJob_
 
 Delete (cancel) the print job.
 
-| param | type                        | default |
-| --- |-----------------------------|---------|
+| param     | type                        | default |
+| --------- | --------------------------- | ------- |
 | `$params` | array\|null                 | null    |
-| `$opts` | null\|array\|RequestOptions | null    |
+| `$opts`   | null\|array\|RequestOptions | null    |
 
 <hr>
 
@@ -258,14 +261,15 @@ _Collection<int, Rawilk\Printing\Api\PrintNode\Resources\PrintJobState>_
 
 Get all the states that PrintNode has reported for the print job.
 
-| param | type                        | default |
-| --- |-----------------------------|---------|
+| param     | type                        | default |
+| --------- | --------------------------- | ------- |
 | `$params` | array\|null                 | null    |
-| `$opts` | null\|array\|RequestOptions | null    |
+| `$opts`   | null\|array\|RequestOptions | null    |
 
 <hr>
 
 ### Static Methods
+
 <hr>
 
 #### create
@@ -274,10 +278,10 @@ _Rawilk\Printing\Api\PrintNode\Resources\PrintJob_
 
 Create and send a new print job through the PrintNode API.
 
-| param | type | default |
-| --- | --- | --- |
-| `$params` | array\|PendingPrintJob | |
-| `$opts` | null\|array\|RequestOptions | null |
+| param     | type                        | default |
+| --------- | --------------------------- | ------- |
+| `$params` | array\|PendingPrintJob      |         |
+| `$opts`   | null\|array\|RequestOptions | null    |
 
 Example:
 
@@ -308,10 +312,10 @@ Retrieve all print jobs.
 $printJobs = PrintJob::all();
 ```
 
-| param | type | default |
-| --- | --- |---------|
-| `$params` | null\|array | null    |
-| `$opts` | null\|array\|RequestOptions | null    |
+| param     | type                        | default |
+| --------- | --------------------------- | ------- |
+| `$params` | null\|array                 | null    |
+| `$opts`   | null\|array\|RequestOptions | null    |
 
 <hr>
 
@@ -325,11 +329,11 @@ Retrieve a print job with a given id.
 $printJob = PrintJob::retrieve(100);
 ```
 
-| param | type | default |
-| --- | --- |---------|
-| `$id` | int | |
-| `$params` | null\|array | null    |
-| `$opts` | null\|array\|RequestOptions | null    |
+| param     | type                        | default |
+| --------- | --------------------------- | ------- |
+| `$id`     | int                         |         |
+| `$params` | null\|array                 | null    |
+| `$opts`   | null\|array\|RequestOptions | null    |
 
 <hr>
 
@@ -340,6 +344,7 @@ $printJob = PrintJob::retrieve(100);
 A `PrintJobState` represents a state that a `PrintJob` was in at a given time in the PrintNode API.
 
 ### Properties
+
 <hr>
 
 #### printJobId
@@ -383,6 +388,7 @@ If the state was generated by a PrintNodeClient, this is the timestamp at which 
 <hr>
 
 ### Methods
+
 <hr>
 
 #### createdAt
@@ -394,6 +400,7 @@ A date object representing the date and time the state was created for the print
 <hr>
 
 ### Static Methods
+
 <hr>
 
 #### all
@@ -406,9 +413,9 @@ Retrieve all print job states.
 $states = PrintJobState::all();
 ```
 
-| param | type | default |
-| --- | --- |---------|
-| `$params` | null\|array | null    |
-| `$opts` | null\|array\|RequestOptions | null    |
+| param     | type                        | default |
+| --------- | --------------------------- | ------- |
+| `$params` | null\|array                 | null    |
+| `$opts`   | null\|array\|RequestOptions | null    |
 
 <hr>

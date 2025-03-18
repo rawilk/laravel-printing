@@ -18,6 +18,7 @@ See the [API Overview](/docs/laravel-printing/{version}/cups/api) for more infor
 ## Reference
 
 ### Methods
+
 <hr>
 
 #### all
@@ -26,10 +27,10 @@ _Collection<int, Rawilk\Printing\Api\Cups\Resources\Printer>_
 
 Retrieve all printers associated installed on the CUPS server.
 
-| param | type | default |
-| --- | --- | --- |
-| `$params` | array\|null | null |
-| `$opts` | null\|array\|RequestOptions | null |
+| param     | type                        | default |
+| --------- | --------------------------- | ------- |
+| `$params` | array\|null                 | null    |
+| `$opts`   | null\|array\|RequestOptions | null    |
 
 <hr>
 
@@ -39,11 +40,11 @@ Retrieve a printer from the server.
 
 _Rawilk\Printing\Api\Cups\Resources\Printer_
 
-| param | type | default | description       |
-| --- | --- | --- |-------------------|
-| `$uri` | string | | The printer's uri |
-| `$params` | array\|null | null | Unused for now    |
-| `$opts` | null\|array\|RequestOptions | null | |
+| param     | type                        | default | description       |
+| --------- | --------------------------- | ------- | ----------------- |
+| `$uri`    | string                      |         | The printer's uri |
+| `$params` | array\|null                 | null    | Unused for now    |
+| `$opts`   | null\|array\|RequestOptions | null    |                   |
 
 <hr>
 
@@ -53,11 +54,11 @@ _Collection<int, Rawilk\Printing\Api\Cups\Resources\PrintJob>_
 
 Retrieve all print jobs for a given printer.
 
-| param        | type | default | description       |
-|--------------| --- | --- |-------------------|
-| `$parentUri` | string | | The printer's uri |
-| `$params`    | array\|null | null |            |
-| `$opts`      | null\|array\|RequestOptions | null |                   |
+| param        | type                        | default | description       |
+| ------------ | --------------------------- | ------- | ----------------- |
+| `$parentUri` | string                      |         | The printer's uri |
+| `$params`    | array\|null                 | null    |                   |
+| `$opts`      | null\|array\|RequestOptions | null    |                   |
 
 <hr>
 
@@ -68,6 +69,7 @@ Retrieve all print jobs for a given printer.
 A `Printer` represents a Printer installed on a CUPS server.
 
 ### Properties
+
 <hr>
 
 #### uri
@@ -127,6 +129,7 @@ A more detailed list of the printer's status.
 <hr>
 
 ### Methods
+
 <hr>
 
 #### capabilities

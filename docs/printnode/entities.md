@@ -14,6 +14,7 @@ The `Printer` and `PrintJob` entities returned from the `PrintNode` driver offer
 Here is a basic reference to the additional information provided by a PrintNode Printer object. See [Printer](/docs/laravel-printing/{version}/basic-usage/printer) for more information about the base printer object.
 
 ### Methods
+
 <hr>
 
 #### id
@@ -65,6 +66,7 @@ Both additional arguments accepted by this driver are optional for this method c
 Here is a basic reference to the additional information provided by a PrintNode PrintJob object. See [PrintJob](/docs/laravel-printing/{version}/basic-usage/print-job) for more information about the base print job object.
 
 ### Methods
+
 <hr>
 
 #### id
@@ -84,6 +86,7 @@ Returns an instance of the print job object that was retrieved from the PrintNod
 <hr>
 
 ### Properties
+
 <hr>
 
 #### printer

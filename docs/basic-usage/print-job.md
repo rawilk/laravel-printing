@@ -12,6 +12,7 @@ Each print job object returned from a `Driver` should be an implementation of `R
 `Rawilk\Printing\Contracts\PrintJob`
 
 ### Methods
+
 <hr>
 
 #### date
@@ -66,11 +67,11 @@ The reported status of the job.
 
 The print job object can also be cast to array or json, and it will return the following info:
 
--   id
--   date
--   name
--   printerId
--   printerName
--   state
+- id
+- date
+- name
+- printerId
+- printerName
+- state
 
 > {note} Some drivers may serialize this slightly different.

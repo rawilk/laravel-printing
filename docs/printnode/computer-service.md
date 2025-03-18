@@ -18,6 +18,7 @@ See the [API Overview](/docs/laravel-printing/{version}/printnode/api) for more 
 ## Reference
 
 ### Methods
+
 <hr>
 
 #### all
@@ -26,10 +27,10 @@ _Collection<int, Rawilk\Printing\Api\PrintNode\Resources\Computer>_
 
 Retrieves all computers associated with your PrintNode account.
 
-| param | type | default |
-| --- | --- | --- |
-| `$params` | array\|null | null |
-| `$opts` | null\|array\|RequestOptions | null |
+| param     | type                        | default |
+| --------- | --------------------------- | ------- |
+| `$params` | array\|null                 | null    |
+| `$opts`   | null\|array\|RequestOptions | null    |
 
 <hr>
 
@@ -39,11 +40,11 @@ _Rawilk\Printing\Api\PrintNode\Resources\Computer_
 
 Retrieve a computer from the API.
 
-| param | type | default | description                    |
-| --- | --- | --- |--------------------------------|
-| `$id` | int | | the computer's ID              |
-| `$params` | array\|null | null | not applicable to this request |
-| `$opts` | null\|array\|RequestOptions | null |                                |
+| param     | type                        | default | description                    |
+| --------- | --------------------------- | ------- | ------------------------------ |
+| `$id`     | int                         |         | the computer's ID              |
+| `$params` | array\|null                 | null    | not applicable to this request |
+| `$opts`   | null\|array\|RequestOptions | null    |                                |
 
 <hr>
 
@@ -54,10 +55,10 @@ _Collection<int, Rawilk\Printing\Api\PrintNode\Resources\Computer>_
 Retrieve a specific set of computers.
 
 | param     | type                        | default | description                          |
-|-----------|-----------------------------| --- |--------------------------------------|
-| `$ids`    | array                       | | the IDs of the computers to retrieve |
-| `$params` | array\|null                 | null |                                  |
-| `$opts`   | null\|array\|RequestOptions | null |                                      |
+| --------- | --------------------------- | ------- | ------------------------------------ |
+| `$ids`    | array                       |         | the IDs of the computers to retrieve |
+| `$params` | array\|null                 | null    |                                      |
+| `$opts`   | null\|array\|RequestOptions | null    |                                      |
 
 <hr>
 
@@ -67,11 +68,11 @@ _array_
 
 Delete a given computer. Method will return an array of affected computer IDs.
 
-| param | type | default | description                    |
-| --- | --- | --- |--------------------------------|
-| `$id` | int | | the computer's ID              |
-| `$params` | array\|null | null | not applicable to this request |
-| `$opts` | null\|array\|RequestOptions | null |                                |
+| param     | type                        | default | description                    |
+| --------- | --------------------------- | ------- | ------------------------------ |
+| `$id`     | int                         |         | the computer's ID              |
+| `$params` | array\|null                 | null    | not applicable to this request |
+| `$opts`   | null\|array\|RequestOptions | null    |                                |
 
 <hr>
 
@@ -82,10 +83,10 @@ _array_
 Delete a set of computers. Omit or use an empty array of `$ids` to delete all computers. Method will return an array of affected IDs.
 
 | param     | type                        | default | description                        |
-|-----------|-----------------------------| --- |------------------------------------|
-| `$ids`    | array                       | | the IDs of the computers to delete |
-| `$params` | array\|null                 | null |                                    |
-| `$opts`   | null\|array\|RequestOptions | null |                                    |
+| --------- | --------------------------- | ------- | ---------------------------------- |
+| `$ids`    | array                       |         | the IDs of the computers to delete |
+| `$params` | array\|null                 | null    |                                    |
+| `$opts`   | null\|array\|RequestOptions | null    |                                    |
 
 <hr>
 
@@ -96,10 +97,10 @@ _Collection<int, Rawilk\Printing\Api\PrintNode\Resources\Printer>_
 Retrieve all printers attached to a given computer.
 
 | param       | type                        | default | description                                                                  |
-|-------------|-----------------------------|-------|------------------------------------------------------------------------------|
-| `$parentId` | int\|array                  | | the computer's ID. pass an array to retrieve printers for multiple computers |
-| `$params`   | array\|null                 | null  |                                                                              |
-| `$opts`     | null\|array\|RequestOptions | null  |                                                                              |
+| ----------- | --------------------------- | ------- | ---------------------------------------------------------------------------- |
+| `$parentId` | int\|array                  |         | the computer's ID. pass an array to retrieve printers for multiple computers |
+| `$params`   | array\|null                 | null    |                                                                              |
+| `$opts`     | null\|array\|RequestOptions | null    |                                                                              |
 
 <hr>
 
@@ -109,12 +110,12 @@ _Collection<int, Rawilk\Printing\Api\PrintNode\Resources\Printer>_
 
 Retrieve one or many printers attached to a given computer.
 
-| param       | type                        | default | description                                                                  |
-|-------------|-----------------------------|--------|------------------------------------------------------------------------------|
-| `$parentId` | int\|array                  | | the computer's ID. pass an array to retrieve printers for multiple computers |
-| `$printerId` | int\|array | | the printer's ID. pass an array to retrieve a set of printers                |
-| `$params`   | array\|null                 | null   |                                                                              |
-| `$opts`     | null\|array\|RequestOptions | null   |                                                                              |
+| param        | type                        | default | description                                                                  |
+| ------------ | --------------------------- | ------- | ---------------------------------------------------------------------------- |
+| `$parentId`  | int\|array                  |         | the computer's ID. pass an array to retrieve printers for multiple computers |
+| `$printerId` | int\|array                  |         | the printer's ID. pass an array to retrieve a set of printers                |
+| `$params`    | array\|null                 | null    |                                                                              |
+| `$opts`      | null\|array\|RequestOptions | null    |                                                                              |
 
 <hr>
 
@@ -125,6 +126,7 @@ Retrieve one or many printers attached to a given computer.
 A computer represents a device that has the PrintNode Client software installed on it, and which has successfully connected to PrintNode. When the PrintNode Client runs on a computer it automatically reports the existence of the computer to the server. From then on the computer is recognized by the API.
 
 ### Properties
+
 <hr>
 
 #### id
@@ -200,6 +202,7 @@ The PrintNode software version that is run on the computer.
 <hr>
 
 ### Methods
+
 <hr>
 
 #### createdAt
@@ -220,10 +223,10 @@ Fetch all printers attached to the computer.
 $printers = $computer->printers();
 ```
 
-| param | type | default |
-| --- | --- |---------|
-| `$params` | null\|array | null    |
-| `$opts` | null\|array\|RequestOptions | null    |
+| param     | type                        | default |
+| --------- | --------------------------- | ------- |
+| `$params` | null\|array                 | null    |
+| `$opts`   | null\|array\|RequestOptions | null    |
 
 <hr>
 
@@ -237,11 +240,11 @@ Find a specific printer attached to the printer. Pass an array for `$id` to find
 $printer = $computer->findPrinter(100);
 ```
 
-| param | type | default |
-| --- | --- |---------|
-| `$id` | int\|array | |
-| `$params` | null\|array | null    |
-| `$opts` | null\|array\|RequestOptions | null    |
+| param     | type                        | default |
+| --------- | --------------------------- | ------- |
+| `$id`     | int\|array                  |         |
+| `$params` | null\|array                 | null    |
+| `$opts`   | null\|array\|RequestOptions | null    |
 
 <hr>
 
@@ -251,14 +254,15 @@ _Rawilk\Printing\Api\PrintNode\Resources\Computer_
 
 Delete the computer instance.
 
-| param | type | default |
-| --- | --- |---------|
-| `$params` | null\|array | null    |
-| `$opts` | null\|array\|RequestOptions | null    |
+| param     | type                        | default |
+| --------- | --------------------------- | ------- |
+| `$params` | null\|array                 | null    |
+| `$opts`   | null\|array\|RequestOptions | null    |
 
 <hr>
 
 ### Static Methods
+
 <hr>
 
 #### all
@@ -271,10 +275,10 @@ Retrieve all computers.
 Computer::all();
 ```
 
-| param | type | default |
-| --- | --- |---------|
-| `$params` | null\|array | null    |
-| `$opts` | null\|array\|RequestOptions | null    |
+| param     | type                        | default |
+| --------- | --------------------------- | ------- |
+| `$params` | null\|array                 | null    |
+| `$opts`   | null\|array\|RequestOptions | null    |
 
 <hr>
 
@@ -288,8 +292,8 @@ Retrieve a computer with a given id.
 $computer = Computer::retrieve(100);
 ```
 
-| param | type | default |
-| --- | --- |---------|
-| `$id` | int | |
-| `$params` | null\|array | null    |
-| `$opts` | null\|array\|RequestOptions | null    |
+| param     | type                        | default |
+| --------- | --------------------------- | ------- |
+| `$id`     | int                         |         |
+| `$params` | null\|array                 | null    |
+| `$opts`   | null\|array\|RequestOptions | null    |

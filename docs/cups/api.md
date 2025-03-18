@@ -35,7 +35,7 @@ Another way is to set it u sing request options when calling a method on a [Serv
 $client->printers->retrieve($printerId, opts: ['ip' => 'your-ip']);
 ```
 
-You may also choose to set the credentials on the `Cups` class itself. When the client does not detect a certain credential on the request, it will defer to this class for the value. This is typically done in a service provider in  your application.
+You may also choose to set the credentials on the `Cups` class itself. When the client does not detect a certain credential on the request, it will defer to this class for the value. This is typically done in a service provider in your application.
 
 ```php
 use Rawilk\Printing\Api\Cups\Cups;

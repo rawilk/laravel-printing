@@ -37,8 +37,8 @@ Depending on the driver being used, there may be additional methods and even par
 
 ### Driver Options
 
--   See [PrintNode PrintTask](/docs/laravel-printing/{version}/printnode/print-task) for more options for the PrintNode driver.
--   More info on using CUPS options can be found here: [https://github.com/smalot/cups-ipp](https://github.com/smalot/cups-ipp)
+- See [PrintNode PrintTask](/docs/laravel-printing/{version}/printnode/print-task) for more options for the PrintNode driver.
+- More info on using CUPS options can be found here: [https://github.com/smalot/cups-ipp](https://github.com/smalot/cups-ipp)
 
 ## Conditionable
 
@@ -61,6 +61,7 @@ Printing::newPrintTask()
 This is a general reference for the base `PrintTask` class/interface. Refer to the print task of your driver for a more complete reference.
 
 ### Methods
+
 <hr>
 
 #### content
@@ -69,8 +70,8 @@ _PrintTask_
 
 Set the content to be printed.
 
-| param | type |
-| --- | --- |
+| param      | type   |
+| ---------- | ------ |
 | `$content` | string |
 
 <hr>
@@ -81,8 +82,8 @@ _PrintTask_
 
 Use the contents of a file to print. This should typically be a pdf file, however some drivers may support printing different file types.
 
-| param | type |
-| --- | --- |
+| param       | type   |
+| ----------- | ------ |
 | `$filePath` | string |
 
 <hr>
@@ -93,9 +94,9 @@ _PrintTask_
 
 Use the contents of a given url to print.
 
-| param   | type |
-|---------| --- |
-| `$url`  | string |
+| param  | type   |
+| ------ | ------ |
+| `$url` | string |
 
 #### jobTitle
 
@@ -103,8 +104,8 @@ _PrintTask_
 
 Set's the name of the new print job. If a title is not specified, a random string will be used for the job title.
 
-| param | type |
-| --- | --- |
+| param       | type   |
+| ----------- | ------ |
 | `$jobTitle` | string |
 
 <hr>
@@ -116,7 +117,7 @@ _PrintTask_
 Set the printer to send the new job to. This is a requirement for all drivers when creating new print jobs.
 
 | param        | type                                            |
-|--------------|-------------------------------------------------|
+| ------------ | ----------------------------------------------- |
 | `$printerId` | string\|int\|\Rawilk\Printing\Contracts\Printer |
 
 <hr>
@@ -127,8 +128,8 @@ _PrintTask_
 
 Sets the source of the print. This defaults to the application's name from `config('app.name')` and typically doesn't need to be set manually. Some drivers may even ignore this value, as it's not used in them.
 
-| param | type |
-| --- | --- |
+| param          | type   |
+| -------------- | ------ |
 | `$printSource` | string |
 
 <hr>
@@ -139,8 +140,8 @@ _PrintTask_
 
 Specify tags for the new job. Not all drivers support this feature, so by default this method call does nothing. Refer to your driver of choice to see if this is available.
 
-| param | type         |
-| --- |--------------|
+| param   | type         |
+| ------- | ------------ |
 | `$tags` | array\|mixed |
 
 <hr>
@@ -151,8 +152,8 @@ _PrintTask_
 
 Specify a tray to print to, if supported by the printer. Not all drivers may support this, so this method call does nothing by default. Refer to your driver of choice to see if this is available.
 
-| param | type |
-| --- | --- |
+| param   | type          |
+| ------- | ------------- |
 | `$tray` | string\|mixed |
 
 <hr>
@@ -163,9 +164,9 @@ _PrintTask_
 
 Specify how many copies of the print job should be printed. Not all drivers may support this, so by default this method does nothing. Refer to your driver of choice to see if this is supported.
 
-| param | type |
-| --- | --- |
-| `$copies` | int |
+| param     | type |
+| --------- | ---- |
+| `$copies` | int  |
 
 <hr>
 
@@ -175,7 +176,7 @@ _PrintTask_
 
 Set an option for the print job. Options differ by print driver, so refer to your driver for the options that can be set.
 
-| param | type |
-| --- | --- |
-| `$key` | string\|BackedEnum |
-| `$value` | mixed |
+| param    | type               |
+| -------- | ------------------ |
+| `$key`   | string\|BackedEnum |
+| `$value` | mixed              |

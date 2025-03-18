@@ -18,6 +18,7 @@ See the [API Overview](/docs/laravel-printing/{version}/printnode/api) for more 
 ## Reference
 
 ### Methods
+
 <hr>
 
 #### all
@@ -26,10 +27,10 @@ _Collection<int, Rawilk\Printing\Api\PrintNode\Resources\Printer>_
 
 Retrieve all printers associated with your PrintNode account.
 
-| param | type | default |
-| --- | --- | --- |
-| `$params` | array\|null | null |
-| `$opts` | null\|array\|RequestOptions | null |
+| param     | type                        | default |
+| --------- | --------------------------- | ------- |
+| `$params` | array\|null                 | null    |
+| `$opts`   | null\|array\|RequestOptions | null    |
 
 <hr>
 
@@ -39,11 +40,11 @@ _Rawilk\Printing\Api\PrintNode\Resources\Printer_
 
 Retrieve a specific printer by ID from your PrintNode account.
 
-| param | type | default | description                    |
-| --- | --- | --- |--------------------------------|
-| `$id` | int | | the printer's ID               |
-| `$params` | array\|null | null | not applicable to this request |
-| `$opts` | null\|array\|RequestOptions | null |                                |
+| param     | type                        | default | description                    |
+| --------- | --------------------------- | ------- | ------------------------------ |
+| `$id`     | int                         |         | the printer's ID               |
+| `$params` | array\|null                 | null    | not applicable to this request |
+| `$opts`   | null\|array\|RequestOptions | null    |                                |
 
 <hr>
 
@@ -53,11 +54,11 @@ _Collection<int, Rawilk\Printing\Api\PrintNode\Resources\Printer>_
 
 Retrieve a set of printers.
 
-| param     | type                        | default | description                    |
-|-----------|-----------------------------| --- |--------------------------------|
-| `$ids`    | array                       | | the printer IDs                |
-| `$params` | array\|null                 | null |  |
-| `$opts`   | null\|array\|RequestOptions | null |                                |
+| param     | type                        | default | description     |
+| --------- | --------------------------- | ------- | --------------- |
+| `$ids`    | array                       |         | the printer IDs |
+| `$params` | array\|null                 | null    |                 |
+| `$opts`   | null\|array\|RequestOptions | null    |                 |
 
 <hr>
 
@@ -68,10 +69,10 @@ _Collection<int, Rawilk\Printing\Api\PrintNode\Resources\PrintJob>_
 Retrieve all print jobs associated with a given printer. Pass an array for `$parentId` to retrieve print jobs for multiple printers.
 
 | param       | type                        | default | description      |
-|-------------|-----------------------------| --- |------------------|
-| `$parentId` | int\|array                  | | the printer's ID |
-| `$params`   | array\|null                 | null |                  |
-| `$opts`     | null\|array\|RequestOptions | null |                  |
+| ----------- | --------------------------- | ------- | ---------------- |
+| `$parentId` | int\|array                  |         | the printer's ID |
+| `$params`   | array\|null                 | null    |                  |
+| `$opts`     | null\|array\|RequestOptions | null    |                  |
 
 <hr>
 
@@ -84,11 +85,11 @@ Retrieve a single or set of print jobs associated with a given printer.
 Pass an array for `$parentId` to retrieve print jobs for multiple printers. Pass an array for `$printJobId` to retrieve a set of print jobs.
 
 | param         | type                        | default | description        |
-|---------------|-----------------------------| --- |--------------------|
-| `$parentId`   | int\|array                  | | the printer's ID   |
-| `$printJobId` | int\|array                  | | the print job's ID |
-| `$params`     | array\|null                 | null |                    |
-| `$opts`       | null\|array\|RequestOptions | null |                    |
+| ------------- | --------------------------- | ------- | ------------------ |
+| `$parentId`   | int\|array                  |         | the printer's ID   |
+| `$printJobId` | int\|array                  |         | the print job's ID |
+| `$params`     | array\|null                 | null    |                    |
+| `$opts`       | null\|array\|RequestOptions | null    |                    |
 
 <hr>
 
@@ -99,6 +100,7 @@ Pass an array for `$parentId` to retrieve print jobs for multiple printers. Pass
 A `Printer` represents a Printer attached to a `Computer` object in the PrintNode API.
 
 ### Properties
+
 <hr>
 
 #### id
@@ -166,6 +168,7 @@ The state of the printer reported by the client.
 <hr>
 
 ### Methods
+
 <hr>
 
 #### createdAt
@@ -233,6 +236,7 @@ Indicates if the printer is considered to be online.
 <hr>
 
 ### Methods
+
 <hr>
 
 #### printJobs
@@ -245,10 +249,10 @@ Fetch all print jobs that have been sent to the printer.
 $printJobs = $printer->printJobs();
 ```
 
-| param | type | default |
-| --- | --- |---------|
-| `$params` | null\|array | null    |
-| `$opts` | null\|array\|RequestOptions | null    |
+| param     | type                        | default |
+| --------- | --------------------------- | ------- |
+| `$params` | null\|array                 | null    |
+| `$opts`   | null\|array\|RequestOptions | null    |
 
 <hr>
 
@@ -262,13 +266,14 @@ Find a specific print job that was sent to the printer. Pass an array for `$id` 
 $printJob = $printer->findPrintJob(100);
 ```
 
-| param | type | default |
-| --- | --- |---------|
-| `$id` | int\|array | |
-| `$params` | null\|array | null    |
-| `$opts` | null\|array\|RequestOptions | null    |
+| param     | type                        | default |
+| --------- | --------------------------- | ------- |
+| `$id`     | int\|array                  |         |
+| `$params` | null\|array                 | null    |
+| `$opts`   | null\|array\|RequestOptions | null    |
 
 ### Static Methods
+
 <hr>
 
 #### all
@@ -281,10 +286,10 @@ Retrieve all printers.
 $printers = Printer::all();
 ```
 
-| param | type | default |
-| --- | --- |---------|
-| `$params` | null\|array | null    |
-| `$opts` | null\|array\|RequestOptions | null    |
+| param     | type                        | default |
+| --------- | --------------------------- | ------- |
+| `$params` | null\|array                 | null    |
+| `$opts`   | null\|array\|RequestOptions | null    |
 
 <hr>
 
@@ -298,8 +303,8 @@ Retrieve a printer with a given id.
 $printer = Printer::retrieve(100);
 ```
 
-| param | type | default |
-| --- | --- |---------|
-| `$id` | int | |
-| `$params` | null\|array | null    |
-| `$opts` | null\|array\|RequestOptions | null    |
+| param     | type                        | default |
+| --------- | --------------------------- | ------- |
+| `$id`     | int                         |         |
+| `$params` | null\|array                 | null    |
+| `$opts`   | null\|array\|RequestOptions | null    |

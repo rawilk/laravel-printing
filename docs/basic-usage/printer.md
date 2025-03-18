@@ -12,6 +12,7 @@ Each printer object returned from a `Driver` should be an implementation of `Raw
 `Rawilk\Printing\Contracts\Printer`
 
 ### Methods
+
 <hr>
 
 #### id
@@ -22,7 +23,7 @@ A print server typically assigns some kind of id or uri for a printer. For examp
 
 <hr>
 
-#### name 
+#### name
 
 _?string_
 
@@ -74,12 +75,12 @@ Indicates if the printer has reported itself to be online.
 
 The printer object can also be cast to array or json, and it will return the following info:
 
--   id
--   name
--   description
--   online
--   status
--   trays (If supported by the driver)
--   capabilities (If supported by the driver)
+- id
+- name
+- description
+- online
+- status
+- trays (If supported by the driver)
+- capabilities (If supported by the driver)
 
 > {note} Some drivers may serialize this slightly different.

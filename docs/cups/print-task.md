@@ -14,6 +14,7 @@ Refer to [PrintTask](/docs/laravel-printing/{version}/basic-usage/print-tasks) f
 ## Reference
 
 ### Methods
+
 <hr>
 
 #### content
@@ -22,9 +23,9 @@ _PrintTask_
 
 Sets the content to be printed. You may also specify the content type through here as well.
 
-| param | type                                               | default          |
-| --- |----------------------------------------------------|------------------|
-| `$content` | string                                             |                  |
+| param          | type                                               | default          |
+| -------------- | -------------------------------------------------- | ---------------- |
+| `$content`     | string                                             |                  |
 | `$contentType` | string\|Rawilk\Printing\Api\Cups\Enums\ContentType | ContentType::Pdf |
 
 <hr>
@@ -36,7 +37,7 @@ _PrintTask_
 Specify a file path to fetch the contents from to print.
 
 | param          | type                                               | default          |
-|----------------|----------------------------------------------------|------------------|
+| -------------- | -------------------------------------------------- | ---------------- |
 | `$filePath`    | string                                             |                  |
 | `$contentType` | string\|Rawilk\Printing\Api\Cups\Enums\ContentType | ContentType::Pdf |
 
@@ -48,10 +49,10 @@ _PrintTask_
 
 Set an option for the new print job. Options sent to CUPS must be in a specific format, which can be achieved easily by using the `OperationAttribute` enum from the CUPS api. Please submit a PR or raise an issue if there is an attribute you need that is not provided by the enum.
 
-| param | type |
-| --- | --- |
-| `$key` | string\|OperationAttribute |
-| `$value` | mixed |
+| param    | type                       |
+| -------- | -------------------------- |
+| `$key`   | string\|OperationAttribute |
+| `$value` | mixed                      |
 
 Example:
 
@@ -76,8 +77,8 @@ _PrintTask_
 
 Sets the content type of the content being printed.
 
-| param | type | 
-| --- | --- |
+| param          | type                                               |
+| -------------- | -------------------------------------------------- |
 | `$contentType` | string\|Rawilk\Printing\Api\Cups\Enums\ContentType |
 
 <hr>
@@ -88,8 +89,8 @@ _PrintTask_
 
 Sets the page orientation of the paper.
 
-| param | type |
-| --- | --- |
+| param    | type                                               |
+| -------- | -------------------------------------------------- |
 | `$value` | string\|Rawilk\Printing\Api\Cups\Enums\Orientation |
 
 <hr>
@@ -100,8 +101,8 @@ _PrintTask_
 
 Set the name of the user printing the document.
 
-| param | type |
-| --- | --- |
+| param   | type   |
+| ------- | ------ |
 | `$name` | string |
 
 <hr>

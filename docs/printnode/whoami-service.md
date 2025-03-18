@@ -18,6 +18,7 @@ See the [API Overview](/docs/laravel-printing/{version}/printnode/api) for more 
 ## Reference
 
 ### Methods
+
 <hr>
 
 #### check
@@ -26,9 +27,9 @@ _Rawilk\Printing\Api\PrintNode\Resources\Whoami_
 
 Retrieve the account information based on the current api key.
 
-| param | type | default |
-| --- | --- | --- | 
-| `$opts` | null\|array\|RequestOptions | null |
+| param   | type                        | default |
+| ------- | --------------------------- | ------- |
+| `$opts` | null\|array\|RequestOptions | null    |
 
 <hr>
 
@@ -39,6 +40,7 @@ Retrieve the account information based on the current api key.
 The `Whoami` object represents the account information related to a given API key.
 
 ### Properties
+
 <hr>
 
 #### id
@@ -178,6 +180,7 @@ The permissions set on this account.
 <hr>
 
 ### Methods
+
 <hr>
 
 #### isActive
