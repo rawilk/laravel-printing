@@ -15,6 +15,8 @@ use SensitiveParameter;
 /** @internal */
 class CupsRequestor
 {
+    private const CONTENT_TYPE = 'application/ipp';
+
     private ?HttpRequest $httpClient = null;
 
     public function __construct(
@@ -38,7 +40,7 @@ class CupsRequestor
 
         $client = $this->httpClient()
             ->withHeaders($opts->headers)
-            ->withBody($binary)
+            ->withBody($binary, self::CONTENT_TYPE)
             ->when(
                 filled($username) || filled($password),
                 fn (PendingRequest $request) => $request->withBasicAuth($username ?? '', $password ?? ''),
@@ -57,7 +59,7 @@ class CupsRequestor
     private function httpClient(): HttpRequest
     {
         if (! $this->httpClient) {
-            $this->httpClient = Http::contentType('application/ipp');
+            $this->httpClient = Http::contentType(self::CONTENT_TYPE);
         }
 
         return $this->httpClient;
