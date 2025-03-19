@@ -9,6 +9,7 @@ use Illuminate\Support\Traits\Macroable;
 use Rawilk\Printing\Api\Cups\CupsClient;
 use Rawilk\Printing\Api\Cups\Util\RequestOptions;
 use Rawilk\Printing\Contracts\Driver;
+use Rawilk\Printing\Drivers\Cups\Entity\Printer;
 use Rawilk\Printing\Drivers\Cups\Entity\Printer as PrinterContract;
 use Rawilk\Printing\Drivers\Cups\Entity\PrintJob as PrintJobContract;
 use SensitiveParameter;
@@ -107,7 +108,7 @@ class Cups implements Driver
     }
 
     /**
-     * Note: $limit, $offset occurs on the client side, $dir does currently nothing.
+     * Note: $limit, $offset occurs on the client side, $dir does nothing currently.
      *
      * @return \Illuminate\Support\Collection<PrintJobContract>
      */
@@ -118,8 +119,12 @@ class Cups implements Driver
         array $params = [],
         array|null|RequestOptions $opts = null,
     ): Collection {
-        return $this->printers()->map(
-            fn ($printer) => $this->client->printers->printJobs($printer->id())->mapInto(PrintJobContract::class)
-        )->flatten(1)->skip($offset)->take($limit)->values();
+        return $this->printers(
+            params: $params,
+            opts: $opts,
+        )
+            ->map(
+                fn (Printer $printer) => $this->printerPrintJobs($printer->id(), params: $params, opts: $opts)
+            )->flatten(1)->skip($offset)->take($limit)->values();
     }
 }
