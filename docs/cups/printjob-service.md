@@ -21,19 +21,6 @@ See the [API Overview](/docs/laravel-printing/{version}/cups/api) for more infor
 
 <hr>
 
-#### all
-
-_Collection<int, Rawilk\Printing\Api\Cups\Resources\PrintJob>_
-
-Retrieve all print jobs reported by the CUPS server.
-
-| param     | type                        | default |
-| --------- | --------------------------- | ------- |
-| `$params` | array\|null                 | null    |
-| `$opts`   | null\|array\|RequestOptions | null    |
-
-<hr>
-
 #### create
 
 _Rawilk\Printing\Api\Cups\Resources\PrintJob_
