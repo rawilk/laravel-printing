@@ -17,27 +17,6 @@ use Rawilk\Printing\Api\Cups\Util\RequestOptions;
 class PrintJobService extends AbstractService
 {
     /**
-     * @return Collection<int, PrintJob>
-     */
-    public function all(array $params = [], array|null|RequestOptions $opts = null): Collection
-    {
-        $whichJobs = data_get($params, 'state', 'not-completed');
-        unset($params['state']);
-
-        $pendingRequest = (new PendingRequest)
-            ->setVersion(Version::V2_1)
-            ->setOperation(Operation::GetJobs)
-            ->addOperationAttributes([
-                OperationAttribute::WhichJobs->value => OperationAttribute::WhichJobs->toType($whichJobs),
-                OperationAttribute::RequestedAttributes->value => $params[OperationAttribute::RequestedAttributes->value] ?? PrintJob::defaultRequestedAttributes(),
-
-                ...Arr::except($params, OperationAttribute::RequestedAttributes->value),
-            ]);
-
-        return $this->request($pendingRequest, $opts)->jobs();
-    }
-
-    /**
      * Create & send a new print job to a printer on a CUPS server.
      */
     public function create(
