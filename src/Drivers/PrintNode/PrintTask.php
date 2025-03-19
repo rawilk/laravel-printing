@@ -4,130 +4,164 @@ declare(strict_types=1);
 
 namespace Rawilk\Printing\Drivers\PrintNode;
 
+use BackedEnum;
 use Illuminate\Support\Str;
-use Rawilk\Printing\Api\PrintNode\Entity\PrintJob as PrintNodePrintJob;
-use Rawilk\Printing\Api\PrintNode\PrintNode as PrintNodeApi;
-use Rawilk\Printing\Contracts\PrintJob;
-use Rawilk\Printing\Drivers\PrintNode\Entity\PrintJob as RawilkPrintJob;
-use Rawilk\Printing\Exceptions\InvalidOption;
-use Rawilk\Printing\Exceptions\InvalidSource;
+use Rawilk\Printing\Api\PrintNode\Enums\AuthenticationType;
+use Rawilk\Printing\Api\PrintNode\Enums\ContentType;
+use Rawilk\Printing\Api\PrintNode\Enums\PrintJobOption;
+use Rawilk\Printing\Api\PrintNode\PendingPrintJob;
+use Rawilk\Printing\Api\PrintNode\PrintNodeClient;
+use Rawilk\Printing\Api\PrintNode\Util\RequestOptions;
+use Rawilk\Printing\Drivers\PrintNode\Entity\PrintJob as PrintJobContract;
 use Rawilk\Printing\Exceptions\PrintTaskFailed;
 use Rawilk\Printing\PrintTask as BasePrintTask;
+use SensitiveParameter;
 
 class PrintTask extends BasePrintTask
 {
-    protected PrintNodePrintJob $job;
+    protected PendingPrintJob $pendingJob;
 
-    public function __construct(protected PrintNodeApi $api)
+    public function __construct(protected PrintNodeClient $client)
     {
         parent::__construct();
 
-        $this->job = new PrintNodePrintJob;
+        $this->pendingJob = PendingPrintJob::make();
     }
 
-    public function content($content, string $contentType = ContentType::RAW_BASE64): self
+    public function content($content, string|ContentType $contentType = ContentType::RawBase64): static
     {
-        if (! $contentType) {
-            throw new InvalidSource('Content type is required for the PrintNode driver.');
-        }
-
         parent::content($content);
-        $this->job->setContent(base64_encode($content))->setContentType($contentType);
+
+        $this->pendingJob
+            ->setContent($content)
+            ->setContentType($contentType);
 
         return $this;
     }
 
-    public function file(string $filePath): self
+    public function file(string $filePath): static
     {
-        if (! file_exists($filePath)) {
-            throw InvalidSource::fileNotFound($filePath);
-        }
-
-        // Content type will be set to pdf_base64 by the job.
-        $this->job->addPdfFile($filePath);
+        $this->pendingJob->addPdfFile($filePath);
 
         return $this;
     }
 
-    public function url(string $url, bool $raw = false): self
+    public function url(string $url, bool $raw = false): static
     {
-        $this->job
-            ->setContent($url)
-            ->setContentType($raw ? ContentType::RAW_URI : ContentType::PDF_URI);
-
-        // TODO: set authentication if credentials passed in
+        $this->pendingJob
+            ->setUrl($url)
+            ->setContentType($raw ? ContentType::RawUri : ContentType::PdfUri);
 
         return $this;
     }
 
-    public function range($start, $end = null): self
+    public function option(BackedEnum|string $key, $value): static
+    {
+        $this->pendingJob->setOption($key, $value);
+
+        return $this;
+    }
+
+    public function range($start, $end = null): static
     {
         $range = $start;
 
-        if (! $end && ! Str::contains($range, [',', '-'])) {
+        if (! $end && (! Str::contains($range, [',', '-']))) {
             $range = "{$range}-"; // print all pages starting from $start
         } elseif ($end) {
             $range = "{$start}-{$end}";
         }
 
-        return $this->option('pages', $range);
+        return $this->option(PrintJobOption::Pages, $range);
     }
 
-    public function tray($tray): self
+    public function tray($tray): static
     {
-        return $this->option('bin', $tray);
+        return $this->option(PrintJobOption::Bin, $tray);
     }
 
-    public function copies(int $copies): self
+    public function copies(int $copies): static
     {
-        if ($copies < 1) {
-            throw InvalidOption::invalidOption('The `copies` option must be greater than 1.');
-        }
-
-        return $this->option('copies', $copies);
+        return $this->option(PrintJobOption::Copies, $copies);
     }
 
-    public function fitToPage(bool $fitToPage): self
+    // region PrintNode specific setters
+    public function contentType(string|ContentType $contentType): static
     {
-        return $this->option('fit_to_page', $fitToPage);
+        $this->pendingJob->setContentType($contentType);
+
+        return $this;
     }
 
-    public function paper(string $paper): self
+    public function fitToPage(bool $condition): static
     {
-        return $this->option('paper', $paper);
+        return $this->option(PrintJobOption::FitToPage, $condition);
     }
 
-    public function send(): PrintJob
+    public function paper(string $paper): static
+    {
+        return $this->option(PrintJobOption::Paper, $paper);
+    }
+
+    public function expireAfter(int $expireAfter): static
+    {
+        $this->pendingJob->setExpireAfter($expireAfter);
+
+        return $this;
+    }
+
+    public function printQty(int $qty): static
+    {
+        $this->pendingJob->setQty($qty);
+
+        return $this;
+    }
+
+    public function withAuth(
+        string $username,
+        #[SensitiveParameter] ?string $password,
+        string|AuthenticationType $authenticationType = AuthenticationType::Basic,
+    ): static {
+        $this->pendingJob->setAuth($username, $password, $authenticationType);
+
+        return $this;
+    }
+    // endregion
+
+    public function send(null|array|RequestOptions $opts = null): PrintJobContract
     {
         $this->ensureValidJob();
 
-        $this->job
-            ->setPrinterId($this->printerId)
+        $this->pendingJob
+            ->setPrinter($this->printerId)
             ->setTitle($this->resolveJobTitle())
-            ->setSource($this->printSource)
-            ->setOptions($this->options);
+            ->setSource($this->printSource);
 
-        $printJob = $this->api->createPrintJob($this->job);
+        $printJob = $this->client->printJobs->create($this->pendingJob, $opts);
 
-        return new RawilkPrintJob($printJob);
+        return new PrintJobContract($printJob);
     }
 
     protected function ensureValidJob(): void
     {
-        if (! $this->printerId) {
-            throw PrintTaskFailed::missingPrinterId();
-        }
+        throw_unless(
+            filled($this->printerId),
+            PrintTaskFailed::missingPrinterId(),
+        );
 
-        if (! $this->printSource) {
-            throw PrintTaskFailed::missingSource();
-        }
+        throw_unless(
+            filled($this->printSource),
+            PrintTaskFailed::missingSource(),
+        );
 
-        if (! $this->job->contentType) {
-            throw PrintTaskFailed::missingContentType();
-        }
+        throw_unless(
+            filled($this->pendingJob->contentType),
+            PrintTaskFailed::missingContentType(),
+        );
 
-        if (! $this->job->content) {
-            throw PrintTaskFailed::noContent();
-        }
+        throw_unless(
+            filled($this->pendingJob->content),
+            PrintTaskFailed::noContent(),
+        );
     }
 }

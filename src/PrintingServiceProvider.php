@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Rawilk\Printing;
 
-use Rawilk\Printing\Api\Cups\Cups;
-use Rawilk\Printing\Api\PrintNode\PrintNode;
+use Rawilk\Printing\Contracts\Driver;
+use Rawilk\Printing\Contracts\Logger;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
-class PrintingServiceProvider extends PackageServiceProvider
+final class PrintingServiceProvider extends PackageServiceProvider
 {
     public function configurePackage(Package $package): void
     {
@@ -20,36 +20,47 @@ class PrintingServiceProvider extends PackageServiceProvider
 
     public function packageRegistered(): void
     {
-        $printNodeApiKey = $this->app['config']['printing.drivers.printnode.key'];
-        $this->app->singleton(PrintNode::class, fn ($app) => new PrintNode((string) $printNodeApiKey));
-
         $this->app->singleton(
-            'printing.factory',
+            Factory::class,
             fn ($app) => new Factory($app['config']['printing'])
         );
 
-        $this->app->singleton('printing.driver', fn ($app) => $app['printing.factory']->driver());
-
-        $this->app->singleton(Cups::class, fn ($app) => new Cups(
-            $app['config']['printing']['drivers']['cups']['ip'],
-            $app['config']['printing']['drivers']['cups']['username'],
-            $app['config']['printing']['drivers']['cups']['password'],
-            $app['config']['printing']['drivers']['cups']['port'],
-            $app['config']['printing']['drivers']['cups']['secure'] ?? false,
-        ));
+        $this->app->singleton(Driver::class, fn ($app) => $app[Factory::class]->driver());
 
         $this->app->singleton(
             Printing::class,
-            fn ($app) => new Printing($app['printing.driver'], $app['config']['printing.default_printer_id'])
+            fn ($app) => new Printing($app[Driver::class], $app['config']['printing.default_printer_id'])
         );
+
+        $this->bindLogger();
+    }
+
+    public function packageBooted(): void
+    {
+        $this->registerLogger();
     }
 
     public function provides(): array
     {
         return [
-            'printing.factory',
-            'printing.driver',
+            Factory::class,
+            Driver::class,
             Printing::class,
         ];
+    }
+
+    private function bindLogger(): void
+    {
+        $this->app->bind(
+            Logger::class,
+            fn ($app) => new PrintingLogger($app->make('log')->channel(config('printing.logger'))),
+        );
+    }
+
+    private function registerLogger(): void
+    {
+        if (config('printing.logger')) {
+            Printing::setLogger($this->app->make(Logger::class));
+        }
     }
 }

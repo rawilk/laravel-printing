@@ -4,11 +4,9 @@ declare(strict_types=1);
 
 namespace Rawilk\Printing\Exceptions;
 
-use Exception;
-
-class InvalidOption extends Exception
+class InvalidOption extends PrintingException
 {
-    public static function invalidOption(string $message): self
+    public static function invalidOption(string $message): static
     {
         return new static($message);
     }

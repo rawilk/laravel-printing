@@ -13,6 +13,7 @@
         "declare_strict_types": true,
         "explicit_string_variable": true,
         "single_trait_insert_per_statement": true,
+        "single_line_empty_body": false,
         "ordered_class_elements": {
             "order": [
                 "use_trait",

@@ -3,59 +3,201 @@ title: Upgrade Guide
 sort: 3
 ---
 
-## Upgrade from v2 to v3
+## Upgrading To 4.0 From 3.x
 
-### \Rawilk\Printing\Contracts\Driver
+Upgrading from an earlier version? Check out the previous [upgrade guide](/docs/laravel-printing/v3/upgrade) first.
 
-Any custom driver implementing this interface must make the following changes:
+While I attempt to document every possible breaking change, I may have missed some things. Make sure to thoroughly test your integration before deploying when upgrading.
 
--   Rename `find()` method to `printer()`
--   Add a method for retrieving a list of print jobs with the following signature: `public function printJobs(int|null $limit = null, int|null $offset = null, string|null $dir = null): Collection`
--   Add a method for retrieving a print job with the following signature: `public function printJob($jobId = null): null|\Rawilk\Printing\Contracts\PrintJob`
--   Add a method for retrieving a printer's print jobs with the following signature: `public function printerPrintJobs($printerId, int|null $limit = null, int|null $offset = null, string|null $dir = null): Collection`
--   Add a method for retrieving a print job from a printer with the following signature: `public function printerPrintJob($printerId, $jobId): null|\Rawilk\Printing\Contracts\PrintJob`
--   The `printers()` method signature has changed to include a few parameters: `public function printers(int|null $limit = null, int|null $offset = null, string|null $dir = null): Collection`
+### Updating dependencies
 
-### \Rawilk\Printing\Contracts\PrintJob
+**Likelihood Of Impact: Medium**
 
-Any custom driver implementing this interface must make the following changes:
+You should update the following dependencies in your application's `composer.json` file if you haven't already:
 
--   Add a `null|Carbon` return type to the `date()` method signature
+- `laravel/framework` to `^10.0`
 
-### \Rawilk\Printing\Facades\Printing
+> {note} The Laravel version `10.x` is the minimum version your application must be running. This package supports the latest `12.x` Laravel version as well.
 
-If you were using the `Printing::find(...)` method to find a specific printer, you should change any references of it to: `Printing::printer(...)`.
+#### PHP Version
 
-### PrintNode Dependencies
+**Likelihood Of Impact: Medium**
 
-In previous versions, we relied on `printnode/printnode-php` for making the api calls to PrintNode. In v3, we've removed it entirely in favor of writing our own
-API wrapper to interact with their API. The biggest reason for doing this is because their PHP package has not been maintained for several years now and it's become
-problematic for using it in our own projects. With our own API wrapper, we can maintain it as we see fit and as needed to keep it compatible with both their API and
-any newer versions of PHP/Laravel.
+The server your application is running on must be using a minimum of php 8.2.
 
-If you're using PrintNode as your printing driver, you should remove the `printnode/printnode-php` package as a composer dependency as it's no longer needed:
+### Printer Interface
 
-```bash
-composer remove printnode/printnode-php
+**Likelihood Of Impact: Low**
+
+If you have a custom driver with a Printer object that implements the `Printer` interface, you must now implement the `Arrayable` and `JsonSerializable` interfaces on your Printer object as well.
+
+### PrintTask Interface
+
+**Likelihood Of Impact: Low**
+
+If you have a custom driver, the `option()` method signature on the `PrintTask` interface has changed to allow support for passing in enums for option keys. Your signature should now match this:
+
+```php
+public function option(BackedEnum|string $key, $value): self;
 ```
 
-## Upgrade from v1 to v2
+### PrintJob Interface
 
-### Your Environment
+**Likelihood Of Impact: Low**
 
-You will need to ensure your environment supports php v8, and your laravel installation must be running on at least version 8.0.
+If you have a custom driver, the `date()` method signature on the `PrintJob` interface has changed. Your print job object must also implement the `Arrayable` and `JsonSerializable` interfaces as well.
 
-### Driver Dependencies
+Here is the updated date method signature for `PrintJob`:
 
-In v2, `laravel-printing` no longer automatically requires the third-party dependencies required for each driver. Unless you are using
-a custom driver, you will need to pull in one of the following dependencies depending on which driver you are using:
+```php
+public function date(): ?CarbonInterface;
+```
 
--   **PrintNode:** `composer require printnode/printnode-php`
--   **CUPS:** `composer require smalot/cups-ipp`
+### Exceptions
 
-### PrintTask Contract
+**Likelihood Of Impact: Low**
 
-If you have any custom drivers created and are implementing the `Rawilk\Printing\Contracts\PrintTask` interface, you will need to update
-the following method signatures:
+Every custom exception class thrown by the package now either extends the `Rawilk\Printing\Exceptions\PrintingException` base exception and/or implements the `Rawilk\Printing\Exceptions\ExceptionInterface` interface.
 
--   `public function printer(Printer|string|null|int $printerId): self;`
+This shouldn't really affect anything, however you may now listen for that base exception or interface in a `try/catch` instead to catch any exceptions the package will throw.
+
+#### PrintNodeApiRequestFailed Exception
+
+**Likelihood Of Impact: Low**
+
+The `Rawilk\Printing\Exceptions\PrintNodeApiRequestFailed` Exception has been deprecated in favor of moving that exception closer to the api implementation for PrintNode. It will be removed in a future version.
+
+The new exception is now located at: `Rawilk\Printing\Api\PrintNode\Exceptions\PrintNodeApiRequestFailed`
+
+### PrintNode API Resources
+
+**Likelihood Of Impact: Low**
+
+Every Entity class under the `Rawilk\Printing\Api\PrintNode\Entity` has been removed. These classes have all been refactored to extend a new base `Rawilk\Printing\Api\PrintNode\PrintNodeObject` base class, and each of the resource classes now live in the `Rawilk\Printing\Api\PrintNode\Resources` namespace.
+
+Any custom collection classes, such as the `Printers` collection have been removed all-together in favor of plain Laravel collections.
+
+### PrintNode ContentType Class
+
+**Likelihood Of Impact: High**
+
+The `ContentType` class from the PrintNode driver has been removed in favor of an enum instead. If you are setting the content type for a print job with the PrintNode driver and reference this class, be sure to update your references to the following:
+
+```php
+use Rawilk\Printing\Api\PrintNode\Enums\ContentType;
+
+$contentType = ContentType::PdfBase64;
+```
+
+### PrintNode API Key
+
+**Likelihood Of Impact: Medium**
+
+First off, the api key is not required to be filled within the `config/printing.php` driver config for PrintNode anymore. You may either use an empty array for the `printnode` config, or set the `key` configuration key to `null`.
+
+If you are setting the API used to make requests to PrintNode at runtime, you will need to update your code. Setting the api key via config is still supported, however and remains unchanged.
+
+There are now actually a few different ways you can use a specific api key for a single request. The first way involves passing the api key through as a request option.
+
+```php
+Printing::newPrintTask()
+    ->printer($printerId)
+    ->content('hello world')
+    ->send(['api_key' => 'my-key']);
+
+// Also works with other method calls
+Printing::printer($printerId, [], ['api_key' => 'my-key']);
+```
+
+> {note} You cannot utilize php's named arguments when passing in extra parameters like this because these arguments do not exist on the underlying Printing service class method signatures.
+
+Another option you have for dynamically setting the api key is by setting it on the `PrintNode` api class.
+
+```php
+use Rawilk\Printing\Api\PrintNode\PrintNode;
+
+PrintNode::setApiKey('my-key');
+```
+
+> {note} An api key set in the `config/printing.php` configuration for `printnode` will take precedence over this method. Set the config value to `null` to avoid any issues if you are doing this.
+
+One other way to update the api key is by setting it on the driver itself. This is the least recommended way of doing it, but it's still an option.
+
+```php
+Printing::driver('printnode')->getDriver()->setApiKey('my-key');
+```
+
+### PrintNode API Class
+
+**Likelihood Of Impact: Low**
+
+Unless your application is interacting with the PrintNode api wrapper directly, this won't affect you. The PrintNode api integration has been completely refactored in this version, and all the method calls to the api have been removed from this class.
+
+Each resource is now fetched or created from service classes that are referenced by the `PrintNodeClient` class.
+
+### PrintNode Driver Printer
+
+**Likelihood Of Impact: Low**
+
+The constructor of the `Rawilk\Printing\Drivers\PrintNode\Entity\Printer` printer now accepts the Printer resource class instead from the PrintNode api wrapper. It has also been set to `readonly` on the class. The resource class will also now be returned when the `printer()` method is called from this object.
+
+### PrintNode Driver PrintJob
+
+**Likelihood Of Impact: Low**
+
+The constructor of the `Rawilk\Printing\Drivers\PrintNode\Entity\PrintJob` print job now accepts the PrintJob resource class instead from the PrintNode api wrapper. It has also been set to `readonly` on the class. The resource class will also now be returned when the `job()` method is called from this object.
+
+### Cups Driver Printer
+
+**Likelihood Of Impact: Low**
+
+The constructor of the `Rawilk\Printing\Drivers\Cups\Entity\Printer` now accepts the Printer resource class from the Cups api wrapper.
+
+### Cups Driver PrintJob
+
+**Likelihood Of Impact: Low**
+
+The constructor of the `Rawilk\Printing\Drivers\Cups\Entity\PrintJob` now accepts the PrintJob resource class from the Cups api wrapper.
+
+### Cups Driver PrintTask
+
+**Likelihood Of Impact: Low**
+
+The `Rawilk\Printing\Drivers\Cups\PrintTask` class now wraps the new `CupsClient` api wrapper, and defers all resource calls to it.
+
+### Cups API Class
+
+**Likelihood Of Impact: Low**
+
+Unless your application is interacting with the Cups api wrapper directly, this won't affect you. The Cups api integration has been completely refactored in this version, and all the method calls to the api have been removed from this class.
+
+Each resource is now fetched or created from service classes that are referenced by the `CupsClient` class.
+
+### Singletons
+
+**Likelihood Of Impact: Low**
+
+The singletons for the CUPS and PrintNode API wrappers have been removed, however the client classes can still be resolved out of the container. For example, for PrintNode you would resolve it like this now:
+
+```php
+use Rawilk\Printing\Api\PrintNode\PrintNodeClient;
+
+$client = app(PrintNodeClient::class, ['config' => ['api_key' => 'your-api-key']]);
+```
+
+If you were resolving the singletons for `printing.factory` or `printing.driver` out of the container, you now need to resolve them using the class names instead.
+
+```php
+use Rawilk\Printing\Factory;
+use Rawilk\Printing\Contracts\Driver;
+
+// printing.factory
+app(Factory::class);
+
+// printing.driver
+app(Driver::class);
+```
+
+### Miscellaneous
+
+I also encourage you to view the changes in the `rawilk/laravel-printing` [GitHub repository](https://github.com/rawilk/laravel-printing). There may be changes not documented here that affect your integration. You can easily view all changes between this version and version 3.x with the [GitHub comparison tool](https://github.com/rawilk/laravel-printing/compare/v3.0.5...v4.0.0-beta.1).

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Rawilk\Printing\Receipts;
 
 use Illuminate\Support\Str;
+use Illuminate\Support\Traits\Conditionable;
 use Illuminate\Support\Traits\Macroable;
 use InvalidArgumentException;
 use Mike42\Escpos\PrintConnectors\DummyPrintConnector;
@@ -40,6 +41,7 @@ use Mike42\Escpos\Printer;
  */
 class ReceiptPrinter
 {
+    use Conditionable;
     use Macroable;
 
     protected DummyPrintConnector $connector;

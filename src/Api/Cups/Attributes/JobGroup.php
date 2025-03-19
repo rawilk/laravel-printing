@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Rawilk\Printing\Api\Cups\Attributes;
 
 use Rawilk\Printing\Api\Cups\AttributeGroup;
-use Rawilk\Printing\Api\Cups\AttributeGroupTag;
+use Rawilk\Printing\Api\Cups\Enums\AttributeGroupTag;
 
 class JobGroup extends AttributeGroup
 {
-    protected int $tag = AttributeGroupTag::JOB_ATTRIBUTES->value;
+    protected int $tag = AttributeGroupTag::JobAttributes->value;
 }

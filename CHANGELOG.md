@@ -2,6 +2,50 @@
 
 All notable changes to `laravel-printing` will be documented in this file.
 
+## v4.0.0-beta.1 - 2025-03-18
+
+This release is a pre-release! It is considered mostly stable, however breaking changes may possibly be introduced before a stable 4.x release is published, however I will do my best to prevent breaking changes as bugs are discovered and patched in this major version.
+
+### What's Changed
+
+- Cups by @vatsake in https://github.com/rawilk/laravel-printing/pull/92
+- Bump aglipanci/laravel-pint-action from 2.4 to 2.5 by @dependabot in https://github.com/rawilk/laravel-printing/pull/101
+- [Release] 4.x by @rawilk in https://github.com/rawilk/laravel-printing/pull/99
+- Bump dependabot/fetch-metadata from 2.2.0 to 2.3.0 by @dependabot in https://github.com/rawilk/laravel-printing/pull/100
+
+### New Contributors
+
+- @vatsake made their first contribution in https://github.com/rawilk/laravel-printing/pull/92
+
+### Breaking Changes
+
+- Drop Laravel 8 & 9 support
+- Drop PHP 8.0 support
+- Drop PHP 8.1 support
+- `printing.factory` singleton renamed to `\Rawilk\Printing\Factory::class`
+- `printing.driver` singleton renamed to `\Rawilk\Printing\Contracts\Driver::class`
+- Remove `Cups` api singleton
+- Remove `PrintNode` api singleton
+- Rename `PrintNode` api class to `PrintNodeClient`
+- PrintNode API `Entity` classes are now namespaced as `Resources`
+- PrintNode API collection classes like `Computers` and `Printers` are removed in favor of default Laravel collections
+- Convert `Rawilk\Printing\Drivers\PrintNode\ContentType` to enum and move to `Rawilk\Printing\Api\PrintNode\Enums` namespace
+- Change `ContentType` casing to `PascalCase`
+- Change method signature to retrieve `jobs()` on `Rawilk\Printing\Drivers\PrintNode\Entity\Printer`
+- Force `Rawilk\Printing\Contracts\Printer` interface to use `Arrayable` and `JsonSerializable`
+- Force `Rawilk\Printing\Contracts\PrintJob` interface to use `Arrayable` and `JsonSerializable`
+
+### Other Changes
+
+- Use `Str::random()` instead of `uniqid` when generating print job names
+- Add new `PrintDriver` enum
+- Add logging (configurable through .env through `PRINTING_LOGGER`)
+- Add base `PrintingException` and have most of the package exceptions extend it
+- Add `ExceptionInterface` contract that all package exceptions implement
+- Add `PrintJobState` service and resource to the PrintNode API
+
+**Full Changelog**: https://github.com/rawilk/laravel-printing/compare/v3.0.5...v4.0.0-beta.1
+
 ## v3.0.5 - 2025-02-26
 
 ### What's Changed

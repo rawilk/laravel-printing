@@ -10,12 +10,14 @@ abstract class Type implements JsonSerializable
 {
     protected int $tag;
 
-    public function __construct(public mixed $value) {}
+    public function __construct(public mixed $value)
+    {
+    }
 
     /**
      * Returns attribute from binary and increments offset
      *
-     * @return [string, Type]
+     * @return array<string, \Rawilk\Printing\Api\Cups\Type>
      */
     abstract public static function fromBinary(string $binary, int &$offset): array;
 
@@ -24,7 +26,7 @@ abstract class Type implements JsonSerializable
      */
     abstract public function encode(): string;
 
-    public function getTag()
+    public function getTag(): int
     {
         return $this->tag;
     }

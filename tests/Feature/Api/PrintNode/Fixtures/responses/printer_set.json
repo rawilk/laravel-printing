@@ -1,0 +1,42 @@
+[
+    {
+        "id": 34,
+        "computer": {
+            "id": 12,
+            "name": "AnalyticalEngine",
+            "inet": null,
+            "inet6": null,
+            "hostname": null,
+            "version": null,
+            "jre": null,
+            "createTimestamp": "2015-11-16T23:14:12.354Z",
+            "state": "disconnected"
+        },
+        "name": "Printer 2",
+        "description": "Test Printer 2",
+        "capabilities": null,
+        "default": null,
+        "createTimestamp": "2015-11-16T23:14:12.354Z",
+        "state": "out_of_paper"
+    },
+    {
+        "id": 36,
+        "computer": {
+            "id": 12,
+            "name": "AnalyticalEngine",
+            "inet": null,
+            "inet6": null,
+            "hostname": null,
+            "version": null,
+            "jre": null,
+            "createTimestamp": "2015-11-16T23:14:12.354Z",
+            "state": "disconnected"
+        },
+        "name": "Printer 4",
+        "description": "Test Printer 4",
+        "capabilities": null,
+        "default": null,
+        "createTimestamp": "2015-11-16T23:14:12.354Z",
+        "state": "error"
+    }
+]

@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Rawilk\Printing\Api\Cups\Types\Primitive;
 
+use Rawilk\Printing\Api\Cups\Enums\TypeTag;
 use Rawilk\Printing\Api\Cups\Type;
-use Rawilk\Printing\Api\Cups\TypeTag;
 
 class Integer extends Type
 {
-    protected int $tag = TypeTag::INTEGER->value;
+    protected int $tag = TypeTag::Integer->value;
 
     public static function fromBinary(string $binary, int &$offset): array
     {

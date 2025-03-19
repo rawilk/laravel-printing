@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Rawilk\Printing\Api\Cups\Types\Primitive;
 
+use Rawilk\Printing\Api\Cups\Enums\TypeTag;
 use Rawilk\Printing\Api\Cups\Type;
-use Rawilk\Printing\Api\Cups\TypeTag;
 
 class Unknown extends Type
 {
-    protected int $tag = TypeTag::UNKNOWN->value;
+    protected int $tag = TypeTag::Unknown->value;
 
     public static function fromBinary(string $binary, int &$offset): array
     {
@@ -21,6 +21,6 @@ class Unknown extends Type
 
     public function encode(): string
     {
-        return pack('n', 0) . '';
+        return pack('n', 0);
     }
 }

@@ -17,6 +17,8 @@ at runtime if you need to. Let's say you need to print most documents using Prin
 you need to use CUPS. You can do so like this:
 
 ```php
+use Rawilk\Printing\Enums\PrintDriver;
+
 // Send a job to printnode
 Printing::newPrintTask()
     ->printer($printerId)
@@ -24,7 +26,7 @@ Printing::newPrintTask()
     ->send();
 
 // Send a job to the cups server
-Printing::driver('cups')
+Printing::driver(PrintDriver::Cups)
     ->newPrintTask()
     ->printer($cupsPrinterId)
     ->file('file_path.pdf')
