@@ -2,6 +2,7 @@ name: PHP Linting (Pint)
 
 on:
   workflow_dispatch:
+  pull_request:
   push:
     branches-ignore:
       - 'dependabot/npm_and_yarn/*'
