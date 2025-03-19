@@ -119,7 +119,7 @@ class Cups implements Driver
         array|null|RequestOptions $opts = null,
     ): Collection {
         return $this->printers()->map(
-            fn($printer) => $this->client->printers->printJobs($printer->id())->mapInto(PrintJobContract::class)
+            fn ($printer) => $this->client->printers->printJobs($printer->id())->mapInto(PrintJobContract::class)
         )->flatten(1)->skip($offset)->take($limit)->values();
     }
 }

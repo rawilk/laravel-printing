@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Rawilk\Printing\Api\Cups\Service;
 
 use Illuminate\Support\Arr;
-use Illuminate\Support\Collection;
 use Rawilk\Printing\Api\Cups\Enums\Operation;
 use Rawilk\Printing\Api\Cups\Enums\OperationAttribute;
 use Rawilk\Printing\Api\Cups\Enums\Version;

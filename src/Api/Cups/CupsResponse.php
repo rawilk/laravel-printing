@@ -63,7 +63,7 @@ class CupsResponse
     public function jobs(): Collection
     {
         // Printer has no jobs
-        if (!array_key_exists(JobGroup::class, $this->attributeGroups)) {
+        if (! array_key_exists(JobGroup::class, $this->attributeGroups)) {
             return collect();
         }
 

@@ -221,7 +221,7 @@ class CupsObject implements Arrayable, ArrayAccess, Countable, JsonSerializable
         $value = $values[$attribute];
 
         if (is_array($value)) {
-            return array_map(fn($item) => $item->value, $value);
+            return array_map(fn ($item) => $item->value, $value);
         }
 
         if ($value instanceof Type) {

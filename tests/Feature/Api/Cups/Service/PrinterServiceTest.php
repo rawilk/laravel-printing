@@ -37,8 +37,6 @@ it('retrieves a non existing printer by id (url)', function () {
     $this->service->retrieve("{$schema}://{$config['ip']}:{$config['port']}/John_doe_123555465");
 })->throws(CupsRequestFailed::class);
 
-
-
 it('can retrieve printer\'s printjobs', function () {
     $printers = $this->service->all();
     if ($printers->count()) {
