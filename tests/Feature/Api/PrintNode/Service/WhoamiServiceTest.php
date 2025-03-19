@@ -23,7 +23,10 @@ describe('live api requests', function () {
 
         expect($response->id)->toEqual(env('PRINT_NODE_ID'));
     });
-});
+})->skip(
+    fn (): bool => blank(env('PRINT_NODE_ID')),
+    'Skipping because PrintNode account ID was not resolved.',
+);
 
 describe('fake api calls', function () {
     beforeEach(function () {
