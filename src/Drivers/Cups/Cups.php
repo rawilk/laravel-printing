@@ -107,7 +107,7 @@ class Cups implements Driver
     }
 
     /**
-     * Note: $limit, $offset, $dir do nothing currently.
+     * Note: $limit, $offset occurs on the client side, $dir does currently nothing.
      *
      * @return \Illuminate\Support\Collection<PrintJobContract>
      */
@@ -118,7 +118,8 @@ class Cups implements Driver
         array $params = [],
         array|null|RequestOptions $opts = null,
     ): Collection {
-        return $this->client->printJobs->all($params, $opts)
-            ->mapInto(PrintJobContract::class);
+        return $this->printers()->map(
+            fn($printer) => $this->client->printers->printJobs($printer->id())->mapInto(PrintJobContract::class)
+        )->flatten(1)->skip($offset)->take($limit)->values();
     }
 }
