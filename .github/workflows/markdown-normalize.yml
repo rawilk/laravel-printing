@@ -1,24 +1,24 @@
 name: Normalize Markdown
 
 on:
-    push:
-        paths:
-            - "*.md"
-            - .github/workflows/markdown-normalize.yml
+  push:
+    paths:
+      - "*.md"
+      - .github/workflows/markdown-normalize.yml
 
 jobs:
-    normalize:
-        timeout-minutes: 1
-        runs-on: ubuntu-latest
-        steps:
-            -   name: Git checkout
-                uses: actions/checkout@v3
-                with:
-                    ref: ${{ github.head_ref }}
-                    fetch-depth: 0
+  normalize:
+    timeout-minutes: 1
+    runs-on: ubuntu-latest
+    steps:
+      - name: Git checkout
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
 
-            -   name: Prettify markdown
-                uses: creyD/prettier_action@v4.3
-                with:
-                    prettier_options: --write **/*.md
-                    only_changed: True
+      - name: Prettify markdown
+        uses: creyD/prettier_action@v4.3
+        with:
+          prettier_options: --write **/*.md
+          only_changed: True
