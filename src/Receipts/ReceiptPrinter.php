@@ -42,7 +42,9 @@ use Mike42\Escpos\Printer;
 class ReceiptPrinter
 {
     use Conditionable;
-    use Macroable;
+    use Macroable {
+        Macroable::__call as __macroCall;
+    }
 
     protected DummyPrintConnector $connector;
 
@@ -68,15 +70,15 @@ class ReceiptPrinter
         return $this->connector->getData();
     }
 
-    public function __call($name, $arguments)
+    public function __call($method, $parameters)
     {
-        if (method_exists($this->printer, $name)) {
-            $this->printer->{$name}(...$arguments);
+        if (method_exists($this->printer, $method)) {
+            $this->printer->{$method}(...$parameters);
 
             return $this;
         }
 
-        throw new InvalidArgumentException("Method [{$name}] not found on receipt printer object.");
+        return $this->__macroCall($method, $parameters);
     }
 
     public function centerAlign(): self
