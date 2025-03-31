@@ -2,6 +2,18 @@
 
 All notable changes to `laravel-printing` will be documented in this file.
 
+## v3.0.6 - 2025-03-31
+
+### What's Changed
+
+* Fix: allow macro calls on the ReceiptPrinter class by @AlexanderPoellmann in https://github.com/rawilk/laravel-printing/pull/106
+
+### New Contributors
+
+* @AlexanderPoellmann made their first contribution in https://github.com/rawilk/laravel-printing/pull/106
+
+**Full Changelog**: https://github.com/rawilk/laravel-printing/compare/v3.0.5...v3.0.6
+
 ## v4.0.0-beta.1 - 2025-03-18
 
 This release is a pre-release! It is considered mostly stable, however breaking changes may possibly be introduced before a stable 4.x release is published, however I will do my best to prevent breaking changes as bugs are discovered and patched in this major version.
