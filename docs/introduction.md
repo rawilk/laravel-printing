@@ -22,8 +22,6 @@ $printJob = Printing::newPrintTask()
 $printJob->id(); // the id number returned from the print server
 ```
 
-> {note} Version 4.x is in a pre-release state currently. It is considered mostly stable, however breaking changes may be introduced as bugs are discovered and fixed. I will do my best however to prevent any breaking changes though.
-
 ## Supported Drivers
 
 Laravel Printing currently only supports one two drivers currently. More drivers may be added in the future.
