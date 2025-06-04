@@ -59,11 +59,19 @@ test('encode objects', function (mixed $value, mixed $expected) {
     ],
     'boolean true' => fn () => [
         'value' => true,
-        'expected' => 'true',
+        'expected' => true,
+    ],
+    'string boolean true' => fn () => [
+        'value' => 'true',
+        'expected' => true,
     ],
     'boolean false' => fn () => [
         'value' => false,
-        'expected' => 'false',
+        'expected' => false,
+    ],
+    'string boolean false' => fn () => [
+        'value' => 'false',
+        'expected' => false,
     ],
 ]);
 

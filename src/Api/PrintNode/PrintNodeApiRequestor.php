@@ -72,12 +72,12 @@ class PrintNodeApiRequestor
             return Util::utf8($objects->id);
         }
 
-        if ($objects === true) {
-            return 'true';
+        if ($objects === 'true') {
+            return true;
         }
 
-        if ($objects === false) {
-            return 'false';
+        if ($objects === 'false') {
+            return false;
         }
 
         if (is_array($objects)) {
