@@ -2,6 +2,18 @@
 
 All notable changes to `laravel-printing` will be documented in this file.
 
+## v4.0.1 - 2025-06-04
+
+### What's Changed
+
+* PrintNodeApiRequestor incorrectly casts booleans to strings by @vrdist-john in https://github.com/rawilk/laravel-printing/pull/109
+
+### New Contributors
+
+* @vrdist-john made their first contribution in https://github.com/rawilk/laravel-printing/pull/109
+
+**Full Changelog**: https://github.com/rawilk/laravel-printing/compare/v4.0.0...v4.0.1
+
 ## v3.0.6 - 2025-03-31
 
 ### What's Changed
