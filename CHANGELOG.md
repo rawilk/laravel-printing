@@ -2,6 +2,16 @@
 
 All notable changes to `laravel-printing` will be documented in this file.
 
+## v4.1.0 - 2025-06-09
+
+### What's Changed
+
+* [Bug]: Cups Config Issues by @rawilk in https://github.com/rawilk/laravel-printing/pull/111
+
+> **Note:** If you have the package's config file published, you should update it to reflect the changes made to it in this release.
+
+**Full Changelog**: https://github.com/rawilk/laravel-printing/compare/v4.0.1...v4.1.0
+
 ## v4.0.1 - 2025-06-04
 
 ### What's Changed
