@@ -25,16 +25,14 @@ return [
     */
     'drivers' => [
         PrintDriver::PrintNode->value => [
-            'driver' => PrintDriver::PrintNode->value,
             'key' => env('PRINT_NODE_API_KEY'),
         ],
 
         PrintDriver::Cups->value => [
-            'driver' => PrintDriver::Cups->value,
             'ip' => env('CUPS_SERVER_IP'),
             'username' => env('CUPS_SERVER_USERNAME'),
             'password' => env('CUPS_SERVER_PASSWORD'),
-            'port' => env('CUPS_SERVER_PORT'),
+            'port' => (int) env('CUPS_SERVER_PORT'),
             'secure' => env('CUPS_SERVER_SECURE'),
         ],
 
