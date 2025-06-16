@@ -18,7 +18,7 @@ jobs:
           fetch-depth: 0
 
       - name: Prettify markdown
-        uses: creyD/prettier_action@v4.5
+        uses: creyD/prettier_action@v4.6
         with:
           prettier_options: --write **/*.md
           only_changed: True
