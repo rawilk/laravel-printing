@@ -29,10 +29,10 @@ class CupsRequestor
     }
 
     public function request(
-        string|PendingRequest $binary,
+        string|HttpRequest $binary,
         RequestOptions $opts,
     ): CupsResponse {
-        if ($binary instanceof PendingRequest) {
+        if ($binary instanceof HttpRequest) {
             $binary = $binary->encode();
         }
 
@@ -43,7 +43,7 @@ class CupsRequestor
             ->withBody($binary, self::CONTENT_TYPE)
             ->when(
                 filled($username) || filled($password),
-                fn (PendingRequest $request) => $request->withBasicAuth($username ?? '', $password ?? ''),
+                fn (HttpRequest $request) => $request->withBasicAuth($username ?? '', $password ?? ''),
             );
 
         $response = $client->post($adminUrl)->throwIfClientError();
