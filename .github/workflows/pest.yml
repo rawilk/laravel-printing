@@ -19,7 +19,7 @@ jobs:
       fail-fast: true
       matrix:
         php: [8.4, 8.3, 8.2]
-        laravel: [12.*, 11.*, 10.*]
+        laravel: ['10.*', '11.*', '12.*', '13.*']
         stability: [prefer-lowest, prefer-stable]
         include:
           - laravel: 10.*
@@ -28,14 +28,17 @@ jobs:
             testbench: 9.*
           - laravel: 12.*
             testbench: 10.*
+          - laravel: 13.*
+            testbench: 11.*
         exclude:
-            # This one is causing issues for some reason...
-            - laravel: 10.*
-              php: 8.4
-              stability: prefer-lowest
-            - laravel: 11.*
-              php: 8.4
-              stability: prefer-lowest
+          - laravel: 10.*
+            php: 8.4
+            stability: prefer-lowest
+          - laravel: 11.*
+            php: 8.4
+            stability: prefer-lowest
+          - laravel: 13.*
+            php: 8.2
 
     name: P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.stability }}
 
