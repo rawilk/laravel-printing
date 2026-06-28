@@ -14,13 +14,13 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    timeout-minutes: 5
 
     strategy:
       fail-fast: true
       matrix:
-        php: [8.4, 8.3, 8.2]
-        laravel: ['10.*', '11.*', '12.*', '13.*']
-        stability: [prefer-lowest, prefer-stable]
+        php: [8.5, 8.4, 8.3, 8.2]
+        laravel: [13.*, 12.*, 11.*, 10.*]
         include:
           - laravel: 10.*
             testbench: 8.*
@@ -31,16 +31,10 @@ jobs:
           - laravel: 13.*
             testbench: 11.*
         exclude:
-          - laravel: 10.*
-            php: 8.4
-            stability: prefer-lowest
-          - laravel: 11.*
-            php: 8.4
-            stability: prefer-lowest
           - laravel: 13.*
             php: 8.2
 
-    name: P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.stability }}
+    name: P${{ matrix.php }} - L${{ matrix.laravel }}
 
     steps:
       - name: Checkout code
@@ -61,7 +55,7 @@ jobs:
       - name: Install dependencies
         run: |
           composer require "laravel/framework:${{ matrix.laravel }}" "orchestra/testbench:${{ matrix.testbench }}" --no-interaction --no-update --ignore-platform-reqs
-          composer update --${{ matrix.stability }} --prefer-dist --no-interaction --ignore-platform-reqs
+          composer update --prefer-dist --no-interaction
 
       - name: List Installed Dependencies
         run: composer show -D
