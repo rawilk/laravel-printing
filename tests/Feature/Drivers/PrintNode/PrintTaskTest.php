@@ -15,7 +15,7 @@ beforeEach(function () {
 
 it('returns the print job id on a successful print job', function () {
     Http::fake([
-        '/printjobs' => Http::response(473),
+        '/printjobs' => Http::response('473'),
         '/printjobs/473' => Http::response(samplePrintNodeData('print_job_single')),
     ]);
 
@@ -52,7 +52,7 @@ test('content is required', function () {
 
 test('custom options can be sent through with api calls', function () {
     Http::fake([
-        '/printjobs' => Http::response(473),
+        '/printjobs' => Http::response('473'),
         '/printjobs/473' => Http::response(samplePrintNodeData('print_job_single')),
     ]);
 

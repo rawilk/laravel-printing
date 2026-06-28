@@ -135,7 +135,7 @@ it('can create a new print job', function () {
     Str::createUuidsUsing(fn () => 'foo');
 
     Http::fake([
-        '/printjobs' => Http::response(473),
+        '/printjobs' => Http::response('473'),
         '/printjobs/473' => Http::response(samplePrintNodeData('print_job_single')),
     ]);
 

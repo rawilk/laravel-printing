@@ -159,7 +159,7 @@ describe('single requests', function () {
 
 it('can create a new print job', function () {
     Http::fake([
-        '/printjobs' => Http::response(473),
+        '/printjobs' => Http::response('473'),
         '/printjobs/473' => Http::response(samplePrintNodeData('print_job_single')),
     ]);
 
@@ -176,7 +176,7 @@ it('can create a new print job', function () {
 
 it('can create a print job using an array for data', function () {
     Http::fake([
-        '/printjobs' => Http::response(473),
+        '/printjobs' => Http::response('473'),
         '/printjobs/473' => Http::response(samplePrintNodeData('print_job_single')),
     ]);
 
