@@ -56,6 +56,7 @@ jobs:
 
       - name: Install dependencies
         run: |
+          composer remove spatie/laravel-ray --dev --no-interaction --no-update
           composer require "laravel/framework:${{ matrix.laravel }}" "orchestra/testbench:${{ matrix.testbench }}" --dev --no-interaction --no-update --ignore-platform-reqs
           composer update --prefer-dist --no-interaction
 
