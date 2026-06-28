@@ -7,6 +7,7 @@ namespace Rawilk\Printing\Api\PrintNode\Resources\ApiOperations;
 use Illuminate\Support\Collection;
 use Rawilk\Printing\Api\PrintNode\PrintNodeApiRequestor;
 use Rawilk\Printing\Api\PrintNode\PrintNodeApiResource;
+use Rawilk\Printing\Api\PrintNode\PrintNodeApiResponse;
 use Rawilk\Printing\Api\PrintNode\Util\RequestOptions;
 use Rawilk\Printing\Api\PrintNode\Util\Util;
 
@@ -15,7 +16,7 @@ use Rawilk\Printing\Api\PrintNode\Util\Util;
  * This trait should only be applied to classes that derive
  * from `PrintNodeApiResource`.
  *
- * @mixin \Rawilk\Printing\Api\PrintNode\PrintNodeApiResource
+ * @mixin PrintNodeApiResource
  */
 trait Request
 {
@@ -25,7 +26,7 @@ trait Request
         null|array|RequestOptions $opts = null,
         ?string $expectedResource = null,
     ): Collection {
-        /** @var \Rawilk\Printing\Api\PrintNode\PrintNodeApiResponse $response */
+        /** @var PrintNodeApiResponse $response */
         [$response, $opts] = static::_staticRequest('get', $url, $params, $opts);
 
         $expectedResource ??= static::class;
@@ -64,7 +65,7 @@ trait Request
     ): array {
         $opts = $this->_opts->merge($opts);
 
-        /** @var \Rawilk\Printing\Api\PrintNode\PrintNodeApiResponse $response */
+        /** @var PrintNodeApiResponse $response */
         [$response, $opts] = static::_staticRequest($method, $url, $params ?? [], $opts);
 
         $this->setLastResponse($response);

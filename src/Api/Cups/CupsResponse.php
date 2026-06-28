@@ -29,7 +29,7 @@ class CupsResponse
 
     public int $requestId;
 
-    /** @var array<class-string<\Rawilk\Printing\Api\Cups\AttributeGroup>, \Rawilk\Printing\Api\Cups\AttributeGroup> */
+    /** @var array<class-string<AttributeGroup>, AttributeGroup> */
     public array $attributeGroups = [];
 
     public function __construct(
@@ -58,7 +58,7 @@ class CupsResponse
     }
 
     /**
-     * @return Collection<int, \Rawilk\Printing\Api\Cups\Resources\PrintJob>
+     * @return Collection<int, PrintJob>
      */
     public function jobs(): Collection
     {
@@ -164,7 +164,7 @@ class CupsResponse
 
     protected function getStatusMessage(): string
     {
-        /** @var null|\Rawilk\Printing\Api\Cups\AttributeGroup $group */
+        /** @var null|AttributeGroup $group */
         $group = $this->attributeGroups[OperationGroup::class][0] ?? null;
         if ($group === null) {
             return 'An unknown error occurred';

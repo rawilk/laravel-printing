@@ -79,7 +79,7 @@ class Printing implements Driver
     }
 
     /**
-     * @return \Illuminate\Support\Collection<int, \Rawilk\Printing\Contracts\Printer>
+     * @return Collection<int, Printer>
      */
     public function printers(?int $limit = null, ?int $offset = null, ?string $dir = null, ...$args): Collection
     {
@@ -89,7 +89,7 @@ class Printing implements Driver
     }
 
     /**
-     * @return \Illuminate\Support\Collection<int, \Rawilk\Printing\Contracts\PrintJob>
+     * @return Collection<int, PrintJob>
      */
     public function printJobs(?int $limit = null, ?int $offset = null, ?string $dir = null, ...$args): Collection
     {
@@ -106,7 +106,7 @@ class Printing implements Driver
     }
 
     /**
-     * @return \Illuminate\Support\Collection<int, \Rawilk\Printing\Contracts\PrintJob>
+     * @return Collection<int, PrintJob>
      */
     public function printerPrintJobs($printerId, ?int $limit = null, ?int $offset = null, ?string $dir = null, ...$args): Collection
     {

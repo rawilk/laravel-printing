@@ -8,6 +8,7 @@ use Illuminate\Support\Collection;
 use Rawilk\Printing\Api\Cups\CupsObject;
 use Rawilk\Printing\Api\Cups\Enums\PrinterState;
 use Rawilk\Printing\Api\Cups\Enums\PrinterStateReason;
+use Rawilk\Printing\Api\Cups\Type;
 
 /**
  * A `Printer` represents a physical printer installed on a CUPS server.
@@ -23,7 +24,7 @@ use Rawilk\Printing\Api\Cups\Enums\PrinterStateReason;
 class Printer extends CupsObject
 {
     /**
-     * @return array<string, \Rawilk\Printing\Api\Cups\Type|array>
+     * @return array<string, Type|array>
      */
     public function capabilities(): array
     {
@@ -46,7 +47,7 @@ class Printer extends CupsObject
     }
 
     /**
-     * @return Collection<int, \Rawilk\Printing\Api\Cups\Enums\PrinterStateReason>
+     * @return Collection<int, PrinterStateReason>
      */
     public function stateReasons(): Collection
     {

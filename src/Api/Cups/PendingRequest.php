@@ -23,7 +23,7 @@ class PendingRequest
     protected string $content = '';
 
     /**
-     * @var \Rawilk\Printing\Api\Cups\AttributeGroup[]
+     * @var AttributeGroup[]
      */
     protected array $attributeGroups = [];
 
@@ -67,7 +67,7 @@ class PendingRequest
     }
 
     /**
-     * @param  array<string, \Rawilk\Printing\Api\Cups\Type|\Rawilk\Printing\Api\Cups\Type[]>  $attributes
+     * @param  array<string, Type|Type[]>  $attributes
      */
     public function addOperationAttributes(array $attributes): static
     {
@@ -77,7 +77,7 @@ class PendingRequest
     }
 
     /**
-     * @param  array<string, \Rawilk\Printing\Api\Cups\Type|\Rawilk\Printing\Api\Cups\Type[]>  $attributes
+     * @param  array<string, Type|Type[]>  $attributes
      */
     public function addJobAttributes(array $attributes): static
     {

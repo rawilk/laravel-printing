@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Rawilk\Printing\Api\Cups\Enums;
 
 use Rawilk\Printing\Api\Cups\Exceptions\UnknownType;
+use Rawilk\Printing\Api\Cups\Type;
 use Rawilk\Printing\Api\Cups\Types;
 
 enum TypeTag: int
@@ -37,7 +38,7 @@ enum TypeTag: int
     case Text = 0x000E;
 
     /**
-     * @return class-string<\Rawilk\Printing\Api\Cups\Type>
+     * @return class-string<Type>
      */
     public function getClass(): string
     {

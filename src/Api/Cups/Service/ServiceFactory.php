@@ -13,8 +13,8 @@ use Rawilk\Printing\Api\Cups\CupsClientInterface;
  *
  * @internal
  *
- * @property-read \Rawilk\Printing\Api\Cups\Service\PrinterService $printers
- * @property-read \Rawilk\Printing\Api\Cups\Service\PrintJobService $printJobs
+ * @property-read PrinterService $printers
+ * @property-read PrintJobService $printJobs
  */
 class ServiceFactory
 {

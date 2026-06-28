@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Rawilk\Printing\Api\PrintNode\Resources\ApiOperations;
 
 use Illuminate\Support\Collection;
+use Rawilk\Printing\Api\PrintNode\PrintNodeApiResource;
 use Rawilk\Printing\Api\PrintNode\Util\RequestOptions;
 
 /**
@@ -12,7 +13,7 @@ use Rawilk\Printing\Api\PrintNode\Util\RequestOptions;
  * This trait should only be applied to classes that derive
  * form `PrintNodeApiResource`.
  *
- * @mixin \Rawilk\Printing\Api\PrintNode\PrintNodeApiResource
+ * @mixin PrintNodeApiResource
  * @mixin Request
  */
 trait All

@@ -6,6 +6,7 @@ namespace Rawilk\Printing\Api\PrintNode\Util;
 
 use const E_USER_WARNING;
 
+use Rawilk\Printing\Api\PrintNode\PrintNodeObject;
 use Rawilk\Printing\Exceptions\InvalidArgument;
 
 /**
@@ -34,7 +35,7 @@ abstract class Util
      * Converts a response from the PrintNode API to the corresponding PHP object.
      *
      * @param  array|mixed  $response  the response from the PrintNode API
-     * @param  null|class-string<\Rawilk\Printing\Api\PrintNode\PrintNodeObject>  $expectedResource  the expected resource class for the response
+     * @param  null|class-string<PrintNodeObject>  $expectedResource  the expected resource class for the response
      */
     public static function convertToPrintNodeObject(mixed $response, array|null|RequestOptions $opts, ?string $expectedResource = null): mixed
     {

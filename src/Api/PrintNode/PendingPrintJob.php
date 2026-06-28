@@ -35,7 +35,7 @@ class PendingPrintJob implements Arrayable
      *
      * @var array<string, mixed>
      *
-     * @see \Rawilk\Printing\Api\PrintNode\Enums\PrintJobOption
+     * @see PrintJobOption
      * @see https://www.printnode.com/en/docs/api/curl#printjob-options
      */
     public array $options = [];

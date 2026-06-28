@@ -46,7 +46,7 @@ abstract class PrintNodeApiResource extends PrintNodeObject
         $requestor = new PrintNodeApiRequestor($this->_opts->apiKey, static::baseUrl());
         $url = $this->instanceUrl();
 
-        /** @var \Rawilk\Printing\Api\PrintNode\PrintNodeApiResponse $response */
+        /** @var PrintNodeApiResponse $response */
         [$this->_opts->apiKey, $response] = $requestor->request(
             'get',
             $url,

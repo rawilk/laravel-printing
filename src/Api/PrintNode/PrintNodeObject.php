@@ -222,7 +222,7 @@ class PrintNodeObject implements Arrayable, ArrayAccess, Countable, JsonSerializ
     }
 
     /**
-     * @return null|\Rawilk\Printing\Api\PrintNode\PrintNodeApiResponse The last response from the PrintNode API
+     * @return null|PrintNodeApiResponse The last response from the PrintNode API
      */
     public function getLastResponse(): ?PrintNodeApiResponse
     {

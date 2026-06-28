@@ -4,13 +4,15 @@ declare(strict_types=1);
 
 namespace Rawilk\Printing\Api\Cups;
 
+use Rawilk\Printing\Api\Cups\Service\PrinterService;
+use Rawilk\Printing\Api\Cups\Service\PrintJobService;
 use Rawilk\Printing\Api\Cups\Service\ServiceFactory;
 
 /**
  * Client used to send requests to a CUPS server.
  *
- * @property-read \Rawilk\Printing\Api\Cups\Service\PrinterService $printers
- * @property-read \Rawilk\Printing\Api\Cups\Service\PrintJobService $printJobs
+ * @property-read PrinterService $printers
+ * @property-read PrintJobService $printJobs
  */
 class CupsClient extends BaseCupsClient
 {

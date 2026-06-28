@@ -31,7 +31,7 @@ use Rawilk\Printing\Api\PrintNode\PrintNodeObject;
  *      expressed as `[width, height]`, with `width` and `height` expressed in tenths of a mm. In some
  *      circumstances these values are not reported by the printer driver, in which case the array
  *      is `[null, null]`.
- * @property-read null|\Rawilk\Printing\Api\PrintNode\Resources\Support\PrintRate $printrate The printer's supported print rate.
+ * @property-read null|PrintRate $printrate The printer's supported print rate.
  * @property-read bool $supports_custom_paper_size Indicates `true` if the printer supports custom paper sizes.
  */
 class PrinterCapabilities extends PrintNodeObject

@@ -8,6 +8,7 @@ use Carbon\CarbonInterface;
 use Illuminate\Support\Collection;
 use Rawilk\Printing\Api\PrintNode\PendingPrintJob;
 use Rawilk\Printing\Api\PrintNode\PrintNodeApiResource;
+use Rawilk\Printing\Api\PrintNode\PrintNodeApiResponse;
 use Rawilk\Printing\Api\PrintNode\Util\RequestOptions;
 use Rawilk\Printing\Exceptions\PrintTaskFailed;
 
@@ -16,7 +17,7 @@ use Rawilk\Printing\Exceptions\PrintTaskFailed;
  *
  * @property-read int $id
  * @property-read string $createTimestamp Time and date the print job was created
- * @property-read \Rawilk\Printing\Api\PrintNode\Resources\Printer $printer The printer the job was sent to
+ * @property-read Printer $printer The printer the job was sent to
  * @property-read string $title The title of the print job
  * @property-read string $contentType The content type of the print job
  * @property-read string $source A string that describes the origin of the print job
@@ -39,7 +40,7 @@ class PrintJob extends PrintNodeApiResource
 
         $url = static::classUrl();
 
-        /** @var \Rawilk\Printing\Api\PrintNode\PrintNodeApiResponse $response */
+        /** @var PrintNodeApiResponse $response */
         [$response, $opts] = static::_staticRequest('post', $url, $data, $opts);
 
         // PrintNode only returns the ID of the new job, so we need to perform another api call

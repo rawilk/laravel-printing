@@ -31,7 +31,7 @@ class PendingPrintJob
     /**
      * The options for the new print job.
      *
-     * @var array<string, \Rawilk\Printing\Api\Cups\Type>
+     * @var array<string, Type>
      */
     public array $options = [];
 

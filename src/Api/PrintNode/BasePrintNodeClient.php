@@ -86,7 +86,7 @@ class BasePrintNodeClient implements PrintNodeClientInterface
             $baseUrl,
         );
 
-        /** @var \Rawilk\Printing\Api\PrintNode\PrintNodeApiResponse $response */
+        /** @var PrintNodeApiResponse $response */
         [$opts->apiKey, $response] = $requestor->request($method, $path, $params, $opts->headers);
 
         $obj = Util::convertToPrintNodeObject($response->body, $opts, $expectedResource);

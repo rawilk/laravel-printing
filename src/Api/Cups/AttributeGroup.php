@@ -29,7 +29,7 @@ abstract class AttributeGroup implements Arrayable, ArrayAccess, JsonSerializabl
     }
 
     /**
-     * @return array<string, \Rawilk\Printing\Api\Cups\Type|array<int, \Rawilk\Printing\Api\Cups\Type>>
+     * @return array<string, Type|array<int, Type>>
      */
     public function getAttributes(): array
     {
@@ -100,7 +100,7 @@ abstract class AttributeGroup implements Arrayable, ArrayAccess, JsonSerializabl
     /**
      * If attribute is an array, the attribute name after the first element is empty
      *
-     * @param  array<int, \Rawilk\Printing\Api\Cups\Type>  $values
+     * @param  array<int, Type>  $values
      */
     private function handleArrayEncode(string $name, array $values): string
     {

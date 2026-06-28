@@ -17,7 +17,7 @@ abstract class Type implements JsonSerializable
     /**
      * Returns attribute from binary and increments offset
      *
-     * @return array<string, \Rawilk\Printing\Api\Cups\Type>
+     * @return array<string, Type>
      */
     abstract public static function fromBinary(string $binary, int &$offset): array;
 

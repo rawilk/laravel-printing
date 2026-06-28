@@ -2,8 +2,10 @@
 
 declare(strict_types=1);
 
+use Illuminate\Support\Collection;
 use Rawilk\Printing\Api\Cups\CupsClient;
 use Rawilk\Printing\Api\Cups\Exceptions\CupsRequestFailed;
+use Rawilk\Printing\Api\Cups\Resources\Printer;
 use Rawilk\Printing\Api\Cups\Service\PrinterService;
 
 // Sending real api calls here
@@ -15,9 +17,9 @@ beforeEach(function () {
 it('retrieves all printers', function () {
     $printers = $this->service->all();
 
-    expect($printers)->toBeInstanceOf(\Illuminate\Support\Collection::class);
+    expect($printers)->toBeInstanceOf(Collection::class);
     if ($printers->count()) {
-        expect($printers->first())->toBeInstanceOf(\Rawilk\Printing\Api\Cups\Resources\Printer::class);
+        expect($printers->first())->toBeInstanceOf(Printer::class);
     }
 })->skip('Will figure out a fake later');
 
@@ -26,7 +28,7 @@ it('retrieves printer by id (url)', function () {
 
     if ($printers->count()) {
         $printer = $this->service->retrieve($printers[0]->uri);
-        expect($printer)->toBeInstanceOf(\Rawilk\Printing\Api\Cups\Resources\Printer::class);
+        expect($printer)->toBeInstanceOf(Printer::class);
     }
     expect(true)->toBeTrue();
 })->skip('Will figure out a fake later');
@@ -40,7 +42,7 @@ it('retrieves a non existing printer by id (url)', function () {
 it('can retrieve printer\'s printjobs', function () {
     $printers = $this->service->all();
     if ($printers->count()) {
-        expect($this->service->printJobs($printers->first()->uri))->toBeInstanceOf(\Illuminate\Support\Collection::class);
+        expect($this->service->printJobs($printers->first()->uri))->toBeInstanceOf(Collection::class);
     }
     expect(true)->toBeTrue();
 })->skip('Will figure out a fake later');

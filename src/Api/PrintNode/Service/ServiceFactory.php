@@ -13,10 +13,10 @@ use Rawilk\Printing\Api\PrintNode\PrintNodeClientInterface;
  *
  * @internal
  *
- * @property-read \Rawilk\Printing\Api\PrintNode\Service\ComputerService $computers
- * @property-read \Rawilk\Printing\Api\PrintNode\Service\PrinterService $printers
- * @property-read \Rawilk\Printing\Api\PrintNode\Service\PrintJobService $printJobs
- * @property-read \Rawilk\Printing\Api\PrintNode\Service\WhoamiService $whoami
+ * @property-read ComputerService $computers
+ * @property-read PrinterService $printers
+ * @property-read PrintJobService $printJobs
+ * @property-read WhoamiService $whoami
  */
 class ServiceFactory
 {

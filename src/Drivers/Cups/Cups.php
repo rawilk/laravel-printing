@@ -52,7 +52,7 @@ class Cups implements Driver
      * Printers have a lot of attributes, without the requested attributes filter
      * the request will be about 2x slower
      *
-     * @return \Illuminate\Support\Collection<int, PrinterContract>
+     * @return Collection<int, PrinterContract>
      */
     public function printers(
         ?int $limit = null,
@@ -110,7 +110,7 @@ class Cups implements Driver
     /**
      * Note: $limit, $offset occurs on the client side, $dir does nothing currently.
      *
-     * @return \Illuminate\Support\Collection<PrintJobContract>
+     * @return Collection<PrintJobContract>
      */
     public function printJobs(
         ?int $limit = null,

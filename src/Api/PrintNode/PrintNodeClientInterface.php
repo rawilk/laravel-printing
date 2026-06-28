@@ -15,7 +15,7 @@ interface PrintNodeClientInterface extends BasePrintNodeClientInterface
      * @param  string  $path  the path of the request
      * @param  array  $params  the parameters of the request
      * @param  array|RequestOptions  $opts  the special modifiers of the request
-     * @param  null|class-string<\Rawilk\Printing\Api\PrintNode\PrintNodeObject>  $expectedResource  the object we should map the response into
+     * @param  null|class-string<PrintNodeObject>  $expectedResource  the object we should map the response into
      */
     public function request(
         string $method,
@@ -32,7 +32,7 @@ interface PrintNodeClientInterface extends BasePrintNodeClientInterface
      * @param  string  $path  the path of the request
      * @param  array  $params  the parameters of the request
      * @param  array|RequestOptions  $opts  the special modifiers of the request
-     * @param  null|class-string<\Rawilk\Printing\Api\PrintNode\PrintNodeObject>  $expectedResource  the object we should map each resource into
+     * @param  null|class-string<PrintNodeObject>  $expectedResource  the object we should map each resource into
      */
     public function requestCollection(
         string $method,

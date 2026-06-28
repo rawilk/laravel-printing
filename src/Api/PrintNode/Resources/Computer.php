@@ -41,7 +41,7 @@ class Computer extends PrintNodeApiResource
     /**
      * Fetch all printers attached to the computer.
      *
-     * @return Collection<int, \Rawilk\Printing\Api\PrintNode\Resources\Printer>
+     * @return Collection<int, Printer>
      */
     public function printers(?array $params = null, null|array|RequestOptions $opts = null): Collection
     {

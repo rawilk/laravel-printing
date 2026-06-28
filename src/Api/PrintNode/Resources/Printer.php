@@ -16,7 +16,7 @@ use Rawilk\Printing\Api\PrintNode\Util\RequestOptions;
  *
  * @property-read int $id The printer's ID
  * @property-read string $createTimestamp Time and date the printer was first registered with PrintNode
- * @property-read \Rawilk\Printing\Api\PrintNode\Resources\Computer $computer The computer object the printer is attached to
+ * @property-read Computer $computer The computer object the printer is attached to
  * @property-read string $name The name of the printer
  * @property-read string|null $description The description of the printer reported by the client
  * @property-read null|PrinterCapabilities $capabilities The capabilities of the printer reported by the client

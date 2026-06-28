@@ -7,6 +7,7 @@ namespace Rawilk\Printing\Drivers\Cups\Entity;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Traits\Macroable;
 use Rawilk\Printing\Api\Cups\Resources\Printer as CupsPrinter;
+use Rawilk\Printing\Api\Cups\Type;
 use Rawilk\Printing\Api\Cups\Util\RequestOptions;
 use Rawilk\Printing\Concerns\SerializesToJson;
 use Rawilk\Printing\Contracts\Printer as PrinterContract;
@@ -33,7 +34,7 @@ class Printer implements PrinterContract
     }
 
     /**
-     * @return array<string, \Rawilk\Printing\Api\Cups\Type|array>
+     * @return array<string, Type|array>
      */
     public function capabilities(): array
     {
