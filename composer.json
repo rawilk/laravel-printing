@@ -24,16 +24,16 @@
     "require": {
         "php": "^8.2",
         "guzzlehttp/guzzle": "^7.5",
-        "illuminate/support": "^10.0|^11.0|^12.0",
+        "illuminate/support": "^10.0|^11.0|^12.0|^13.0",
         "mike42/escpos-php": "^4.0",
         "spatie/laravel-package-tools": "^1.2|^1.13"
     },
     "require-dev": {
         "laravel/pint": "^1.5",
         "mockery/mockery": ">=1.4",
-        "orchestra/testbench": "^8.0|^9.0|^10.0",
-        "pestphp/pest": "^2.34|^3.7",
-        "pestphp/pest-plugin-laravel": "^2.2|^3.1",
+        "orchestra/testbench": "^8.0|^9.0|^10.0|^11.0",
+        "pestphp/pest": "^2.34|^3.7|^4.4",
+        "pestphp/pest-plugin-laravel": "^2.2|^3.1|^4.1",
         "php-http/message-factory": "^1.1",
         "php-http/socket-client": "^2.1",
         "psr/http-client": "^1.0",
