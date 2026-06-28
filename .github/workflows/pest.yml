@@ -33,6 +33,8 @@ jobs:
         exclude:
           - laravel: 13.*
             php: 8.2
+          - laravel: 10.*
+            php: 8.5
 
     name: P${{ matrix.php }} - L${{ matrix.laravel }}
 
@@ -54,7 +56,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          composer require "laravel/framework:${{ matrix.laravel }}" "orchestra/testbench:${{ matrix.testbench }}" --no-interaction --no-update --ignore-platform-reqs
+          composer require "laravel/framework:${{ matrix.laravel }}" "orchestra/testbench:${{ matrix.testbench }}" --dev --no-interaction --no-update --ignore-platform-reqs
           composer update --prefer-dist --no-interaction
 
       - name: List Installed Dependencies
