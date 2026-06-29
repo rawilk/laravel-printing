@@ -2,6 +2,19 @@
 
 All notable changes to `laravel-printing` will be documented in this file.
 
+## v4.2.0 - 2026-06-29
+
+### What's Changed
+
+* Fix cups usage by using correct request class name in CupsRequestor by @fkoehl in https://github.com/rawilk/laravel-printing/pull/115
+* Laravel 13.x Compatibility by @laravel-shift in https://github.com/rawilk/laravel-printing/pull/121
+
+### New Contributors
+
+* @fkoehl made their first contribution in https://github.com/rawilk/laravel-printing/pull/115
+
+**Full Changelog**: https://github.com/rawilk/laravel-printing/compare/v4.1.0...v4.2.0
+
 ## v4.1.0 - 2025-06-09
 
 ### What's Changed
