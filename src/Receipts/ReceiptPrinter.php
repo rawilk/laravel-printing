@@ -7,7 +7,7 @@ namespace Rawilk\Printing\Receipts;
 use Illuminate\Support\Str;
 use Illuminate\Support\Traits\Conditionable;
 use Illuminate\Support\Traits\Macroable;
-use Mike42\Escpos\PrintConnectors\DummyPrintConnector;
+use Mike42\Escpos\PrintConnectors\MemoryPrintConnector;
 use Mike42\Escpos\Printer;
 
 /**
@@ -45,7 +45,7 @@ class ReceiptPrinter
         Macroable::__call as __macroCall;
     }
 
-    protected DummyPrintConnector $connector;
+    protected MemoryPrintConnector $connector;
 
     protected Printer $printer;
 
@@ -53,7 +53,7 @@ class ReceiptPrinter
 
     public function __construct()
     {
-        $this->connector = new DummyPrintConnector;
+        $this->connector = new MemoryPrintConnector;
         $this->printer = new Printer($this->connector);
 
         static::$lineCharacterLength = config('printing.receipts.line_character_length', 45);
