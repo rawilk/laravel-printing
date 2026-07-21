@@ -2,6 +2,18 @@
 
 All notable changes to `laravel-printing` will be documented in this file.
 
+## v4.3.0 - 2026-07-21
+
+### What's Changed
+
+* Bump stefanzweifel/git-auto-commit-action from 5 to 7 by @dependabot[bot] in https://github.com/rawilk/laravel-printing/pull/118
+* Composer: Update mike42/escpos-php requirement from ^4.0 to ^5.0 by @dependabot[bot] in https://github.com/rawilk/laravel-printing/pull/126
+* 25dd4bb — Scope printing services to each application lifecycle so configuration changes resolve fresh driver instances.
+* 1c6051c — Upgrade mike42/escpos-php to v5 and replace the deprecated dummy connector with MemoryPrintConnector.
+* 2c50255 — Correct PrintNode URI/base64 formatting, restrict idempotency keys to job creation, and add comprehensive API payload coverage.
+
+**Full Changelog**: https://github.com/rawilk/laravel-printing/compare/v4.2.0...v4.3.0
+
 ## v4.2.0 - 2026-06-29
 
 ### What's Changed
