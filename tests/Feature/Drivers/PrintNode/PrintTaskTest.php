@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use Illuminate\Http\Client\Request;
 use Illuminate\Support\Facades\Http;
+use Rawilk\Printing\Api\PrintNode\Enums\ContentType;
 use Rawilk\Printing\Drivers\PrintNode\PrintNode;
 use Rawilk\Printing\Exceptions\PrintTaskFailed;
 
@@ -25,6 +26,44 @@ it('returns the print job id on a successful print job', function () {
         ->send();
 
     expect($job->id())->toEqual(473);
+});
+
+it('sends the expected payload and authentication to PrintNode', function () {
+    Http::fake([
+        '/printjobs' => Http::response('473', 201),
+        '/printjobs/473' => Http::response(samplePrintNodeData('print_job_single')),
+    ]);
+
+    $this->driver->newPrintTask()
+        ->printer(33)
+        ->content('%PDF-example', ContentType::PdfBase64)
+        ->jobTitle('Shipping Label 123')
+        ->tray('Tray 1')
+        ->send(['idempotency_key' => 'job:123']);
+
+    Http::assertSent(function (Request $request): bool {
+        if ($request->method() !== 'POST') {
+            return true;
+        }
+
+        expect($request->url())->toBe('https://api.printnode.com/printjobs')
+            ->and($request->header('Authorization'))->toBe([
+                'Basic ' . base64_encode('my-key:'),
+            ])
+            ->and($request->header('X-Idempotency-Key'))->toBe(['job:123'])
+            ->and($request->data())->toBe([
+                'printerId' => 33,
+                'contentType' => 'pdf_base64',
+                'content' => base64_encode('%PDF-example'),
+                'title' => 'Shipping Label 123',
+                'source' => 'Laravel',
+                'options' => [
+                    'bin' => 'Tray 1',
+                ],
+            ]);
+
+        return true;
+    });
 });
 
 test('printer id is required', function () {

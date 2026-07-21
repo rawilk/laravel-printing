@@ -20,14 +20,14 @@ final class PrintingServiceProvider extends PackageServiceProvider
 
     public function packageRegistered(): void
     {
-        $this->app->singleton(
+        $this->app->scoped(
             Factory::class,
             fn ($app) => new Factory($app['config']['printing'])
         );
 
-        $this->app->singleton(Driver::class, fn ($app) => $app[Factory::class]->driver());
+        $this->app->scoped(Driver::class, fn ($app) => $app[Factory::class]->driver());
 
-        $this->app->singleton(
+        $this->app->scoped(
             Printing::class,
             fn ($app) => new Printing($app[Driver::class], $app['config']['printing.default_printer_id'])
         );

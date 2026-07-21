@@ -3,10 +3,12 @@
 declare(strict_types=1);
 
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Facade;
 use Rawilk\Printing\Contracts\Driver;
 use Rawilk\Printing\Contracts\Printer;
 use Rawilk\Printing\Contracts\PrintJob;
 use Rawilk\Printing\Contracts\PrintTask;
+use Rawilk\Printing\Drivers\PrintNode\PrintNode as PrintNodeDriver;
 use Rawilk\Printing\Drivers\PrintNode\PrintTask as PrintNodePrintTask;
 use Rawilk\Printing\Enums\PrintDriver;
 use Rawilk\Printing\Facades\Printing;
@@ -181,4 +183,35 @@ test('printnode api key can be updated from the facade', function () {
     $driver = app(Factory::class)->driver(PrintDriver::PrintNode);
 
     expect($driver->getApiKey())->toBe('new-key');
+});
+
+it('resolves printing services from current configuration for each lifecycle', function () {
+    config()->set('printing.drivers.printnode.key', 'first-key');
+
+    app()->forgetInstance(Factory::class);
+    app()->forgetInstance(Driver::class);
+    app()->forgetInstance(BaseDriver::class);
+    Facade::clearResolvedInstances();
+
+    $firstFactory = app(Factory::class);
+    $firstDriver = app(Driver::class);
+    $firstPrinting = app(BaseDriver::class);
+
+    expect($firstDriver)->toBeInstanceOf(PrintNodeDriver::class)
+        ->getApiKey()->toBe('first-key');
+
+    config()->set('printing.drivers.printnode.key', 'second-key');
+
+    app()->forgetScopedInstances();
+    Facade::clearResolvedInstances();
+
+    $secondFactory = app(Factory::class);
+    $secondDriver = app(Driver::class);
+    $secondPrinting = app(BaseDriver::class);
+
+    expect($secondFactory)->not->toBe($firstFactory)
+        ->and($secondDriver)->not->toBe($firstDriver)
+        ->and($secondPrinting)->not->toBe($firstPrinting)
+        ->and($secondDriver)->toBeInstanceOf(PrintNodeDriver::class)
+        ->getApiKey()->toBe('second-key');
 });
