@@ -36,15 +36,18 @@ class PrintJobService extends AbstractService
     public function create(array|PendingPrintJob $params, null|array|RequestOptions $opts = null): PrintJob
     {
         $data = $params instanceof PendingPrintJob ? $params->toArray() : $params;
+        $requestOptions = RequestOptions::parse($opts, strict: true);
 
-        $jobId = $this->request('post', '/printjobs', $data, opts: $opts);
+        $jobId = $this->request('post', '/printjobs', $data, opts: $requestOptions);
 
         throw_unless(
             filled($jobId),
             PrintTaskFailed::noJobCreated(),
         );
 
-        return $this->retrieve($jobId, opts: $opts);
+        unset($requestOptions->headers['X-Idempotency-Key']);
+
+        return $this->retrieve($jobId, opts: $requestOptions);
     }
 
     public function retrieve(int $id, ?array $params = null, null|array|RequestOptions $opts = null): ?PrintJob

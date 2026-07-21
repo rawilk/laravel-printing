@@ -39,6 +39,19 @@ it('can generate a payload to send to PrintNode', function () {
     ]);
 });
 
+it('formats content for its PrintNode content type', function (ContentType $contentType, string $content, string $expected) {
+    $this->job
+        ->setContentType($contentType)
+        ->setContent($content);
+
+    expect($this->job->content)->toBe($expected);
+})->with([
+    'raw base64' => [ContentType::RawBase64, 'raw data', base64_encode('raw data')],
+    'pdf base64' => [ContentType::PdfBase64, '%PDF-data', base64_encode('%PDF-data')],
+    'raw uri' => [ContentType::RawUri, 'https://example.com/label.txt', 'https://example.com/label.txt'],
+    'pdf uri' => [ContentType::PdfUri, 'https://example.com/label.pdf', 'https://example.com/label.pdf'],
+]);
+
 it('can send options to PrintNode', function () {
     $this->job->setOptions([
         PrintJobOption::Rotate->value => 90,

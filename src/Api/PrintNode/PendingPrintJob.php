@@ -83,7 +83,7 @@ class PendingPrintJob implements Arrayable
 
     public function setContent(string $content, bool $encode = true): static
     {
-        if ($encode) {
+        if ($encode && $this->usesBase64Content()) {
             $content = base64_encode($content);
         }
 
@@ -272,5 +272,10 @@ class PendingPrintJob implements Arrayable
     protected function canUseAuth(): bool
     {
         return in_array($this->contentType, [ContentType::RawUri, ContentType::PdfUri], true);
+    }
+
+    protected function usesBase64Content(): bool
+    {
+        return in_array($this->contentType, [ContentType::RawBase64, ContentType::PdfBase64], true);
     }
 }

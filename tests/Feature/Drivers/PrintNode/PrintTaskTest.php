@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 use Illuminate\Http\Client\Request;
 use Illuminate\Support\Facades\Http;
+use Rawilk\Printing\Api\PrintNode\Enums\AuthenticationType;
 use Rawilk\Printing\Api\PrintNode\Enums\ContentType;
+use Rawilk\Printing\Api\PrintNode\Enums\PrintJobOption;
 use Rawilk\Printing\Drivers\PrintNode\PrintNode;
 use Rawilk\Printing\Exceptions\PrintTaskFailed;
 
@@ -50,6 +52,7 @@ it('sends the expected payload and authentication to PrintNode', function () {
             ->and($request->header('Authorization'))->toBe([
                 'Basic ' . base64_encode('my-key:'),
             ])
+            ->and($request->header('Content-Type'))->toBe(['application/json'])
             ->and($request->header('X-Idempotency-Key'))->toBe(['job:123'])
             ->and($request->data())->toBe([
                 'printerId' => 33,
@@ -61,6 +64,66 @@ it('sends the expected payload and authentication to PrintNode', function () {
                     'bin' => 'Tray 1',
                 ],
             ]);
+
+        return true;
+    });
+});
+
+it('formats uri content and optional print job data for PrintNode', function () {
+    Http::fake([
+        '/printjobs' => Http::response('473', 201),
+        '/printjobs/473' => Http::response(samplePrintNodeData('print_job_single')),
+    ]);
+
+    $this->driver->newPrintTask()
+        ->printer(33)
+        ->content('https://example.com/labels/123.pdf', ContentType::PdfUri)
+        ->jobTitle('Shipping Label 123')
+        ->expireAfter(600)
+        ->printQty(2)
+        ->copies(3)
+        ->fitToPage(true)
+        ->option(PrintJobOption::Duplex, 'long-edge')
+        ->withAuth('print-user', 'secret', AuthenticationType::Digest)
+        ->send(['idempotency_key' => 'job:123']);
+
+    Http::assertSent(function (Request $request): bool {
+        if ($request->method() !== 'POST') {
+            return true;
+        }
+
+        expect($request->data())->toBe([
+            'printerId' => 33,
+            'contentType' => 'pdf_uri',
+            'content' => 'https://example.com/labels/123.pdf',
+            'title' => 'Shipping Label 123',
+            'source' => 'Laravel',
+            'options' => [
+                'copies' => 3,
+                'fit_to_page' => true,
+                'duplex' => 'long-edge',
+            ],
+            'expireAfter' => 600,
+            'qty' => 2,
+            'authentication' => [
+                'type' => 'DigestAuth',
+                'credentials' => [
+                    'user' => 'print-user',
+                    'pass' => 'secret',
+                ],
+            ],
+        ]);
+
+        return true;
+    });
+
+    Http::assertSent(function (Request $request): bool {
+        if ($request->method() !== 'GET') {
+            return true;
+        }
+
+        expect($request->url())->toBe('https://api.printnode.com/printjobs/473')
+            ->and($request->hasHeader('X-Idempotency-Key'))->toBeFalse();
 
         return true;
     });

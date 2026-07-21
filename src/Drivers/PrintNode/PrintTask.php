@@ -33,8 +33,8 @@ class PrintTask extends BasePrintTask
         parent::content($content);
 
         $this->pendingJob
-            ->setContent($content)
-            ->setContentType($contentType);
+            ->setContentType($contentType)
+            ->setContent($content);
 
         return $this;
     }
